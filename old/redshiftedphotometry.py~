@@ -1,0 +1,46 @@
+
+
+import numpy as np
+
+from spectrophot_array_in import *
+from astropy.cosmology import FlatLambdaCDM
+cosmo = FlatLambdaCDM(H0=73, Om0=0.3)
+
+vega_wave,vega_flux = np.loadtxt('spectra/vega.dat',dtype=float,usecols=(0,1),unpack=True)
+
+input_wave,input_flux = np.loadtxt('spectra/Gaia16apd_uv.dat', dtype=float,usecols=(0,1),unpack=True)
+
+distance_sn=cosmo.luminosity_distance(0.102)
+
+
+#mag_array = [1,1,1,1,1,1];
+
+mag_array=w_f_in(input_wave,input_flux)
+
+print('mag_array = ',mag_array)
+
+redshifts=range(0.1,2.1,0.1)
+redshiftmags=redshifts
+distances=redshifts
+lightyears=redshifts
+
+for counter in range(0,20,1):
+    z=redshifts[counter]
+#   calculate distance in Megaparsecs 
+    lumidist = cosmo.luminosity_distance(z)
+    distances[counter]=lumidist
+    lightyears[counter]=lumidist*3.26*10.0**6.0
+    redshiftedflux = np.multiply(distance_sn**2,input_flux)
+    redshiftedflux = np.divide(redshiftedflux, lumidist**2)
+    redshiftedflux = np.divide(redshiftedflux, 1+z)
+
+
+#    print(z)
+    mag_array=w_f_in(input_wave*(1.0+z),redshiftedflux)
+    print(mag_array[5])
+    redshiftmags[counter]=mag_array[5]
+    print(redshifts[counter],redshiftmags[counter])	
+    print(lightyears[counter],redshiftmags[counter])	
+	
+
+
