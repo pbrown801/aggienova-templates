@@ -1,0 +1,155 @@
+pro callbbabsgrid
+
+readcol,"$SNSCRIPTS/V_UVOT.txt", lambda,V_EA,/silent
+
+
+n_bbs=21
+n_abs=11
+n_filters=6
+n_ebv=11
+
+
+z=0.1
+SNname='Gaia16apd'
+pjb_phot_array_B141, '$SOUSA/data/'+SNname+'_uvotB15.1.dat',   dt=dt
+
+readcol,"gaia16apd_absorption.dat", abslambda, absorptionspectrum
+
+abs_lambda=interpol(absorptionspectrum, abslambda, (lambda*(1.0+z)))
+
+
+nfiltersinepoch=intarr(n_elements(dt.time_array))
+filtercheck=intarr(n_elements(dt.time_array),6)
+for n=0,n_elements(dt.time_array)-1 do for f=0,5 do filtercheck[n,f]=finite(dt.mag_array[f,n])
+for n=0,n_elements(dt.time_array)-1 do nfiltersinepoch[n]=total(filtercheck[n,*]) 
+all6=where(nfiltersinepoch eq 6)
+
+earlyepochs=[57510.0,57515.0,57520.0,57525.0]
+;earlyvmags=[20.0]
+
+n_earlyepochs=n_elements(earlyepochs)
+
+earlymags=fltarr(6,n_earlyepochs)
+earlymagerrs=earlymags*0.0+0.1
+;for e=0,n_earlyepochs-1 do earlyvmags[e]=interpol([20.0,dt.mag_array[5,all6[0]]],[57510.0,dt.time_array[all6[0]]], earlyepochs)
+earlyvmags=interpol([20.0,dt.mag_array[5,all6[0]]],[57510.0,dt.time_array[all6[0]]], earlyepochs)
+
+;; extrapolate other filters assuming a constant color
+for f=0,5 do earlymags[f,*]=earlyvmags+dt.mag_array[f,all6[0]]-dt.mag_array[5,all6[0]]
+;;;;;;;
+
+lateepochs=[57600,57605,57610,57615,57620,57625,57630,57635,57640,57645,57650,57655,57660,57665,57670,57675,57680,57685,57690,57695,57700]
+;earlyvmags=[20.0]
+
+n_lateepochs=n_elements(lateepochs)
+
+latemags=fltarr(6,n_lateepochs)
+latemagerrs=latemags*0.0+0.1
+
+;for e=0,n_earlyepochs-1 do earlyvmags[e]=interpol([20.0,dt.mag_array[5,all6[0]]],[57510.0,dt.time_array[all6[0]]], earlyepochs)
+latevmags=interpol([dt.mag_array[5,all6[n_elements(all6)-1]],20],[dt.time_array[all6[n_elements(all6)-1]],57690], lateepochs)
+
+;; extrapolate other filters assuming a constant color
+for f=0,5 do latemags[f,*]=latevmags+dt.mag_array[f,all6[n_elements(all6)-1]]-dt.mag_array[5,all6[n_elements(all6)-1]]
+
+;need to combine arrays of early, uvot, and late epochs
+
+;need to scale spectrum by distance so magnitudes are correct, not just the colors
+
+;print out template spectrum file
+
+;make validation plots
+
+
+
+; combine mag arrays
+
+allmag_array=[[earlymags],[dt.mag_array[*,all6]],[latemags]]
+allmagerr_array=[[earlymagerrs],[dt.magerr_array[*,all6]],[latemagerrs]]
+totalepochs=n_elements(allmag_array[0,*])
+
+;;; here comes the looping
+
+allmodelmag_array=fltarr(6,totalepochs)
+alltemps_array   =fltarr(totalepochs)
+allabs_array     =fltarr(totalepochs)
+allebv_array     =fltarr(totalepochs)
+
+; open data file for writing
+openw,lun2, 'ANT-'+SNname+'.sed.restframe.dat', /get_lun
+
+printf, lun2, '# based on '+SNname
+printf, lun2, '# The UVOT photometry is fit to a blackbody '
+printf, lun2, '# modified by an absorption spectrum based on Gaia16apd'
+
+
+
+for npeochloop=0,totalepochs-1 do begin
+
+	mags=allmag_array[*,npeochloop]
+	magerrs=allmagerr_array[*,npeochloop]
+
+
+	bbabsgrid, z, modelmags, n_bbs, temp_array, n_abs, abs_array, n_ebv, ebv_array
+
+	colorchisquare=fltarr(n_bbs, n_abs, n_ebv)
+
+	for i=0,n_bbs-1 do for eindex=0,n_ebv-1 do for a=0,n_abs-1 do colorchisquare[i,a,eindex]=total(  ((mags[0:4]-mags[5])-(modelmags[i,a,eindex,0:4]-modelmags[i,a,eindex,5]))^2.0/(magerrs[0:4]^2.0))
+
+	minmodel=min(colorchisquare, location)
+	ind = array_indices(colorchisquare, location)
+
+	besttemp=temp_array[ind[0]]
+	bestabs=abs_array[ind[1]]
+	bestebv=ebv_array[ind[2]]
+
+	print, besttemp, bestabs, bestebv
+
+
+	allmodelmag_array[*,npeochloop]=modelmagarray
+	alltemps_array[npeochloop]   =besttemp
+	allabs_array[npeochloop]     =bestabs
+	allebv_array[npeochloop]     =bestebv
+
+	;rebuild spectrum
+	T=besttemp
+	bbspec=1L*2.0*h*c^2/((lambda*(1.0+z))^5*(e^(h*c/((lambda*(1.0+z))*k*T))-1.0))
+	Ebv=bestebv
+	Aarray=sne_mw_reddening((lambda*(1.0+z)),Ebv)
+	specred=bbspec*10^(-Aarray/2.5)
+	absfactor=bestabs
+	absorbedspec=specred*abs_lambda^abs_factor
+	
+
+
+	vspeccounts=V_EA*absorbedspec*(10*lambda/hc)
+	;;calculate a synthetic magnitude from the spectrum
+	v_spec=-2.5*alog10(total(vspeccounts))+17.89
+
+	vobscounts=   10.0^(0.4*(17.89-mags[5]))
+
+	factor=vobscounts/vspeccounts
+
+	plot, lambda*(1.0+z), absorbedspec
+
+	
+	for t=0,640 do printf, lun2, phase, lambda[t],  absorbedspec[t]
+
+
+print, modelmags(ind[0],ind[1],ind[2],1)-modelmags(ind[0],ind[1],ind[2],5)
+print, mags[1]-mags[5]
+
+print, modelmags(ind[0],ind[1],ind[2],3)-modelmags(ind[0],ind[1],ind[2],5)
+print, mags[3]-mags[5]
+
+endfor
+
+; close spectrum file
+close, lun2
+free_lun, lun2
+
+
+
+print, 'final stop for callbbabsgrid'
+stop
+end

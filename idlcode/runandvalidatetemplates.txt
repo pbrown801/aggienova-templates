@@ -1,0 +1,214 @@
+mangleSNuvot, 'SN2011aa', 0.0123550, 55613.0, 'SN2016ccj_peaktemplatespectrum.dat'
+validatemodel, 'SN2011aa', 0.0123550, 55613.0
+
+; mangleSNuvot, 'LSQ12gdj', 0.0303000, 56255.0, 'SN2016ccj_peaktemplatespectrum.dat'
+; LSQ doesn't want to fit an SED
+; validatemodel, 'LSQ12gdj', 0.0303000, 56255.0
+validatemodel, 'SN2009dc', 0.0213910, 54945.0
+validatemodel, 'SN2011de', 0.0291870, 55715.0
+validatemodel, 'SN2012dn', 0.0101870, 56130.0
+validatemodel, 'SN2016ccj', 0.0410000, 57522.0
+;; some are offset because I didn't record the reference epoch I used
+
+
+mags=[18.3190, 18.5920, 16.5550, 15.4560, 16.7340, 16.6910 ]
+filters=['$SNSCRIPTS/filters/UVW2_B11.txt','$SNSCRIPTS/filters/UVM2_B11.txt','$SNSCRIPTS/filters/UVW1_B11.txt','$SNSCRIPTS/filters/U_P08.txt','$SNSCRIPTS/filters/B_P08.txt','$SNSCRIPTS/filters/V_P08.txt']
+makesedfromphot, mags, filters, sed
+
+
+
+;;;;; Swift supernovae in lc.naturalsystem.sesn_allphot.dat
+
+
+SN2006aj BVr'i'JHK
+SN2006jc BVr'i'JHK
+SN2007uy BVr'i'JHK  
+
+mangleSNuvotCFAsesn, 'SN2007uy', 0.00649400, 54480.0, '$SNSCRIPTS/SN1994I_UV.dat'
+
+
+
+SN2008D  BVr'i'JHK
+SN2008aq  BVr'i'JHK
+SN2008ax  BVr'i'JHK
+SN2008bo  BVr'i'JHK
+SN2009jf  BVr'i'JHK  uvot needs a template
+
+createmagarrayuvotcfairii, 'SN2008D', bigmjdarray, bigmagarray, filterarray
+mangleSNseries, 'SN2008D', 0.00649400 , 54475.0, 'SN1994I_peaktemplatespectrum.dat', bigmjdarray, bigmagarray, filterarray
+validatemodel,  'SN2008D', 0.00649400 , 54475.0
+
+createmagarrayuvotcfairii, 'SN2008aq', bigmjdarray, bigmagarray, filterarray
+mangleSNseries, 'SN2008aq', 0.00797200, 54520.0, 'SN1994I_peaktemplatespectrum.dat', bigmjdarray, bigmagarray, filterarray
+validatemodel, 'SN2008aq', 0.00797200, 54520.0
+
+createmagarrayuvotcfairii, 'SN2008ax', bigmjdarray, bigmagarray, filterarray
+mangleSNseries, 'SN2008ax', 0.00188500, 54525.0, 'SN1994I_peaktemplatespectrum.dat', bigmjdarray, bigmagarray, filterarray
+validatemodel, 'SN2008ax', 0.00188500, 54525.0
+
+createmagarrayuvotcfairii, 'SN2008bo', bigmjdarray, bigmagarray, filterarray
+mangleSNseries, 'SN2008bo', 0.0172000, 54555.0, 'SN1994I_peaktemplatespectrum.dat', bigmjdarray, bigmagarray, filterarray
+validatemodel, 'SN2008bo', 0.0172000, 54555.0
+
+
+
+
+;;;;;  CFA_SNII_NATSYSTEM_LC.txt
+SN2010al BVr'i'JHK
+SN2009dd BVr'i'
+SN2008in BVr'i'JHK
+SN2007pk BVr'i'
+SN2007od BVr'i'
+SN2006at BVr'i'
+SN2005kd BVr'i'
+
+
+.run pjb_phot_array_B141
+
+createmagarrayuvotcfairii, 'SN2008in', bigmjdarray, bigmagarray, filterarray
+mangleSNIIP, 'SN2008in', 0.005224, 54828.0, bigmjdarray, bigmagarray, filterarray
+validatemodel, 'SN2008in', 0.005224, 54828.0
+
+createmagarrayuvotcfairii, 'SN2010al', bigmjdarray, bigmagarray, filterarray
+mangleSNseries, 'SN2010al', 0.0172000, 55270.0, 'SN1998S_peaktemplatespectrum.dat', bigmjdarray, bigmagarray, filterarray
+validatemodel, 'SN2010al', 0.0172000, 55270.0
+
+
+createmagarrayuvotcfairii, 'SN2005kd', bigmjdarray, bigmagarray, filterarray
+mangleSNseries, 'SN2005kd', 0.0150400, 54120.0, 'SN1998S_peaktemplatespectrum.dat', bigmjdarray, bigmagarray, filterarray
+validatemodel, 'SN2005kd', 0.0150400, 54120.0
+
+
+createmagarrayuvotcfaii, 'SN2009dd', bigmjdarray, bigmagarray, filterarray
+mangleSNIIP, 'SN2009dd', 0.00252400 , 54935.0, bigmjdarray, bigmagarray, filterarray
+validatemodel, 'SN2009dd', 0.00252400 , 54935.0
+
+
+createmagarrayuvotcfaii, 'SN2007pk', bigmjdarray, bigmagarray, filterarray
+mangleSNIIP, 'SN2007pk', 0.0166550 , 54415.0, bigmjdarray, bigmagarray, filterarray
+validatemodel, 'SN2007pk', 0.0166550 , 54415.0
+
+
+createmagarrayuvotcfaii, 'SN2007od', bigmjdarray, bigmagarray, filterarray
+mangleSNIIP, 'SN2007od', 0.00578400 , 54405.0, bigmjdarray, bigmagarray, filterarray
+validatemodel, 'SN2007od', 0.00578400 , 54405.0
+
+
+createmagarrayuvotcfaii, 'SN2006at', bigmjdarray, bigmagarray, filterarray
+mangleSNIIP, 'SN2006at', 0.01 , 53800.0, bigmjdarray, bigmagarray, filterarray
+validatemodel, 'SN2006at', 0.01 , 53800.0
+
+
+createmagarray13by, bigmjdarray, bigmagarray, filterarray
+mangleSNIIP, 'SN2013by', 0.00381600 , 56404.0, bigmjdarray, bigmagarray, filterarray
+validatemodel, 'SN2013by', 0.00381600 , 56404.0
+
+
+
+createmagarray12aw, bigmjdarray, bigmagarray, filterarray
+; redshift is 0.00381600
+; uses z corresponding to  10 ± 0.40 Mpc by Freedman et al. (2001)
+;  range  0.002238  - 0.002425
+; E(B − V)mw = 0.024 from Schlafly
+; E(B − V)host = 0.055 ± 0.014 mag, which is derived by Van Dyk et al. (2012) 
+; E(B − V)host = 0.055 ± 0.014 mag
+;  E(B − V)host = 0.14 ± 0.03 We derive A(V)host = (0.44 ± 0.10) mag, 
+; which corresponds to E(B − V) = 0.14 ± 0.03 mag M. Dall'Ora et al. 2014
+
+mangleSNIIPred, 'SN2012aw', 0.002331 , 56002.0, 0.024, 0.14, bigmjdarray, bigmagarray, filterarray
+;  if using the deeddening, a version of validate model needs to add reddening back in
+validatemodel, 'SN2012aw', 0.002331 , 56002.0
+
+;;;;;;;; redoing with errors
+
+
+createfiltermagarray12aw, filterarray
+createIIPmagarray, 'SN2012aw', filterarray, filtermjdarray, filtermagarray, filtermagerrarray, bigmjdarray, bigmagarray, bigmagerrarray, 56002.0, 1.0
+mangleSNIIPred, 'SN2012aw', 0.002331 , 56002.0, 0.024, 0.14, bigmjdarray, bigmagarray, bigmagerrarray, filterarray
+validatemodel, 'SN2012aw', 0.00233100 , 56002.0, 0.024, 0.14
+
+;; does this one have the tall uvw2 spike?
+;  explosion date 2.5 days before detection
+createfiltermagarrayuvotcfaii, 'SN2006at', filterarray
+createIIPmagarray, 'SN2006at', filterarray, filtermjdarray, filtermagarray, filtermagerrarray, bigmjdarray, bigmagarray, bigmagerrarray, 53801.0, 1.0
+mangleSNIIPred, 'SN2006at', 0.015 , 53801.0, 0.014, 0.00, bigmjdarray, bigmagarray, bigmagerrarray, filterarray
+validatemodel, 'SN2006at', 0.015 , 53801.0, 0.014, 0.00
+
+createfiltermagarrayuvotcfaii, 'SN2007pk', filterarray
+createIIPmagarray, 'SN2007pk', filterarray, filtermjdarray, filtermagarray, filtermagerrarray, bigmjdarray, bigmagarray, bigmagerrarray, 54415.0, 1.0
+mangleSNIIPred, 'SN2007pk', 0.0166550 , 54415.0, 0.046, 0.13, bigmjdarray, bigmagarray, bigmagerrarray, filterarray
+validatemodel, 'SN2007pk', 0.0166550 , 54415.0, 0.046, 0.13
+
+;  .run pjb_phot_array_B141
+
+createfiltermagarrayuvotcfaii, 'SN2007od', filterarray
+createIIPmagarray, 'SN2007od', filterarray, filtermjdarray, filtermagarray, filtermagerrarray, bigmjdarray, bigmagarray, bigmagerrarray, 54407.5, 1.0
+
+mangleSNIIPred, 'SN2007od', 0.00578400 , 54407.5, 0.031, 0.09, bigmjdarray, bigmagarray, bigmagerrarray, filterarray
+validatemodel, 'SN2007od', 0.00578400 , 54407.5, 0.031, 0.09
+
+
+
+createfiltermagarrayuvotcfaii, 'SN2008in', filterarray
+createIIPmagarray, 'SN2008in', filterarray, filtermjdarray, filtermagarray, filtermagerrarray, bigmjdarray, bigmagarray, bigmagerrarray, 54828.0, 1.0
+mangleSNIIPred, 'SN2008in', 0.005224 , 54828.0, 0.02, 0.07, bigmjdarray, bigmagarray, bigmagerrarray, filterarray
+validatemodel, 'SN2008in', 0.005224 , 54828.0, 0.02, 0.07
+
+
+
+
+
+createfiltermagarray13by, filterarray, filtermjdarray, filtermagarray, filtermagerrarray
+createIIPmagarray, 'SN2013by', filterarray, filtermjdarray, filtermagarray, filtermagerrarray, bigmjdarray, bigmagarray, bigmagerrarray, 56403.5, 1.0
+mangleSNIIPred, 'SN2013by', 0.003816 , 56403.5, 0.195, 0.00, bigmjdarray, bigmagarray, bigmagerrarray, filterarray
+validatemodel, 'SN2013by', 0.003816 , 56403.5, 0.195, 0.00
+
+
+;;;;;; non IIPs
+
+createfiltermagarray06aj
+
+;pro create06ajbigmagarray, SNname, filterarray, filtermjdarray, filtermagarray, filtermagerrarray, bigmjdarray, bigmagarray, bigmagerrarray, explosiondate, explosiondateerr, lateslope
+
+create06ajbigmagarray, 'SN2006aj', filterarray, filtermjdarray, filtermagarray, filtermagerrarray, bigmjdarray, bigmagarray, bigmagerrarray, 53784.1, 0.1
+mangleSNseries, 'SN2006aj', 0.033 , 53784.1, 0.399, 0.00, bigmjdarray, bigmagarray, bigmagerrarray, filterarray, 'SN1994I_peaktemplatespectrum.dat'
+validatemodel, 'SN2006aj', 0.033 , 53784.1, 0.399, 0.00
+
+
+mangleSNuvot, 'SN2011by', 0.00284300, 55690.0, 'SN2011fe_peaktemplatespectrum.dat'
+;; doesn't work yet    validatemodel, 'SN2011by', 0.00284300, 55690.0
+
+mangleSNuvot, 'SN2007af', 0.00546400, 54175.0, 'SN2011fe_peaktemplatespectrum.dat'
+;; doesn't work yet    validatemodel, 'SN2011by', 0.00284300, 55690.0
+
+
+mangleSNuvot, 'SN2009Y', 0.00935300 , 54875.0, 'SN2017erp_hst_20170629.dat'
+;; doesn't work yet    validatemodel, 'SN2011by', 0.00284300, 55690.0
+mangleSNuvot, 'ASASSN-15rq', 0.025 , 57325.0, 'SN2004dt_m02.dat'
+;; doesn't work yet    validatemodel, 'SN2011by', 0.00284300, 55690.0
+
+
+
+createfiltermagarray16ccj
+
+create16ccjbigmagarray, 'SN2016ccj', filterarray, filtermjdarray, filtermagarray, filtermagerrarray, bigmjdarray, bigmagarray, bigmagerrarray, 57500.0, 0.1
+mangleSNseries, 'SN2016ccj', 0.0415 , 57500.0, 0.03, 0.00, bigmjdarray, bigmagarray, bigmagerrarray, filterarray, '/Users/pbrown/Desktop/Dropbox/SN/SN2016ccj/bolo/SN2016ccj_peaktemplatespectrum.dat'
+validatemodel, 'SN2016ccj', 0.0415 , 57500.0, 0.03, 0.00
+
+createmagarrayfromosc, 'LSQ12gdj', '/Users/pbrown/Desktop/Dropbox/SN/SN2016ccj/bolo/SN2016ccj_peaktemplatespectrum.dat'
+
+createmagarrayfromosc, 'SN2009dc', '/Users/pbrown/Desktop/Dropbox/SN/SN2016ccj/bolo/SN2016ccj_peaktemplatespectrum.dat'
+
+createmagarrayfromosc, 'SN2011fe', '$SNSCRIPTS/SN2011fe_peakplusthree_longestcoverage.dat'
+
+mangleSNseriesDM, 'SN2011fe', 55797, '$SNSCRIPTS/SN2011fe_peakplusthree_longestcoverage.dat'
+validatemodel, 'SN2011fe',  0.000804000,       55797,   0.00741936,      0.00000
+
+
+createmagarrayfromosc, 'SN2008ec', '$SNSCRIPTS/SN2011fe_peakplusthree_longestcoverage.dat'
+
+
+validatemodel, "LSQ12gdj",    0.0303000,,  2147483647    0.0206452,      0.00000
+
+
+
