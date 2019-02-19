@@ -28,7 +28,7 @@ except(FileNotFoundError):
 #For wavelengths with a flux measurement
 measuredWavelengths = np.array([])
 
-#For all spectra wavelengths 
+#For all spectra wavelengths
 spectraWavelengths = np.array([])
 
 #All flux measurements
@@ -89,7 +89,7 @@ counts = 0
 toPhotonFlux = 5.03 * (10 ** 7)
 for i in range(0,len(spectraWavelengths) - 1):
     photonFlux = toPhotonFlux * ((flux[i] + flux[i+1])/2) * ((spectraWavelengths[i] + spectraWavelengths[i+1])/2)
-    count = ((effectiveAreas[i] + effectiveAreas[i+1])/2) * photonFlux * (spectraWavelengths[i+1] - spectraWavelengths[i]) 
+    count = ((effectiveAreas[i] + effectiveAreas[i+1])/2) * photonFlux * (spectraWavelengths[i+1] - spectraWavelengths[i])
     counts += count
 
 #convert from angstroms to m
