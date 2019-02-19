@@ -5,7 +5,7 @@ import csv
 
 #Filter and spectrum are expected to be in the filter and spectrum folders
 spectraFileName = input("What is the file name for the desired spectrum: ")
-spectraFileName = "./spectra/" + spectraFileName
+spectraFileName = "../spectra/" + spectraFileName
 
 #Make sure that the spectra file can be opened
 try:
@@ -15,7 +15,7 @@ except(FileNotFoundError):
     exit()
 
 filterFileName = input("What is the file name for the desired filter: ")
-filterFileName = "./filters/" + filterFileName
+filterFileName = "../filters/" + filterFileName
 
 #Make sure that the filter file can be opened
 try:
