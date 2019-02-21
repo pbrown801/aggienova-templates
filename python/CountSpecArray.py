@@ -113,3 +113,41 @@ print(fifty_percent_x, fifty_percent_y)
 ninety_percent_x = ninety_percent_x_vals[-1]
 ninety_percent_y = ninety_percent_y_vals[-1]
 print(ninety_percent_x, ninety_percent_y)
+
+# Start pulling data from a second spectrum
+spectra_file_input_2 = input("What is the second filter file that you want to use?: ")
+spectra_file_name_2 = ('/users/zuhayrali/aggienova-templates/spectra/%s' % (spectra_file_input_2))
+spectra_file_load_2 = np.loadtxt(spectra_file_name_2)
+
+wavelength_spectra_2 = []
+flux_spectra_2 = []
+
+for i in range(0, len(spectra_file_load_2)):
+    wavelength_spectra_2.append(spectra_file_load_2[i][0])
+for i in range(0,len(spectra_file_load_2)):
+    flux_spectra_2.append(spectra_file_load_2[i][1])
+    
+interpolated_data_2 = np.interp(wavelength_filters, wavelength_spectra_2, flux_spectra_2)
+ergs_2 = np.array(interpolated_data_2) * np.array(area_filters)
+
+fig = plt.figure() 
+ax=fig.add_subplot(111, label=1)
+ax2=fig.add_subplot(111, label=2, frame_on=False)
+
+ax.plot(wavelength_filters, ergs, color = 'C0', label=spectra_file_input)
+ax.set_xlabel('wavelength_filter', color = 'C0')
+ax.set_ylabel('ergs_1', color = 'C0')
+ax.tick_params(axis='x', colors="C0")
+ax.tick_params(axis='y', colors="C0")
+
+ax2.plot(wavelength_filters, ergs_2, color = 'C3', label=spectra_file_input_2)
+ax2.set_xlabel('wavelength_filter', color = 'C3')
+ax2.set_ylabel('ergs_2', color = 'C3')
+ax2.xaxis.tick_top()
+ax2.yaxis.tick_right()
+ax2.xaxis.set_label_position('top') 
+ax2.yaxis.set_label_position('right')
+ax2.tick_params(axis='x', colors="C3")
+ax2.tick_params(axis='y', colors="C3")
+
+plt.show()
