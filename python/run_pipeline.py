@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 from utilities import *
-import mangle_simple
+from mangle_simple import *
 
 
 ####### this would come from the data input side
@@ -14,31 +14,41 @@ import mangle_simple
 
 
 #assign sn name at beginning and look for that file as an input
+sn_name = input('Supernova name: ')
+inFile = '../input/'+'SNtest_countsarray'+'.csv' #make this generic eventually with sn_name
+with open(inFile) as csvinp:
+    reader = csv.reader(csvinp,delimiter = ',')
+    filter_curves_list = next(reader)[1:]
+    filter_curves_list = list(map('../filters/{0}'.format, filter_curves_list))
 
-filter_curves_list = ['UVW2_2010', 'UVM2_2010', 'UVW1_2010', 'U_UVOT', 'B_UVOT', 'V_UVOT'] ### STRING LIST
-for i in range(0,len(filter_curves_list)):
-    filter_curves_list[i] = "../filters/" + filter_curves_list[i] + ".txt"
+    for row in reader:
+        mjd = row[0]
+        single_epoch_test_mag_counts = row[1:]
 
+        #do something with this
 
-####### read in the first row of count rates
-# total_counts #this should return an array of count rates
-single_epoch_test_mag_counts = [99.2572, 40.0928, 391.629, 3538.04, 4730.92, 1505.18]  #  these come from SN2011fe #THESE WILL COME FROM SNtest
-
-epoch = 3.4 # future : epoch = mjd - 0
-
+        epoch = int(mjd)-0
+        print(epoch)
 #######  Assign a template spectrum to use
 
-templatespectrum = "../spectra/SN2017erp_hst_20170629.dat"
+        template_spectrum = "../spectra/SN2017erp_hst_20170629.dat"
+
+####### read in the first row of count rates
+
+# total_counts #this should return an array of count rates
+# single_epoch_test_mag_counts = [99.2572, 40.0928, 391.629, 3538.04, 4730.92, 1505.18]  #  these come from SN2011fe #THESE WILL COME FROM SNtest
+
+
 
 #######  mangle the spectrum to match the given countrates
 
-counts_in = single_epoch_test_mag_counts
-mangled_spec_wave, mangled_spec_flux = mangle_simple(template_spectrum, filter_curves_list, counts_in)
+        counts_in = single_epoch_test_mag_counts
+        mangled_spec_wave, mangled_spec_flux = mangle_simple(template_spectrum, filter_curves_list, counts_in)
 
 # mangling outputs spectrum that matches input counts by multiplying func by og spec
 
 ####### write a 3 column csv file with the epoch (constant for each spectrum), mangledspecwave, mangledspecflux for each row of mangledspecwave,mangledspecflux ***TATE WROTE THIS ALREADY***
-spectrum_to_csv(mangled_spec_wave,mangled_spec_flux) #ouput name = SNtest_spectral_series.csv
+        spectrum_to_csv(mangled_spec_wave,mangled_spec_flux,sn_name) #ouput name = SNtest_spectral_series.csv
 
 
 #######  Now read in that file

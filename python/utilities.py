@@ -30,14 +30,15 @@ def dat_to_csv(dat):
     out_df = out_df.join(df)
     out_df.to_csv(output_file,index=False)
 
-def spectrum_to_csv(wavelength,flux):
+def spectrum_to_csv(wavelength,flux,name):
     """
         converter function between spectra and csv
     """
+    output_file = '../output/'+name+'.csv'
     data = {'Epoch': [0]*len(wavelength),
             'Wavelength': wavelength,
             'Flux': flux
             }
 
     df = DataFrame(data,columns= ['Epoch','Wavelength', 'Flux'])
-    print(df)
+    df.to_csv(output_file,index=False)
