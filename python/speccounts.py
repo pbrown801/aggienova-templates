@@ -42,15 +42,14 @@ def specin_countsout(wavez,fluxz):
     hc = h*c
 
 
-    files = ['filters/UVW2_2010.txt','filters/UVM2_2010.txt','filters/UVW1_2010.txt','filters/U_UVOT.txt','filters/B_UVOT.txt',
-             'filters/V_UVOT.txt']
+    files = ['filters/UVW2_2010.txt','filters/UVM2_2010.txt','filters/UVW1_2010.txt','filters/U_UVOT.txt','filters/B_UVOT.txt', 'filters/V_UVOT.txt']
 
     filter_WL = []
     filter_A = []
 
     for item in files:
-
-        f = open(item,'r')
+        #Necessary to have "../" when running in /python/ directory
+        f = open("../" + item,'r')
 
 #	print(item)
 
