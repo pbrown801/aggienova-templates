@@ -5,11 +5,8 @@ import matplotlib.pyplot as plt
 spectra_file_input = input("What spectra file do you want to use?: ")
 filter_file_input = input("What filter file do you want to use?: ")
 
-
-spectra_file_name = ('/users/zuhayrali/aggienova-templates/spectra/%s' % (spectra_file_input))
-filter_file_name = ('/users/zuhayrali/aggienova-templates/filters/%s' % (filter_file_input))
-
-
+spectra_file_name = ('../spectra/%s' % (spectra_file_input))
+filter_file_name = ('../filters/%s' % (filter_file_input))
 
 
 spectra_file_load = np.loadtxt(spectra_file_name)
