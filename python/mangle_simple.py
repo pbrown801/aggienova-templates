@@ -18,7 +18,8 @@ def pivot_wavelength(Filter):
 
 def mangle_simple(templatespectrum,filtercurves_list, counts_in):
 
-    input_wave,input_flux = np.loadtxt("../spectra/" + templatespectrum, dtype=float,usecols=(0,1),unpack=True)
+    input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum, )#dtype=float,usecols=(0,1),unpack=True)
+
 
     pivot_array = np.zeros(len(filtercurves_list))
     for l in range(len(filtercurves_list)):
@@ -29,15 +30,13 @@ def mangle_simple(templatespectrum,filtercurves_list, counts_in):
     #######  This comes as previous code (under old/ for just the UVOT filters)
     #input_wave,input_flux = np.loadtxt('spectra/Gaia16apd_uv.dat', dtype=float,usecols=(0,1),unpack=True)
 
-    counts_array=specin_countsout(input_wave, input_flux)
-    #print(counts_array)
-
-    ratio=counts_in/counts_array
-
+    counts_array=get_counts_multi_filter(templatespectrum, filtercurves_list)
+    ratio = np.zeros(len(counts_array))
+    for x in range(0,len(counts_array)):
+        ratio[x]=counts_in[x]/counts_array[x]
     manglefunction= np.interp(input_wave, pivot_array, ratio)
 
     mangledspectrumflux=input_flux*manglefunction
-
     return input_wave, mangledspectrumflux
 
 '''

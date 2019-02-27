@@ -31,7 +31,7 @@ with open(inFile) as csvinp:
         single_epoch_test_mag_counts = list(map(float,single_epoch_test_mag_counts))
 #######  Assign a template spectrum to use
 
-        template_spectrum = "../spectra/SN2017erp_hst_20170629.dat"
+        template_spectrum = "SN2017erp_hst_20170629.dat"
 
 ####### read in the first row of count rates
 
