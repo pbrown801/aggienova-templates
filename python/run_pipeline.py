@@ -20,15 +20,15 @@ with open(inFile) as csvinp:
     reader = csv.reader(csvinp,delimiter = ',')
     filter_curves_list = next(reader)[1:]
     filter_curves_list = list(map('../filters/{0}'.format, filter_curves_list))
-
     for row in reader:
         mjd = row[0]
         single_epoch_test_mag_counts = row[1:]
 
+
         #do something with this
 
-        epoch = int(mjd)-0
-        print(epoch)
+        epoch = float(mjd)-0
+        single_epoch_test_mag_counts = list(map(float,single_epoch_test_mag_counts))
 #######  Assign a template spectrum to use
 
         template_spectrum = "../spectra/SN2017erp_hst_20170629.dat"

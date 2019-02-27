@@ -40,5 +40,5 @@ def spectrum_to_csv(wavelength,flux,name):
             'Flux': flux
             }
 
-    df = DataFrame(data,columns= ['Epoch','Wavelength', 'Flux'])
+    df = pd.DataFrame(data,columns= ['Epoch','Wavelength', 'Flux'])
     df.to_csv(output_file,index=False)
