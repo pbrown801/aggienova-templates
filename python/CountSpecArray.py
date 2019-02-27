@@ -113,7 +113,7 @@ print(ninety_percent_x, ninety_percent_y)
 
 # Start pulling data from a second spectrum
 spectra_file_input_2 = input("What is the second filter file that you want to use?: ")
-spectra_file_name_2 = ('/users/zuhayrali/aggienova-templates/spectra/%s' % (spectra_file_input_2))
+spectra_file_name = ('../spectra/%s' % (spectra_file_input_2))
 spectra_file_load_2 = np.loadtxt(spectra_file_name_2)
 
 wavelength_spectra_2 = []
