@@ -96,23 +96,20 @@ plt.plot(wavelength_filters, ergs)
 plt.xlabel('wavelength_filters')
 plt.ylabel('ergs/s/angstrom')
 
-
 ten_percent_x = ten_percent_x_vals[-1]
 ten_percent_y = ten_percent_y_vals[-1]
-print(ten_percent_x, ten_percent_y)
-
+print("Ten percent of values for %s are located at the point (%s, %s)" %(spectra_file_input, ten_percent_x, ten_percent_y))
 
 fifty_percent_x = fifty_percent_x_vals[-1]
 fifty_percent_y = fifty_percent_y_vals[-1]
-print(fifty_percent_x, fifty_percent_y)
-
+print("Fifty percent of values for %s are located at the point (%s, %s)" %(spectra_file_input, fifty_percent_x, fifty_percent_y))
 
 ninety_percent_x = ninety_percent_x_vals[-1]
 ninety_percent_y = ninety_percent_y_vals[-1]
-print(ninety_percent_x, ninety_percent_y)
+print("Ninety percent of values for %s are located at the point (%s, %s)" %(spectra_file_input, ninety_percent_x, ninety_percent_y))
 
 # Start pulling data from a second spectrum
-spectra_file_input_2 = input("What is the second filter file that you want to use?: ")
+spectra_file_input_2 = input("What is the second spectra file that you want to use?: ")
 spectra_file_name_2 = ('../spectra/%s' % (spectra_file_input_2))
 spectra_file_load_2 = np.loadtxt(spectra_file_name_2)
 
@@ -147,4 +144,20 @@ ax2.yaxis.set_label_position('right')
 ax2.tick_params(axis='x', colors="C3")
 ax2.tick_params(axis='y', colors="C3")
 
+plot1_legend = mpatches.Patch(color='C0', label=spectra_file_input)
+plot2_legend = mpatches.Patch(color='C3', label=spectra_file_input_2)
+plt.legend(handles=[plot1_legend,plot2_legend])
+
 plt.show()
+
+ten_percent_x = ten_percent_x_vals[-1]
+ten_percent_y = ten_percent_y_vals[-1]
+print("Ten percent of values for %s are located at the point (%s, %s)" %(spectra_file_input_2, ten_percent_x, ten_percent_y))
+
+fifty_percent_x = fifty_percent_x_vals[-1]
+fifty_percent_y = fifty_percent_y_vals[-1]
+print("Fifty percent of values for %s are located at the point (%s, %s)" %(spectra_file_input_2, fifty_percent_x, fifty_percent_y))
+
+ninety_percent_x = ninety_percent_x_vals[-1]
+ninety_percent_y = ninety_percent_y_vals[-1]
+print("Ninety percent of values for %s are located at the point (%s, %s)" %(spectra_file_input_2, ninety_percent_x, ninety_percent_y))
