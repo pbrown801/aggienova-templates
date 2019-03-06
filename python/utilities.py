@@ -34,7 +34,7 @@ def spectrum_to_csv(wavelength,flux,name):
     """
         converter function between spectra and csv
     """
-    output_file = '../output/'+name+'.csv'
+    output_file = '../output/'+name+'_template.csv'
     data = {'Epoch': [0]*len(wavelength),
             'Wavelength': wavelength,
             'Flux': flux
