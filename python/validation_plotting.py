@@ -5,21 +5,11 @@ import csv
 
 # applying the file to be passed through the entire code
 def validation_plotting(filter_curve,count,time):
-    filters = []
-    count_rate = []
-    mjd = []
-    for a in filter_curve:
-        filters.append(float(a))
-    for b in count:
-        count_rate.append(float(b))
-    for c in time:
-        mjd.append(float(c))
-
-# pull the count rate and mjd for u filter to then graph only that filter
-# unsure if i add in any a general code for error bars
+    # pull the count rate and mjd for u filter to then graph only that filter
+    # unsure if i add in any a general code for error bars
     u_count = []
     u_mjd = []
-    for i in range(len(filters)):
+    for i in range(len(filters_curve)):
         if filter[i] =='U':
             u_count.append(count_rate[i])
             u_mjd.append(mjd[i])
@@ -34,7 +24,7 @@ def validation_plotting(filter_curve,count,time):
 # pull the count rate and mjd for uvw2 filter to then graph only that filter
     uvw2_count = []
     uvw2_mjd = []
-    for i in range(len(filters)):
+    for i in range(len(filters_curve)):
         if filter[i] =='UVW2':
             uvw2_count.append(count_rate[i])
             uvw2_mjd.append(mjd[i])
@@ -52,7 +42,7 @@ def validation_plotting(filter_curve,count,time):
 # pull the count rate and mjd for uvm2 filter to then graph only that filter
     uvm2_count = []
     uvm2_mjd = []
-    for i in range(len(filters)):
+    for i in range(len(filters_curve)):
         if filter[i] == 'UVM2':
             uvm2_count.append(count_rate[i])
             uvm2_mjd.append(mjd[i])
@@ -70,7 +60,7 @@ def validation_plotting(filter_curve,count,time):
 # pull the count rate and mjd for uvw1 filter to then graph only that filter
     uvw1_count = []
     uvw1_mjd = []
-    for i in range(len(filters)):
+    for i in range(len(filters_curve)):
         if filter[i] == 'UVW1':
             uvw1_count.append(count_rate[i])
             uvw1_mjd.append(mjd[i])
@@ -87,7 +77,7 @@ def validation_plotting(filter_curve,count,time):
 
     b_count = []
     b_mjd = []
-    for i in range(len(filters)):
+    for i in range(len(filters_curve)):
         if filter[i] =='B':
             b_count.append(count_rate[i])
             b_mjd.append(mjd[i])
@@ -103,7 +93,7 @@ def validation_plotting(filter_curve,count,time):
 
     g_count = []
     g_mjd = []
-    for i in range(len(filters)):
+    for i in range(len(filters_curve)):
         if filter[i] =='G':
             g_count.append(count_rate[i])
             g_mjd.append(mjd[i])
@@ -119,7 +109,7 @@ def validation_plotting(filter_curve,count,time):
 
     v_count = []
     v_mjd = []
-    for i in range(len(filters)):
+    for i in range(len(filters_curve)):
         if filter[i] =='V':
             v_count.append(count_rate[i])
             v_mjd.append(mjd[i])
@@ -135,7 +125,7 @@ def validation_plotting(filter_curve,count,time):
 
     r_count = []
     r_mjd = []
-    for i in range(len(filters)):
+    for i in range(len(filters_curve)):
         if filter[i] =='R':
             r_count.append(count_rate[i])
             r_mjd.append(mjd[i])
@@ -151,7 +141,7 @@ def validation_plotting(filter_curve,count,time):
 
     i_count = []
     i_mjd = []
-    for i in range(len(filters)):
+    for i in range(len(filters_curve)):
         if filter[i] =='I':
             i_count.append(count_rate[i])
             i_mjd.append(mjd[i])
@@ -167,7 +157,7 @@ def validation_plotting(filter_curve,count,time):
 
     j_count = []
     j_mjd = []
-    for i in range(len(filters)):
+    for i in range(len(filters_curve)):
         if filter[i] =='J':
             j_count.append(count_rate[i])
             j_mjd.append(mjd[i])
@@ -183,7 +173,7 @@ def validation_plotting(filter_curve,count,time):
 
     h_count = []
     h_mjd = []
-    for i in range(len(filters)):
+    for i in range(len(filters_curve)):
         if filter[i] =='H':
             h_count.append(count_rate[i])
             h_mjd.append(mjd[i])
@@ -199,7 +189,7 @@ def validation_plotting(filter_curve,count,time):
 
     k_count = []
     k_mjd = []
-    for i in range(len(filters)):
+    for i in range(len(filters_curve)):
         if filter[i] =='K':
             k_count.append(count_rate[i])
             k_mjd.append(mjd[i])
