@@ -14,10 +14,10 @@ def validation_plotting(filters_curve,count_rate,mjd):
         cur_count = count_rate[:,i]
         x = mjd
         y = cur_count
-        plt.plot(y,x)
+        plt.plot(x,y)
         plt.title('Data for all bands')
-        plt.ylabel('Time (mjd)')
-        plt.xlabel('Count rate')
+        plt.xlabel('Time (mjd)')
+        plt.ylabel('Count rate')
     legend_items = list(map('{0} band'.format,filters_curve))
     plt.legend(legend_items)
     plt.show()

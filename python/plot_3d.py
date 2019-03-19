@@ -19,6 +19,7 @@ plt.show()
 #Does not currently validate file existence
 #Currently only plots wavelengths between 1000 and 10000
 def plot_3D(filename):
+
     epoch = np.zeros(0)
     wavelength = np.zeros(0)
     flux = np.zeros(0)
@@ -34,5 +35,3 @@ def plot_3D(filename):
                 flux = np.append(flux, [float(row[2])])
         ax.plot(epoch,wavelength,flux)
         plt.show()
-
-plot_3D("../output/dat_to_csv.csv")

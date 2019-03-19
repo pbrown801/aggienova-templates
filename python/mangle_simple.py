@@ -6,7 +6,7 @@ from total_counts import *
 
 def pivot_wavelength(Filter):
 
-    filter_wave,filter_tp = np.loadtxt("../filters/" + Filter, dtype = float, usecols=(0,1), unpack=True)
+    filter_wave,filter_tp = np.loadtxt(Filter, dtype = float, usecols=(0,1), unpack=True)
 
     numerator = np.trapz(filter_tp*filter_wave,filter_wave)
     denominator = np.trapz(filter_tp/filter_wave,filter_wave)
