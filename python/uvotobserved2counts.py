@@ -252,7 +252,7 @@ with open('../output/'+'SN2007af_magarray.csv', 'w') as csvFile:
 
 
 
-with open('../output/'+'SN2007af_countsarray.csv', 'w') as csvFile:
+with open('../input/'+'SN2007af_countsarray.csv', 'w') as csvFile:
     writer = csv.writer(csvFile, delimiter=',')
     writer.writerows([names])
     for i in range(0,len(time)):
