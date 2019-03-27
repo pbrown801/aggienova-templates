@@ -20,6 +20,8 @@ plt.show()
 #Assumes first row is 'Epoch, Wavelength, Flux' and following rows correspond to those values
 #Does not currently validate file existence
 def plot_3D(df,name):
+    # surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm,
+                       # linewidth=0, antialiased=False)
     ax.plot(df.Epoch,df.Wavelength,df.Flux)
     plt.title(name)
     ax.set_xlabel('Time (mjd)')
