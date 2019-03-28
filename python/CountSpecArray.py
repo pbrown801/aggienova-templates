@@ -2,48 +2,37 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-spectra_file_input = input("What spectra file do you want to use?: ")
-filter_file_input = input("What filter file do you want to use?: ")
-
-spectra_file_name = ('../spectra/%s' % (spectra_file_input))
-filter_file_name = ('../filters/%s' % (filter_file_input))
-
-
+spectra_file_input = input("What spectra file do you want to use?: ")       # User inputs spectra file name including extension
+filter_file_input = input("What filter file do you want to use?: ")         # User inputs filter file name including extension
+spectra_file_name = ('../spectra/%s' % (spectra_file_input))                # Path is relative, might need to be changed for different computers 
+filter_file_name = ('../filters/%s' % (filter_file_input))                  # Path is relative again, change as needed 
 spectra_file_load = np.loadtxt(spectra_file_name)
-
 filter_file_load = np.loadtxt(filter_file_name)
-
 
 wavelength_spectra = []
 flux_spectra = []
 wavelength_filters = []
 area_filters = []    
 
-
-for i in range(0, len(spectra_file_load)):
+for i in range(0, len(spectra_file_load)):                                  # Reads in the data from the files, appends to empty lists above 
     wavelength_spectra.append(spectra_file_load[i][0])
 for i in range(0,len(spectra_file_load)):
     flux_spectra.append(spectra_file_load[i][1])
-
-
 for i in range(0, len(filter_file_load)):
     wavelength_filters.append(filter_file_load[i][0])
 for i in range(0, len(filter_file_load)):
     area_filters.append(filter_file_load[i][1])
 
-
-fig, axes = plt.subplots()
+fig, axes = plt.subplots()                                                  # First plot, plots wavelength spectra against the flux 
 plt.plot(wavelength_spectra, flux_spectra)
-plt.xlim(0,20000)
+plt.xlim(0,20000)                                                           # Limit is 20,000 so the graph is viewable 
 plt.xlabel('wavelength spectra')
 plt.ylabel('flux spectra')
 
-
-fig, axes = plt.subplots()
+fig, axes = plt.subplots()                                                  # Second plot, plots wavelength filters against the area filters 
 plt.plot(wavelength_filters, area_filters)
 plt.xlabel('wavelength_filters')
 plt.ylabel('area_filters')
-
 
 interpolated_data = np.interp(wavelength_filters, wavelength_spectra, flux_spectra)
 ergs = np.array(interpolated_data) * np.array(area_filters)
@@ -58,7 +47,7 @@ ten_percent_y_vals = []
 ten_percent_x_vals = []
 integral_test = 0
 
-for i in range(0, len(wavelength_spectra)):
+for i in range(0, len(wavelength_spectra)):                                 # Calculates 10% of the total area 
     if integral_test < ten_percent:
         ten_percent_y_vals.append(ergs[i])
         ten_percent_x_vals.append(wavelength_filters[i])
@@ -70,7 +59,7 @@ fifty_percent_y_vals = []
 fifty_percent_x_vals = []
 integral_test = 0
 
-for i in range(0, len(wavelength_spectra)):
+for i in range(0, len(wavelength_spectra)):                                 # Calculates 50% of the total area 
     if integral_test < fifty_percent:
         fifty_percent_y_vals.append(ergs[i])
         fifty_percent_x_vals.append(wavelength_filters[i])
@@ -82,7 +71,7 @@ ninety_percent_y_vals = []
 ninety_percent_x_vals = []
 integral_test = 0
 
-for i in range(0, len(wavelength_spectra)):
+for i in range(0, len(wavelength_spectra)):                                 # Calculates 90% of the total area 
     if integral_test < ninety_percent:
         ninety_percent_y_vals.append(ergs[i])
         ninety_percent_x_vals.append(wavelength_filters[i])
@@ -91,24 +80,12 @@ for i in range(0, len(wavelength_spectra)):
         break
 
 
-fig, axes = plt.subplots() 
+fig, axes = plt.subplots()                                                  # Plots wavelength filters vs the interpolated data 
 plt.plot(wavelength_filters, ergs)
 plt.xlabel('wavelength_filters')
 plt.ylabel('ergs/s/angstrom')
 
-ten_percent_x = ten_percent_x_vals[-1]
-ten_percent_y = ten_percent_y_vals[-1]
-print("Ten percent of values for %s are located at the point (%s, %s)" %(spectra_file_input, ten_percent_x, ten_percent_y))
-
-fifty_percent_x = fifty_percent_x_vals[-1]
-fifty_percent_y = fifty_percent_y_vals[-1]
-print("Fifty percent of values for %s are located at the point (%s, %s)" %(spectra_file_input, fifty_percent_x, fifty_percent_y))
-
-ninety_percent_x = ninety_percent_x_vals[-1]
-ninety_percent_y = ninety_percent_y_vals[-1]
-print("Ninety percent of values for %s are located at the point (%s, %s)" %(spectra_file_input, ninety_percent_x, ninety_percent_y))
-
-# Start pulling data from a second spectrum
+# Start pulling data from a second spectrum, not required for the file to work 
 spectra_file_input_2 = input("What is the second spectra file that you want to use?: ")
 spectra_file_name_2 = ('../spectra/%s' % (spectra_file_input_2))
 spectra_file_load_2 = np.loadtxt(spectra_file_name_2)
@@ -149,15 +126,3 @@ plot2_legend = mpatches.Patch(color='C3', label=spectra_file_input_2)
 plt.legend(handles=[plot1_legend,plot2_legend])
 
 plt.show()
-
-ten_percent_x = ten_percent_x_vals[-1]
-ten_percent_y = ten_percent_y_vals[-1]
-print("Ten percent of values for %s are located at the point (%s, %s)" %(spectra_file_input_2, ten_percent_x, ten_percent_y))
-
-fifty_percent_x = fifty_percent_x_vals[-1]
-fifty_percent_y = fifty_percent_y_vals[-1]
-print("Fifty percent of values for %s are located at the point (%s, %s)" %(spectra_file_input_2, fifty_percent_x, fifty_percent_y))
-
-ninety_percent_x = ninety_percent_x_vals[-1]
-ninety_percent_y = ninety_percent_y_vals[-1]
-print("Ninety percent of values for %s are located at the point (%s, %s)" %(spectra_file_input_2, ninety_percent_x, ninety_percent_y))
