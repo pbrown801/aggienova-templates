@@ -7,9 +7,9 @@ from scipy import interpolate
 '''
 sn_name is a string with the desired supernova name
 filterlist is an array of the filters being used
-program writes two csvs
--magarray.csv has the magnitudes and errors for the desired filters
--countsarray.csv has the interpolated counts for all times at all filters
+program writes two csv files
+--magarray.csv has the magnitudes and errors for the desired filters
+--countsarray.csv has the interpolated counts for all times at all filters
 '''
 def observed_to_counts(sn_name, filterlist):
     input_file = open('../input/'+ sn_name + '_osc.csv', 'r+')
