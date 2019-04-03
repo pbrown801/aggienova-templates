@@ -8,6 +8,7 @@ from validation_plotting import *
 
 if __name__ == "__main__":
     sn_name = input('Supernova name: ') #assign sn name at beginning and look for that file as an input
+    store_as_csv = 'y' == (input('Write 3D plotting data to a csv? (Y/N) ')).lower()
     inFile = '../input/'+sn_name+'_countsarray'+'.csv'
 
     file = open(inFile).readlines()
@@ -42,7 +43,8 @@ if __name__ == "__main__":
     df= pd.DataFrame(index = wavelengths,data = flux_matrix,columns= mjd_list)
 
     output_file = '../output/'+sn_name+'_template.csv'
-    df.to_csv(output_file,index=True,float_format='%g') #comment this out if you don't want to save everytime FUTURE: make a flag that handles this
+    if store_as_csv:
+        df.to_csv(output_file,index=True,float_format='%g') #comment this out if you don't want to save everytime FUTURE: make a flag that handles this
 
 
     counts_list = np.array(counts_list,dtype='float')
