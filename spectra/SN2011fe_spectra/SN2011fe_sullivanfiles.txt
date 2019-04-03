@@ -1,0 +1,12 @@
+# these come from WISEREP and were published in 
+# 
+ptf11kly_20110828.obs.dat
+ptf11kly_20110831.obs.dat
+ptf11kly_20110903.obs.dat
+ptf11kly_20110907.obs.dat
+ptf11kly_20110910.obs.dat
+ptf11kly_20110913.obs.dat
+ptf11kly_20110919.obs.dat
+ptf11kly_20111001.obs.dat
+ptf11kly_20111007.obs.dat
+ptf11kly_20111021.obs.dat
