@@ -5,14 +5,14 @@ from utilities import *
 from mangle_simple import *
 from validation_plotting import *
 import argparse
-
+from observedmags_to_counts import *
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process supernova through spectrum template.')
 
     parser.add_argument('supernova', metavar='supernova', type=str, nargs='+', help='A supernova to process.')
     parser.add_argument('template', metavar='template', type=str, nargs='+', help='A template file to process supernova with.')
-    parser.add_argument('csv', metavar='csv', type=str, nargs='?', default='y', choices=['y','n','Y','N']help='Save data as csv, y/n.')
+    parser.add_argument('csv', metavar='csv', type=str, nargs='?', default='y', choices=['y','n','Y','N'], help='Save data as csv, y/n.')
 
     args = parser.parse_args()
 
@@ -20,6 +20,11 @@ if __name__ == "__main__":
     template_spectrum = args.template[0] #assign a template spectrum to use
     store_as_csv = args.csv[0]==True
     inFile = '../input/'+sn_name+'_countsarray'+'.csv'
+
+
+    filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
+
+    observed_to_counts(sn_name, filterlist)
 
     file = open(inFile).readlines()
     reader = csv.reader(file,delimiter = ',')
