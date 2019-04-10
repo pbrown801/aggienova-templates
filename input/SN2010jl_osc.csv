@@ -1,0 +1,993 @@
+event,time,magnitude,e_magnitude,upperlimit,band,instrument,telescope,source
+SN2010jl,55241.151,20.886,,T,R,,,2014ApJ...789..104O
+SN2010jl,55241.501,20.0349,,T,R,,,2014ApJ...789..104O
+SN2010jl,55244.389,21.248,,T,R,,,2014ApJ...789..104O
+SN2010jl,55244.432,20.6922,,T,R,,,2014ApJ...789..104O
+SN2010jl,55250.313,20.382,,T,R,,,2014ApJ...789..104O
+SN2010jl,55250.357,19.809,,T,R,,,2014ApJ...789..104O
+SN2010jl,55270.151,20.9794,,T,R,,,2014ApJ...789..104O
+SN2010jl,55270.195,21.115,,T,R,,,2014ApJ...789..104O
+SN2010jl,55279.135,20.1393,,T,R,,,2014ApJ...789..104O
+SN2010jl,55279.179,20.88,,T,R,,,2014ApJ...789..104O
+SN2010jl,55284.167,20.32,,T,R,,,2014ApJ...789..104O
+SN2010jl,55284.21,20.0582,,T,R,,,2014ApJ...789..104O
+SN2010jl,55293.254,20.5279,,T,R,,,2014ApJ...789..104O
+SN2010jl,55293.298,20.554,,T,R,,,2014ApJ...789..104O
+SN2010jl,55295.15,21.32,,T,R,,,2014ApJ...789..104O
+SN2010jl,55295.238,21.24,,T,R,,,2014ApJ...789..104O
+SN2010jl,55478.64,13.79,0.1,F,V,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55483.63,13.28,0.1,F,I,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55483.63,13.73,0.1,F,V,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55487.62,13.09,0.1,F,I,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55487.62,13.67,0.1,F,V,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55492.64,13.73,0.1,F,V,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55493.62,13,0.1,F,I,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55503.6,13.1,0.1,F,I,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55503.6,13.78,0.1,F,V,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55505.0877,13.860,0.055,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55505.0909,13.503,0.047,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55505.0960,14.359,0.068,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55505.1096,14.144,0.067,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55505.2667,14.412,0.071,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55505.3789,13.879,0.053,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55505.7402,13.826,0.048,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55505.7681,13.863,0.058,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55505.9358,14.409,0.075,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55505.94,12.56,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55505.94,12.84,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55505.9471,13.893,0.055,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55506.0859,14.136,0.047,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55506.0883,14.370,0.071,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55506.0907,13.855,0.051,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55506.0974,14.202,0.067,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55506.1127,13.870,0.056,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55506.1137,13.519,0.048,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55507.0584,14.343,0.073,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55507.0618,13.979,0.057,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55507.0639,13.581,0.048,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55507.0672,14.594,0.075,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55507.99,12.32,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55508.1946,14.568,0.081,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55508.1988,14.038,0.058,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55508.2013,13.600,0.048,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55508.2053,14.735,0.080,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55508.6,13.86,0.1,F,V,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55508.63,13.18,0.1,F,I,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55508.86,14.149,0.024,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55508.86,13.115,0.024,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55508.86,13.362,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55508.86,13.668,0.034,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55508.86,13.736,0.011,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55508.98,14.08,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55508.98,12.57,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55508.98,13.79,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55508.98,13.54,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55508.98,13.49,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55508.98,13.85,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55509.0280,13.948,0.058,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55509.0300,13.564,0.048,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55509.0311,14.175,0.047,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55509.0341,14.444,0.072,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55509.0372,13.886,0.051,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55509.0418,14.226,0.070,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55509.1046,14.493,0.079,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55509.86,14.161,0.024,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55509.86,13.132,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55509.86,13.366,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55509.86,13.688,0.034,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55509.86,13.751,0.017,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55510.98,14.10,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55510.98,13.80,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55510.98,13.55,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55510.98,13.49,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55510.98,13.91,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55511.89,14.198,0.025,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55511.89,13.358,0.031,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55511.89,13.706,0.035,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55511.89,13.79,0.024,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55511.9308,14.026,0.058,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55511.9323,13.580,0.048,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55511.9331,14.219,0.047,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55511.9352,14.554,0.075,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55511.9374,13.905,0.051,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55511.9404,14.372,0.073,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55511.96,12.88,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55512.0654,13.912,0.050,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55512.0668,13.632,0.048,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55512.0680,14.245,0.047,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55512.4367,14.045,0.057,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55512.4505,14.649,0.077,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55512.5004,14.542,0.074,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55512.5017,14.340,0.074,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55512.5032,14.029,0.057,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55513.444,13.510316,,F,R,,,2014ApJ...789..104O
+SN2010jl,55513.487,13.517268,,F,R,,,2014ApJ...789..104O
+SN2010jl,55513.8200,14.039,0.059,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55513.8214,13.728,0.049,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55513.8221,14.283,0.048,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55513.8242,14.603,0.077,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55513.8263,13.947,0.052,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55513.8293,14.378,0.073,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55513.84,14.207,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55513.84,13.148,0.028,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55513.84,13.416,0.029,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55513.84,13.751,0.034,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55513.84,13.779,0.019,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55513.96,14.13,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55513.96,13.84,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55513.96,13.58,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55513.96,13.52,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55513.96,13.94,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55514.1506,13.980,0.057,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55514.1522,13.667,0.049,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55514.1530,14.243,0.047,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55514.1550,14.531,0.074,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55514.1574,13.963,0.052,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55514.1604,14.335,0.071,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55514.489,13.528325,,F,R,,,2014ApJ...789..104O
+SN2010jl,55514.533,13.530368,,F,R,,,2014ApJ...789..104O
+SN2010jl,55514.86,14.238,0.024,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55514.86,13.154,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55514.86,13.401,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55514.86,13.767,0.03,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55514.86,13.799,0.018,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55514.90,12.56,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55514.90,12.89,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55515.25,14.24,0.05,F,B,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55515.25,13.19,0.05,F,I,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55515.25,13.85,0.05,F,R,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55515.25,13.83,0.05,F,U,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55515.25,13.46,0.05,F,V,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55515.555,13.544623,,F,R,,,2014ApJ...789..104O
+SN2010jl,55515.5941,14.481,0.081,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55515.6229,14.043,0.059,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55515.6243,13.692,0.049,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55515.6251,14.313,0.048,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55515.6274,14.602,0.076,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55515.6295,13.957,0.052,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55515.85,14.222,0.025,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55515.85,13.171,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55515.85,13.43,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55515.85,13.76,0.034,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55515.85,13.805,0.018,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55516.00,14.16,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55516.00,13.85,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55516.00,13.60,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55516.00,13.53,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55516.00,14.00,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55516.25,14.26,0.05,F,B,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55516.25,13.87,0.05,F,R,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55516.25,13.83,0.05,F,U,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55516.25,13.45,0.05,F,V,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55516.388,13.536848,,F,R,,,2014ApJ...789..104O
+SN2010jl,55516.432,13.504624,,F,R,,,2014ApJ...789..104O
+SN2010jl,55516.63,13.28,0.1,F,I,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55516.7493,14.002,0.058,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55516.7508,13.682,0.049,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55516.7515,14.269,0.047,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55516.7537,14.569,0.075,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55516.7559,13.905,0.051,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55516.7589,14.318,0.071,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55516.84,14.233,0.025,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55516.84,13.171,0.024,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55516.84,13.404,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55516.84,13.76,0.034,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55516.84,13.803,0.018,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55517.25,14.26,0.05,F,B,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55517.25,13.2,0.05,F,I,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55517.25,13.87,0.05,F,R,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55517.25,13.86,0.05,F,U,,,"2011ApJ...730...34S,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55517.386,13.553800,,F,R,,,2014ApJ...789..104O
+SN2010jl,55517.43,13.548588,,F,R,,,2014ApJ...789..104O
+SN2010jl,55517.4860,14.039,0.059,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55517.4873,13.685,0.049,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55517.4880,14.311,0.048,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55517.4902,14.554,0.075,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55517.4920,13.926,0.051,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55517.4953,14.345,0.072,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55517.86,14.256,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55517.86,13.173,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55517.86,13.44,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55517.86,13.785,0.037,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55517.86,13.838,0.019,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55517.97,12.68,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55518.399,13.554875,,F,R,,,2014ApJ...789..104O
+SN2010jl,55518.443,13.576930,,F,R,,,2014ApJ...789..104O
+SN2010jl,55518.95,12.88,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55518.95,12.36,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55519.396,13.559887,,F,R,,,2014ApJ...789..104O
+SN2010jl,55519.439,13.552196,,F,R,,,2014ApJ...789..104O
+SN2010jl,55520.1055,14.059,0.059,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55520.1068,13.692,0.049,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55520.1075,14.293,0.047,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55520.1096,14.602,0.077,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55520.1116,13.946,0.051,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55520.1144,14.419,0.075,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55521.87,14.282,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55521.87,13.23,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55521.87,13.471,0.026,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55521.87,13.816,0.039,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55521.87,13.86,0.021,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55522.91,13.88,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55522.91,13.63,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55522.91,13.55,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55523.0462,14.225,0.063,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55523.0478,13.838,0.050,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55523.0486,14.390,0.048,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55523.0509,14.888,0.089,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55523.0531,14.003,0.052,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55523.0563,14.752,0.085,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55524.00,12.61,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55524.00,12.92,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55524.82,14.332,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55524.82,13.266,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55524.82,13.505,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55524.82,13.893,0.018,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55525.03,12.87,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55525.92,14.368,0.025,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55525.92,13.276,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55525.92,13.507,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55525.92,13.905,0.034,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55525.92,13.92,0.017,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55526.1982,14.174,0.061,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55526.1998,13.854,0.051,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55526.2005,14.391,0.048,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55526.2027,14.692,0.080,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55526.2050,14.002,0.052,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55526.2082,14.566,0.081,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55527.02,14.30,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55527.02,13.95,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55527.02,13.68,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55527.02,13.64,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55527.02,14.12,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55529.7313,14.200,0.062,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55529.7327,13.919,0.051,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55529.7334,14.435,0.049,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55529.7355,14.684,0.080,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55529.7375,14.143,0.054,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55529.7407,14.550,0.081,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55529.88,14.391,0.025,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55529.88,13.297,0.024,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55529.88,13.534,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55529.88,13.944,0.034,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55529.88,13.966,0.011,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55529.95,14.35,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55529.95,14.02,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55529.95,13.74,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55529.95,13.66,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55529.95,14.19,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55530.351,13.640456,,F,R,,,2014ApJ...789..104O
+SN2010jl,55530.395,13.645735,,F,R,,,2014ApJ...789..104O
+SN2010jl,55530.93,14.31,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55530.93,13.99,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55530.93,13.74,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55530.93,13.61,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55530.93,14.24,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55531.423,13.679780,,F,R,,,2014ApJ...789..104O
+SN2010jl,55531.467,13.662324,,F,R,,,2014ApJ...789..104O
+SN2010jl,55532.2243,14.268,0.065,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55532.2252,13.939,0.052,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55532.2257,14.438,0.049,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55532.2277,14.803,0.085,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55532.2289,14.169,0.055,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55532.2594,14.649,0.084,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55532.429,13.803979,,F,R,,,2014ApJ...789..104O
+SN2010jl,55532.474,13.668905,,F,R,,,2014ApJ...789..104O
+SN2010jl,55532.93,14.42,0.027,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55532.93,13.323,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55532.93,13.564,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55532.93,13.982,0.036,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55532.93,13.976,0.018,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55533.473,13.664968,,F,R,,,2014ApJ...789..104O
+SN2010jl,55533.518,13.689048,,F,R,,,2014ApJ...789..104O
+SN2010jl,55533.85,13.03,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55533.98,14.38,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55533.98,14.07,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55533.98,13.79,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55533.98,13.71,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55533.98,14.22,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55534.9,14.43,0.027,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55534.9,13.353,0.026,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55534.9,13.575,0.021,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55534.9,14.017,0.036,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55534.9,14.002,0.02,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55535.365,13.696767,,F,R,,,2014ApJ...789..104O
+SN2010jl,55535.408,13.685987,,F,R,,,2014ApJ...789..104O
+SN2010jl,55535.7286,14.322,0.065,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55535.7295,13.997,0.052,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55535.7300,14.514,0.049,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55535.7313,14.907,0.090,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55535.7326,14.195,0.055,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55535.7342,14.739,0.085,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55536.95,13.04,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55536.95,12.34,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55537.01,14.40,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55537.01,14.11,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55537.01,13.83,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55537.01,13.71,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55537.01,14.25,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55537.369,13.701581,,F,R,,,2014ApJ...789..104O
+SN2010jl,55537.413,13.700282,,F,R,,,2014ApJ...789..104O
+SN2010jl,55537.9,14.455,0.025,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55537.9,13.377,0.024,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55537.9,13.599,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55537.9,14.048,0.034,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55537.9,14.04,0.017,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55537.95,12.69,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55537.95,13.04,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55537.95,12.41,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55538.4,13.717360,,F,R,,,2014ApJ...789..104O
+SN2010jl,55538.443,13.757845,,F,R,,,2014ApJ...789..104O
+SN2010jl,55538.92,14.491,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55538.92,13.393,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55538.92,13.61,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55538.92,14.054,0.036,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55538.92,14.057,0.018,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55539.498,13.768650,,F,R,,,2014ApJ...789..104O
+SN2010jl,55539.88,14.486,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55539.88,13.412,0.026,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55539.88,13.641,0.025,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55539.88,14.073,0.036,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55539.88,14.076,0.012,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55540.87,12.82,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55540.87,13.05,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55540.87,12.43,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55540.9,14.511,0.025,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55540.9,13.409,0.024,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55540.9,13.629,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55540.9,14.073,0.034,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55540.9,14.076,0.018,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55540.95,14.39,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55540.95,14.09,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55540.95,13.82,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55540.95,13.69,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55540.95,14.30,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55541.494,13.737532,,F,R,,,2014ApJ...789..104O
+SN2010jl,55541.85,14.536,0.025,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55541.85,13.417,0.024,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55541.85,13.643,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55541.85,14.133,0.034,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55541.85,14.078,0.017,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55542.494,13.747560,,F,R,,,2014ApJ...789..104O
+SN2010jl,55542.537,13.751737,,F,R,,,2014ApJ...789..104O
+SN2010jl,55543.496,13.794913,,F,R,,,2014ApJ...789..104O
+SN2010jl,55543.554,13.744135,,F,R,,,2014ApJ...789..104O
+SN2010jl,55543.92,14.51,0.025,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55543.92,13.426,0.024,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55543.92,13.64,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55543.92,14.088,0.035,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55543.92,14.077,0.017,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55545.92,14.532,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55545.92,13.444,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55545.92,13.651,0.025,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55545.92,14.135,0.035,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55545.92,14.118,0.018,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55553.85,14.587,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55553.85,13.484,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55553.85,13.706,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55553.85,14.127,0.017,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55557.424,13.841658,,F,R,,,2014ApJ...789..104O
+SN2010jl,55558.99,14.62,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55558.99,14.32,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55558.99,14.03,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55558.99,13.87,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55558.99,14.57,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55561.373,13.865261,,F,R,,,2014ApJ...789..104O
+SN2010jl,55561.421,13.863354,,F,R,,,2014ApJ...789..104O
+SN2010jl,55561.89,14.701,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55561.89,13.585,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55561.89,13.776,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55561.89,14.311,0.036,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55561.89,14.244,0.018,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55562.268,14.464466,,F,g,,,2014ApJ...789..104O
+SN2010jl,55562.86,14.706,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55562.86,13.605,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55562.86,13.772,0.02,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55562.86,14.287,0.035,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55562.86,14.254,0.018,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55563.312,14.477581,,F,g,,,2014ApJ...789..104O
+SN2010jl,55564.02,14.77,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55564.02,14.46,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55564.02,14.13,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55564.02,13.89,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55564.02,14.54,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55564.86,14.719,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55564.86,13.605,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55564.86,13.787,0.025,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55564.86,14.316,0.031,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55564.86,14.272,0.019,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55565.02,14.84,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55565.02,14.47,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55565.02,14.14,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55565.02,13.89,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55565.02,14.52,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55565.8,14.734,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55565.8,13.6,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55565.8,13.802,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55565.8,14.286,0.011,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55566.03,14.82,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55566.03,14.51,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55566.03,14.18,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55566.03,13.91,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55566.03,14.61,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55566.452,14.487050,,F,g,,,2014ApJ...789..104O
+SN2010jl,55566.79,14.739,0.025,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55566.79,13.624,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55566.79,13.8,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55566.79,14.294,0.018,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55566.91,14.80,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55566.91,14.48,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55566.91,14.15,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55566.91,13.88,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55566.91,14.61,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55568.98,14.51,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55568.98,14.20,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55568.98,13.90,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55568.98,14.64,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55569.92,13.04,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55569.92,13.27,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55569.92,12.54,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55570.00,14.81,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55570,12.05,0.10,F,I1,IRAC,Spitzer,2011AJ....142...45A
+SN2010jl,55570,11.54,0.10,F,I2,IRAC,Spitzer,2011AJ....142...45A
+SN2010jl,55570.00,14.50,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55570.00,14.20,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55570.00,13.91,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55570.00,14.62,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55570.8,14.76,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55570.8,13.637,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55570.8,13.821,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55570.8,14.336,0.035,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55570.8,14.314,0.018,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55571.474,14.52384,,F,g,,,2014ApJ...789..104O
+SN2010jl,55571.76,14.767,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55571.76,13.69,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55571.76,13.826,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55571.76,14.375,0.036,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55571.76,14.331,0.019,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55571.98,14.86,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55571.98,14.51,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55571.98,14.21,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55571.98,13.91,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55571.98,14.62,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55572.278,13.911865,,F,R,,,2014ApJ...789..104O
+SN2010jl,55572.78,14.772,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55572.78,13.668,0.021,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55572.78,13.828,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55572.78,14.368,0.034,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55572.78,14.328,0.018,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55572.84,13.26,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55572.86,14.84,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55572.86,14.54,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55572.86,14.21,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55572.86,13.92,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55572.86,14.63,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55573.486,13.928638,,F,R,,,2014ApJ...789..104O
+SN2010jl,55573.53,13.913443,,F,R,,,2014ApJ...789..104O
+SN2010jl,55573.87,14.774,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55573.87,13.688,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55573.87,13.839,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55573.87,14.363,0.035,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55573.87,14.34,0.019,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55574.486,13.908460,,F,R,,,2014ApJ...789..104O
+SN2010jl,55574.77,14.779,0.021,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55574.77,13.688,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55574.77,13.827,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55574.77,14.375,0.036,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55574.77,14.334,0.018,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55575.83,13.07,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55575.83,13.28,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55575.83,12.69,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55575.89,14.91,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55575.89,14.55,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55575.89,14.24,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55575.89,13.94,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55575.89,14.62,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55576.516,13.858654,,F,R,,,2014ApJ...789..104O
+SN2010jl,55576.563,13.924299,,F,R,,,2014ApJ...789..104O
+SN2010jl,55576.76,14.65,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55576.76,14.28,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55576.76,13.94,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55577.516,13.924673,,F,R,,,2014ApJ...789..104O
+SN2010jl,55577.56,13.920029,,F,R,,,2014ApJ...789..104O
+SN2010jl,55578.00,14.92,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55578.00,14.57,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55578.00,14.26,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55578.00,13.93,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55578.00,14.76,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55578.79,13.03,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55578.79,13.30,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55578.79,12.66,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55579.304,13.934064,,F,R,,,2014ApJ...789..104O
+SN2010jl,55579.349,13.920873,,F,R,,,2014ApJ...789..104O
+SN2010jl,55580.302,13.958542,,F,R,,,2014ApJ...789..104O
+SN2010jl,55580.345,13.939433,,F,R,,,2014ApJ...789..104O
+SN2010jl,55580.88,14.62,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55580.88,14.27,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55580.88,13.94,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55580.88,14.66,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55585.433,13.970402,,F,R,,,2014ApJ...789..104O
+SN2010jl,55585.482,13.959962,,F,R,,,2014ApJ...789..104O
+SN2010jl,55586.439,13.965349,,F,R,,,2014ApJ...789..104O
+SN2010jl,55586.483,13.965246,,F,R,,,2014ApJ...789..104O
+SN2010jl,55587.436,13.966791,,F,R,,,2014ApJ...789..104O
+SN2010jl,55587.48,13.966727,,F,R,,,2014ApJ...789..104O
+SN2010jl,55587.89,14.62,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55587.89,14.34,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55587.89,13.95,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55587.89,14.80,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55588.88,14.94,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55588.88,14.63,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55588.88,14.33,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55588.88,13.96,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55589.233,13.975846,,F,R,,,2014ApJ...789..104O
+SN2010jl,55589.278,13.975330,,F,R,,,2014ApJ...789..104O
+SN2010jl,55589.87,14.95,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55589.87,14.63,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55589.87,14.34,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55589.87,13.98,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55589.87,14.72,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55590.232,13.983246,,F,R,,,2014ApJ...789..104O
+SN2010jl,55590.302,13.972403,,F,R,,,2014ApJ...789..104O
+SN2010jl,55590.65,14.857,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55590.65,13.778,0.025,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55590.65,13.908,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55590.65,14.462,0.036,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55590.65,14.425,0.019,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55591.277,13.975862,,F,R,,,2014ApJ...789..104O
+SN2010jl,55591.66,14.868,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55591.66,13.802,0.026,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55591.66,13.913,0.025,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55591.66,14.487,0.036,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55591.66,14.433,0.019,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55593.47,13.984693,,F,R,,,2014ApJ...789..104O
+SN2010jl,55593.514,13.969147,,F,R,,,2014ApJ...789..104O
+SN2010jl,55594.91,15.00,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55594.91,14.70,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55594.91,14.37,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55594.91,13.97,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55594.91,14.71,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55596.347,14.67162,,F,g,,,2014ApJ...789..104O
+SN2010jl,55596.451,14.66726,,F,g,,,2014ApJ...789..104O
+SN2010jl,55597.44,13.994887,,F,R,,,2014ApJ...789..104O
+SN2010jl,55597.485,13.979020,,F,R,,,2014ApJ...789..104O
+SN2010jl,55597.77,14.98,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55597.77,14.69,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55597.77,14.39,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55597.77,13.99,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55598.162,14.69931,,F,g,,,2014ApJ...789..104O
+SN2010jl,55598.207,14.69832,,F,g,,,2014ApJ...789..104O
+SN2010jl,55598.341,14.68409,,F,g,,,2014ApJ...789..104O
+SN2010jl,55598.386,14.67896,,F,g,,,2014ApJ...789..104O
+SN2010jl,55599.443,14.66901,,F,g,,,2014ApJ...789..104O
+SN2010jl,55599.77,13.19,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55599.77,13.42,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55599.77,12.76,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55600.86,15.00,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55600.86,14.71,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55600.86,14.40,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55600.86,13.98,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55600.86,14.94,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55601.378,13.975458,,F,R,,,2014ApJ...789..104O
+SN2010jl,55602.70,13.13,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55602.70,13.44,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55602.70,12.81,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55602.70,14.71,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55602.70,14.41,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55602.70,13.99,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55602.70,14.76,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55603.252,14.020909,,F,R,,,2014ApJ...789..104O
+SN2010jl,55603.297,14.013502,,F,R,,,2014ApJ...789..104O
+SN2010jl,55604.286,14.006314,,F,R,,,2014ApJ...789..104O
+SN2010jl,55604.329,14.016548,,F,R,,,2014ApJ...789..104O
+SN2010jl,55605.319,13.995312,,F,R,,,2014ApJ...789..104O
+SN2010jl,55605.363,14.006556,,F,R,,,2014ApJ...789..104O
+SN2010jl,55605.94,15.09,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55605.94,14.75,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55605.94,14.44,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55605.94,14.01,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55605.94,14.79,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55606.359,14.001356,,F,R,,,2014ApJ...789..104O
+SN2010jl,55606.404,14.014420,,F,R,,,2014ApJ...789..104O
+SN2010jl,55606.82,14.85,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55607.80,13.47,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55607.93,15.08,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55607.93,14.77,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55607.93,14.44,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55607.93,14.02,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55607.93,14.88,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55608.86,14.75,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55608.86,14.45,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55608.86,14.00,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55608.86,14.83,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55614.387,14.023287,,F,R,,,2014ApJ...789..104O
+SN2010jl,55614.471,14.013697,,F,R,,,2014ApJ...789..104O
+SN2010jl,55615.95,14.79,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55615.95,14.51,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55615.95,14.00,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55615.95,14.81,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55616.64,14.969,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55616.64,13.9,0.026,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55616.64,13.955,0.024,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55616.64,14.593,0.038,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55616.64,14.54,0.02,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55617.74,13.25,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55617.74,12.86,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55619.59,14.995,0.03,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55619.59,13.898,0.023,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55619.59,13.966,0.027,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55619.59,14.59,0.045,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55619.59,14.539,0.023,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55620.68,14.971,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55620.68,13.89,0.026,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55620.68,13.967,0.025,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55620.68,14.568,0.037,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55620.68,14.528,0.02,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55620.76,13.53,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55620.76,12.86,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55623.65,15.13,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55623.65,14.81,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55623.65,14.53,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55623.65,14.02,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55623.65,14.82,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55623.77,13.29,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55626.49,14.988,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55626.49,13.911,0.026,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55626.49,13.979,0.025,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55626.49,14.6,0.038,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55626.49,14.548,0.02,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55628.78,15.12,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55628.78,14.83,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55628.78,14.56,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55628.78,14.87,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55629.67,14.98,0.022,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55629.67,13.933,0.022,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55629.67,13.977,0.026,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55629.67,14.598,0.037,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55629.67,14.556,0.013,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55629.73,13.55,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55629.73,12.84,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55631.66,15.14,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55631.66,14.84,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55631.66,14.55,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55631.66,14.02,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55631.66,14.98,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55640.73,13.31,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55640.73,13.63,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55642.53,15.018,0.027,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55642.53,13.972,0.026,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55642.53,14.009,0.025,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55642.53,14.642,0.037,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55642.53,14.589,0.02,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55643.73,13.59,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55643.73,12.91,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55644.56,15.022,0.026,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55644.56,13.987,0.026,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55644.56,14.012,0.025,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55644.56,14.644,0.04,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55644.56,14.604,0.02,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55644.71,13.32,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55644.71,13.57,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55647.73,15.17,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55647.73,14.90,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55647.73,14.63,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55647.73,14.02,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55647.73,15.02,0.12,F,u',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55647.79,13.61,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55647.79,12.99,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55649.6,15.033,0.027,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55649.6,13.996,0.026,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55649.6,14.006,0.025,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55649.6,14.612,0.02,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55650.51,15.029,0.029,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55650.51,14.003,0.028,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55650.51,14.009,0.026,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55650.51,14.639,0.021,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55651.57,15.082,0.032,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55651.57,13.993,0.028,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55651.57,13.999,0.026,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55651.57,14.621,0.024,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55651.72,13.36,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55651.72,13.63,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55651.72,12.96,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55659.52,15.042,0.028,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55659.52,14.029,0.027,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55659.52,13.999,0.026,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55659.52,14.644,0.04,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55659.52,14.633,0.013,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55661.55,15.068,0.028,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55661.55,14.019,0.027,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55661.55,14.027,0.025,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55661.55,14.653,0.038,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55661.55,14.643,0.021,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55662.56,15.035,0.028,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55662.56,14.022,0.027,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55662.56,14.014,0.026,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55662.56,14.649,0.04,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55662.56,14.642,0.021,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55667.74,14.96,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55667.74,14.69,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55667.74,14.03,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55668.243,14.073798,,F,R,,,2014ApJ...789..104O
+SN2010jl,55668.244,14.212087,,F,R,,,2014ApJ...789..104O
+SN2010jl,55668.81,14.98,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55668.81,14.69,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55668.81,14.03,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55669.74,14.97,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55669.74,14.69,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55669.74,14.03,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55670.66,13.61,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55673.70,15.21,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55673.70,14.97,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55673.70,14.69,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55673.70,14.04,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55676.2632,14.916,0.082,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55676.2642,14.784,0.068,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55676.2647,15.304,0.062,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55676.2657,15.568,0.128,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55676.2672,15.018,0.061,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55676.2685,15.334,0.100,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55676.68,13.49,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55676.68,13.65,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55676.68,13.06,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55679.0740,14.819,0.082,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55679.0754,14.757,0.070,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55679.0761,15.310,0.066,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55679.0784,15.467,0.125,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55679.0804,14.979,0.067,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55679.0837,15.195,0.098,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,55682.68,15.23,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55682.68,15.00,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55682.68,14.72,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55682.68,14.04,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55686.52,15.063,0.023,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55686.52,14.095,0.029,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55686.52,14.022,0.026,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55686.52,14.702,0.034,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55686.52,14.666,0.021,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55686.68,15.22,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55686.68,14.73,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55686.68,14.03,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55688.63,13.51,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55688.63,13.63,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55688.63,12.95,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55688.67,15.24,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55688.67,14.98,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55688.67,14.72,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55688.67,14.02,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55691.70,15.21,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55691.70,15.02,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55691.70,14.76,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55691.70,14.04,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55696.63,15.01,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55696.63,14.74,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55696.63,14.04,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55698.67,15.04,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55698.67,14.76,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55698.67,14.04,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55704.68,15.01,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55704.68,14.78,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55704.68,14.04,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55705.68,13.51,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55705.68,13.72,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55708.67,13.52,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55708.67,13.66,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55717.68,15.27,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55717.68,15.05,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55717.68,14.83,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55717.68,14.05,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55732,12.18,0.10,F,I1,IRAC,Spitzer,2013AJ....146....2F
+SN2010jl,55732,11.58,0.10,F,I2,IRAC,Spitzer,2013AJ....146....2F
+SN2010jl,55831.523,15.64476,,F,g,,,2014ApJ...789..104O
+SN2010jl,55831.524,15.65051,,F,g,,,2014ApJ...789..104O
+SN2010jl,55832.519,15.67535,,F,g,,,2014ApJ...789..104O
+SN2010jl,55832.521,15.65740,,F,g,,,2014ApJ...789..104O
+SN2010jl,55833.522,15.65957,,F,g,,,2014ApJ...789..104O
+SN2010jl,55833.523,15.67850,,F,g,,,2014ApJ...789..104O
+SN2010jl,55834.515,15.68225,,F,g,,,2014ApJ...789..104O
+SN2010jl,55834.518,15.68618,,F,g,,,2014ApJ...789..104O
+SN2010jl,55836.51,15.70504,,F,g,,,2014ApJ...789..104O
+SN2010jl,55836.512,15.70792,,F,g,,,2014ApJ...789..104O
+SN2010jl,55837.507,15.71827,,F,g,,,2014ApJ...789..104O
+SN2010jl,55837.51,15.72870,,F,g,,,2014ApJ...789..104O
+SN2010jl,55842.497,14.63775,,F,R,,,2014ApJ...789..104O
+SN2010jl,55843.49,14.64326,,F,R,,,2014ApJ...789..104O
+SN2010jl,55843.497,14.66716,,F,R,,,2014ApJ...789..104O
+SN2010jl,55844.487,14.68944,,F,R,,,2014ApJ...789..104O
+SN2010jl,55844.494,14.66990,,F,R,,,2014ApJ...789..104O
+SN2010jl,55849.474,14.72627,,F,R,,,2014ApJ...789..104O
+SN2010jl,55849.48,14.72968,,F,R,,,2014ApJ...789..104O
+SN2010jl,55850.472,14.71914,,F,R,,,2014ApJ...789..104O
+SN2010jl,55850.474,14.71950,,F,R,,,2014ApJ...789..104O
+SN2010jl,55851.47,14.71680,,F,R,,,2014ApJ...789..104O
+SN2010jl,55851.476,14.71612,,F,R,,,2014ApJ...789..104O
+SN2010jl,55852.509,14.72839,,F,R,,,2014ApJ...789..104O
+SN2010jl,55855.99,16.38,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55855.99,15.72,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55855.99,14.72,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55858.449,15.94956,,F,g,,,2014ApJ...789..104O
+SN2010jl,55858.452,15.94200,,F,g,,,2014ApJ...789..104O
+SN2010jl,55859.446,15.96884,,F,g,,,2014ApJ...789..104O
+SN2010jl,55859.447,15.97146,,F,g,,,2014ApJ...789..104O
+SN2010jl,55861.441,15.97933,,F,g,,,2014ApJ...789..104O
+SN2010jl,55861.444,15.98982,,F,g,,,2014ApJ...789..104O
+SN2010jl,55862.439,15.99934,,F,g,,,2014ApJ...789..104O
+SN2010jl,55862.441,15.99626,,F,g,,,2014ApJ...789..104O
+SN2010jl,55863.441,15.99854,,F,g,,,2014ApJ...789..104O
+SN2010jl,55864.433,16.01537,,F,g,,,2014ApJ...789..104O
+SN2010jl,55864.436,16.01439,,F,g,,,2014ApJ...789..104O
+SN2010jl,55865.429,16.03926,,F,g,,,2014ApJ...789..104O
+SN2010jl,55865.431,16.03352,,F,g,,,2014ApJ...789..104O
+SN2010jl,55866.431,14.84167,,F,R,,,2014ApJ...789..104O
+SN2010jl,55866.432,14.85079,,F,R,,,2014ApJ...789..104O
+SN2010jl,55866.97,16.39,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55866.97,16.15,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55866.97,15.79,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55866.97,14.79,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55875.89,15.9,1,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55875.89,14.8,1,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55875.89,14.8,1,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55875.89,15.5,1,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55875.89,15.6,1,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55880.54,14.99206,,F,R,,,2014ApJ...789..104O
+SN2010jl,55880.548,14.99008,,F,R,,,2014ApJ...789..104O
+SN2010jl,55887.424,15.05522,,F,R,,,2014ApJ...789..104O
+SN2010jl,55887.426,15.05494,,F,R,,,2014ApJ...789..104O
+SN2010jl,55888.01,16.71,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55888.01,16.40,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55888.01,15.98,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55888.01,15.01,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55888.98,16.70,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55888.98,16.43,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55888.98,15.98,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55888.98,15.02,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55901.569,15.17018,,F,R,,,2014ApJ...789..104O
+SN2010jl,55915.86,16.3,1,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55915.86,15.1,1,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55915.86,15.1,1,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55915.86,15.7,1,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55915.86,15.8,1,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55916.98,17.08,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55916.98,16.77,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55916.98,16.27,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55916.98,15.25,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55918.82,17.20,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55918.82,16.82,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55918.82,16.27,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55918.82,15.29,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55926.528,15.35390,,F,R,,,2014ApJ...789..104O
+SN2010jl,55926.53,15.37215,,F,R,,,2014ApJ...789..104O
+SN2010jl,55943,11.31,0.10,F,I1,IRAC,Spitzer,2014ApJ...797..118F
+SN2010jl,55943,10.85,0.10,F,I2,IRAC,Spitzer,2014ApJ...797..118F
+SN2010jl,55947.89,12.76,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55947.89,13.76,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55947.89,11.88,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55948.84,17.47,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55948.84,17.06,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55948.84,16.52,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55948.84,15.52,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55949.87,11.79,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55952.80,17.41,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55952.80,17.03,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55952.80,16.57,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55952.80,15.50,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55972.87,17.54,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55972.87,17.33,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55972.87,16.73,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55972.87,15.62,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55978.77,17.62,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55978.77,17.26,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55978.77,16.71,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55978.77,15.65,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,55999.52,16.5,1,F,B,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55999.52,15.4,1,F,I,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55999.52,15.4,1,F,R,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55999.52,15.8,1,F,U,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55999.52,16.1,1,F,V,,,"2012AJ....144..131Z,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2010jl,55999.65,14.01,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,55999.65,11.86,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56002.59,12.81,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56009.73,17.80,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56009.73,17.62,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56009.73,16.97,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56009.73,15.81,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56010.63,12.80,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56010.63,11.96,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56011.63,14.06,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56013.71,12.84,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56013.71,11.94,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56014.63,14.06,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56015.69,12.82,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56015.69,11.86,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56017.69,12.84,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56017.69,14.06,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56019.70,11.88,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56025.70,14.14,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56026.68,12.88,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56026.68,14.15,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56027.69,14.10,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56028.68,14.16,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56029.68,14.16,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56029.68,11.95,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56031.68,14.16,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56031.68,12.03,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56035.61,12.88,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56035.61,12.02,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56036.68,14.17,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56037.66,18.16,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56037.66,17.83,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56037.66,17.23,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56037.66,15.95,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56040.65,18.01,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56040.65,17.84,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56040.65,15.99,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56055.71,14.22,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56055.71,11.98,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56058.71,12.97,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56060.63,18.36,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56060.63,17.89,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56060.63,17.33,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56060.63,16.06,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56060.68,14.26,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56061.67,12.99,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56061.67,14.30,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56065.63,18.29,0.03,F,B,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56065.63,18.02,0.03,F,V,KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56065.63,17.48,0.03,F,i',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56065.63,16.12,0.02,F,r',KeplerCam,FLWO,2014ApJ...797..118F
+SN2010jl,56066.65,14.23,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56099,11.29,0.10,F,I1,IRAC,Spitzer,2014ApJ...797..118F
+SN2010jl,56099,10.81,0.10,F,I2,IRAC,Spitzer,2014ApJ...797..118F
+SN2010jl,56217.02,15.03,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56226.02,13.50,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56226.02,14.99,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56226.02,12.37,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56228.02,15.09,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56229.00,13.58,0.07,F,H,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56231.97,15.12,0.06,F,J,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56231.97,12.29,0.08,F,K,2MASS,PAIRITEL,2014ApJ...797..118F
+SN2010jl,56241.73,19.43,0.03,F,B,ALFOSC,NOT,2014ApJ...797..118F
+SN2010jl,56241.73,19.19,0.03,F,V,ALFOSC,NOT,2014ApJ...797..118F
+SN2010jl,56241.73,18.76,0.03,F,i',ALFOSC,NOT,2014ApJ...797..118F
+SN2010jl,56241.73,17.04,0.02,F,r',ALFOSC,NOT,2014ApJ...797..118F
+SN2010jl,56248.83,19.61,0.03,F,B,IMACS,MAG,2014ApJ...797..118F
+SN2010jl,56248.83,19.31,0.03,F,V,IMACS,MAG,2014ApJ...797..118F
+SN2010jl,56248.83,18.52,0.03,F,i',IMACS,MAG,2014ApJ...797..118F
+SN2010jl,56248.83,17.10,0.02,F,r',IMACS,MAG,2014ApJ...797..118F
+SN2010jl,56322,11.41,0.10,F,I1,IRAC,Spitzer,2014ApJ...797..118F
+SN2010jl,56322,10.87,0.10,F,I2,IRAC,Spitzer,2014ApJ...797..118F
+SN2010jl,56327.54,19.91,0.03,F,B,ALFOSC,NOT,2014ApJ...797..118F
+SN2010jl,56327.54,19.73,0.03,F,V,ALFOSC,NOT,2014ApJ...797..118F
+SN2010jl,56327.54,17.59,0.02,F,r',ALFOSC,NOT,2014ApJ...797..118F
+SN2010jl,56344.39,13.77,0.07,F,H,NOTCAM,NOT,2014ApJ...797..118F
+SN2010jl,56344.39,15.80,0.06,F,J,NOTCAM,NOT,2014ApJ...797..118F
+SN2010jl,56344.39,12.60,0.08,F,K,NOTCAM,NOT,2014ApJ...797..118F
+SN2010jl,56355.4958,17.711,,T,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,56355.4972,17.935,,T,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,56355.4981,18.802,,T,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,56355.5004,17.745,,T,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,56355.5026,18.112,,T,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,56355.5043,17.539,,T,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,56374.44,14.02,0.07,F,H,NOTCAM,NOT,2014ApJ...797..118F
+SN2010jl,56374.44,15.90,0.06,F,J,NOTCAM,NOT,2014ApJ...797..118F
+SN2010jl,56374.44,12.73,0.08,F,K,NOTCAM,NOT,2014ApJ...797..118F
+SN2010jl,56396.48,20.43,0.03,F,B,ALFOSC,NOT,2014ApJ...797..118F
+SN2010jl,56396.48,20.40,0.03,F,V,ALFOSC,NOT,2014ApJ...797..118F
+SN2010jl,56396.48,20.14,0.03,F,i',ALFOSC,NOT,2014ApJ...797..118F
+SN2010jl,56396.48,18.19,0.02,F,r',ALFOSC,NOT,2014ApJ...797..118F
+SN2010jl,56396.48,19.16,0.12,F,u',ALFOSC,NOT,2014ApJ...797..118F
+SN2010jl,56472,11.22,0.10,F,I1,IRAC,Spitzer,2018arXiv180302571S
+SN2010jl,56472,10.62,0.10,F,I2,IRAC,Spitzer,2018arXiv180302571S
+SN2010jl,56621.69,14.40,0.11,F,H,NOTCAM,NOT,2014ApJ...797..118F
+SN2010jl,56621.69,17.28,0.25,F,J,NOTCAM,NOT,2014ApJ...797..118F
+SN2010jl,56621.69,12.99,0.12,F,K,NOTCAM,NOT,2014ApJ...797..118F
+SN2010jl,56835.9403,17.645,,T,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,56835.9411,17.849,,T,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,56835.9416,18.628,,T,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,56835.9423,17.678,,T,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,56835.9438,17.859,,T,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,56835.9445,17.503,,T,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2010jl,56846,11.92,0.10,F,I1,IRAC,Spitzer,2018arXiv180302571S
+SN2010jl,56846,11.14,0.10,F,I2,IRAC,Spitzer,2018arXiv180302571S
+SN2010jl,57228,12.69,0.10,F,I1,IRAC,Spitzer,2018arXiv180302571S
+SN2010jl,57228,11.70,0.10,F,I2,IRAC,Spitzer,2018arXiv180302571S
