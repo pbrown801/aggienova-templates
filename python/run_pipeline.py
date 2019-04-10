@@ -4,18 +4,28 @@ import numpy as np
 from utilities import *
 from mangle_simple import *
 from validation_plotting import *
+import argparse
 
 
 if __name__ == "__main__":
-    sn_name = input('Supernova name: ') #assign sn name at beginning and look for that file as an input
-    store_as_csv = 'y' == (input('Write 3D plotting data to a csv? (Y/N) ')).lower()
+    parser = argparse.ArgumentParser(description='Process supernova through spectrum template.')
+
+    parser.add_argument('supernova', metavar='supernova', type=str, nargs='+', help='A supernova to process.')
+    parser.add_argument('template', metavar='template', type=str, nargs='+', help='A template file to process supernova with.')
+    parser.add_argument('csv', metavar='csv', type=str, nargs='?', default='y', choices=['y','n','Y','N']help='Save data as csv, y/n.')
+
+    args = parser.parse_args()
+
+    sn_name = args.supernova[0] #assign sn name at beginning and look for that file as an input
+    template_spectrum = args.template[0] #assign a template spectrum to use
+    store_as_csv = args.csv[0]==True
     inFile = '../input/'+sn_name+'_countsarray'+'.csv'
 
     file = open(inFile).readlines()
     reader = csv.reader(file,delimiter = ',')
     filter_curves_list_no_format = next(reader)[1:]
     filter_curves_list = list(map('../filters/{0}'.format, filter_curves_list_no_format))
-    template_spectrum = "SN2017erp_hst_20170629.dat" #Assign a template spectrum to use
+
     row_count = sum(1 for row in file)
     filter_count = len(filter_curves_list)
     mjd_list = np.empty((row_count-1))
@@ -26,9 +36,9 @@ if __name__ == "__main__":
     ind = 0
     for row in reader:
         epoch = np.float64(row[0])-0
-        counts_in = np.array(list(map(np.float64,row[1:]))) #theres gotta be an easier way to do this
+        counts_in = np.array(list(map(np.float64,row[1:]))) #theres gotta be an easier way to do this #just double checking that it's a float -t8
         mjd_list[ind]=epoch
-        print(mjd_list[ind])
+        # print(mjd_list[ind])
         counts_list[ind,:] = counts_in
 
         mangled_spec_wave, mangled_spec_flux = mangle_simple(template_spectrum, filter_curves_list, counts_in) #mangle the spectrum to match the given count rates
@@ -44,8 +54,7 @@ if __name__ == "__main__":
 
     output_file = '../output/'+sn_name+'_template.csv'
     if store_as_csv:
-        df.to_csv(output_file,index=True,float_format='%g') #comment this out if you don't want to save everytime FUTURE: make a flag that handles this
-
+        df.to_csv(output_file,index=True,float_format='%g')
 
     counts_list = np.array(counts_list,dtype='float')
     filter_curves_list_no_format = [x.split('_')[0] for x in filter_curves_list_no_format]
