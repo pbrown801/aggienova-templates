@@ -11,7 +11,7 @@ program writes two csv files
 --magarray.csv has the magnitudes and errors for the desired filters
 --countsarray.csv has the interpolated counts for all times at all filters
 '''
-def observed_to_counts(sn_name, filterlist):
+def observed_to_counts(sn_name, filterlist, interpFilter = "UVW1"):
     input_file = open('../input/'+ sn_name + '_osc.csv', 'r+')
 
     data = input_file.read()
@@ -31,6 +31,19 @@ def observed_to_counts(sn_name, filterlist):
             mag.append(float(line[2]))
             emag.append(str(line[3]))
             band.append(str(line[5]))
+    
+    interpFirst = 1000000000000000
+    interpLast = -1000000000000000
+    for i in range(0, len(time)):
+        if(band[i] == interpFilter and mag[i] > 0):
+            if(time[i] < interpFirst):
+                interpFirst = time[i]
+            if(time[i] > interpLast):
+                interpLast = time[i]
+    interpTimes = []
+    for i in range(0, len(time)):
+        if(band[i] == interpFilter and interpFirst < time[i] < interpLast):
+            interpTimes.append(time[i])
 
     #contains counts directly from measured values
     countsMatrix = np.zeros((len(filterlist),len(time)), dtype=object)
@@ -39,7 +52,7 @@ def observed_to_counts(sn_name, filterlist):
     #contains measured error on magnitudes
     emagMatrix = np.zeros((len(filterlist),len(time)), dtype=object)
     #contains interpolated count values for all filters over all times
-    interpMatrix = np.zeros((len(filterlist),len(time)))
+    interpMatrix = np.zeros((len(filterlist),len(interpTimes)))
 
     for i in range(len(filterlist)):
         measured_counts = np.zeros(len(time))
@@ -59,7 +72,7 @@ def observed_to_counts(sn_name, filterlist):
                 emagMatrix[i][j] = ''
         measured_counts.resize(length)
         measured_times.resize(length)
-        interpMatrix[i] = np.interp(time, measured_times, measured_counts)
+        interpMatrix[i] = np.interp(interpTimes, measured_times, measured_counts)
 
     names = ['Time (MJD)']
 
@@ -69,9 +82,9 @@ def observed_to_counts(sn_name, filterlist):
     with open('../output/'+ sn_name + '_magarray.csv', 'w') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([names])
-        for i in range(0,len(time)):
+        for i in range(0,len(interpTimes)):
             line = np.zeros(1+2*len(filterlist),dtype=object)
-            line[0] = str(time[i])
+            line[0] = str(interpTimes[i])
             for j in range(0,len(filterlist)):
                 line[2*j + 1] = magMatrix[j][i]
                 line[2*j + 2] = emagMatrix[j][i]
@@ -80,9 +93,9 @@ def observed_to_counts(sn_name, filterlist):
     with open('../input/'+ sn_name + '_countsarray.csv', 'w') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([names])
-        for i in range(0,len(time)):
+        for i in range(0,len(interpTimes)):
             line = np.zeros(1+len(filterlist))
-            line[0] = time[i]
+            line[0] = interpTimes[i]
             for j in range(0,len(filterlist)):
                 line[j+1] = interpMatrix[j][i]
             writer.writerow(line)
