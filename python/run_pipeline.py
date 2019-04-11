@@ -7,6 +7,15 @@ from validation_plotting import *
 import argparse
 from observedmags_to_counts import *
 
+'''
+Main wrapper for aggienova-templates
+sn_name is a string with the desired supernova name
+filterlist is an array of the filters being used
+Program handles I/O between different functions of the project.
+Output is csv with matrix of wavelength,epoch,flux
+--output/[sn_name]_template.csv
+'''
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process supernova through spectrum template.')
 
@@ -24,7 +33,7 @@ if __name__ == "__main__":
 
     filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
 
-    observed_to_counts(sn_name, filterlist)
+    observedmags_to_counts(sn_name, filterlist)
 
     file = open(inFile).readlines()
     reader = csv.reader(file,delimiter = ',')
