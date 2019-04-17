@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import csv
 import math as math
 from scipy import interpolate
+import string
 
 '''
 sn_name is a string with the desired supernova name
@@ -11,7 +12,8 @@ program writes two csv files
 --magarray.csv has the magnitudes and errors for the desired filters
 --countsarray.csv has the interpolated counts for all times at all filters
 '''
-def observed_to_counts(sn_name, filterlist, interpFilter = "UVW1"):
+def observed_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
+, interpFilter = "UVW1"):
     input_file = open('../input/'+ sn_name + '_osc.csv', 'r+')
 
     data = input_file.read()
@@ -24,13 +26,31 @@ def observed_to_counts(sn_name, filterlist, interpFilter = "UVW1"):
     mag  = []
     emag = []
     band = []
+    
+    '''
+    #contains true or false depending on whether or not there is a non-zero observation for that filter
+    filterFound = []
+    for i in range(0, len(filterlist)):
+        filterFound.append(False)
+    '''
 
     for x, line in enumerate(data_list):
         if x != 0:
             time.append(float(line[1]))
             mag.append(float(line[2]))
             emag.append(str(line[3]))
-            band.append(str(line[5]))
+            band.append((str(line[5])).upper())
+            '''
+            if mag[-1] > 0:
+                filterFound[filterList.index(band[-1])] = True 
+            '''
+    '''
+    observed_bands = []
+    for i in range(0, len(filterlist)):
+        if filterFound[i]:
+            observed_bands.append(band[i])
+    band = observed_bands
+    '''
     
     interpFirst = 1000000000000000
     interpLast = -1000000000000000
@@ -40,10 +60,19 @@ def observed_to_counts(sn_name, filterlist, interpFilter = "UVW1"):
                 interpFirst = time[i]
             if(time[i] > interpLast):
                 interpLast = time[i]
+
     interpTimes = []
+    #for nonzero filters in interval of interpolation
+    filterSet = set([])
     for i in range(0, len(time)):
-        if(band[i] == interpFilter and interpFirst < time[i] < interpLast):
-            interpTimes.append(time[i])
+        if interpFirst <= time[i] <= interpLast:
+            if band[i] == interpFilter:
+                interpTimes.append(time[i])
+            if mag[i] > 0:
+                filterSet.add(band[i])
+    filterlist = []
+    for fil in filterSet:
+        filterlist.append(fil)
 
     #contains counts directly from measured values
     countsMatrix = np.zeros((len(filterlist),len(time)), dtype=object)
@@ -53,6 +82,7 @@ def observed_to_counts(sn_name, filterlist, interpFilter = "UVW1"):
     emagMatrix = np.zeros((len(filterlist),len(time)), dtype=object)
     #contains interpolated count values for all filters over all times
     interpMatrix = np.zeros((len(filterlist),len(interpTimes)))
+    
 
     for i in range(len(filterlist)):
         measured_counts = np.zeros(len(time))
@@ -99,12 +129,12 @@ def observed_to_counts(sn_name, filterlist, interpFilter = "UVW1"):
             for j in range(0,len(filterlist)):
                 line[j+1] = interpMatrix[j][i]
             writer.writerow(line)
-'''
+
 sn_name1 = 'SN2007af'
 filterlist1 = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
 
 observed_to_counts(sn_name1, filterlist1)
-'''
+
 
 #notes 2/20/19:
 #input SNname_osc.csv
