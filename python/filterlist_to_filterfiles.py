@@ -38,7 +38,7 @@ def filterlist_to_filterfiles(filterfilelist):
     return filterfilelist;
 
 # filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-# filterfilelist = filterlist_to_filterfilelist(filterlist)
+# filterfilelist = filterlist_to_filterfiles(filterlist)
 # print(filterfilelist)
 
 
