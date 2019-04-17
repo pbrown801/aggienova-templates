@@ -8,7 +8,8 @@ import string
 '''
 sn_name is a string with the desired supernova name
 filterlist is an array of the filters being used
-program writes two csv files
+!!!filterlist is not being used currently, filters come from input file
+program writes two csv files 
 --magarray.csv has the magnitudes and errors for the desired filters
 --countsarray.csv has the interpolated counts for all times at all filters
 '''
@@ -129,6 +130,8 @@ def observedmags_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', '
             for j in range(0,len(filterlist)):
                 line[j+1] = interpMatrix[j][i]
             writer.writerow(line)
+
+    return filterlist
 
 sn_name1 = 'SN2007af'
 filterlist1 = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
