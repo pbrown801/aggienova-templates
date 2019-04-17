@@ -14,6 +14,10 @@ def filterlist_to_filterfiles(filterfilelist):
             filterfilelist[idx]='B_UVOT.txt'
         if filter == 'V':
             filterfilelist[idx]='V_UVOT.txt'
+        if filter == 'R':
+            filterfilelist[idx]='R_Harris_c6004.txt'
+        if filter == 'I':
+            filterfilelist[idx]='johnson_i.txt'
         if filter == 'g':
             filterfilelist[idx]='LSST_g.dat'
         if filter == 'r':
