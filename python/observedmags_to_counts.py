@@ -12,7 +12,7 @@ program writes two csv files
 --magarray.csv has the magnitudes and errors for the desired filters
 --countsarray.csv has the interpolated counts for all times at all filters
 '''
-def observed_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
+def observedmags_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
 , interpFilter = "UVW1"):
     input_file = open('../input/'+ sn_name + '_osc.csv', 'r+')
 
@@ -133,7 +133,7 @@ def observed_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 
 sn_name1 = 'SN2007af'
 filterlist1 = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
 
-observed_to_counts(sn_name1, filterlist1)
+observedmags_to_counts(sn_name1, filterlist1)
 
 
 #notes 2/20/19:
