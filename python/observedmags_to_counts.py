@@ -84,9 +84,16 @@ def observedmags_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', '
         measured_counts = np.zeros(len(time))
         measured_times = np.zeros(len(time))
         length = 0
+
+###### does this have to be done in a for loop or can python operate on the whole row/column at once?
+
         for j in range(len(time)):
             if band[j] == filterlist[i]:
                 countsMatrix[i][j] = str(math.pow(10, -0.4*(mag[j]-17.38)))
+
+
+#######      the 17.38 needs to be replaced with a filter-dependent zeropoint
+
                 magMatrix[i][j] = str(mag[j])
                 emagMatrix[i][j] = emag[j]
                 measured_counts[length] = float(countsMatrix[i][j])
