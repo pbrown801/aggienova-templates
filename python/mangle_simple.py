@@ -5,7 +5,7 @@ from speccounts import *
 from total_counts import *
 
 def pivot_wavelength(Filter):
-
+    print(Filter)
     filter_wave,filter_tp = np.loadtxt(Filter, dtype = float, usecols=(0,1), unpack=True)
 
     numerator = np.trapz(filter_tp*filter_wave,filter_wave)
@@ -20,10 +20,11 @@ def mangle_simple(templatespectrum,filtercurves_list, counts_in):
 
     input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum, )#dtype=float,usecols=(0,1),unpack=True)
 
-
+    print(filtercurves_list)
     pivot_array = np.zeros(len(filtercurves_list))
     for l in range(len(filtercurves_list)):
-    	pivot_array[l] = pivot_wavelength(filtercurves_list[l])
+        print(filtercurves_list[l])
+        pivot_array[l] = pivot_wavelength(filtercurves_list[l])
 
 
 

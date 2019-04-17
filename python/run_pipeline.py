@@ -32,10 +32,8 @@ if __name__ == "__main__":
 
 
     filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-    filterlist = filterlist_to_filterfiles(filterlist)
-    print(filterlist)
-    observedmags_to_counts(sn_name, filterlist)
-    end()
+    filter_file_list = filterlist_to_filterfiles(filterlist)
+    observedmags_to_counts(sn_name,filterlist)
     file = open(inFile).readlines()
     reader = csv.reader(file,delimiter = ',')
     filter_curves_list_no_format = next(reader)[1:]
