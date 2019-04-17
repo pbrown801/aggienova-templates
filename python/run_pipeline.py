@@ -6,7 +6,7 @@ from mangle_simple import *
 from validation_plotting import *
 import argparse
 from observedmags_to_counts import *
-
+from filterlist_to_filterfiles import *
 '''
 Main wrapper for aggienova-templates
 sn_name is a string with the desired supernova name
@@ -32,9 +32,10 @@ if __name__ == "__main__":
 
 
     filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-
+    filterlist = filterlist_to_filterfiles(filterlist)
+    print(filterlist)
     observedmags_to_counts(sn_name, filterlist)
-
+    end()
     file = open(inFile).readlines()
     reader = csv.reader(file,delimiter = ',')
     filter_curves_list_no_format = next(reader)[1:]

@@ -1,8 +1,7 @@
 
-def filterlist_to_filterfilelist(filterfilelist):
+def filterlist_to_filterfiles(filterfilelist):
 
     for idx,filter in enumerate(filterfilelist):
-        print(filter)
         if filter == 'UVW2':
             filterfilelist[idx]='UVW2_2010.txt'
         if filter == 'UVM2':
