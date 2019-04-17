@@ -1,7 +1,5 @@
 
-def filterlist_to_filterfilelist(filterlist):
-
-    filterfilelist=filterlist
+def filterlist_to_filterfilelist(filterfilelist):
 
     for idx,filter in enumerate(filterfilelist):
         print(filter)
@@ -36,9 +34,9 @@ def filterlist_to_filterfilelist(filterlist):
 
     return filterfilelist;
 
-filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-filterfilelist = filterlist_to_filterfilelist(filterlist)
-print(filterfilelist)
+# filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
+# filterfilelist = filterlist_to_filterfilelist(filterlist)
+# print(filterfilelist)
 
 
 
