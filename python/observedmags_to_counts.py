@@ -8,7 +8,6 @@ import string
 '''
 sn_name is a string with the desired supernova name
 filterlist is an array of the filters being used
-!!!filterlist is not being used currently, filters come from input file
 program writes two csv files 
 --magarray.csv has the magnitudes and errors for the desired filters
 --countsarray.csv has the interpolated counts for all times at all filters
@@ -64,17 +63,14 @@ def observedmags_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', '
 
     interpTimes = []
     #for nonzero filters in interval of interpolation
-    filterSet = set([])
+    #filterSet = set([])
     for i in range(0, len(time)):
         if interpFirst <= time[i] <= interpLast:
             if band[i] == interpFilter:
                 interpTimes.append(time[i])
-            if mag[i] > 0:
-                filterSet.add(band[i])
-    filterlist = []
-    for fil in filterSet:
-        filterlist.append(fil)
-
+            #if mag[i] > 0:
+                #filterSet.add(band[i])
+    
     #contains counts directly from measured values
     countsMatrix = np.zeros((len(filterlist),len(time)), dtype=object)
     #contains measured magnitudes
@@ -84,7 +80,6 @@ def observedmags_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', '
     #contains interpolated count values for all filters over all times
     interpMatrix = np.zeros((len(filterlist),len(interpTimes)))
     
-
     for i in range(len(filterlist)):
         measured_counts = np.zeros(len(time))
         measured_times = np.zeros(len(time))

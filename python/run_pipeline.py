@@ -32,12 +32,13 @@ if __name__ == "__main__":
 
 
     filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-    filter_file_list = filterlist_to_filterfiles(filterlist)
+    filter_file_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
+    filter_file_list = filterlist_to_filterfiles(filter_file_list)
     observedmags_to_counts(sn_name,filterlist)
     file = open(inFile).readlines()
     reader = csv.reader(file,delimiter = ',')
     filter_curves_list_no_format = next(reader)[1:]
-    filter_curves_list = list(map('../filters/{0}'.format, filter_curves_list_no_format))
+    filter_curves_list = list(map('../filters/{0}'.format, filter_file_list))
 
     row_count = sum(1 for row in file)
     filter_count = len(filter_curves_list)
@@ -48,6 +49,8 @@ if __name__ == "__main__":
     counts_list = np.empty((row_count,filter_count))
     ind = 0
     for row in reader:
+        if len(row) == 0:
+            continue
         epoch = np.float64(row[0])-0
         counts_in = np.array(list(map(np.float64,row[1:]))) #theres gotta be an easier way to do this #just double checking that it's a float -t8
         mjd_list[ind]=epoch
