@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-#an extension of the first code
-#Emily adding on to readcsv.py
-
-
-import numpy as np
-import matplotlib.pyplot as plt
-#import csv
-
-#set something here where we can type the input file name
-#then change data below to pick which file to use
-
-sn_name = input('Supernova name: ')
-=======
 import numpy as np
 import matplotlib.pyplot as plt
 import csv
@@ -20,7 +6,6 @@ import csv
 #then change data below to pick which file to use
 
 #sn_name = input('Supernova name: ')
->>>>>>> 32773e86ed285f1380df5a99c950bf6a722ba1ee
 dataSN2007af = open('../input/'+'SN2007af_osc.csv', 'r+')
 
 data = dataSN2007af.read()
@@ -41,44 +26,6 @@ for x, line in enumerate(data_list):
         emag.append(str(line[3]))
         band.append(str(line[5]))
 
-<<<<<<< HEAD
-#print(band.count('UVM2'))
-#bands: B(263), V(262), UVW2(156), UVM2(136), UVW1, U(48), H, J, Y
-
-#float_emag = []
-#float_k = []
-#for i in range(len(emag)):
-    #if emag[i] =='':
-        #emag[i] = '0'
-#it changed blank spaces to 0!
-
-#for k in range(len(emag)):
-    #float_k = float(emag[k])
-    #float_emag.append(float_k)
-#print(float_emag)
-#it converted everything to floats!
-
-u_time = []
-u_mag = []
-u_emag = []
-u_band = []
-#new_data = []
-
-#this section specifies data points based on which band was used
-for j in range(len(band)):
-    if band[j] =='U':
-        u_time.append(time[j])
-        u_mag.append(mag[j])
-        u_emag.append(emag[j])
-        u_band.append(band[j])
-#print(band)
-#to test that this piece of code is working
-
-
-names = ['Time (MJD)', 'Magnitude', 'Magnitude Error', 'Band']
-
-import csv
-=======
 
 filterlist = ['UVW2','UVW2 error', 'U', 'U error', 'UVM2', 'UVM2 error', 'UVW1', 'UVW1 error', 'B', 'B error', 'G', 'G error', 'V', 'V error', 'R', 'R error', 'I', 'I error', 'J', 'J error', 'H', 'H error', 'K', 'K error']
 
@@ -208,26 +155,13 @@ names = ['Time (MJD)']
 for l in range(len(filterlist)):
     names.append(filterlist[l])
 
->>>>>>> 32773e86ed285f1380df5a99c950bf6a722ba1ee
 
 with open('../output/'+'SN2007af_countsarray.csv', 'w') as csvFile:
     writer = csv.writer(csvFile, delimiter=',')
     writer.writerows([names])
-<<<<<<< HEAD
-    for i in range(0,len(u_time)):
-        line = [u_time[i], u_mag[i], u_emag[i], u_band[i]]
-        writer.writerow(line)
-    #print('Points written sucessfully to file')
-
-
-#changes every time the code runs
-
-
-=======
     for i in range(0,len(time)):
         line = [time[i], uvw2_mag[i], uvw2_emag[i], u_emag[i], u_emag[i], uvm2_mag[i], uvm2_emag[i], uvw1_mag[i], uvw1_emag[i], b_mag[i], b_emag[i], g_mag[i], g_emag[i], v_mag[i], v_emag[i], r_mag[i], r_emag[i], i_mag[i], i_emag[i], j_mag[i], j_emag[i], h_mag[i], h_emag[i], k_mag[i], k_emag[i]]
         writer.writerow(line)
->>>>>>> 32773e86ed285f1380df5a99c950bf6a722ba1ee
 
 
 #notes 2/20/19:
