@@ -29,7 +29,8 @@ if __name__ == "__main__":
     template_spectrum = args.template[0] #assign a template spectrum to use
     store_as_csv = args.csv[0]==True
     filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-    filter_file_list = filterlist_to_filterfiles(filterlist)
+    filter_file_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
+    filter_file_list = filterlist_to_filterfiles(filter_file_list)
     observedmags_to_counts(sn_name,filterlist)
     inFile = '../input/'+sn_name+'_countsarray'+'.csv'
 
