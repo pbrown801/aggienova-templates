@@ -8,7 +8,7 @@ import string
 '''
 sn_name is a string with the desired supernova name
 filterlist is an array of the filters being used
-program writes two csv files 
+program writes two csv files
 --magarray.csv has the magnitudes and errors for the desired filters
 --countsarray.csv has the interpolated counts for all times at all filters
 '''
@@ -26,7 +26,7 @@ def observedmags_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', '
     mag  = []
     emag = []
     band = []
-    
+
     '''
     #contains true or false depending on whether or not there is a non-zero observation for that filter
     filterFound = []
@@ -42,7 +42,7 @@ def observedmags_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', '
             band.append((str(line[5])).upper())
             '''
             if mag[-1] > 0:
-                filterFound[filterList.index(band[-1])] = True 
+                filterFound[filterList.index(band[-1])] = True
             '''
     '''
     observed_bands = []
@@ -51,7 +51,7 @@ def observedmags_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', '
             observed_bands.append(band[i])
     band = observed_bands
     '''
-    
+
     interpFirst = 1000000000000000
     interpLast = -1000000000000000
     for i in range(0, len(time)):
@@ -70,7 +70,7 @@ def observedmags_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', '
                 interpTimes.append(time[i])
             #if mag[i] > 0:
                 #filterSet.add(band[i])
-    
+
     #contains counts directly from measured values
     countsMatrix = np.zeros((len(filterlist),len(time)), dtype=object)
     #contains measured magnitudes
@@ -79,7 +79,7 @@ def observedmags_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', '
     emagMatrix = np.zeros((len(filterlist),len(time)), dtype=object)
     #contains interpolated count values for all filters over all times
     interpMatrix = np.zeros((len(filterlist),len(interpTimes)))
-    
+
     for i in range(len(filterlist)):
         measured_counts = np.zeros(len(time))
         measured_times = np.zeros(len(time))
@@ -135,10 +135,13 @@ def observedmags_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', '
 
     return filterlist
 
-sn_name1 = 'SN2007af'
-filterlist1 = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
 
-observedmags_to_counts(sn_name1, filterlist1)
+#shouldn't be run as a main, utility only
+
+# sn_name1 = 'SN2007af'
+# filterlist1 = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
+
+# observedmags_to_counts(sn_name1, filterlist1)
 
 
 #notes 2/20/19:
