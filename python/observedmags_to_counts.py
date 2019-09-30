@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import csv
 import math as math
 from scipy import interpolate
@@ -12,8 +11,13 @@ program writes two csv files
 --magarray.csv has the magnitudes and errors for the desired filters
 --countsarray.csv has the interpolated counts for all times at all filters
 '''
-def observedmags_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-, interpFilter = "UVW1"):
+
+
+#def observedmags_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I'], interpFilter = "UVW1"):
+
+#^^OLD do we need to hardcode the filters in like this?
+
+def observedmags_to_counts(sn_name, filterlist, interpFilter = "UVW1"):
     input_file = open('../input/'+ sn_name + '_osc.csv', 'r+')
 
     data = input_file.read()
@@ -133,10 +137,7 @@ def observedmags_to_counts(sn_name, filterlist = ['UVW2', 'UVM2','UVW1',  'U', '
                 line[j+1] = interpMatrix[j][i]
             writer.writerow(line)
 
-    return filterlist
 
-
-#shouldn't be run as a main, utility only
 
 # sn_name1 = 'SN2007af'
 # filterlist1 = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
