@@ -34,22 +34,22 @@ if __name__ == "__main__":
     # dat_to_csv(args.template[0])
     store_as_csv = args.csv[0].upper()=='Y'
     filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-    filter_file_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-    filter_file_list = filterlist_to_filterfiles(filter_file_list)
+    filter_file_list = filterlist_to_filterfiles(filterlist)
 
     observedmags_to_counts(sn_name,filterlist)
 
     inFile = '../input/'+sn_name+'_countsarray'+'.csv' #gets input count rates from existing file
 
-
     file = open(inFile).readlines()
     reader = csv.reader(file,delimiter = ',')
 
-    filter_curves_list_no_format = next(reader)[1:]
-    filter_curves_list = list(map('../filters/{0}'.format, filter_file_list))
+    filter_curves_from_csv = next(reader)[1:]
+#    filter_curves_list_no_format = next(reader)[1:]
+#    filter_curves_list = list(map('../filters/{0}'.format, filter_file_list))
 
     row_count = sum(1 for row in file)
-    filter_count = len(filter_curves_list)
+#    filter_count = len(filter_curves_list)
+    filter_count = len(filter_file_list)
 
     mjd_list = np.empty((row_count-1)) #empty list to hold time values
     flux_matrix = np.empty((1,row_count-1)) #empty matrix to hold flux values
@@ -70,7 +70,7 @@ if __name__ == "__main__":
         mjd_list[ind]=epoch
         counts_list[ind,:] = counts_in #appending counts per filter at epoch
 
-        mangled_spec_wave, mangled_spec_flux = mangle_simple(template_spectrum, filter_curves_list, counts_in) #mangle the spectrum to match the given count rates
+        mangled_spec_wave, mangled_spec_flux = mangle_simple(template_spectrum, filter_file_list, counts_in) #mangle the spectrum to match the given count rates
 
         if ind == 0:
             wavelengths =mangled_spec_wave #why are we only doing this once? The values of wavelength change every increment
@@ -83,7 +83,7 @@ if __name__ == "__main__":
 
         #Getting counts of mangled template
         temp_temp_spec =np.column_stack((wavelengths,mangled_spec_flux))
-        temp_counts = get_counts_multi_filter(temp_temp_spec,filter_curves_list)
+        temp_counts = get_counts_multi_filter(temp_temp_spec,filter_file_list)
         mangled_counts[ind,:] = temp_counts
 
         ind+=1
@@ -96,13 +96,14 @@ if __name__ == "__main__":
         df.to_csv(output_file,index=True,float_format='%g')
 
     counts_list = np.array(counts_list,dtype='float')
-    filter_curves_list_no_format = [x.split('_')[0] for x in filter_curves_list_no_format]
+    # filter_curves_list_no_format = [x.split('_')[0] for x in filter_curves_list_no_format]
 
     # filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.Epoch < 54330)]
     # output_3d = '../output/'+sn_name+'_3d.csv'
     # filtered_df.to_csv(output_3d,index=False) #comment this if you already have your df or dont want to save a filtered version FUTURE: flag to do this
 
-    validation_plotting(filter_curves_list_no_format,counts_list,mjd_list) #Plot the mangled template count rates and the input count rates on the same plot with MJD or epoch on the x-axis
+    validation_plotting(filterlist,counts_list,mjd_list) 
+#    validation_plotting(filter_curves_list_no_format,counts_list,mjd_list) #Plot the mangled template count rates and the input count rates on the same plot with MJD or epoch on the x-axis
 
     from plot_3d import plot_3D
     # filtered_df = pd.read_csv(output_file,index_col=0,header=0) #uncomment this if you have a saved df you just want to read and plot in 3d
