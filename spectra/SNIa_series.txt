@@ -1,0 +1,10 @@
+-13.1 ../spectra/SN2011fe_spectra/ptf11kly_20110828.obs.dat
+-10.1 ../spectra/SN2011fe_spectra/ptf11kly_20110831.obs.dat
+-6.9 ../spectra/SN2011fe_spectra/ptf11kly_20110903.obs.dat
+-2.9 ../spectra/SN2011fe_spectra/ptf11kly_20110907.obs.dat
++0.1 ../spectra/SN2011fe_spectra/ptf11kly_20110910.obs.dat
++3.4 ../spectra/SN2011fe_spectra/ptf11kly_20110913.obs.dat
++9.3 ../spectra/SN2011fe_spectra/ptf11kly_20110919.obs.dat
++20.9 ../spectra/SN2011fe_spectra/ptf11kly_20111001.obs.dat
++27.0 ../spectra/SN2011fe_spectra/ptf11kly_20111007.obs.dat
++40.8 ../spectra/SN2011fe_spectra/ptf11kly_20111021.obs.dat
