@@ -4,6 +4,7 @@ import csv
 import math as math
 from scipy import interpolate
 import string
+import pandas as pd
 
 '''
 sn_name is a string with the desired supernova name

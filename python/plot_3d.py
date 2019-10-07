@@ -17,7 +17,22 @@ plt.title('Name')
 
 plt.show()
 '''
+'''
+color palette:
+    red = "#FF0000"
+    orange = "#FF8000"
+    yellow = "#FFFF00"
+    green = "#4DB380"
+    blue = "#0000FF"
+    indigo = "#8000FF"
+    purple = "#BF00FF"
 
+    #gray
+    ultraviolet = "808080"
+
+    #color beyond what the human eye can see
+    maroon = "660000"
+'''
 #Plots file with filename in 3 dimensions: epoch, wavelength, and flux
 #Assumes first row is 'Epoch, Wavelength, Flux' and following rows correspond to those values
 #Does not currently validate file existence

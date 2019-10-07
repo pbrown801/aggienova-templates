@@ -15,12 +15,16 @@ def pivot_wavelength(Filter):
 
     return pivot_lambda
 
-
+'''
+work on this
+'''
 def mangle_simple(templatespectrum,filtercurves_list, counts_in):
 
     input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum, )#dtype=float,usecols=(0,1),unpack=True)
 
     pivot_array = np.zeros(len(filtercurves_list))
+  #another_pivot_array = pd.Series((0,len(filtercurves_list)),)
+   # pd.DataFrame()
     for l in range(len(filtercurves_list)):
         pivot_array[l] = pivot_wavelength(filtercurves_list[l])
 
