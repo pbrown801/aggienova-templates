@@ -31,8 +31,12 @@ if __name__ == "__main__":
     # dat_to_csv(args.template[0])
     store_as_csv = args.csv[0].upper()=='Y'
     filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-    filter_file_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-    filter_file_list = filterlist_to_filterfiles(filter_file_list)
+
+
+    filter_file_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I'] #check if filter data exists for current supernova. Change filter list to available filters before making counts array
+
+
+    filter_files = filterlist_to_filterfiles(filter_file_list) #do we need to do things twice?? @peter
 
     observedmags_to_counts(sn_name,filterlist)
 

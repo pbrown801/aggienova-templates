@@ -24,6 +24,8 @@ def mangle_simple(templatespectrum,filtercurves_list, counts_in):
     for l in range(len(filtercurves_list)):
         pivot_array[l] = pivot_wavelength(filtercurves_list[l])
 
+#a filter has a pivot wavelength, check lookup table and call if not present. Similar to zero point
+
 
 #We can optimize this and only have it run the above code once. It does the same thing every time.
 
