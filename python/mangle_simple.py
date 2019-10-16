@@ -27,6 +27,10 @@ def mangle_simple(templatespectrum,filter_file_list, counts_in):
 ########  We can optimize this and only have it run the above code once. It does the same thing every time.
 ########  Noah is adding the pivot wavelength into filterlist_to_filterfiles.py so it can make this array once rather than
 ########  maybe make filter_pivot_list an optional input so that if it isn't already computed it can make it
+#a filter has a pivot wavelength, check lookup table and call if not present. Similar to zero point
+
+
+#We can optimize this and only have it run the above code once. It does the same thing every time.
 
     #######  This comes as previous code (under old/ for just the UVOT filters)
     #input_wave,input_flux = np.loadtxt('spectra/Gaia16apd_uv.dat', dtype=float,usecols=(0,1),unpack=True)

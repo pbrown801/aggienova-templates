@@ -88,7 +88,8 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         for j in range(len(time)):
             if band[j] == observed_filter_list[i]:
                 import zeropointdictionary
-                countsMatrix[i][j] = str(math.pow(10, -0.4*(mag[j]-zeropointdictionary[j])))
+                countsMatrix[i][j] = str(math.pow(10, -0.4*(mag[j]-20.0)))  # fake zeropoint added in until filterlist_to_filterfiles is updated to have zeropoints
+#                countsMatrix[i][j] = str(math.pow(10, -0.4*(mag[j]-zeropointdictionary[j])))
 
                 magMatrix[i][j] = str(mag[j])
                 emagMatrix[i][j] = emag[j]
