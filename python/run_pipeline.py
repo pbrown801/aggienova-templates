@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
     #####              these are the filters we will check for from the OSC csv file
     # 
-    desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K', 'L']
+    desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
     # 
     observedmags_to_counts(sn_name,desired_filter_list)
 
