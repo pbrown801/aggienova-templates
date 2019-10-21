@@ -115,9 +115,9 @@ if __name__ == "__main__":
 
 #Plot the mangled template count rates and the input count rates on the same plot with MJD or epoch on the x-axis
 
-#     from plot_3d import plot_3D
-#     filtered_df = pd.read_csv(output_file,index_col=0,header=0) #uncomment this if you have a saved df you just want to read and plot in 3d
-#     mjd_list = np.array(filtered_df.columns.values,dtype='float')
-#     wavelengths = np.array(filtered_df.index.values,dtype='float')
-#     flux_matrix = np.array(filtered_df.values,dtype='float')
-#     plot_3D(mjd_list,wavelengths,flux_matrix,sn_name)
+    from plot_3d import plot_3D
+    filtered_df = pd.read_csv(output_file,index_col=0,header=0) #uncomment this if you have a saved df you just want to read and plot in 3d
+    mjd_list = np.array(filtered_df.columns.values,dtype='float')
+    wavelengths = np.array(filtered_df.index.values,dtype='float')
+    flux_matrix = np.array(filtered_df.values,dtype='float')
+    plot_3D(mjd_list,wavelengths,flux_matrix,sn_name)
