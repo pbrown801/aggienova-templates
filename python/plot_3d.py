@@ -36,6 +36,8 @@ plt.show()
 #Plots file with filename in 3 dimensions: epoch, wavelength, and flux
 #Assumes first row is 'Epoch, Wavelength, Flux' and following rows correspond to those values
 #Does not currently validate file existence
+
+#color change along wavelength instead of flux like it is now
 def plot_3D(x,y,z,name):
     X,Y = np.meshgrid(x,y)
     surf = ax.plot_surface(X, Y, z, cmap=cm.coolwarm,
