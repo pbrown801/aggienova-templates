@@ -17,8 +17,7 @@ __pycache__/
 
 #personal
 tester.py
-*.csv
-
+output/*.csv
 # Distribution / packaging
 .Python
 Python.sublime-workspace

@@ -1,12 +1,17 @@
 # these come from WISEREP and were published in 
+# Hubble Space Telescope spectra of the 
+# Type Ia supernova SN 2011fe: 
+# a tail of low-density, high-velocity material 
+# with Z < Z☉
+# Mazzali, P., et al. 2014, MNRAS, 439, 1959
 # 
-ptf11kly_20110828.obs.dat
-ptf11kly_20110831.obs.dat
-ptf11kly_20110903.obs.dat
-ptf11kly_20110907.obs.dat
-ptf11kly_20110910.obs.dat
-ptf11kly_20110913.obs.dat
-ptf11kly_20110919.obs.dat
-ptf11kly_20111001.obs.dat
-ptf11kly_20111007.obs.dat
-ptf11kly_20111021.obs.dat
+-13.1 ptf11kly_20110828.obs.dat
+-10.1 ptf11kly_20110831.obs.dat
+-6.9 ptf11kly_20110903.obs.dat
+-2.9 ptf11kly_20110907.obs.dat
++0.1 ptf11kly_20110910.obs.dat
++3.4 ptf11kly_20110913.obs.dat
++9.3 ptf11kly_20110919.obs.dat
++20.9 ptf11kly_20111001.obs.dat
++27.0 ptf11kly_20111007.obs.dat
++40.8 ptf11kly_20111021.obs.dat
