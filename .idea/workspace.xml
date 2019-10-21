@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc5970a7-0801-40a8-ae8a-cb44e641e6f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/SN2007af_countsarray.csv" beforeDir="false" afterPath="$PROJECT_DIR$/input/SN2007af_countsarray.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/SN2007af_mangledcounts.csv" beforeDir="false" afterPath="$PROJECT_DIR$/input/SN2007af_mangledcounts.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/ANT-SN2011fe.20A.sed.restframe.dat.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plotting_test_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/plotting_test_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Graphing.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +25,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../DATATHON/ConocoPhillips" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
@@ -44,7 +40,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.plotting_test_2">
+  <component name="RunManager" selected="Python.Graphing">
     <configuration name="Graphing" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="aggienova-templates" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -110,8 +106,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.plotting_test_2" />
         <item itemvalue="Python.Graphing" />
+        <item itemvalue="Python.plotting_test_2" />
         <item itemvalue="Python.run_pipeline" />
       </list>
     </recent_temporary>

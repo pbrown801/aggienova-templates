@@ -24,6 +24,9 @@ def mangle_simple(templatespectrum,filter_file_list, counts_in):
     for l in range(len(filter_file_list)):
         pivot_array[l] = pivot_wavelength(filter_file_list[l])
 
+########  We can optimize this and only have it run the above code once. It does the same thing every time.
+########  Noah is adding the pivot wavelength into filterlist_to_filterfiles.py so it can make this array once rather than
+########  maybe make filter_pivot_list an optional input so that if it isn't already computed it can make it
 #a filter has a pivot wavelength, check lookup table and call if not present. Similar to zero point
 
 
