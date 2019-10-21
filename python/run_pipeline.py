@@ -41,8 +41,6 @@ if __name__ == "__main__":
     # 
     observedmags_to_counts(sn_name,desired_filter_list)
 
-    observedmags_to_counts(sn_name,desired_filter_list)
-
     inFile = '../input/'+sn_name+'_countsarray'+'.csv' #gets input count rates from existing file
 
     file = open(inFile,newline = '').readlines()
@@ -51,7 +49,9 @@ if __name__ == "__main__":
     #  these are the filters actually present in the csv file
     #  blank columns are removed by observedmags_to_counts
 
-    filters_from_csv = next(reader)[1:]
+    # This reads in the filter name headers and skips the error columnts
+
+    filters_from_csv = next(reader)[1::2]
 
     filter_file_list = filterlist_to_filterfiles(filters_from_csv)
 
@@ -64,6 +64,7 @@ if __name__ == "__main__":
 
     wavelengths = np.empty(1)
     counts_list = np.empty((row_count-1,filter_count))
+    counterrs_list = np.empty((row_count-1,filter_count))
     mangled_counts = np.empty((row_count-1,filter_count))
 
     ind = 0
@@ -72,7 +73,8 @@ if __name__ == "__main__":
         if len(row) == 0:
             continue
         epoch = np.float64(row[0])-reference_epoch_mjd
-        counts_in = np.array(list(map(np.float64,row[1:]))) #theres gotta be an easier way to do this #just double checking that it's a float -t8
+        counts_in = np.array(list(map(np.float64,row[1::2]))) #theres gotta be an easier way to do this #just double checking that it's a float -t8
+        counterrs_in = np.array(list(map(np.float64,row[2::2]))) #theres gotta be an easier way to do this #just double checking that it's a float -t8
 
         mjd_list[ind]=epoch
         counts_list[ind,:] = counts_in #appending counts per filter at epoch
