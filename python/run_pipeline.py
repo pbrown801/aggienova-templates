@@ -33,23 +33,29 @@ if __name__ == "__main__":
     template_spectrum = args.template[0] #assign a template spectrum to use
     # dat_to_csv(args.template[0])
     store_as_csv = args.csv[0].upper()=='Y'
-    filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
+    reference_epoch_mjd=0.0
 
-    filter_file_list = filterlist_to_filterfiles(filterlist)
+    #####              these are the filters we will check for from the OSC csv file
+    # 
+    desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
+    # 
+    observedmags_to_counts(sn_name,desired_filter_list)
 
-    observedmags_to_counts(sn_name,filterlist)
+    observedmags_to_counts(sn_name,desired_filter_list)
 
     inFile = '../input/'+sn_name+'_countsarray'+'.csv' #gets input count rates from existing file
 
     file = open(inFile,'r',newline = '').readlines()
     reader = csv.reader(file,delimiter = ',')
 
-    filter_curves_from_csv = next(reader)[1:]
-#    filter_curves_list_no_format = next(reader)[1:]
-#    filter_curves_list = list(map('../filters/{0}'.format, filter_file_list))
+    #  these are the filters actually present in the csv file
+    #  blank columns are removed by observedmags_to_counts
+
+    filters_from_csv = next(reader)[1:]
+
+    filter_file_list = filterlist_to_filterfiles(filters_from_csv)
 
     row_count = sum(1 for row in file)
-#    filter_count = len(filter_curves_list)
     filter_count = len(filter_file_list)
 
     mjd_list = np.empty((row_count-1)) #empty list to hold time values
@@ -65,13 +71,14 @@ if __name__ == "__main__":
         print(row_count-1-ind)
         if len(row) == 0:
             continue
-        epoch = np.float64(row[0])-0 #-0 is temporary and will be replaced later
+        epoch = np.float64(row[0])-reference_epoch_mjd
         counts_in = np.array(list(map(np.float64,row[1:]))) #theres gotta be an easier way to do this #just double checking that it's a float -t8
 
         mjd_list[ind]=epoch
         counts_list[ind,:] = counts_in #appending counts per filter at epoch
 
-        mangled_spec_wave, mangled_spec_flux = mangle_simple(template_spectrum, filter_file_list, counts_in) #mangle the spectrum to match the given count rates
+        #mangle the spectrum to match the given count rates
+        mangled_spec_wave, mangled_spec_flux = mangle_simple(template_spectrum, filter_file_list, counts_in) 
 
         if ind == 0:
             wavelengths =mangled_spec_wave #why are we only doing this once? The values of wavelength change every increment
@@ -89,13 +96,14 @@ if __name__ == "__main__":
 
         ind+=1
 
-    mangled_to_counts(sn_name,filterlist,mangled_counts,mjd_list)
+    mangled_to_counts(sn_name,filters_from_csv,mangled_counts,mjd_list)
     df= pd.DataFrame(index = wavelengths,data = flux_matrix,columns= mjd_list)
 
     output_file = '../output/'+sn_name+'_template.csv' #format is different than input template (see vega.dat.csv)
     if store_as_csv:
         df.to_csv(output_file,index=True,float_format='%g')
 
+<<<<<<< HEAD
     # counts_list = np.array(counts_list,dtype='float')
 #     filter_curves_list_no_format = [x.split('_')[0] for x in filter_curves_list_no_format]
 
@@ -105,6 +113,17 @@ if __name__ == "__main__":
 
 #     validation_plotting(filterlist,counts_list,mjd_list) 
 # #    validation_plotting(filter_curves_list_no_format,counts_list,mjd_list) #Plot the mangled template count rates and the input count rates on the same plot with MJD or epoch on the x-axis
+=======
+    counts_list = np.array(counts_list,dtype='float')
+#    filter_curves_list_no_format = [x.split('_')[0] for x in filter_curves_list_no_format]
+    # filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.Epoch < 54330)]
+    # output_3d = '../output/'+sn_name+'_3d.csv'
+    # filtered_df.to_csv(output_3d,index=False) #comment this if you already have your df or dont want to save a filtered version FUTURE: flag to do this
+
+    validation_plotting(filters_from_csv,counts_list,mjd_list) 
+
+#Plot the mangled template count rates and the input count rates on the same plot with MJD or epoch on the x-axis
+>>>>>>> 28d127c38c35f47dc097aaf29ba343d9b5551041
 
 #     from plot_3d import plot_3D
 #     filtered_df = pd.read_csv(output_file,index_col=0,header=0) #uncomment this if you have a saved df you just want to read and plot in 3d
