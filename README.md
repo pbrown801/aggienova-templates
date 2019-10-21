@@ -1,5 +1,5 @@
 # Aggienova
-This is the github repository for the Texas A&M AGGINOVA research team to create spectrophotometric time-series templates for supernovae.
+This is the github repository for the Texas A&M AGGIENOVA research team to create spectrophotometric time-series templates for supernovae.
 
 repo structure:
 
