@@ -43,7 +43,7 @@ if __name__ == "__main__":
 
     inFile = '../input/'+sn_name+'_countsarray'+'.csv' #gets input count rates from existing file
 
-    file = open(inFile,newline = '').readlines()
+    file = open(inFile,'r',newline = '').readlines()
     reader = csv.reader(file,delimiter = ',')
 
     #  these are the filters actually present in the csv file
@@ -105,6 +105,17 @@ if __name__ == "__main__":
     if store_as_csv:
         df.to_csv(output_file,index=True,float_format='%g')
 
+<<<<<<< HEAD
+    # counts_list = np.array(counts_list,dtype='float')
+#     filter_curves_list_no_format = [x.split('_')[0] for x in filter_curves_list_no_format]
+
+#     filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.Epoch < 54330)]
+#     output_3d = '../output/'+sn_name+'_3d.csv'
+#     filtered_df.to_csv(output_3d,index=False) #comment this if you already have your df or dont want to save a filtered version FUTURE: flag to do this
+
+#     validation_plotting(filterlist,counts_list,mjd_list) 
+# #    validation_plotting(filter_curves_list_no_format,counts_list,mjd_list) #Plot the mangled template count rates and the input count rates on the same plot with MJD or epoch on the x-axis
+=======
     counts_list = np.array(counts_list,dtype='float')
 #    filter_curves_list_no_format = [x.split('_')[0] for x in filter_curves_list_no_format]
     # filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.Epoch < 54330)]
@@ -114,10 +125,11 @@ if __name__ == "__main__":
     validation_plotting(filters_from_csv,counts_list,mjd_list) 
 
 #Plot the mangled template count rates and the input count rates on the same plot with MJD or epoch on the x-axis
+>>>>>>> 28d127c38c35f47dc097aaf29ba343d9b5551041
 
-    from plot_3d import plot_3D
-    filtered_df = pd.read_csv(output_file,index_col=0,header=0) #uncomment this if you have a saved df you just want to read and plot in 3d
-    mjd_list = np.array(filtered_df.columns.values,dtype='float')
-    wavelengths = np.array(filtered_df.index.values,dtype='float')
-    flux_matrix = np.array(filtered_df.values,dtype='float')
-    plot_3D(mjd_list,wavelengths,flux_matrix,sn_name)
+#     from plot_3d import plot_3D
+#     filtered_df = pd.read_csv(output_file,index_col=0,header=0) #uncomment this if you have a saved df you just want to read and plot in 3d
+#     mjd_list = np.array(filtered_df.columns.values,dtype='float')
+#     wavelengths = np.array(filtered_df.index.values,dtype='float')
+#     flux_matrix = np.array(filtered_df.values,dtype='float')
+#     plot_3D(mjd_list,wavelengths,flux_matrix,sn_name)
