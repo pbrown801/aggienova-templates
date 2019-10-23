@@ -27,7 +27,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
     emag = []
     band = []
 
-    
+
     #contains true or false depending on whether or not there is a non-zero observation for that filter
     # start with false and change to true if the filter is found
     filterFound = []
@@ -86,11 +86,14 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
 ###### does this have to be done in a for loop or can python operate on the whole row/column at once?
 
         for j in range(len(time)):
+
             if band[j] == observed_filter_list[i]:
+
                 import zeropointdictionary
+                
                 countsMatrix[i][j] = str(math.pow(10, -0.4*(mag[j]-20.0)))  # fake zeropoint added in until filterlist_to_filterfiles is updated to have zeropoints
 #                countsMatrix[i][j] = str(math.pow(10, -0.4*(mag[j]-zeropointdictionary[j])))
-
+                
                 magMatrix[i][j] = str(mag[j])
                 emagMatrix[i][j] = emag[j]
                 measured_counts[length] = float(countsMatrix[i][j])

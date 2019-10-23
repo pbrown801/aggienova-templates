@@ -41,7 +41,7 @@ if __name__ == "__main__":
     # 
     observedmags_to_counts(sn_name,desired_filter_list)
 
-    observedmags_to_counts(sn_name,desired_filter_list)
+    observedmags_to_counts(sn_name,desired_filter_list) #is there a reason we do this twice?
 
     inFile = '../input/'+sn_name+'_countsarray'+'.csv' #gets input count rates from existing file
 
@@ -61,11 +61,12 @@ if __name__ == "__main__":
     mjd_list = np.empty((row_count-1)) #empty list to hold time values
     flux_matrix = np.empty((1,row_count-1)) #empty matrix to hold flux values
     flux_matrix.fill(np.nan)
-
     wavelengths = np.empty(1)
     counts_list = np.empty((row_count-1,filter_count))
     mangled_counts = np.empty((row_count-1,filter_count))
 
+
+    data = []
     ind = 0
     for row in reader:
         print(row_count-1-ind)
@@ -83,26 +84,27 @@ if __name__ == "__main__":
         if ind == 0:
             wavelengths =mangled_spec_wave #why are we only doing this once? The values of wavelength change every increment
 
-            #flux_matrix = np.resize(flux_matrix,(len(mangled_spec_flux),row_count-1)) #OLD TEST SPEED
-            flux_matrix = np.empty((len(mangled_spec_flux),row_count-1)) #NEW TEST SPEED
-            flux_matrix.fill(np.nan)
-
-        flux_matrix[:,ind] = mangled_spec_flux
-
+        fill_epoch = [epoch]*len(mangled_spec_wave)
+        temp_data = [fill_epoch[:],mangled_spec_wave[:],mangled_spec_flux[:]]
+        data.extend(np.array(temp_data).transpose())
         #Getting counts of mangled template
-        temp_temp_spec =np.column_stack((wavelengths,mangled_spec_flux))
-        temp_counts = get_counts_multi_filter(temp_temp_spec,filter_file_list)
+        temp_template_spec =np.column_stack((wavelengths,mangled_spec_flux))
+        
+        temp_counts = get_counts_multi_filter(temp_template_spec,filter_file_list)
         mangled_counts[ind,:] = temp_counts
 
         ind+=1
 
-    mangled_to_counts(sn_name,filters_from_csv,mangled_counts,mjd_list)
-    df= pd.DataFrame(index = wavelengths,data = flux_matrix,columns= mjd_list)
+    # data = np.array(data)
+    # print(data.shape)
+    df = pd.DataFrame(columns=['MJD','Wavelength','Flux'],data = data)
 
-    output_file = '../output/'+sn_name+'_template.csv' #format is different than input template (see vega.dat.csv)
+
+    output_file = '../output/'+sn_name+'TEST_template.csv' #format is different than input template (see vega.dat.csv)
     if store_as_csv:
-        df.to_csv(output_file,index=True,float_format='%g')
+        df.to_csv(output_file,index=False,float_format='%g')
 
+    mangled_to_counts(sn_name,filters_from_csv,mangled_counts,mjd_list)
 
     # counts_list = np.array(counts_list,dtype='float')
 #     filter_curves_list_no_format = [x.split('_')[0] for x in filter_curves_list_no_format]
