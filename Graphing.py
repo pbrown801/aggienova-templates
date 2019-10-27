@@ -4,13 +4,17 @@ import scipy.interpolate as interp
 import pandas as pd
 from matplotlib.animation import FuncAnimation
 import numpy as np
+import csv
 plt.style.use('dark_background')
-
-pd.options.display.float_format = "{:.2f}".format
-pd.options.display.max_rows = 10
-
-magarray_data = pd.read_csv("SN2007af_magarray.csv", sep=",")
+magarray_data = pd.read_csv("output\SN2007af_magarray.csv", sep=",")
 magarray_data.head()
+
+file = open("output\SN2007af_magarray.csv", 'r', newline='').readlines()
+reader = csv.reader(file, delimiter=',')
+filters_from_csv = next(reader)[1::2]
+pd.DataFrame.set_index('Time')
+# print(filters_from_csv[])
+
 print(magarray_data)
 
 # time_UVW2 = [54161.8408, 54165.0591, 54177.5535, 54200.1088, 54213.7318, 54309.2917]

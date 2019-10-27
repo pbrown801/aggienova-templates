@@ -131,3 +131,4 @@ if __name__ == "__main__":
 #     wavelengths = np.array(filtered_df.index.values,dtype='float')
 #     flux_matrix = np.array(filtered_df.values,dtype='float')
 #     plot_3D(mjd_list,wavelengths,flux_matrix,sn_name)
+
