@@ -27,10 +27,10 @@ blue = "#0000FF"
 indigo = "#8000FF"
 purple = "#BF00FF"
 
-    #gray
+#gray
 ultraviolet = "808080"
 
-    #infrared beyond what the human eye can see
+#infrared beyond what the human eye can see
 maroon = "660000"
 '''
 #Plots file with filename in 3 dimensions: epoch, wavelength, and flux
@@ -40,7 +40,7 @@ maroon = "660000"
 #color change along wavelength instead of flux like it is now
 def plot_3D(x,y,z,name):
     X,Y = np.meshgrid(x,y)
-    surf = ax.plot_surface(X, Y, z, cmap=[('Diverging','seismic')],
+    surf = ax.plot_surface(X, Y, z, cmap=cm.hsv,
                        linewidth=0, antialiased=False)
     '''
     surf = ax.plot_surface(X, Y, z, cmap=cm.coolwarm,
