@@ -104,12 +104,11 @@ if __name__ == "__main__":
     df = pd.DataFrame(columns=['MJD','Wavelength','Flux'],data = data)
 
 
-    output_file = '../output/'+sn_name+'TEST_template.csv' #format is different than input template (see vega.dat.csv)
+    output_file = '../output/'+sn_name+'template.csv' #format is different than input template (see vega.dat.csv)
     if store_as_csv:
         df.to_csv(output_file,index=False,float_format='%g')
 
-    mangled_to_counts(sn_name,filters_from_csv,mangled_counts,mjd_list)
-
+    m_counts = mangled_to_counts(sn_name,filters_from_csv,mangled_counts,mjd_list)
 
     counts_list = np.array(counts_list,dtype='float')
 #    filter_curves_list_no_format = [x.split('_')[0] for x in filter_curves_list_no_format]
