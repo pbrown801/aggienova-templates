@@ -40,7 +40,7 @@ maroon = "660000"
 #color change along wavelength instead of flux like it is now
 def plot_3D(x,y,z,name):
     X,Y = np.meshgrid(x,y)
-    surf = ax.plot_surface(X, Y, z, cmap=[('Sequential', ['Reds', 'Oranges', 'Greens', 'Blues', 'Purples', 'Greys'])],
+    surf = ax.plot_surface(X, Y, z, cmap=[('Diverging','seismic')],
                        linewidth=0, antialiased=False)
     '''
     surf = ax.plot_surface(X, Y, z, cmap=cm.coolwarm,
@@ -49,7 +49,7 @@ def plot_3D(x,y,z,name):
     #cmaps['Sequential'] = ['Reds', 'Oranges', 'Greens', 'Blues', 'Purples', 'Greys']
     '''
     # cm['Sequential'] = ['Reds', 'Oranges', 'Greens', 'Blues', 'Purples', 'Greys']
-#    ax.set_color_cycle(['red','orange','yellow','green','blue','8000FF','purple','808080','660000'])
+    # ax.set_color_cycle(['red','orange','yellow','green','blue','8000FF','purple','808080','660000'])
     # ax.plot(x,y,z)
     plt.title(name)
     ax.set_xlabel('Time (mjd)')
