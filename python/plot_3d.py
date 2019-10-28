@@ -17,22 +17,6 @@ plt.title('Name')
 
 plt.show()
 '''
-#color palette:
-'''
-red = "#FF0000"
-orange = "#FF8000"
-yellow = "#FFFF00"
-green = "#4DB380"
-blue = "#0000FF"
-indigo = "#8000FF"
-purple = "#BF00FF"
-
-#gray
-ultraviolet = "808080"
-
-#infrared beyond what the human eye can see
-maroon = "660000"
-'''
 #Plots file with filename in 3 dimensions: epoch, wavelength, and flux
 #Assumes first row is 'Epoch, Wavelength, Flux' and following rows correspond to those values
 #Does not currently validate file existence
@@ -40,7 +24,8 @@ maroon = "660000"
 #color change along wavelength instead of flux like it is now
 def plot_3D(x,y,z,name):
     X,Y = np.meshgrid(x,y)
-    surf = ax.plot_surface(X, Y, z, cmap=cm.hsv,
+    # Gx, Gy = np.gradient(z)
+    surf = ax.plot_surface(X, z, Y, cmap=cm.hsv,
                        linewidth=0, antialiased=False)
     '''
     surf = ax.plot_surface(X, Y, z, cmap=cm.coolwarm,
