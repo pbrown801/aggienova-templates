@@ -96,22 +96,20 @@ def clean_filter(filterFileName, spectraWavelengths):
 #spectraFileName is the name of a spectrum file in aggienova-templates/spectra/
 #filterFileName is the name of a filter file in aggienova-templates/filters/
 #Value returned is counts, a floating-point numeric type
-def get_counts(spectraFileName, filterFileName):
-    spectraFileName = "../spectra/" + spectraFileName
+def get_counts(spectra, filterFileName):
     filterFileName = "../filters/" + filterFileName
-    spectraWavelengths, flux = clean_spectrum(spectraFileName)
-    effectiveAreas = clean_filter(filterFileName, spectraWavelengths)
-    counts = calculate_counts(spectraWavelengths, flux, effectiveAreas)
+    effectiveAreas = clean_filter(filterFileName, spectra[:,0])
+    counts = calculate_counts(spectra[:,0], spectra[:,1], effectiveAreas)
     return counts
 
 #Find the counts from a spectrum with multiple specific filters
 #spectraFileName is the name of a spectrum file in aggienova-templates/spectra/
 #filterFileList is a list of filter files in aggienova-templates/filters/
 #Value returned is counts_array, an array of floating-point numeric types
-def get_counts_multi_filter(spectraFileName, filterFileList):
+def get_counts_multi_filter(spectra, filterFileList):
     counts_array = []
     for fileName in filterFileList:
-        counts_array += [get_counts(spectraFileName, fileName)]
+        counts_array += [get_counts(spectra, fileName)]
     return counts_array
 
 #spectraFileName = input("What is the file name for the desired spectrum: ")
