@@ -84,6 +84,8 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         measured_times = np.zeros(len(time))
         length = 0
 
+# make dataframe from pandas
+# operator on rows and columns from that
 ###### does this have to be done in a for loop or can python operate on the whole row/column at once?
         for j in range(len(time)):
 

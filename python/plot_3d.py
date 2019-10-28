@@ -17,21 +17,20 @@ plt.title('Name')
 
 plt.show()
 '''
-
 #color palette:
-    red = "#FF0000"
-    orange = "#FF8000"
-    yellow = "#FFFF00"
-    green = "#4DB380"
-    blue = "#0000FF"
-    indigo = "#8000FF"
-    purple = "#BF00FF"
+red = "#FF0000"
+orange = "#FF8000"
+yellow = "#FFFF00"
+green = "#4DB380"
+blue = "#0000FF"
+indigo = "#8000FF"
+purple = "#BF00FF"
 
     #gray
-    ultraviolet = "808080"
+ultraviolet = "808080"
 
     #infrared beyond what the human eye can see
-    maroon = "660000"
+maroon = "660000"
 
 #Plots file with filename in 3 dimensions: epoch, wavelength, and flux
 #Assumes first row is 'Epoch, Wavelength, Flux' and following rows correspond to those values
@@ -42,7 +41,7 @@ def plot_3D(x,y,z,name):
     X,Y = np.meshgrid(x,y)
     surf = ax.plot_surface(X, Y, z, cmap=cm.coolwarm,
                        linewidth=0, antialiased=False)
-    cmaps['Sequential'] = ['Reds', 'Oranges', 'Greens', 'Blues', 'Purples', 'Greys']
+    #cmaps['Sequential'] = ['Reds', 'Oranges', 'Greens', 'Blues', 'Purples', 'Greys']
 #    ax.set_color_cycle(['red','orange','yellow','green','blue','8000FF','purple','808080','660000'])
     # ax.plot(x,y,z)
     plt.title(name)
