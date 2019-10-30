@@ -91,7 +91,7 @@ def filterlist_to_filterfiles(filterlist):
             filterfilelist[idx]='../filters/J_2mass.txt'
             pivot=pivot_wavelength('../filters/J_2mass.txt')
             pivotlist.append(pivot)
-            zeropointlist.append(12.59)
+            zeropointlist.append(0)
         if filtertocheck == 'H':
             filterfilelist[idx]='../filters/H_2mass.txt'
             pivot=pivot_wavelength('../filters/H_2mass.txt')
