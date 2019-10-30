@@ -2,6 +2,7 @@ import numpy as np
 import csv
 import math as math
 from scipy import interpolate
+from filterlist_to_filterfiles import *
 import string
 
 '''
@@ -55,6 +56,8 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         if filterFound[i]:
             observed_filter_list.append(desired_filter_list[i])
  
+    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(observed_filter_list)
+
     interpFirst = 1000000000000000
     interpLast = -1000000000000000
     for i in range(0, len(time)):
@@ -97,13 +100,8 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
 
             if band[j] == observed_filter_list[i]:
 
-                import zeropointdictionary
-
-                counts_matrix[i][j] = str(math.pow(10, -0.4*(mag[j]-20.0)))  # fake zeropoint added in until filterlist_to_filterfiles is updated to have zeropoints
-#                countsMatrix[i][j] = str(math.pow(10, -0.4*(mag[j]-zeropointdictionary[j])))
+                counts_matrix[i][j] = str(math.pow(10, -0.4*(mag[j]-zeropointlist[i])))  
                 counterrs_matrix[i][j] = str(abs(float(counts_matrix[i][j])*float(emag[j])*-1.0857)) # need to check if this works
-                # Accepted this in a merge conflict, but what does it do? ^^^ -t8
-
 
                 magMatrix[i][j] = str(mag[j])
                 emagMatrix[i][j] = emag[j]

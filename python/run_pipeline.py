@@ -29,16 +29,16 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    sn_name = args.supernova[0] #assign sn name at beginning and look for that file as an input
+    sn_name = args.supernova[0]          #assign sn name at beginning and look for that file as an input
     template_spectrum = args.template[0] #assign a template spectrum to use
     # dat_to_csv(args.template[0])
     store_as_csv = args.csv[0].upper()=='Y'
     reference_epoch_mjd=0.0
 
     #####              these are the filters we will check for from the OSC csv file
-    # 
+     
     desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
-    # 
+     
     observedmags_to_counts(sn_name,desired_filter_list)
 
     inFile = '../input/'+sn_name+'_countsarray'+'.csv' #gets input count rates from existing file
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     row_count = sum(1 for row in file)
     filter_count = len(filter_file_list)
 
-    mjd_list = np.empty((row_count-1)) #empty list to hold time values
+    mjd_list    = np.empty((row_count-1))   #empty list to hold time values
     flux_matrix = np.empty((1,row_count-1)) #empty matrix to hold flux values
     flux_matrix.fill(np.nan)
     wavelengths = np.empty(1)
@@ -89,10 +89,12 @@ if __name__ == "__main__":
 
         if ind == 0:
             wavelengths =mangled_spec_wave #why are we only doing this once? The values of wavelength change every increment
+                                           #the wavelengths should be the same each time.  If not we need to fix something else
 
         fill_epoch = [epoch]*len(mangled_spec_wave)
         temp_data = [fill_epoch[:],mangled_spec_wave[:],mangled_spec_flux[:]]
         data.extend(np.array(temp_data).transpose())
+
         #Getting counts of mangled template
         temp_template_spec =np.column_stack((wavelengths,mangled_spec_flux))
         
@@ -113,7 +115,7 @@ if __name__ == "__main__":
     m_counts = mangled_to_counts(sn_name,filters_from_csv,mangled_counts,mjd_list)
 
     counts_list = np.array(counts_list,dtype='float')
-#    filter_curves_list_no_format = [x.split('_')[0] for x in filter_curves_list_no_format]
+    # filter_curves_list_no_format = [x.split('_')[0] for x in filter_curves_list_no_format]
     # filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.Epoch < 54330)]
     # output_3d = '../output/'+sn_name+'_3d.csv'
     # filtered_df.to_csv(output_3d,index=False) #comment this if you already have your df or dont want to save a filtered version FUTURE: flag to do this
