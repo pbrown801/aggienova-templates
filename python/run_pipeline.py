@@ -55,7 +55,9 @@ if __name__ == "__main__":
 
     filters_from_csv = next(reader)[1::2]
 
-    filter_file_list = filterlist_to_filterfiles(filters_from_csv)
+    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(filters_from_csv)
+
+    print(filter_file_list)
 
     row_count = sum(1 for row in file)
     filter_count = len(filter_file_list)
@@ -83,7 +85,7 @@ if __name__ == "__main__":
         counts_list[ind,:] = counts_in #appending counts per filter at epoch
 
         #mangle the spectrum to match the given count rates
-        mangled_spec_wave, mangled_spec_flux = mangle_simple(template_spectrum, filter_file_list, counts_in) 
+        mangled_spec_wave, mangled_spec_flux = mangle_simple(template_spectrum, filter_file_list, zeropointlist,pivotlist, counts_in) 
 
         if ind == 0:
             wavelengths =mangled_spec_wave #why are we only doing this once? The values of wavelength change every increment

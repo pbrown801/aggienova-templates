@@ -16,13 +16,11 @@ def pivot_wavelength(Filter):
     return pivot_lambda
 
 
-def mangle_simple(templatespectrum,filter_file_list, counts_in):
+def mangle_simple(templatespectrum,filter_file_list, zeropointlist, pivotlist, counts_in):
 
     input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum)#dtype=float,usecols=(0,1),unpack=True)
     clean_template = np.column_stack((input_wave,input_flux))
-    pivot_array = np.zeros(len(filter_file_list))
-    for l in range(len(filter_file_list)):
-        pivot_array[l] = pivot_wavelength(filter_file_list[l])
+
 
 ########  We can optimize this and only have it run the above code once. It does the same thing every time.
 ########  Noah is adding the pivot wavelength into filterlist_to_filterfiles.py so it can make this array once rather than
@@ -38,11 +36,11 @@ def mangle_simple(templatespectrum,filter_file_list, counts_in):
     ratio = np.zeros(len(counts_array))
     for x in range(0,len(counts_array)):
         ratio[x]=counts_in[x]/counts_array[x]
-    manglefunction= np.interp(input_wave, pivot_array, ratio)
+    manglefunction= np.interp(input_wave, pivotlist, ratio)
 
 #    something similar to this is what I did in IDL.  It seems like this is already how numpy.interpolate extrapolates
 #    but something wierd is still going on.
-#    manglefunction= np.interp(input_wave, [0,pivot_array,100000], [ratio[0],ratio,ratio[len(ratio)-1]] )
+#    manglefunction= np.interp(input_wave, [0,pivotlist,100000], [ratio[0],ratio,ratio[len(ratio)-1]] )
 
 
     mangledspectrumflux=input_flux*manglefunction
