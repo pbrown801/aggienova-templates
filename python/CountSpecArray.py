@@ -4,24 +4,32 @@ import matplotlib.pyplot as plt
 
 spectra_file_input = input("What spectra file do you want to use?: ")       # User inputs spectra file name including extension
 filter_file_input = input("What filter file do you want to use?: ")         # User inputs filter file name including extension
-spectra_file_name = ('../spectra/%s' % (spectra_file_input))                # Path is relative, might need to be changed for different computers 
-filter_file_name = ('../filters/%s' % (filter_file_input))                  # Path is relative again, change as needed 
+# {} replaces %s, .format() replaces %
+spectra_file_name = ('../spectra/{}'.format(spectra_file_input))                # Path is relative, might need to be changed for different computers
+filter_file_name = ('../filters/{}'.format(filter_file_input))                  # Path is relative again, change as needed 
 spectra_file_load = np.loadtxt(spectra_file_name)
 filter_file_load = np.loadtxt(filter_file_name)
 
-wavelength_spectra = []
-flux_spectra = []
-wavelength_filters = []
-area_filters = []    
+# wavelength_spectra = []
+# flux_spectra = []
+# wavelength_filters = []
+# area_filters = []    
 
-for i in range(0, len(spectra_file_load)):                                  # Reads in the data from the files, appends to empty lists above 
-    wavelength_spectra.append(spectra_file_load[i][0])
+
+# for i in range(0, len(spectra_file_load)):                                  # Reads in the data from the files, appends to empty lists above 
+    # wavelength_spectra.append(spectra_file_load[i][0])
+wavelength_spectra = [spectra_file_load[i][0] for i in range(len(spectra_file_load))]
+flux_spectra = [spectra_file_load[i][1] for i in range(len(spectra_file_load))]
+wavelength_filters = [filter_file_load[i][0] for i in range(len(filter_file_load))]
+area_filters = [filter_file_load[i][1] for i in range(len(filter_file_load))]
+'''
 for i in range(0,len(spectra_file_load)):
     flux_spectra.append(spectra_file_load[i][1])
 for i in range(0, len(filter_file_load)):
     wavelength_filters.append(filter_file_load[i][0])
 for i in range(0, len(filter_file_load)):
     area_filters.append(filter_file_load[i][1])
+'''
 
 fig, axes = plt.subplots()                                                  # First plot, plots wavelength spectra against the flux 
 plt.plot(wavelength_spectra, flux_spectra)
@@ -87,17 +95,20 @@ plt.ylabel('ergs/s/angstrom')
 
 # Start pulling data from a second spectrum, not required for the file to work 
 spectra_file_input_2 = input("What is the second spectra file that you want to use?: ")
-spectra_file_name_2 = ('../spectra/%s' % (spectra_file_input_2))
+spectra_file_name_2 = ('../spectra/{}'.format(spectra_file_input_2))
 spectra_file_load_2 = np.loadtxt(spectra_file_name_2)
 
-wavelength_spectra_2 = []
-flux_spectra_2 = []
+# wavelength_spectra_2 = []
+# flux_spectra_2 = []
 
+wavelength_spectra_2 = [spectra_file_load_2[i][0] for i in range(len(spectra_file_load_2))]
+flux_spectra_2 = [spectra_file_load_2[i][1] for i in range(len(spectra_file_load_2))]
+'''
 for i in range(0, len(spectra_file_load_2)):
     wavelength_spectra_2.append(spectra_file_load_2[i][0])
 for i in range(0,len(spectra_file_load_2)):
     flux_spectra_2.append(spectra_file_load_2[i][1])
-    
+'''
 interpolated_data_2 = np.interp(wavelength_filters, wavelength_spectra_2, flux_spectra_2)
 ergs_2 = np.array(interpolated_data_2) * np.array(area_filters)
 
