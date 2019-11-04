@@ -32,6 +32,9 @@ filterlist = ['UVW2','UVW2 error', 'U', 'U error', 'UVM2', 'UVM2 error', 'UVW1',
 
 uvw2_mag = []
 uvw2_emag = []
+uvw2_mag = [mag[j] for j in xrange(len(time)) if band[j] == 'UVW2' else '']
+uvw2_emag = [emag[j] for j in xrange(len(time)) if band[j] == 'UVW2' else '']
+'''
 for j in range(len(time)):
     if band[j] == 'UVW2':
         uvw2_mag.append(mag[j])
@@ -39,7 +42,7 @@ for j in range(len(time)):
     else:
         uvw2_mag.append('')
         uvw2_emag.append('')
-
+'''
 
 u_mag = []
 u_emag = []
