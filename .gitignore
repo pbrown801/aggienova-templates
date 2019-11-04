@@ -16,6 +16,7 @@ __pycache__/
 .bash_profile/
 
 #personal
+input/*countsarray.csv
 tester.py
 output/*.csv
 # Distribution / packaging
