@@ -99,6 +99,9 @@ for j in range(len(time)):
 '''
 g_mag = []
 g_emag = []
+g_mag = [mag[j] for j in xrange(len(time)) if band[j] == 'G' else '']
+g_emag = [emag[j] for j in xrange(len(time)) if band[j] == 'G' else '']
+'''
 for j in range(len(time)):
     if band[j] == 'G':
         g_mag.append(mag[j])
@@ -106,9 +109,13 @@ for j in range(len(time)):
     else:
         g_mag.append('')
         g_emag.append('')
+'''
 
 v_mag = []
 v_emag = []
+v_mag = [mag[j] for j in xrange(len(time)) if band[j] == 'V' else '']
+v_emag = [emag[j] for j in xrange(len(time)) if band[j] == 'V' else '']
+'''
 for j in range(len(time)):
     if band[j] == 'V':
         v_mag.append(mag[j])
@@ -116,9 +123,13 @@ for j in range(len(time)):
     else:
         v_mag.append('')
         v_emag.append('')
+'''
 
 r_mag = []
 r_emag = []
+r_mag = [mag[j] for j in xrange(len(time)) if band[j] == 'R' else '']
+r_emag = [emag[j] for j in xrange(len(time)) if band[j] == 'R' else '']
+'''
 for j in range(len(time)):
     if band[j] == 'R':
         r_mag.append(mag[j])
@@ -126,9 +137,13 @@ for j in range(len(time)):
     else:
         r_mag.append('')
         r_emag.append('')
+'''
 
 i_mag = []
 i_emag = []
+i_mag = [mag[j] for j in xrange(len(time)) if band[j] == 'I' else '']
+i_emag = [emag[j] for j in xrange(len(time)) if band[j] == 'I' else '']
+'''
 for j in range(len(time)):
     if band[j] == 'I':
         i_mag.append(mag[j])
@@ -136,7 +151,7 @@ for j in range(len(time)):
     else:
         i_mag.append('')
         i_emag.append('')
-
+'''
 j_mag = []
 j_emag = []
 for j in range(len(time)):
