@@ -20,6 +20,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
     data = input_file.read()
     data = data.splitlines()
     data_list = []
+    # data_list = map(split(','), data)
     for line in data:
         data_list.append(line.split(','))
 
@@ -109,7 +110,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         interpMatrix[i] = np.interp(interpTimes, measured_times, measured_counts)
 
     names = ['Time (MJD)']
-
+    # names = [observed_filter_list[l] for l in range(len(observed_filter_list))]
     for l in range(len(observed_filter_list)):
         names.append(observed_filter_list[l])
 

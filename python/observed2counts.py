@@ -32,8 +32,8 @@ filterlist = ['UVW2','UVW2 error', 'U', 'U error', 'UVM2', 'UVM2 error', 'UVW1',
 
 # uvw2_mag = []
 # uvw2_emag = []
-uvw2_mag = [mag[j] for j in range(len(time)) if band[j] == 'UVW2' else '']
-uvw2_emag = [emag[j] for j in range(len(time)) if band[j] == 'UVW2' else '']
+uvw2_mag = [mag[j] if band[j] == 'UVW2' else '' for j in range(len(time))]
+uvw2_emag = [emag[j] if band[j] == 'UVW2' else '' for j in range(len(time))]
 '''
 for j in range(len(time)):
     if band[j] == 'UVW2':
@@ -46,8 +46,8 @@ for j in range(len(time)):
 
 #u_mag = []
 #u_emag = []
-u_mag = [mag[j] for j in range(len(time)) if band[j] == 'U' else '']
-u_emag = [emag[j] for j in range(len(time)) if band[j] == 'U' else '']
+u_mag = [mag[j] if band[j] == 'U' else '' for j in range(len(time))]
+u_emag = [emag[j] if band[j] == 'U' else '' for j in range(len(time))]
 '''
 for j in range(len(time)):
     if band[j] == 'U':
@@ -59,8 +59,8 @@ for j in range(len(time)):
 '''
 #uvm2_mag = []
 #uvm2_emag = []
-uvm2_mag = [mag[j] for j in range(len(time)) if band[j] == 'UVM2' else '']
-uvm2_emag = [emag[j] for j in range(len(time)) if band[j] == 'UVM2' else '']
+uvm2_mag = [mag[j] if band[j] == 'UVM2' else '' for j in range(len(time))]
+uvm2_emag = [emag[j] if band[j] == 'UVM2' else '' for j in range(len(time))]
 '''
 for j in range(len(time)):
     if band[j] == 'UVM2':
@@ -72,8 +72,8 @@ for j in range(len(time)):
 '''
 #uvw1_mag = []
 #uvw1_emag = []
-uvm1_mag = [mag[j] for j in range(len(time)) if band[j] == 'UVW1' else '']
-uvm1_emag = [emag[j] for j in range(len(time)) if band[j] == 'UVW1' else '']
+uvm1_mag = [mag[j] if band[j] == 'UVW1' else '' for j in range(len(time))]
+uvm1_emag = [emag[j] if band[j] == 'UVW1' else '' for j in range(len(time))]
 '''
 for j in range(len(time)):
     if band[j] == 'UVW1':
@@ -86,8 +86,8 @@ for j in range(len(time)):
 
 #b_mag = []
 #b_emag = []
-b_mag = [mag[j] for j in range(len(time)) if band[j] == 'B' else '']
-b_emag = [emag[j] for j in range(len(time)) if band[j] == 'B' else '']
+b_mag = [mag[j] if band[j] == 'B' else '' for j in range(len(time))]
+b_emag = [emag[j] if band[j] == 'B' else '' for j in range(len(time))]
 '''
 for j in range(len(time)):
     if band[j] == 'B':
@@ -99,8 +99,8 @@ for j in range(len(time)):
 '''
 #g_mag = []
 #g_emag = []
-g_mag = [mag[j] for j in range(len(time)) if band[j] == 'G' else '']
-g_emag = [emag[j] for j in range(len(time)) if band[j] == 'G' else '']
+g_mag = [mag[j] if band[j] == 'G' else '' for j in range(len(time))]
+g_emag = [emag[j] if band[j] == 'G' else '' for j in range(len(time))]
 '''
 for j in range(len(time)):
     if band[j] == 'G':
@@ -113,8 +113,8 @@ for j in range(len(time)):
 
 #v_mag = []
 #v_emag = []
-v_mag = [mag[j] for j in range(len(time)) if band[j] == 'V' else '']
-v_emag = [emag[j] for j in range(len(time)) if band[j] == 'V' else '']
+v_mag = [mag[j] if band[j] == 'V' else '' for j in range(len(time))]
+v_emag = [emag[j] if band[j] == 'V' else '' for j in range(len(time))]
 '''
 for j in range(len(time)):
     if band[j] == 'V':
@@ -127,8 +127,8 @@ for j in range(len(time)):
 
 #r_mag = []
 #r_emag = []
-r_mag = [mag[j] for j in range(len(time)) if band[j] == 'R' else '']
-r_emag = [emag[j] for j in range(len(time)) if band[j] == 'R' else '']
+r_mag = [mag[j] if band[j] == 'R' else '' for j in range(len(time))]
+r_emag = [emag[j] if band[j] == 'R' else '' for j in range(len(time))]
 '''
 for j in range(len(time)):
     if band[j] == 'R':
@@ -141,8 +141,8 @@ for j in range(len(time)):
 
 #i_mag = []
 #i_emag = []
-i_mag = [mag[j] for j in range(len(time)) if band[j] == 'I' else '']
-i_emag = [emag[j] for j in range(len(time)) if band[j] == 'I' else '']
+i_mag = [mag[j] if band[j] == 'I' else '' for j in range(len(time))]
+i_emag = [emag[j] if band[j] == 'I' else '' for j in range(len(time))]
 '''
 for j in range(len(time)):
     if band[j] == 'I':
@@ -154,8 +154,8 @@ for j in range(len(time)):
 '''
 #j_mag = []
 #j_emag = []
-j_mag = [mag[j] for j in range(len(time)) if band[j] == 'J' else '']
-j_emag = [emag[j] for j in range(len(time)) if band[j] == 'J' else '']
+j_mag = [mag[j] if band[j] == 'J' else '' for j in range(len(time))]
+j_emag = [emag[j] if band[j] == 'J' else '' for j in range(len(time))]
 '''
 for j in range(len(time)):
     if band[j] == 'J':
@@ -167,8 +167,8 @@ for j in range(len(time)):
 '''
 #h_mag = []
 #h_emag = []
-h_mag = [mag[j] if j in range(len(time)) if band[j] == 'H' else '']
-h_emag = [emag[j] if j in range(len(time)) if band[j] == 'H' else '']
+h_mag = [mag[j] if band[j] == 'H' else '' for j in range(len(time))]
+h_emag = [emag[j] if band[j] == 'H' else '' for j in range(len(time))]
 '''
 for j in range(len(time)):
     if band[j] == 'H':
@@ -180,8 +180,8 @@ for j in range(len(time)):
 '''
 #k_mag = []
 #k_emag = []
-k_mag = [mag[j] if j in range(len(time)) if band[j] == 'K' else '']
-k_emag = [mag[j] if j in range(len(time)) if band[j] == 'K' else '']
+k_mag = [mag[j] if band[j] == 'K' else '' for j in range(len(time))]
+k_emag = [mag[j] if band[j] == 'K' else '' for j in range(len(time))]
 '''
 for j in range(len(time)):
     if band[j] == 'K':
@@ -191,7 +191,7 @@ for j in range(len(time)):
         k_mag.append('')
         k_emag.append('')
 '''
-#names = ['Time (MJD)']
+names = ['Time (MJD)']
 #names = [filterlist[l] for l in range(len(filterlist))]
 
 for l in range(len(filterlist)):
