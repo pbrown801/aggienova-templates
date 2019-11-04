@@ -103,8 +103,6 @@ if __name__ == "__main__":
 
         ind+=1
 
-    # data = np.array(data)
-    # print(data.shape)
     df = pd.DataFrame(columns=['MJD','Wavelength','Flux'],data = data)
 
 
@@ -115,18 +113,20 @@ if __name__ == "__main__":
     m_counts = mangled_to_counts(sn_name,filters_from_csv,mangled_counts,mjd_list)
 
     counts_list = np.array(counts_list,dtype='float')
-    # filter_curves_list_no_format = [x.split('_')[0] for x in filter_curves_list_no_format]
-    # filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.Epoch < 54330)]
-    # output_3d = '../output/'+sn_name+'_3d.csv'
-    # filtered_df.to_csv(output_3d,index=False) #comment this if you already have your df or dont want to save a filtered version FUTURE: flag to do this
+
+    filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.MJD < 54330)] #filters data to remove outliers
+    filtered_df.to_csv('../output/'+sn_name+'_filtered.csv',index=False) 
 
     validation_plotting(filters_from_csv,counts_list,mjd_list) 
 
 #Plot the mangled template count rates and the input count rates on the same plot with MJD or epoch on the x-axis
 
     from plot_3d import plot_3D
-    filtered_df = pd.read_csv(output_file,index_col=0,header=0) #uncomment this if you have a saved df you just want to read and plot in 3d
-    mjd_list = np.array(filtered_df.columns.values,dtype='float')
-    wavelengths = np.array(filtered_df.index.values,dtype='float')
-    flux_matrix = np.array(filtered_df.values,dtype='float')
-    plot_3D(mjd_list,wavelengths,flux_matrix,sn_name)
+    # filtered_df = pd.read_csv(output_file,header=0) #uncomment this if you have a saved df you just want to read and plot in 3d
+
+    # mjd_list = np.array(filtered_df['MJD'],dtype='float')
+    # wavelengths = np.array(filtered_df['Wavelength'],dtype='float')
+    # flux_matrix = np.array(filtered_df['Flux'],dtype='float')
+    # 
+    #3dplot not working. only uncomment if fixed.
+    # plot_3D(df,sn_name)
