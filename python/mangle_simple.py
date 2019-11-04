@@ -18,7 +18,8 @@ def pivot_wavelength(Filter):
 
 def mangle_simple(templatespectrum,filter_file_list, zeropointlist, pivotlist, counts_in):
 
-    input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum)#dtype=float,usecols=(0,1),unpack=True)
+    #input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum)#dtype=float,usecols=(0,1),unpack=True)
+    input_wave,input_flux,counts_array = total_counts(templatespectrum,filter_file_list)#dtype=float,usecols=(0,1),unpack=True)
     clean_template = np.column_stack((input_wave,input_flux))
 
 
@@ -32,7 +33,7 @@ def mangle_simple(templatespectrum,filter_file_list, zeropointlist, pivotlist, c
 
     #######  This comes as previous code (under old/ for just the UVOT filters)
     #input_wave,input_flux = np.loadtxt('spectra/Gaia16apd_uv.dat', dtype=float,usecols=(0,1),unpack=True)
-    counts_array=get_counts_multi_filter(clean_template, filter_file_list)
+    #counts_array=get_counts_multi_filter(clean_template, filter_file_list)
     ratio = np.zeros(len(counts_array))
     for x in range(0,len(counts_array)):
         ratio[x]=counts_in[x]/counts_array[x]
@@ -41,7 +42,6 @@ def mangle_simple(templatespectrum,filter_file_list, zeropointlist, pivotlist, c
 #    something similar to this is what I did in IDL.  It seems like this is already how numpy.interpolate extrapolates
 #    but something wierd is still going on.
 #    manglefunction= np.interp(input_wave, [0,pivotlist,100000], [ratio[0],ratio,ratio[len(ratio)-1]] )
-
 
     mangledspectrumflux=input_flux*manglefunction
     return input_wave, mangledspectrumflux
