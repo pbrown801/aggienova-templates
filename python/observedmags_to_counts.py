@@ -19,10 +19,11 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
 
     data = input_file.read()
     data = data.splitlines()
-    data_list = []
+    data_list = [line.split(',') for line in data]
     # data_list = map(split(','), data)
-    for line in data:
-        data_list.append(line.split(','))
+
+    #for line in data:
+       #data_list.append(line.split(','))
 
     time = []
     mag  = []
