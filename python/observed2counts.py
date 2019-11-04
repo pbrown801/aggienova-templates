@@ -154,6 +154,9 @@ for j in range(len(time)):
 '''
 j_mag = []
 j_emag = []
+j_mag = [mag[j] for j in xrange(len(time)) if band[j] == 'J' else '']
+j_emag = [emag[j] for j in xrange(len(time)) if band[j] == 'J' else '']
+'''
 for j in range(len(time)):
     if band[j] == 'J':
         j_mag.append(mag[j])
@@ -161,9 +164,12 @@ for j in range(len(time)):
     else:
         j_mag.append('')
         j_emag.append('')
-
+'''
 h_mag = []
 h_emag = []
+h_mag = [mag[j] if j in xrange(len(time)) if band[j] == 'H' else '']
+h_emag = [emag[j] if j in xrange(len(time)) if band[j] == 'H' else '']
+'''
 for j in range(len(time)):
     if band[j] == 'H':
         h_mag.append(mag[j])
@@ -171,9 +177,12 @@ for j in range(len(time)):
     else:
         h_mag.append('')
         h_emag.append('')
-
+'''
 k_mag = []
 k_emag = []
+k_mag = [mag[j] if j in xrange(len(time)) if band[j] == 'K' else '']
+k_emag = [mag[j] if j in xrange(len(time)) if band[j] == 'K' else '']
+'''
 for j in range(len(time)):
     if band[j] == 'K':
         k_mag.append(mag[j])
@@ -181,7 +190,7 @@ for j in range(len(time)):
     else:
         k_mag.append('')
         k_emag.append('')
-
+'''
 names = ['Time (MJD)']
 for l in range(len(filterlist)):
     names.append(filterlist[l])
