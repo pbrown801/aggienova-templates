@@ -72,8 +72,8 @@ for j in range(len(time)):
 '''
 #uvw1_mag = []
 #uvw1_emag = []
-uvm1_mag = [mag[j] if band[j] == 'UVW1' else '' for j in range(len(time))]
-uvm1_emag = [emag[j] if band[j] == 'UVW1' else '' for j in range(len(time))]
+uvw1_mag = [mag[j] if band[j] == 'UVW1' else '' for j in range(len(time))]
+uvw1_emag = [emag[j] if band[j] == 'UVW1' else '' for j in range(len(time))]
 '''
 for j in range(len(time)):
     if band[j] == 'UVW1':
