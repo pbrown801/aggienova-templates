@@ -25,7 +25,8 @@ plt.show()
 def plot_3D(x,y,z,name):
     X,Y = np.meshgrid(x,y)
     # Gx, Gy = np.gradient(z)
-    surf = ax.plot_surface(X, z, Y, cmap=cm.hsv,
+    #try to make 4000 red and 8000 blue
+    surf = ax.plot_surface(X, z, Y, cmap=cm.seismic,
                        linewidth=0, antialiased=False)
     '''
     surf = ax.plot_surface(X, Y, z, cmap=cm.coolwarm,
