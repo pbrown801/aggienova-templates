@@ -31,9 +31,9 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
     
     #contains true or false depending on whether or not there is a non-zero observation for that filter
     # start with false and change to true if the filter is found
-    filterFound = []
-    for i in range(0, len(desired_filter_list)):
-        filterFound.append(False)
+    filterFound = [False for i in range(len(desired_filter_list))]
+    #for i in range(0, len(desired_filter_list)):
+        #filterFound.append(False)
     
     for x, line in enumerate(data_list):
         if x != 0 and str(line[5]).upper() in desired_filter_list:
