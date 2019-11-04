@@ -23,8 +23,8 @@ def dat_to_csv(dat):
     """
         converter function between .dat and .csv
     """
-    input_file = '../input/'+dat
-    output_file = '../output/'+dat+'.csv'
+    input_file = '../input/{}'.format(dat)
+    output_file = '../output/{}.csv'.format(dat)
     df = pd.read_csv(input_file,skiprows=1,header=None,skipinitialspace=True,sep=' ',names=['Wavelength','Flux'])
     out_df = pd.DataFrame({'Epoch':[0]*len(df)})
     out_df = out_df.join(df)

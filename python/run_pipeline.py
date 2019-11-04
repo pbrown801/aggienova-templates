@@ -99,7 +99,7 @@ if __name__ == "__main__":
     mangled_to_counts(sn_name,filters_from_csv,mangled_counts,mjd_list)
     df= pd.DataFrame(index = wavelengths,data = flux_matrix,columns= mjd_list)
 
-    output_file = '../output/'+sn_name+'_template.csv' #format is different than input template (see vega.dat.csv)
+    output_file = '../output/{}_template.csv'.format(sn_name) #format is different than input template (see vega.dat.csv)
     if store_as_csv:
         df.to_csv(output_file,index=True,float_format='%g')
 

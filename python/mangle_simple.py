@@ -22,8 +22,9 @@ def mangle_simple(templatespectrum,filter_file_list, counts_in):
     input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum)#dtype=float,usecols=(0,1),unpack=True)
     clean_template = np.column_stack((input_wave,input_flux))
     pivot_array = np.zeros(len(filter_file_list))
-    for l in range(len(filter_file_list)):
-        pivot_array[l] = pivot_wavelength(filter_file_list[l])
+    pivot_array = [pivot_wavelength(filter_file_list[l]) for l in range(len(filter_file_list))]
+    # for l in range(len(filter_file_list)):
+        # pivot_array[l] = pivot_wavelength(filter_file_list[l])
 
 ########  We can optimize this and only have it run the above code once. It does the same thing every time.
 ########  Noah is adding the pivot wavelength into filterlist_to_filterfiles.py so it can make this array once rather than
@@ -37,8 +38,11 @@ def mangle_simple(templatespectrum,filter_file_list, counts_in):
     #input_wave,input_flux = np.loadtxt('spectra/Gaia16apd_uv.dat', dtype=float,usecols=(0,1),unpack=True)
     counts_array=get_counts_multi_filter(clean_template, filter_file_list)
     ratio = np.zeros(len(counts_array))
+    ratio = [counts_in[x]/counts_array[x] for x in range(len(counts_array))]
+    '''
     for x in range(0,len(counts_array)):
         ratio[x]=counts_in[x]/counts_array[x]
+    '''
     manglefunction= np.interp(input_wave, pivot_array, ratio)
 
 #    something similar to this is what I did in IDL.  It seems like this is already how numpy.interpolate extrapolates

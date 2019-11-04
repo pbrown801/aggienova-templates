@@ -33,9 +33,12 @@ def findzeropoints(Filter):
 
 
 filterlist=['../filters/UVW2_2010.txt','../filters/UVM2_2010.txt', '../filters/UVW1_2010.txt','../filters/U_UVOT.txt','../filters/B_UVOT.txt','../filters/V_UVOT.txt']
+'''
 zeropointlist=[]
 for f in filterlist:
 	zeropointlist.append(findzeropoints(f))
+'''
+zeropointlist = map(findzeropoints,filterlist)
 print(zeropointlist)	 
 
 
