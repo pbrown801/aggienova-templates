@@ -191,11 +191,12 @@ for j in range(len(time)):
         k_mag.append('')
         k_emag.append('')
 '''
-names = 'Time (MJD)'.join([filterlist[l] for l in range(len(filterlist))])
-'''
+#names = ['Time (MJD)']
+#names = [filterlist[l] for l in range(len(filterlist))]
+
 for l in range(len(filterlist)):
     names.append(filterlist[l])
-'''
+
 
 with open('../output/'+'SN2007af_magarray.csv', 'w') as csvFile:
     writer = csv.writer(csvFile, delimiter=',')
