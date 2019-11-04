@@ -46,6 +46,9 @@ for j in range(len(time)):
 
 u_mag = []
 u_emag = []
+u_mag = [mag[j] for j in xrange(len(time)) if band[j] == 'U' else '']
+u_emag = [emag[j] for j in xrange(len(time)) if band[j] == 'U' else '']
+'''
 for j in range(len(time)):
     if band[j] == 'U':
         u_mag.append(mag[j])
@@ -53,9 +56,12 @@ for j in range(len(time)):
     else:
         u_mag.append('')
         u_emag.append('')
-
+'''
 uvm2_mag = []
 uvm2_emag = []
+uvm2_mag = [mag[j] for j in xrange(len(time)) if band[j] == 'UVM2' else '']
+uvm2_emag = [emag[j] for j in xrange(len(time)) if band[j] == 'UVM2' else '']
+'''
 for j in range(len(time)):
     if band[j] == 'UVM2':
         uvm2_mag.append(mag[j])
@@ -63,9 +69,12 @@ for j in range(len(time)):
     else:
         uvm2_mag.append('')
         uvm2_emag.append('')
-
+'''
 uvw1_mag = []
 uvw1_emag = []
+uvm1_mag = [mag[j] for j in xrange(len(time)) if band[j] == 'UVW1' else '']
+uvm1_emag = [emag[j] for j in xrange(len(time)) if band[j] == 'UVW1' else '']
+'''
 for j in range(len(time)):
     if band[j] == 'UVW1':
         uvw1_mag.append(mag[j])
@@ -73,6 +82,7 @@ for j in range(len(time)):
     else:
         uvw1_mag.append('')
         uvw1_emag.append('')
+'''
 
 b_mag = []
 b_emag = []
