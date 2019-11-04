@@ -21,7 +21,7 @@ def filterlist_to_filterfiles(filterlist):
         if filter == 'K':
             filterfilelist[idx]='../filters/Ks_2mass.txt'
 
-    return filterfilelist;
+    return filterfilelist
 
 
 '''
