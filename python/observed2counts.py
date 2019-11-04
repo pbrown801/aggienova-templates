@@ -86,6 +86,9 @@ for j in range(len(time)):
 
 b_mag = []
 b_emag = []
+b_mag = [mag[j] for j in xrange(len(time)) if band[j] == 'B' else '']
+b_emag = [emag[j] for j in xrange(len(time)) if band[j] == 'B' else '']
+'''
 for j in range(len(time)):
     if band[j] == 'B':
         b_mag.append(mag[j])
@@ -93,7 +96,7 @@ for j in range(len(time)):
     else:
         b_mag.append('')
         b_emag.append('')
-
+'''
 g_mag = []
 g_emag = []
 for j in range(len(time)):
