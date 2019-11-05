@@ -99,6 +99,8 @@ if __name__ == "__main__":
         #Getting counts of mangled template
         temp_template_spec =np.column_stack((wavelengths,mangled_spec_flux))
         #print(temp_template_spec)
+        # temp_counts = get_counts_multi_filter(temp_template_spec,filter_file_list)
+        # the above is what used to be called in case we want to revert
         #The unified total_counts function returns two additional values along with the counts array so using two dummy variables
         temp_1,temp_2,temp_counts = total_counts(template_spectrum,filter_file_list)
         mangled_counts[ind,:] = temp_counts
