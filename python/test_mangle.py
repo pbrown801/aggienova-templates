@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mangle_simple import *
+from mangle_poly import *
 from validation_plotting import *
 import argparse
 from observedmags_to_counts import *
@@ -54,4 +55,19 @@ if __name__ == "__main__":
 
 
     
+    #   Now test a mangling method to see how well the template spectrum can be forced to match the input spectrum
+
+    mangled_spec_wave, mangled_spec_flux = mangle_poly(template_file, filter_file_list, zeropointlist,pivotlist, counts_in) 
+     
+    mangledbolo_lambda_range = np.where((mangled_spec_wave>=2000.0)&(mangled_spec_wave<=10000.0))
+    mangled_integrated_flux = np.trapz(mangled_spec_flux[mangledbolo_lambda_range[0]]*mangled_spec_wave[mangledbolo_lambda_range[0]]/hc,mangled_spec_wave[mangledbolo_lambda_range[0]])
+    
+    print(' ')
+    print('mangle_simple % difference = ', 100.0*(mangled_integrated_flux-spectrum_integrated_flux)/spectrum_integrated_flux)
+     
+    plot.plot(spectrum_wave[spectrumbolo_lambda_range[0]], spectrum_flux[spectrumbolo_lambda_range[0]])
+    plot.plot(mangled_spec_wave[mangledbolo_lambda_range[0]], mangled_spec_flux[mangledbolo_lambda_range[0]])
+    plot.show()
+
+
 
