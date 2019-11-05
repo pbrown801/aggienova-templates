@@ -55,7 +55,7 @@ if __name__ == "__main__":
 
 
     
-    #   Now test a mangling method to see how well the template spectrum can be forced to match the input spectrum
+    #   Now test a different method
 
     mangled_spec_wave, mangled_spec_flux = mangle_poly(template_file, filter_file_list, zeropointlist,pivotlist, counts_in) 
      
