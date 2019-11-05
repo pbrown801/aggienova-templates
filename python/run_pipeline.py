@@ -4,8 +4,9 @@
 #  take an input spectrum
 import pandas as pd
 import numpy as np
-from utilities import *
 from mangle_simple import *
+from utilities import *
+from total_counts import *
 from validation_plotting import *
 import argparse
 from observedmags_to_counts import *
@@ -97,8 +98,9 @@ if __name__ == "__main__":
 
         #Getting counts of mangled template
         temp_template_spec =np.column_stack((wavelengths,mangled_spec_flux))
-        
-        temp_counts = get_counts_multi_filter(temp_template_spec,filter_file_list)
+        #print(temp_template_spec)
+        #The unified total_counts function returns two additional values along with the counts array so using two dummy variables
+        temp_1,temp_2,temp_counts = total_counts(template_spectrum,filter_file_list)
         mangled_counts[ind,:] = temp_counts
 
         ind+=1
