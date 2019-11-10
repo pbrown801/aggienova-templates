@@ -79,7 +79,7 @@ f5 = interp.interp1d(time_B, B, kind='cubic')
 f6 = interp.interp1d(time_V, V, kind='cubic')
 f7 = interp.interp1d(time_R, R, kind='cubic')
 f8 = interp.interp1d(time_I, I, kind='cubic')
-f9 = interp.interp1d(time_J, J, kind='cubic')
+f9 = interp.interp1d(time_J, J, kind='cubic'
 f10 = interp.interp1d(time_H, H, kind='cubic')
 f0 = plt.figure(num=0, figsize=(8, 8))
 ax01 = f0.add_subplot(211)

@@ -4,8 +4,9 @@
 #  take an input spectrum
 import pandas as pd
 import numpy as np
-from utilities import *
 from mangle_simple import *
+from utilities import *
+from total_counts import *
 from validation_plotting import *
 import argparse
 from observedmags_to_counts import *
@@ -34,15 +35,6 @@ if __name__ == "__main__":
     # dat_to_csv(args.template[0])
     store_as_csv = args.csv[0].upper()=='Y'
     reference_epoch_mjd=0.0
-<<<<<<< HEAD
-
-    #####              these are the filters we will check for from the OSC csv file
-    #
-    desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
-    #
-    observedmags_to_counts(sn_name,desired_filter_list)
-=======
->>>>>>> 12f5e3767ead756c09edc53ce3118290237785b2
 
     #####              these are the filters we will check for from the OSC csv file
      
@@ -106,8 +98,11 @@ if __name__ == "__main__":
 
         #Getting counts of mangled template
         temp_template_spec =np.column_stack((wavelengths,mangled_spec_flux))
-        
-        temp_counts = get_counts_multi_filter(temp_template_spec,filter_file_list)
+        #print(temp_template_spec)
+        # temp_counts = get_counts_multi_filter(temp_template_spec,filter_file_list)
+        # the above is what used to be called in case we want to revert
+        #The unified total_counts function returns two additional values along with the counts array so using two dummy variables
+        temp_1,temp_2,temp_counts = total_counts(template_spectrum,filter_file_list)
         mangled_counts[ind,:] = temp_counts
 
         ind+=1
