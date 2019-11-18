@@ -132,7 +132,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         column_names.append(column_err_names[l])
 
 
-    with open('../output/'+ sn_name + '_magarray.csv', 'w') as csvFile:
+    with open('../output/'+ sn_name + '_magarray.csv', 'w', newline='') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
         for i in range(0,len(interpTimes)):
@@ -143,7 +143,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 line[2*j + 2] = emagMatrix[j][i]
             writer.writerow(line)
 
-    with open('../input/'+ sn_name + '_countsarray.csv', 'w') as csvFile:
+    with open('../input/'+ sn_name + '_countsarray.csv', 'w', newline ='') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
         for i in range(0,len(interpTimes)):
