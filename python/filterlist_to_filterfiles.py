@@ -1,51 +1,106 @@
-
 def filterlist_to_filterfiles(filterlist):
+    from mangle_simple import pivot_wavelength
+
+    zeropointlist = []
+    pivotlist = []
     filterfilelist=[' '] * len(filterlist)
-    for idx,filter in enumerate(filterlist):
-        if filter == 'UVW2' or filter == 'UVM2' or filter == 'UVW1':
-            filterfilelist[idx]='../filters/{}_2010.txt'.format(filter) #inserts filter in the curly braces
-        if filter == 'U' or filter == 'B' or filter == 'V':
-            filterfilelist[idx]='../filters/{}_UVOT.txt'.format(filter)
-        if filter == 'R':
+
+
+    for idx,filtertocheck in enumerate(filterlist):
+        if filtertocheck == 'UVW2':
+            filterfilelist[idx]='../filters/UVW2_2010.txt'
+            pivot=pivot_wavelength('../filters/UVW2_2010.txt')
+            pivotlist.append(pivot)
+            zeropointlist.append(17.39)
+        if filtertocheck == 'UVM2':
+            filterfilelist[idx]='../filters/UVM2_2010.txt'
+            pivot=pivot_wavelength('../filters/UVM2_2010.txt')
+            pivotlist.append(pivot)
+            zeropointlist.append(16.86)
+        if filtertocheck == 'UVW1':
+            filterfilelist[idx]='../filters/UVW1_2010.txt'
+            pivot=pivot_wavelength('../filters/UVW1_2010.txt')
+            pivotlist.append(pivot)
+            zeropointlist.append(17.44)
+        if filtertocheck == 'U':
+            filterfilelist[idx]='../filters/U_UVOT.txt'
+            pivot=pivot_wavelength('../filters/U_UVOT.txt')
+            pivotlist.append(pivot)
+            zeropointlist.append(18.34)
+        if filtertocheck == 'B':
+            filterfilelist[idx]='../filters/B_UVOT.txt'
+            pivot=pivot_wavelength('../filters/B_UVOT.txt')
+            pivotlist.append(pivot)
+            zeropointlist.append(19.1)
+        if filtertocheck == 'V':
+            filterfilelist[idx]='../filters/V_UVOT.txt'
+            pivot=pivot_wavelength('../filters/V_UVOT.txt')
+            pivotlist.append(pivot)
+            zeropointlist.append(17.88)
+        if filtertocheck == 'R':
             filterfilelist[idx]='../filters/R_Harris_c6004.txt'
-        if filter == 'I':
+            pivot=pivot_wavelength('../filters/R_Harris_c6004.txt')
+            pivotlist.append(pivot)
+            zeropointlist.append(19.86)
+        if filtertocheck == 'I':
             filterfilelist[idx]='../filters/johnson_i.txt'
-        if filter == 'g' or filter == 'r' or filter == 'i' or filter == 'u' or filter =='z':
-            filterfilelist[idx]='../filters/LSST_{}.dat'.format(filter)
-        if filter == 'y':
+            pivot=pivot_wavelength('../filters/johnson_i.txt')
+            pivotlist.append(pivot)
+            zeropointlist.append(14.91)
+        if filtertocheck == 'g':
+            filterfilelist[idx]='../filters/LSST_g.dat'
+            pivot=pivot_wavelength('../filters/LSST_g.dat')
+            pivotlist.append(pivot)
+            zeropointlist.append(14.91)
+        if filtertocheck == 'r':
+            filterfilelist[idx]='../filters/LSST_r.dat'
+            pivot=pivot_wavelength('../filters/LSST_r.dat')
+            pivotlist.append(pivot)
+            zeropointlist.append(14.42)
+        if filtertocheck == 'i':
+            filterfilelist[idx]='../filters/LSST_i.dat'
+            pivot=pivot_wavelength('../filters/LSST_i.dat')
+            pivotlist.append(pivot)
+            zeropointlist.append(13.87)
+        if filtertocheck == 'u':
+            filterfilelist[idx]='../filters/LSST_u.dat'
+            pivot=pivot_wavelength('../filters/LSST_u.dat')
+            pivotlist.append(pivot)
+            zeropointlist.append(12.84)
+        if filtertocheck == 'z':
+            filterfilelist[idx]='../filters/LSST_z.dat'
+            pivot=pivot_wavelength('../filters/LSST_z.dat')
+            pivotlist.append(pivot)
+            zeropointlist.append(13.33)
+        if filtertocheck == 'y':
             filterfilelist[idx]='../filters/LSST_y4.dat'
-        if filter == 'F200W' or filter == 'F444W':
-            filterfilelist[idx]='../filters/{}_NRC_and_OTE_ModAB_mean.txt'.format(filter)
-        if filter == 'J' or filter == 'H':
-            filterfilelist[idx]='../filters/{}_2mass.txt'.format(filter)
-        if filter == 'K':
+            pivot=pivot_wavelength('../filters/LSST_y4.dat')
+            pivotlist.append(pivot)
+            zeropointlist.append(12.59)
+        if filtertocheck == 'F200W':
+            filterfilelist[idx]='../filters/F200W_NRC_and_OTE_ModAB_mean.txt'
+            pivot=pivot_wavelength('../filters/F200W_NRC_and_OTE_ModAB_mean.txt')
+            pivotlist.append(pivot)
+            zeropointlist.append(0)
+        if filtertocheck == 'F444W':
+            filterfilelist[idx]='../filters/F444W_NRC_and_OTE_ModAB_mean.txt'
+            pivot=pivot_wavelength('../filters/F444W_NRC_and_OTE_ModAB_mean.txt')
+            pivotlist.append(pivot)
+            zeropointlist.append(0)
+        if filtertocheck == 'J':
+            filterfilelist[idx]='../filters/J_2mass.txt'
+            pivot=pivot_wavelength('../filters/J_2mass.txt')
+            pivotlist.append(pivot)
+            zeropointlist.append(0)
+        if filtertocheck == 'H':
+            filterfilelist[idx]='../filters/H_2mass.txt'
+            pivot=pivot_wavelength('../filters/H_2mass.txt')
+            pivotlist.append(pivot)
+            zeropointlist.append(0)
+        if filtertocheck == 'K':
             filterfilelist[idx]='../filters/Ks_2mass.txt'
+            pivot=pivot_wavelength('../filters/Ks_2mass.txt')
+            pivotlist.append(pivot)
+            zeropointlist.append(0)
 
-    return filterfilelist
-
-
-'''
-    for idx,filter in enumerate(filterfilelist):
-        if (filter == 'UVW2' or 'UVM2' or 'UVW1'):
-                filterfilelist[idx]= filter+'_2010.txt'
-        if (filter == 'U' or 'B' or 'V'):
-                filterfile[idx]= filter+'_UVOT.txt'
-        if (filter == 'R'):
-                filterfilelist[idx]='R_Harris_c6004.txt'
-        if (filter == 'I'):
-                filterfilelist[idx]='johnson_i.txt'
-        if (filter == 'g' or 'r' or 'i' or 'u' or 'z'):
-                filterfilelist[idx]='LSST_'+filter+'.dat'
-        if (filter == 'y'):
-                filterfilelist[idx]='LSST_y4.dat'
-        if (filter == 'F200W' or 'F444W'):
-                filterfilelist[idx]=filter+'_NRC_and_OTE_ModAB_mean.txt'     
-'''
-    
-# filterlist = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-# filterfilelist = filterlist_to_filterfiles(filterlist)
-# print(filterfilelist)
-
-
-
-
+    return(filterfilelist,zeropointlist,pivotlist)

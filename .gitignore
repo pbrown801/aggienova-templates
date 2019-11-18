@@ -16,6 +16,8 @@ __pycache__/
 .bash_profile/
 
 #personal
+input/*countsarray.csv
+input/*mangledcounts.csv
 tester.py
 output/*.csv
 # Distribution / packaging
@@ -37,6 +39,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+.idea/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
