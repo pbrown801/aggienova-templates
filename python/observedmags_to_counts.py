@@ -2,6 +2,8 @@ import numpy as np
 import csv
 import math as math
 from scipy import interpolate
+import requests
+from contextlib import closing
 from filterlist_to_filterfiles import *
 import string
 
@@ -13,21 +15,37 @@ program writes two csv files
 --countsarray.csv has the interpolated counts for all times at all filters
 '''
 
-
 def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
+    #Url of the csv file from the supernova catalog
+    url = "https://api.sne.space/" + sn_name + "/photometry/time+magnitude+e_magnitude+upperlimit+band+instrument+telescope+source?format=csv&time&magnitude"
+    data_list=[]
+    with closing(requests.get(url, stream=True)) as i:
+        temp = (line.decode('utf-8') for line in i.iter_lines())
+        reader = csv.reader(temp, delimiter=',', quotechar='"')
+        #Takes each one of the rows and adds them to the datalist array
+        for R in reader:
+            data_list.append(R)
+    '''
+    #Pandas method for reading the csv via the web but undesirable output
+    df = pd.read_csv(url)
+    print(df.head())
+    '''
+    '''
+            #row.split(',')
+            #print(row)
+    
     input_file = open('../input/'+ sn_name + '_osc.csv', 'r+')
-
     data = input_file.read()
     data = data.splitlines()
     data_list = []
     for line in data:
-        data_list.append(line.split(','))
-
+        print(line)
+    #print(data_list)
+    '''
     time = []
     mag  = []
     emag = []
     band = []
-
 
     #contains true or false depending on whether or not there is a non-zero observation for that filter
     # start with false and change to true if the filter is found
