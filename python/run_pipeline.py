@@ -6,7 +6,6 @@ import pandas as pd
 import numpy as np
 from mangle_simple import *
 from utilities import *
-from total_counts import *
 from validation_plotting import *
 import argparse
 from observedmags_to_counts import *
