@@ -23,8 +23,8 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         temp = (line.decode('utf-8') for line in i.iter_lines())
         reader = csv.reader(temp, delimiter=',', quotechar='"')
         #Takes each one of the rows and adds them to the datalist array
-        for R in reader:
-            data_list.append(R)
+        for line in reader:
+            data_list.append(line)
     '''
     #Pandas method for reading the csv via the web but undesirable output
     df = pd.read_csv(url)
@@ -42,6 +42,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         print(line)
     #print(data_list)
     '''
+    print(data_list)
     time = []
     mag  = []
     emag = []
@@ -54,19 +55,29 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         filterFound.append(False)
     
     for x, line in enumerate(data_list):
+        print("A")
         if x != 0 and str(line[5]).upper() in desired_filter_list:
             # This checks if there is an uncertainty (error) given.  
             # If not, skip it as the magnitude is an upper limit not a measurement
+            print (line)
             if line[3] != '':
                 time.append(float(line[1]))
                 mag.append(float(line[2]))
                 emag.append(float(line[3]))
                 band.append((str(line[5])).upper())
+                if mag[-1] > 0:
+                    filterFound[desired_filter_list.index(band[-1])] = True
+            #else:
+            #    continue
             
             # this sets the flag to true if there.
             # probably a little slower since it doesn't need to be set so many times
-            if mag[-1] > 0:              
-                filterFound[desired_filter_list.index(band[-1])] = True
+            print(mag)
+            print(time)
+            print(emag)
+            print(band)
+            #if mag[-1] > 0:
+            #    filterFound[desired_filter_list.index(band[-1])] = True
           
     # make a new list of which of the desired filters is actually observed  
     observed_filter_list = []
@@ -78,6 +89,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
 
     interpFirst = 1000000000000000
     interpLast = -1000000000000000
+
     for i in range(0, len(time)):
         if(band[i] == interpFilter and mag[i] > 0):
             if(time[i] < interpFirst):
@@ -173,5 +185,8 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
             writer.writerow(line)
 
 
+    print(mag)
+    print(emag)
+    print(band)
 
 #end of code
