@@ -117,7 +117,7 @@ if __name__ == "__main__":
     # output_3d = '../output/'+sn_name+'_3d.csv'
     # filtered_df.to_csv(output_3d,index=False) #comment this if you already have your df or dont want to save a filtered version FUTURE: flag to do this
 
-    validation_plotting(filters_from_csv,counts_list,mjd_list, mangled_counts)
+    validation_plotting(filters_from_csv,counts_list,mjd_list, mangled_counts, sn_name)
 
 #Plot the mangled template count rates and the input count rates on the same plot with MJD or epoch on the x-axis
 
