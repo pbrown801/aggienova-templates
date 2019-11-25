@@ -45,12 +45,71 @@ def dat_to_csv(dat):
     out_df = out_df.join(df)
     out_df.to_csv(output_file,index=False)
 
+def specarray_to_counts(spectrum, filter_file_list):
+    # Calculate counts based on the spectrum wavelength vs flux and filter wavelength vs effectiveAreas
+    # spectraWavelengths, flux, and effectiveAreas are np_arrays with the same length
+    # Value returned is counts, which is a floating-point numeric value
+    # Calculate counts
+    toPhotonFlux = 5.03 * (10 ** 7)
+    spectraWavelengths=spectrum[:,0]
+    flux=spectrum[:,1]
+
+    counts_array = []
+    counts=0
+    for fileName in filter_file_list:
+        fileName = "../filters/" + fileName
+ 
+        try:
+            filterFile = open(fileName)
+        except(FileNotFoundError):
+            print("Unable to open filter file")
+            exit()
+
+        # All filter wavelenghts
+        filterWavelengths = np.array([])
+        # Effective areas for filter wavelengths
+        effectiveAreas = np.array([])
+
+        filterDelim = ""
+        if fileName.endswith(".csv"):
+            filterDelim = ","
+        else:
+            filterDelim = " "
+
+        # Input and interpolate filter data
+        with open(fileName, 'r') as csvfile:
+            # filterReader = csv.reader(csvfile, delimiter = filterDelim, skipinitialspace = True)
+            for line in csvfile:
+                row = line.split()
+                filterWavelengths = np.append(filterWavelengths, float(row[0]))
+                effectiveAreas = np.append(effectiveAreas, float(row[1]))
+            effectiveAreas = np.interp(spectraWavelengths, filterWavelengths, effectiveAreas)
+            # plt.loglog(spectraWavelengths, effectiveAreas)
+            # plt.show()
+        #return effectiveAreas
+
+        #PART #3: Calculate counts
+        # Calculate counts based on the spectrum wavelength vs flux and filter wavelength vs effectiveAreas
+        # spectraWavelengths, flux, and effectiveAreas are np_arrays with the same length
+        # Value returned is counts, which is a floating-point numeric value
+        # Calculate counts
+        toPhotonFlux = 5.03 * (10 ** 7)
+        for i in range(0, len(spectraWavelengths) - 1):
+            photonFlux = toPhotonFlux * ((flux[i] + flux[i + 1]) / 2) * (
+                    (spectraWavelengths[i] + spectraWavelengths[i + 1]) / 2)
+            count = ((effectiveAreas[i] + effectiveAreas[i + 1]) / 2) * photonFlux * (
+                    spectraWavelengths[i + 1] - spectraWavelengths[i])
+            counts += count
+        #return counts
+        counts_array +=[counts]
+    return (counts_array)
+
 #Unified Function which yields spectrawavelength, flux and counts array
-def total_counts(spectraFileName,filterFileList):
+def total_counts(spectraFileName,filter_file_list):
     spectraFileName = "../spectra/" + spectraFileName
     counts_array = []
     counts=0
-    for fileName in filterFileList:
+    for fileName in filter_file_list:
         fileName = "../filters/" + fileName
         #PART #1 : CLEAN SPECTRUM
         # Process data from a spectrum file and interpolate missing values
@@ -146,7 +205,7 @@ def total_counts(spectraFileName,filterFileList):
     #return counts
 
     #counts_array = []
-    #for fileName in filterFileList:
+    #for fileName in filter_file_list:
     #   counts_array += [get_counts(spectraFileName, fileName)]
     #return counts_array
 
@@ -253,11 +312,11 @@ def get_counts(spectra, filterFileName):
 
 #Find the counts from a spectrum with multiple specific filters
 #spectraFileName is the name of a spectrum file in aggienova-templates/spectra/
-#filterFileList is a list of filter files in aggienova-templates/filters/
+#filter_file_list is a list of filter files in aggienova-templates/filters/
 #Value returned is counts_array, an array of floating-point numeric types
-def get_counts_multi_filter(spectra, filterFileList):
+def get_counts_multi_filter(spectra, filter_file_list):
     counts_array = []
-    for fileName in filterFileList:
+    for fileName in filter_file_list:
         counts_array += [get_counts(spectra, fileName)]
     return counts_array
 

@@ -39,6 +39,8 @@ if __name__ == "__main__":
      
     desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
      
+    desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
+     
     observedmags_to_counts(sn_name,desired_filter_list)
 
     inFile = '../input/'+sn_name+'_countsarray'+'.csv' #gets input count rates from existing file
@@ -101,7 +103,8 @@ if __name__ == "__main__":
         # temp_counts = get_counts_multi_filter(temp_template_spec,filter_file_list)
         # the above is what used to be called in case we want to revert
         #The unified total_counts function returns two additional values along with the counts array so using two dummy variables
-        temp_1,temp_2,temp_counts = total_counts(template_spectrum,filter_file_list)
+        temp_counts=specarray_to_counts(temp_template_spec,filter_file_list)        
+        #temp_1,temp_2,temp_counts = total_counts(temp_template_spec,filter_file_list)
         mangled_counts[ind,:] = temp_counts
 
         ind+=1

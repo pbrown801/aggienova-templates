@@ -15,7 +15,8 @@ def validation_plotting(filters_curve,count_rate,mjd,mangled_counts, sn_name):
         x = mjd
         y = cur_count
         y2 = mng_count
-        plt.figure()
+        # commenting this out eliminates the extra blank figure
+        #plt.figure()
         plt.plot(x, y, color='blue', linewidth=2)
         plt.plot(x, y2, color='red', linewidth=2)
         plt.title('Comparison Plot')
