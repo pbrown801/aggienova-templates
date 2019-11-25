@@ -15,9 +15,14 @@ __pycache__/
 .DS_Store
 .bash_profile/
 
-#personal
-tester.py
+#input
+input/*countsarray.csv
+input/*mangledcounts.csv
+
+#output
 output/*.csv
+
+
 # Distribution / packaging
 .Python
 Python.sublime-workspace
@@ -37,6 +42,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+.idea/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

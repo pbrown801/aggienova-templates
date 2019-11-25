@@ -2,6 +2,7 @@ import numpy as np
 import csv
 import math as math
 from scipy import interpolate
+from filterlist_to_filterfiles import *
 import string
 
 '''
@@ -43,10 +44,10 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 mag.append(float(line[2]))
                 emag.append(float(line[3]))
                 band.append((str(line[5])).upper())
-            
+
             # this sets the flag to true if there.
             # probably a little slower since it doesn't need to be set so many times
-            if mag[-1] > 0:              
+            if mag[-1] > 0:            
                 filterFound[desired_filter_list.index(band[-1])] = True
           
     # make a new list of which of the desired filters is actually observed  
@@ -55,6 +56,8 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         if filterFound[i]:
             observed_filter_list.append(desired_filter_list[i])
  
+    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(observed_filter_list)
+
     interpFirst = 1000000000000000
     interpLast = -1000000000000000
     for i in range(0, len(time)):
@@ -97,13 +100,8 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
 
             if band[j] == observed_filter_list[i]:
 
-                import zeropointdictionary
-
-                counts_matrix[i][j] = str(math.pow(10, -0.4*(mag[j]-20.0)))  # fake zeropoint added in until filterlist_to_filterfiles is updated to have zeropoints
-#                countsMatrix[i][j] = str(math.pow(10, -0.4*(mag[j]-zeropointdictionary[j])))
+                counts_matrix[i][j] = str(math.pow(10, -0.4*(mag[j]-zeropointlist[i])))  
                 counterrs_matrix[i][j] = str(abs(float(counts_matrix[i][j])*float(emag[j])*-1.0857)) # need to check if this works
-                # Accepted this in a merge conflict, but what does it do? ^^^ -t8
-
 
                 magMatrix[i][j] = str(mag[j])
                 emagMatrix[i][j] = emag[j]
@@ -134,7 +132,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         column_names.append(column_err_names[l])
 
 
-    with open('../output/'+ sn_name + '_magarray.csv', 'w') as csvFile:
+    with open('../output/'+ sn_name + '_magarray.csv', 'w', newline='') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
         for i in range(0,len(interpTimes)):
@@ -145,7 +143,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 line[2*j + 2] = emagMatrix[j][i]
             writer.writerow(line)
 
-    with open('../input/'+ sn_name + '_countsarray.csv', 'w') as csvFile:
+    with open('../input/'+ sn_name + '_countsarray.csv', 'w', newline ='') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
         for i in range(0,len(interpTimes)):
