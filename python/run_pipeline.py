@@ -1,5 +1,5 @@
 # this is what Peter can run and get a count rate plot and a 3d plot
-# python3 run_pipeline.py SN2007af SN2017erp_hst_20170629.dat y
+# python3 run_pipeline.py SN2007af SN2017erp_m1_UVopt.dat y
 
 #  take an input spectrum
 import pandas as pd
