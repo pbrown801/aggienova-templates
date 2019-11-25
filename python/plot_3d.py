@@ -7,6 +7,7 @@ import csv
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
+
 '''
 x = [1,2,3,4,5,6,7]
 y = [1,4,9,16,25,36,49]
@@ -21,11 +22,13 @@ plt.show()
 #Plots file with filename in 3 dimensions: epoch, wavelength, and flux
 #Assumes first row is 'Epoch, Wavelength, Flux' and following rows correspond to those values
 #Does not currently validate file existence
-def plot_3D(x,y,z,name):
+def plot_3D(df,name):
+    x = df['MJD']
+    y = df['Wavelength']
+    z = df['Flux']
     X,Y = np.meshgrid(x,y)
-    surf = ax.plot_surface(X, Y, z, cmap=cm.coolwarm,
-                       linewidth=0, antialiased=False)
-    # ax.plot(x,y,z)
+    surf = ax.plot_surface(X, Y, z, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+    print('here3')
     plt.title(name)
     ax.set_xlabel('Time (mjd)')
     ax.set_ylabel('Wavelength')
