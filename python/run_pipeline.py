@@ -120,7 +120,7 @@ if __name__ == "__main__":
     filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.MJD < 54330)] #filters data to remove outliers
     filtered_df.to_csv('../output/'+sn_name+'_filtered.csv',index=False) 
 
-    validation_plotting(filters_from_csv,counts_list,mjd_list) 
+    validation_plotting(filters_from_csv,counts_list,mjd_list, mangled_counts, sn_name)
 
 #Plot the mangled template count rates and the input count rates on the same plot with MJD or epoch on the x-axis
 
