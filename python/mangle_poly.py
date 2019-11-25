@@ -23,3 +23,5 @@ def mangle_poly(templatespectrum,filter_file_list, zeropointlist, pivotlist, cou
     return input_wave, mangledspectrumflux
 
 
+for num in range(3):
+    mangle_poly(mangledspectrumflux,filter_file_list,zeropointlist,pivotlist,counts_in)

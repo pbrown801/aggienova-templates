@@ -15,7 +15,7 @@ def mangle_simple(templatespectrum,filter_file_list, zeropointlist, pivotlist, c
     #counts_array=get_counts_multi_filter(clean_template, filter_file_list)
     ratio = np.zeros(len(counts_array))
     ratio = [counts_in[x]/counts_array[x] for x in range(len(counts_array))]
-    '''
+    
     for x in range(0,len(counts_array)):
         ratio[x]=counts_in[x]/counts_array[x]
     manglefunction= np.interp(input_wave, pivotlist, ratio)

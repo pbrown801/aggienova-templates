@@ -26,7 +26,7 @@ def plot_3D(df,name):
     y = df['Wavelength']
     z = df['Flux']
     X,Y = np.meshgrid(x,y)
-    surf = ax.plot_surface(X, Y, z, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+    surf = ax.plot_surface(X, z, Y, cmap=cm.seismic, linewidth=0, antialiased=False)
     print('here3')
     plt.title(name)
     ax.set_xlabel('Time (mjd)')
