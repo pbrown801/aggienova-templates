@@ -15,11 +15,14 @@ __pycache__/
 .DS_Store
 .bash_profile/
 
-#personal
+#input
 input/*countsarray.csv
 input/*mangledcounts.csv
-tester.py
+
+#output
 output/*.csv
+
+
 # Distribution / packaging
 .Python
 Python.sublime-workspace
