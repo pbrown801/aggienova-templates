@@ -21,7 +21,7 @@ input/*mangledcounts.csv
 
 #output
 output/*.csv
-
+output/*.png
 
 # Distribution / packaging
 .Python
