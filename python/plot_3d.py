@@ -25,7 +25,10 @@ def plot_3D(df,name):
     x = df['MJD']
     y = df['Wavelength']
     z = df['Flux']
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111,project='3d')
     X,Y = np.meshgrid(x,y)
+    # switched z and Y to make color change based on wavelength and not flux
     surf = ax.plot_surface(X, z, Y, cmap=cm.seismic, linewidth=0, antialiased=False)
     print('here3')
     plt.title(name)
