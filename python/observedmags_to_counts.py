@@ -1,3 +1,5 @@
+#def run_pipeline(sn_name,filer,csv):
+
 import numpy as np
 import csv
 import math as math
@@ -42,7 +44,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         print(line)
     #print(data_list)
     '''
-    print(data_list)
+    #print(data_list)
     time = []
     mag  = []
     emag = []
@@ -55,11 +57,9 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         filterFound.append(False)
     
     for x, line in enumerate(data_list):
-        print("A")
         if x != 0 and str(line[5]).upper() in desired_filter_list:
             # This checks if there is an uncertainty (error) given.  
             # If not, skip it as the magnitude is an upper limit not a measurement
-            print (line)
             if line[3] != '':
                 time.append(float(line[1]))
                 mag.append(float(line[2]))
@@ -69,17 +69,14 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                     filterFound[desired_filter_list.index(band[-1])] = True
             #else:
             #    continue
-            
+
             # this sets the flag to true if there.
             # probably a little slower since it doesn't need to be set so many times
-            print(mag)
-            print(time)
-            print(emag)
-            print(band)
+
             #if mag[-1] > 0:
             #    filterFound[desired_filter_list.index(band[-1])] = True
-          
-    # make a new list of which of the desired filters is actually observed  
+
+    # make a new list of which of the desired filters is actually observed
     observed_filter_list = []
     for i in range(0, len(desired_filter_list)):
         if filterFound[i]:
@@ -89,7 +86,6 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
 
     interpFirst = 1000000000000000
     interpLast = -1000000000000000
-
     for i in range(0, len(time)):
         if(band[i] == interpFilter and mag[i] > 0):
             if(time[i] < interpFirst):
@@ -97,12 +93,23 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
             if(time[i] > interpLast):
                 interpLast = time[i]
 
+    #Uncomment following statements for print check
+    #print(interpFirst)
+    #print(interpLast)
+    #print(interpFilter)
+
+
     interpTimes = []
     #for nonzero filters in interval of interpolation
     for i in range(0, len(time)):
         if interpFirst <= time[i] <= interpLast:
             if band[i] == interpFilter:
                 interpTimes.append(time[i])
+
+
+    #Uncomment following statements for print check
+    #print("Interptimes")
+    #print(interpTimes)
 
 
     #contains counts directly from measured values
@@ -161,7 +168,6 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         column_names.append(observed_filter_list[l])
         column_names.append(column_err_names[l])
 
-
     with open('../output/'+ sn_name + '_magarray.csv', 'w', newline='') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
@@ -183,10 +189,5 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 line[2*j+1] = interp_counts_matrix[j][i]
                 line[2*j+2] = interp_counterrs_matrix[j][i]
             writer.writerow(line)
-
-
-    print(mag)
-    print(emag)
-    print(band)
 
 #end of code
