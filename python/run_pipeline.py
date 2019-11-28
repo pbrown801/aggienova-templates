@@ -11,6 +11,8 @@ import argparse
 from observedmags_to_counts import *
 from filterlist_to_filterfiles import *
 from mangled_to_counts import *
+from mpl_toolkits.mplot3d import Axes3D
+import scipy
 '''
 Main wrapper for aggienova-templates
 sn_name is a string with the desired supernova name
@@ -53,21 +55,28 @@ if __name__ == "__main__":
     #  blank columns are removed by observedmags_to_counts
 
     # This reads in the filter name headers and skips the error columnts
-
-
     filters_from_csv = next(reader)[1::2]
-
+   
     filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(filters_from_csv)
-
-    print(filter_file_list)
+   
+    #### Create wavelength list to extend just before and after the pivot wavelengths 
+    #### of the observed filters
+    wavelength_min=10.0*(math.floor(min(pivotlist)/10.0))-200.0
+    wavelength_max=10.0*(math.ceil(max(pivotlist)/10.0)) +200.0
+    wavelength_nbins=int((wavelength_max-wavelength_min)/10.0+1)
+    print("# of wavelength bins", wavelength_nbins)
+    wavelength_list    = np.empty(wavelength_nbins) 
+    for counter in range(wavelength_nbins):
+        wavelength_list[counter]=wavelength_min+10.0*counter
+    
 
     row_count = sum(1 for row in file)
     filter_count = len(filter_file_list)
 
     mjd_list    = np.empty((row_count-1))   #empty list to hold time values
-    flux_matrix = np.empty((1,row_count-1)) #empty matrix to hold flux values
+    epoch_list    = np.empty((row_count-1))   #empty list to hold time values
+    flux_matrix = np.empty((row_count-1,wavelength_nbins)) #empty matrix to hold flux values
     flux_matrix.fill(np.nan)
-    wavelengths = np.empty(1)
     counts_list = np.empty((row_count-1,filter_count))
     counterrs_list = np.empty((row_count-1,filter_count))
     mangled_counts = np.empty((row_count-1,filter_count))
@@ -79,7 +88,9 @@ if __name__ == "__main__":
         print(row_count-1-ind)
         if len(row) == 0:
             continue
+        mjd_list[ind]=np.float64(row[0])
         epoch = np.float64(row[0])-reference_epoch_mjd
+        epoch_list[ind]=epoch
         counts_in = np.array(list(map(np.float64,row[1::2]))) #theres gotta be an easier way to do this #just double checking that it's a float -t8
         counterrs_in = np.array(list(map(np.float64,row[2::2]))) #theres gotta be an easier way to do this #just double checking that it's a float -t8
 
@@ -89,16 +100,20 @@ if __name__ == "__main__":
         #mangle the spectrum to match the given count rates
         mangled_spec_wave, mangled_spec_flux = mangle_simple(template_spectrum, filter_file_list, zeropointlist,pivotlist, counts_in) 
 
-        if ind == 0:
-            wavelengths =mangled_spec_wave #why are we only doing this once? The values of wavelength change every increment
+       # if ind == 0:
+       #     wavelengths =mangled_spec_wave #why are we only doing this once? The values of wavelength change every increment
                                            #the wavelengths should be the same each time.  If not we need to fix something else
 
-        fill_epoch = [epoch]*len(mangled_spec_wave)
-        temp_data = [fill_epoch[:],mangled_spec_wave[:],mangled_spec_flux[:]]
+        f=scipy.interpolate.interp1d(mangled_spec_wave, mangled_spec_flux, kind='linear')
+
+        flux_interp=f(wavelength_list)
+        flux_matrix[ind,:]=flux_interp
+        fill_epoch = [epoch]*wavelength_nbins
+        temp_data = [fill_epoch[:],wavelength_list[:],flux_interp[:]]
         data.extend(np.array(temp_data).transpose())
 
         #Getting counts of mangled template
-        temp_template_spec =np.column_stack((wavelengths,mangled_spec_flux))
+        temp_template_spec =np.column_stack((wavelength_list[:],flux_interp[:]))
         #print(temp_template_spec)
         # temp_counts = get_counts_multi_filter(temp_template_spec,filter_file_list)
         # the above is what used to be called in case we want to revert
@@ -120,14 +135,14 @@ if __name__ == "__main__":
 
     counts_list = np.array(counts_list,dtype='float')
 
-    filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.MJD < 54330)] #filters data to remove outliers
-    filtered_df.to_csv('../output/'+sn_name+'_filtered.csv',index=False) 
-
-    validation_plotting(filters_from_csv,counts_list,mjd_list, mangled_counts, sn_name)
+#    filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.MJD < 54330)] #filters data to remove outliers
+#    filtered_df.to_csv('../output/'+sn_name+'_filtered.csv',index=False) 
 
 #Plot the mangled template count rates and the input count rates on the same plot with MJD or epoch on the x-axis
 
-    from plot_3d import plot_3D
+    validation_plotting(filters_from_csv,counts_list,mjd_list, mangled_counts, sn_name)
+
+#    from plot_3d import plot_3D
     # filtered_df = pd.read_csv(output_file,header=0) #uncomment this if you have a saved df you just want to read and plot in 3d
 
     # mjd_list = np.array(filtered_df['MJD'],dtype='float')
@@ -136,3 +151,15 @@ if __name__ == "__main__":
     # 
     #3dplot not working. only uncomment if fixed.
     # plot_3D(df,sn_name)
+
+    fig = plt.figure()
+    ax = Axes3D(fig)
+    X, Y = np.meshgrid(wavelength_list, epoch_list)
+    Z = flux_matrix
+
+    surf = ax.plot_surface(X,Y, flux_matrix, rstride=1, cstride=1, cmap='hot')
+    ax.set_zlim(0,np.amax(Z))
+
+    plot.show()
+
+
