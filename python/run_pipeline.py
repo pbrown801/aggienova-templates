@@ -63,6 +63,12 @@ if __name__ == "__main__":
     #### of the observed filters
     wavelength_min=10.0*(math.floor(min(pivotlist)/10.0))-200.0
     wavelength_max=10.0*(math.ceil(max(pivotlist)/10.0)) +200.0
+
+### Akash -- read in the template spectrum.  
+### If it starts after wavelength_min or ends before wavelength_max 
+### then change these values so that the template spectrum covers the whole range
+### we are making the spectrum for
+
     wavelength_nbins=int((wavelength_max-wavelength_min)/10.0+1)
     print("# of wavelength bins", wavelength_nbins)
     wavelength_list    = np.empty(wavelength_nbins) 
