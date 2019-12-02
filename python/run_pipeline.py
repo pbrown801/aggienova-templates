@@ -169,4 +169,4 @@ if __name__ == "__main__":
     ax.set_zlim(0,np.amax(Z))
 
 
-    plot.show()
+    plot.show()  # without this the 3d surface plot doesn't show but extra plot shows too
