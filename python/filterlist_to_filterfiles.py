@@ -81,26 +81,26 @@ def filterlist_to_filterfiles(filterlist):
             filterfilelist[idx]='../filters/F200W_NRC_and_OTE_ModAB_mean.txt'
             pivot=pivot_wavelength('../filters/F200W_NRC_and_OTE_ModAB_mean.txt')
             pivotlist.append(pivot)
-            zeropointlist.append(0)
+            zeropointlist.append(22.8)
         if filtertocheck == 'F444W':
             filterfilelist[idx]='../filters/F444W_NRC_and_OTE_ModAB_mean.txt'
             pivot=pivot_wavelength('../filters/F444W_NRC_and_OTE_ModAB_mean.txt')
             pivotlist.append(pivot)
-            zeropointlist.append(0)
+            zeropointlist.append(21.34)
         if filtertocheck == 'J':
             filterfilelist[idx]='../filters/J_2mass.txt'
             pivot=pivot_wavelength('../filters/J_2mass.txt')
             pivotlist.append(pivot)
-            zeropointlist.append(0)
+            zeropointlist.append(12.95)
         if filtertocheck == 'H':
             filterfilelist[idx]='../filters/H_2mass.txt'
             pivot=pivot_wavelength('../filters/H_2mass.txt')
             pivotlist.append(pivot)
-            zeropointlist.append(0)
+            zeropointlist.append(12.45)
         if filtertocheck == 'K':
             filterfilelist[idx]='../filters/Ks_2mass.txt'
             pivot=pivot_wavelength('../filters/Ks_2mass.txt')
             pivotlist.append(pivot)
-            zeropointlist.append(0)
+            zeropointlist.append(11.77)
 
     return(filterfilelist,zeropointlist,pivotlist)

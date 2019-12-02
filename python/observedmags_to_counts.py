@@ -44,11 +44,11 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 mag.append(float(line[2]))
                 emag.append(float(line[3]))
                 band.append((str(line[5])).upper())
-            
-            # this sets the flag to true if there.
-            # probably a little slower since it doesn't need to be set so many times
-            if mag[-1] > 0:              
-                filterFound[desired_filter_list.index(band[-1])] = True
+
+                # this sets the flag to true if there.
+                # probably a little slower since it doesn't need to be set so many times
+                if mag[-1] > 0:            
+                    filterFound[desired_filter_list.index(band[-1])] = True
           
     # make a new list of which of the desired filters is actually observed  
     observed_filter_list = []
@@ -132,7 +132,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         column_names.append(column_err_names[l])
 
 
-    with open('../output/'+ sn_name + '_magarray.csv', 'w') as csvFile:
+    with open('../output/'+ sn_name + '_magarray.csv', 'w', newline='') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
         for i in range(0,len(interpTimes)):
@@ -143,7 +143,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 line[2*j + 2] = emagMatrix[j][i]
             writer.writerow(line)
 
-    with open('../input/'+ sn_name + '_countsarray.csv', 'w') as csvFile:
+    with open('../input/'+ sn_name + '_countsarray.csv', 'w', newline ='') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
         for i in range(0,len(interpTimes)):
