@@ -1,44 +1,42 @@
+# Used: http://www.roboticslab.ca/wp-content/uploads/2012/11/robotics_lab_animation_example.txt
+
+from matplotlib.pylab import *
 import matplotlib.pyplot as plt
 import scipy.interpolate as interp
 import pandas as pd
-import csv
+from matplotlib.animation import FuncAnimation
 from pathlib import Path
+import csv
 
-orig_data = []
-mag_data = []
-mag_err = []
-xval = []
-yval = []
-time = []
-time2 = []
-new_time = []
-f = []
-avg = []
-x = []
-colors = ['w', 'y', 'm', 'c', 'r', 'g', 'b', 'xkcd:aqua',
-          'xkcd:coral', 'xkcd:fuchsia', 'xkcd:grey']
-lbl = []
-# Plot formatting
 plt.style.use('dark_background')
 f0 = plt.figure(num=0, figsize=(8, 8))
 ax01 = f0.add_subplot(211)
 f0.subplots_adjust(hspace=1.5)
 f0.patch.set_facecolor('xkcd:black')
-ax01.set_title('SN2007af')
+ax01.set_title('MagArray plot versus Time (MJD)')
 plt.tight_layout()
-ax01.set_ylabel("Counts Array of Different Wavelengths")
+ax01.set_ylabel("MagArray of different Wavelengths")
 ax01.set_xlabel("Time (MJD)")
 
-# file name to be opened. Can be changed by changing the string below.
-file_name = Path("input/SN2007af_countsarray.csv")
+mag_data = []
+time = []
+f = []
+avg = []
+p = []
+p1 = []
+t = []
+p01 = []
+x = []
+new_time = []
+colors = ['w-', 'r-', 'c-', 'm-', 'y-', 'gray', 'w-', 'r-', 'c-', 'm-', 'y-']
+d = {}
 
+file_name = Path("output/SN2007af_magarray.csv")
 
-#filters and errors
+# Filters
 file = open(file_name, 'r', newline='').readlines()
 reader = csv.reader(file, delimiter=',')
 filters_from_csv = next(reader)[1::2]
-reader = csv.reader(file, delimiter=',')
-errors_from_csv = next(reader)[2::2]
 
 # Data frame of the data using pandas
 for filters in filters_from_csv:
@@ -51,21 +49,9 @@ for filters in filters_from_csv:
     data = data[filters]  # Gets the data for only the filters
     data = data.dropna()  # Drops unncessary values like empty
     mag_data.append(list(data))  # list of the data values
-    orig_data.append(list(data))
     time.append(list(data.index.values))  # list of times for the datavalues
+    d[filters] = True
 
-# Data frame of the error data using pandas
-for errors in errors_from_csv:
-    data2 = pd.read_csv(file_name, sep=",")
-    data2 = data2.dropna(axis=0, how='all')
-    data2 = data2.set_index('Time (MJD)')
-    time_temp2 = list(data2.index.values)  # Times
-    data2 = data2[errors]  # Gets the data for only the filters
-    data2 = data2.dropna()  # Drops unncessary values like empty
-    mag_err.append(list(data2))  # list of the data values
-    time2.append(list(data2.index.values))  # list of times for the datavalues
-
-# avg computation of data points given
 for i in range(len(mag_data)):
     tot = 0
     for j in range(len(mag_data[i])):
@@ -75,8 +61,6 @@ for i in range(len(mag_data)):
     else:
         avg.append(tot/len(mag_data[i]))
 
-# Adding the avg of the data points given to the beginning and end of the array.
-# Also adding corresponding first time or last time point.
 j = 0
 for i in range(len(filters_from_csv)-1):
     if len(mag_data[i]) == 0:
@@ -96,9 +80,6 @@ for i in range(len(filters_from_csv)-1):
     else:
         continue
 
-# interpolation
-# linear if there are constant data values
-# else cubic
 j = 0
 for i in range(len(mag_data)):
     k = 0
@@ -114,24 +95,47 @@ for i in range(len(mag_data)):
                 f.append(interp.interp1d(time[i], mag_data[i], kind='linear'))
                 j += 1
                 new_time.append(time[i])
-                lbl.append(filters_from_csv[i])
         else:
             f.append(interp.interp1d(time[i], mag_data[i], kind='cubic'))
             j += 1
             new_time.append(time[i])
-            lbl.append(filters_from_csv[i])
 
-# ERROR processing
-# intitalizing the x array for error
 for i in range(len(mag_data)):
     if len(mag_data[i]) == 0:
+        d[filters_from_csv[i]] = False
         continue
+    p.append(zeros(0))
+    t.append(zeros(0))
+    p01.append(ax01.plot(time[i], mag_data[i],
+                         colors[i], label=filters_from_csv[i]))
     x.append(time[i][0])
 
-# The first range is the length of the graph
-# Using each interpolation function f produced earlier we input x values to get y values.
+p1 = p[0]
+p3 = p[1]
+p4 = p[2]
+p5 = p[3]
+p6 = p[4]
 
-for c in range(1000):
+t1 = t[0]
+t3 = t[1]
+t4 = t[2]
+t5 = t[3]
+t6 = t[4]
+
+p0_1 = p01[0][0]
+p0_3 = p01[1][0]
+p0_4 = p01[2][0]
+p0_5 = p01[3][0]
+p0_6 = p01[4][0]
+
+
+def animate(self):
+    global x
+    global p, p1, p3, p4, p5, p6
+    global t, t1, t3, t4, t5, t6
+    global f
+    global new_time
+    global d
     tp = []
     x_temp = []
     inte = []
@@ -141,31 +145,27 @@ for c in range(1000):
         x_temp.append(x[i])
         inte.append(((new_time[i][len(new_time[i])-1])-new_time[i][0])/1000)
         x[i] += inte[i]
-    xval.append(x_temp)
-    yval.append(tp)
 
-yval_fin = []
-xval_fin = []
-for c in range(len(f)):
-    yval1 = []
-    xval1 = []
-    for i in range(999):
-        yval1.append(yval[i][c])
-        xval1.append(xval[i][c])
-    xval_fin.append(xval1)
-    yval_fin.append(yval1)
+    p1 = append(p1, tp[0])
+    p3 = append(p3, tp[1])
+    p4 = append(p4, tp[2])
+    p5 = append(p5, tp[3])
+    p6 = append(p6, tp[4])
 
-# We plot the x and y values.
-for i in range(len(f)):
-    ax01.plot(xval_fin[i], yval_fin[i], colors[i], label=lbl[i])
+    t1 = append(t1, x_temp[0])
+    t3 = append(t3, x_temp[1])
+    t4 = append(t4, x_temp[2])
+    t5 = append(t5, x_temp[3])
+    t6 = append(t6, x_temp[4])
 
-# We plot the errorbars at the original data points given.
-for i in range(len(mag_data)):
-    if len(mag_data[i]) == 0:
-        continue
-    ax01.errorbar(time2[i], orig_data[i], mag_err[i], fmt='o')
+    p0_1.set_data(t1, p1)
+    p0_3.set_data(t3, p3)
+    p0_4.set_data(t4, p4)
+    p0_5.set_data(t5, p5)
+    p0_6.set_data(t6, p6)
 
-ax01.legend()
-# Uncomment to save the figure
-# plt.savefig('test1.png')
+    return p0_1, p0_3, p0_4, p0_5, p0_6
+
+
+simulation = FuncAnimation(f0, animate, frames=999, interval=1, repeat=False)
 plt.show()
