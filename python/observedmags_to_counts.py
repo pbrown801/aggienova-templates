@@ -47,7 +47,6 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
 
                 # this sets the flag to true if there.
                 # probably a little slower since it doesn't need to be set so many times
-                print(mag,desired_filter_list.index(band[0]))
                 if mag[-1] > 0:            
                     filterFound[desired_filter_list.index(band[-1])] = True
           
