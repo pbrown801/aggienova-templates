@@ -45,10 +45,11 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 emag.append(float(line[3]))
                 band.append((str(line[5])).upper())
 
-            # this sets the flag to true if there.
-            # probably a little slower since it doesn't need to be set so many times
-            if mag[-1] > 0:            
-                filterFound[desired_filter_list.index(band[-1])] = True
+                # this sets the flag to true if there.
+                # probably a little slower since it doesn't need to be set so many times
+                print(mag,desired_filter_list.index(band[0]))
+                if mag[-1] > 0:            
+                    filterFound[desired_filter_list.index(band[-1])] = True
           
     # make a new list of which of the desired filters is actually observed  
     observed_filter_list = []
