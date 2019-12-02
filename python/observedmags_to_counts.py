@@ -69,9 +69,10 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 band.append((str(line[5])).upper())
                 if mag[-1] > 0:
                     filterFound[desired_filter_list.index(band[-1])] = True
+
             # else:
             #    continue
-
+            
             # this sets the flag to true if there.
             # probably a little slower since it doesn't need to be set so many times
 
