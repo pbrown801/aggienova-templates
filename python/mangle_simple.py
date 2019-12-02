@@ -31,6 +31,8 @@ def mangle_simple(templatespectrum,filter_file_list, zeropointlist, pivotlist, c
 
 def mangle_multiple(mangledspectrumflux, filter_file_list, zeropointlist, pivotlist, counts_in):
     #######  Calculate the counts in each filter from the template and compare to counts_in
-    for num in range(3):
+    i = 3
+    while i > 0:
         multiple_mangle = mangle_simple(mangledspectrumflux,filter_file_list,zeropointlist,pivotlist,counts_in)
+        i = i - 1
     return multiple_mangle
