@@ -27,6 +27,4 @@ def validation_plotting(filters_curve,count_rate,mjd,mangled_counts, sn_name):
         if filters_curve[i] == 'UVW1':
             plt.show()
         plt.savefig("../output/"+sn_name+filters_curve[i]+".png")
-        plt.clf()
-
- 
+        # plt.clf()
