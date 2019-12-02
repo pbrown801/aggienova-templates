@@ -13,6 +13,7 @@ from filterlist_to_filterfiles import *
 from mangled_to_counts import *
 from mpl_toolkits.mplot3d import Axes3D
 import scipy
+import matplotlib.pyplot as plt
 '''
 Main wrapper for aggienova-templates
 sn_name is a string with the desired supernova name
@@ -166,6 +167,6 @@ if __name__ == "__main__":
     surf = ax.plot_surface(X,Y, flux_matrix, rstride=1, cstride=1, cmap='hot')
     ax.set_zlim(0,np.amax(Z))
 
-    plot.show()
+    plt.show()
 
 

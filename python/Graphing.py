@@ -30,7 +30,7 @@ ax01.set_ylabel("Counts Array of Different Wavelengths")
 ax01.set_xlabel("Time (MJD)")
 
 # file name to be opened. Can be changed by changing the string below.
-file_name = "SN2007af_countsarray.csv"
+file_name = "../input/SN2007af_countsarray.csv"
 
 #filters and errors
 file = open(file_name, 'r', newline='').readlines()
