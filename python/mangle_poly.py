@@ -21,8 +21,3 @@ def mangle_poly(templatespectrum,filter_file_list, zeropointlist, pivotlist, cou
     mangledspectrumflux=input_flux*manglefunction
 
     return input_wave, mangledspectrumflux
-
-#3 is hard coded for now
-#not the real number
-for num in range(3):
-    mangle_poly(mangledspectrumflux,filter_file_list,zeropointlist,pivotlist,counts_in)
