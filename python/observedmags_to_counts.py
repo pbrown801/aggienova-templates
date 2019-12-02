@@ -2,6 +2,8 @@ import numpy as np
 import csv
 import math as math
 from scipy import interpolate
+import requests
+from contextlib import closing
 from filterlist_to_filterfiles import *
 import string
 
@@ -15,14 +17,35 @@ program writes two csv files
 
 
 def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
-    input_file = open('../input/'+ sn_name + '_osc.csv', 'r+')
+    # Url of the csv file from the supernova catalog
+    url = "https://api.sne.space/" + sn_name + "/photometry/time+magnitude+e_magnitude+upperlimit+band+instrument+telescope+source?format=csv&time&magnitude"
+    data_list = []
+    with closing(requests.get(url, stream=True)) as i:
+        temp = (line.decode('utf-8') for line in i.iter_lines())
+        reader = csv.reader(temp, delimiter=',', quotechar='"')
+        # Takes each one of the rows and adds them to the datalist array
+        for line in reader:
+            data_list.append(line)
+    '''
+    #Pandas method for reading the csv via the web but undesirable output
+    df = pd.read_csv(url)
+    print(df.head())
+    '''
+    '''
+            #row.split(',')
+            #print(row)
 
+    #Old Code
+    
+    input_file = open('../input/'+ sn_name + '_osc.csv', 'r+')
     data = input_file.read()
     data = data.splitlines()
     data_list = []
     for line in data:
+        print(line)
         data_list.append(line.split(','))
-
+    #print(data_list)
+    '''
     time = []
     mag  = []
     emag = []
@@ -44,12 +67,17 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 mag.append(float(line[2]))
                 emag.append(float(line[3]))
                 band.append((str(line[5])).upper())
+                if mag[-1] > 0:
+                    filterFound[desired_filter_list.index(band[-1])] = True
+            # else:
+            #    continue
 
             # this sets the flag to true if there.
             # probably a little slower since it doesn't need to be set so many times
-            if mag[-1] > 0:            
-                filterFound[desired_filter_list.index(band[-1])] = True
-          
+
+            # if mag[-1] > 0:
+            #    filterFound[desired_filter_list.index(band[-1])] = True
+
     # make a new list of which of the desired filters is actually observed  
     observed_filter_list = []
     for i in range(0, len(desired_filter_list)):
@@ -74,6 +102,9 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
             if band[i] == interpFilter:
                 interpTimes.append(time[i])
 
+    # Uncomment following statements for print check
+    # print("Interptimes")
+    # print(interpTimes)
 
     #contains counts directly from measured values
     counts_matrix = np.zeros((len(observed_filter_list),len(time)), dtype=object)
