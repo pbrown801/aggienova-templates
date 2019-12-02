@@ -33,4 +33,4 @@ def plot_3D(df,name):
     ax.set_xlabel('Time (mjd)')
     ax.set_ylabel('Wavelength')
     ax.set_zlabel('Flux')
-    plt.show()
+    # plt.show()
