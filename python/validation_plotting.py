@@ -28,6 +28,5 @@ def validation_plotting(filters_curve,count_rate,mjd,mangled_counts, sn_name):
             plt.show()
         plt.savefig("../output/"+sn_name+filters_curve[i]+".png")
         plt.clf()
-    plt.show()
 
  
