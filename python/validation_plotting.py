@@ -24,7 +24,8 @@ def validation_plotting(filters_curve,count_rate,mjd,mangled_counts, sn_name):
         plt.ylabel('Count rate')
         legend_items = ("Observed" +filters_curve[i], "Output "+filters_curve[i])
         plt.legend(legend_items)
+        plt.savefig("../output/"+sn_name+filters_curve[i]+".png")
         if filters_curve[i] == 'UVW1':
             plt.show()
-        plt.savefig("../output/"+sn_name+filters_curve[i]+".png")
-        # plt.clf()
+        
+        plt.clf()
