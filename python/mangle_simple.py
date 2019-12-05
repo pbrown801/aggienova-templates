@@ -17,7 +17,7 @@ def mangle_simple(templatespectrum,filter_file_list, zeropointlist, pivotlist, c
         ratio[x]=counts_in[x]/counts_array[x]
     manglefunction= np.interp(input_wave, pivotlist, ratio)
 
-    mangledspectrumflux=input_flux*manglefunction
+    mangledspectrumflux=manglefunction*input_flux
     return input_wave, mangledspectrumflux
 
 

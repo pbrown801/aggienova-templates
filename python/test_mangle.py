@@ -60,15 +60,39 @@ if __name__ == "__main__":
 
 
    
-    #   Now test a different method
+    #   Now test polynomial fitting
 
-    mangled_spec_wave, mangled_spec_flux = mangle_poly(template_file, filter_file_list, zeropointlist,pivotlist, counts_in) 
+    mangled_spec_wave, mangled_spec_flux = mangle_poly2(template_file, filter_file_list, zeropointlist,pivotlist, counts_in) 
      
     mangledbolo_lambda_range = np.where((mangled_spec_wave>=2000.0)&(mangled_spec_wave<=10000.0))
     mangled_integrated_flux = np.trapz(mangled_spec_flux[mangledbolo_lambda_range[0]]*mangled_spec_wave[mangledbolo_lambda_range[0]]/hc,mangled_spec_wave[mangledbolo_lambda_range[0]])
     
     print(' ')
-    print('mangle_poly % difference = ', 100.0*(mangled_integrated_flux-spectrum_integrated_flux)/spectrum_integrated_flux)
+    print('mangle_poly2 % difference = ', 100.0*(mangled_integrated_flux-spectrum_integrated_flux)/spectrum_integrated_flux)
+     
+    plot.plot(spectrum_wave[spectrumbolo_lambda_range[0]], spectrum_flux[spectrumbolo_lambda_range[0]])
+    plot.plot(mangled_spec_wave[mangledbolo_lambda_range[0]], mangled_spec_flux[mangledbolo_lambda_range[0]])
+    plot.show()
+
+    mangled_spec_wave, mangled_spec_flux = mangle_poly3(template_file, filter_file_list, zeropointlist,pivotlist, counts_in) 
+     
+    mangledbolo_lambda_range = np.where((mangled_spec_wave>=2000.0)&(mangled_spec_wave<=10000.0))
+    mangled_integrated_flux = np.trapz(mangled_spec_flux[mangledbolo_lambda_range[0]]*mangled_spec_wave[mangledbolo_lambda_range[0]]/hc,mangled_spec_wave[mangledbolo_lambda_range[0]])
+    
+    print(' ')
+    print('mangle_poly3 % difference = ', 100.0*(mangled_integrated_flux-spectrum_integrated_flux)/spectrum_integrated_flux)
+     
+    plot.plot(spectrum_wave[spectrumbolo_lambda_range[0]], spectrum_flux[spectrumbolo_lambda_range[0]])
+    plot.plot(mangled_spec_wave[mangledbolo_lambda_range[0]], mangled_spec_flux[mangledbolo_lambda_range[0]])
+    plot.show()
+
+    mangled_spec_wave, mangled_spec_flux = mangle_poly4(template_file, filter_file_list, zeropointlist,pivotlist, counts_in) 
+     
+    mangledbolo_lambda_range = np.where((mangled_spec_wave>=2000.0)&(mangled_spec_wave<=10000.0))
+    mangled_integrated_flux = np.trapz(mangled_spec_flux[mangledbolo_lambda_range[0]]*mangled_spec_wave[mangledbolo_lambda_range[0]]/hc,mangled_spec_wave[mangledbolo_lambda_range[0]])
+    
+    print(' ')
+    print('mangle_poly4 % difference = ', 100.0*(mangled_integrated_flux-spectrum_integrated_flux)/spectrum_integrated_flux)
      
     plot.plot(spectrum_wave[spectrumbolo_lambda_range[0]], spectrum_flux[spectrumbolo_lambda_range[0]])
     plot.plot(mangled_spec_wave[mangledbolo_lambda_range[0]], mangled_spec_flux[mangledbolo_lambda_range[0]])
