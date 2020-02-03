@@ -40,11 +40,36 @@ if __name__ == "__main__":
     reference_epoch_mjd=0.0
 
     #####              these are the filters we will check for from the OSC csv file
-     
-    desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
-     
+
     desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-     
+    # J, H, K causes error in example
+    #desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
+
+    # Nathan's code: not running methods for filters with no data
+    import os
+    import csv
+    csv_name = str(sn_name) + "_osc.csv"
+    csv_path = os.path.relpath("\\input", "\\aggienova-templates")+"\\"+csv_name
+    print(csv_path)
+    csv_file = open(csv_path, "r")
+    csv_read = csv.reader(csv_file, delimiter=',')
+    filters = []
+    # Filters that are not in csv file
+    copy = desired_filter_list.copy()
+    for row in csv_read:
+        filter_i = row[5]
+        print(filter_i)
+        for filter in copy:
+            if filter == filter_i:
+                copy.remove(filter_i)
+    # If copy is empty, then all filters are in csv file
+    print("Copy:", copy)
+    for filter in copy:
+        desired_filter_list.remove(filter)
+    print("desired_filter_list:", desired_filter_list)
+    desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
+
+
     observedmags_to_counts(sn_name,desired_filter_list)
 
     inFile = '../input/'+sn_name+'_countsarray'+'.csv' #gets input count rates from existing file
