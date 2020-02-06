@@ -4,7 +4,13 @@ import pandas as pd
 import csv
 import math
 
-
+"""
+Purpose: plots the log(flux) + c vs. wavelength for one or more supernova
+Parameters: 
+    plots  = list of supernova names to plot, <supernovaName>templete.csv MUST exist in output
+    spread = count to seperate plots by to increase readability (default = 3)
+Example: spectrum_plot(['SN2007af', 'some_supernova'], 10)
+"""
 def spectrum_plot(plots, spread = 3):
     plotAvgs = []
     
@@ -62,5 +68,6 @@ def spectrum_plot(plots, spread = 3):
     plt.ylabel('log(flux) + constant')
     plt.savefig('../testing.png')
     plt.show()
+# END FUNC
 
-spectrum_plot(['SN2007af'])
+#spectrum_plot(['SN2007af'])
