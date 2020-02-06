@@ -66,8 +66,13 @@ def spectrum_plot(plots, spread = 3):
     plt.legend()
     plt.xlabel('Wavelength (angstroms)')
     plt.ylabel('log(flux) + constant')
-    plt.savefig('../testing.png')
+
+    # Save figure
+    filePath = '../output/'
+    for plotName in plots:
+        filePath += plotName + '_'
+    plt.savefig(filePath + 'logFlux_vs_wavelength.png')
     plt.show()
 # END FUNC
 
-#spectrum_plot(['SN2007af'])
+spectrum_plot(['SN2007af'])
