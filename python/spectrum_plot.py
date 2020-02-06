@@ -22,10 +22,9 @@ def spectrum_plot(supernova):
 
     # Read in output data
     wave = []
-    log_flux = []
-    log_fluxTot = []
-    log_fluxCount = []
-    log_fluxAvg = []
+    log_fluxTot = [] # Sums of log(flux) vals for each given wave
+    log_fluxCount = [] # Count of total times a wave's flux val has been added to Tot
+    log_fluxAvg = [] # Avg of all given flux vals for each given wave
     for row in range(1, row_count):
         r = file[row].split(',')
         if(float(r[2]) > 0):
@@ -39,7 +38,7 @@ def spectrum_plot(supernova):
                 log_fluxTot[waveInd] += math.log(float(r[2]), 10)
                 log_fluxCount[waveInd] += 1
     
-    # Avg. flux values
+    # Compute avg. flux values
     for i in range(len(wave)):
         log_fluxAvg.append( log_fluxTot[i] / log_fluxCount[i] )
 
