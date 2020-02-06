@@ -5,17 +5,18 @@ import csv
 import math
 
 
-def spectrum_plot(plots):
+def spectrum_plot(plots, spread = 3):
     plotAvgs = []
     
-    for plot in range(len(plots)):
+    for p in range(len(plots)):
         # Open data file
         try:
-            file = open('../output/' + plots[plot] + 'template.csv').readlines()
-            row_count = sum(1 for row in file)
-            print('Rows = ' + str(row_count))
+            file = open('../output/' + plots[p] + 'template.csv').readlines()
+            row_count = sum(1 for r in file)
+            #print('Rows = ' + str(row_count))
         except OSError as err:
-            print("Could not find template for supernova " + plots[plot] + ": {0}".format(err))
+            print("Could not find template for supernova " + plots[p] + ": {0}".format(err))
+            exit
 
         # Read in output data
         wave = []
@@ -36,21 +37,30 @@ def spectrum_plot(plots):
                     log_fluxCount[waveInd] += 1
         
         # Compute avg. flux values and find avg total value for 'centering'
-        sum = 0
+        plot_sum = 0
         for i in range(len(wave)):
             log_fluxAvg.append( log_fluxTot[i] / log_fluxCount[i] )
-            sum += log_fluxAvg[i]
+            plot_sum += log_fluxAvg[i]
         
         # Save the avg log(flux) to center line around
-        plotAvgs.append(sum / len(wave))
+        plotAvgs.append(plot_sum / len(wave))
+        #print("Avg for supernova " + plots[p] + " = " + str(plotAvgs[p]))
+
+        # Constant value to add to cur plot for spreading (each should be centered around multiples of 3)
+        c = spread*(p+1) - plotAvgs[p]
+
+        # Add c to plot
+        for i in range(len(wave)):
+            log_fluxAvg[i] += c
 
         # Plot current line
-        plt.plot(wave, log_fluxAvg, label='SN2007af')
+        plt.plot(wave, log_fluxAvg, label=plots[p])
 
 
     plt.legend()
+    plt.xlabel('Wavelength (angstroms)')
+    plt.ylabel('log(flux) + constant')
     plt.savefig('../testing.png')
     plt.show()
 
-spectrum_plot('This is a BS name')
-spectrum_plot('SN2007af')
+spectrum_plot(['SN2007af'])
