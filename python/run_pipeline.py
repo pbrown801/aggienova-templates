@@ -58,6 +58,7 @@ if __name__ == "__main__":
         for filter in copy:
             if filter == filter_i:
                 copy.remove(filter_i)
+    csv_file.close()
     # If copy is empty, then all filters are in csv file
     for filter in copy:
         desired_filter_list.remove(filter)
@@ -78,7 +79,29 @@ if __name__ == "__main__":
     filters_from_csv = next(reader)[1::2]
    
     filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(filters_from_csv)
-   
+
+    #FIXME Nathan testing filter checks
+
+    print("filters_from_csv:", filters_from_csv)
+    # Must determine what values in pivot_list represent
+    print("pivot_list:", pivotlist)
+    # Time vs Wavelength
+    print("template_spectrum: ", template_spectrum)
+    # print("template_spectrum to csv: ", total_counts.dat_to_csv(template_spectrum))
+    ## Filters: (wavelength, tp)
+
+    spectra_path = '../spectra/' + template_spectrum
+    spectra_file = open(spectra_path, "r")
+    wavelengths_template_spectrum = []
+    for line in spectra_file.readlines():
+        if line[0] != "#":
+            line = line.split(" ")
+            wavelengths_template_spectrum.append(line[1][0:-1])
+    spectra_file.close()
+    #print(wavelengths_template_spectrum)
+
+
+
     #### Create wavelength list to extend just before and after the pivot wavelengths 
     #### of the observed filters
     wavelength_min=10.0*(math.floor(min(pivotlist)/10.0))-200.0
