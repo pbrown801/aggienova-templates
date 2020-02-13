@@ -16,6 +16,7 @@ def spectrum_plot(plots, spread = 3):
     
     for p in range(len(plots)):
         # Open data file
+        row_count = 0
         try:
             file = open('../output/' + plots[p] + 'template.csv').readlines()
             row_count = sum(1 for r in file)
