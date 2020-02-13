@@ -52,17 +52,16 @@ if __name__ == "__main__":
     csv_read = csv.reader(csv_file, delimiter=',')
     filters = []
     # Filters that are not in csv file
-    copy = desired_filter_list.copy()
+    filter_copy = desired_filter_list.copy()
     for row in csv_read:
         filter_i = row[5]
-        for filter in copy:
+        for filter in filter_copy:
             if filter == filter_i:
-                copy.remove(filter_i)
+                filter_copy.remove(filter_i)
     csv_file.close()
     # If copy is empty, then all filters are in csv file
-    for filter in copy:
+    for filter in filter_copy:
         desired_filter_list.remove(filter)
-
 
     observedmags_to_counts(sn_name,desired_filter_list)
 
