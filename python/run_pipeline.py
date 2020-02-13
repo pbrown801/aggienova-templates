@@ -96,10 +96,8 @@ if __name__ == "__main__":
     for line in spectra_file.readlines():
         if line[0] != "#":
             line = line.split(" ")
-            wavelengths_template_spectrum.append(line[1][0:-1])
+            wavelengths_template_spectrum.append(float(line[1][0:-1]))
     spectra_file.close()
-    #print(wavelengths_template_spectrum)
-
 
 
     #### Create wavelength list to extend just before and after the pivot wavelengths 
