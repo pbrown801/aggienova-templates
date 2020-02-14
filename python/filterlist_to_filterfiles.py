@@ -1,5 +1,5 @@
 def filterlist_to_filterfiles(filterlist):
-    from mangle_simple import pivot_wavelength
+    from utilities import pivot_wavelength
 
     zeropointlist = []
     pivotlist = []
