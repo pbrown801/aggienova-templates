@@ -16,7 +16,7 @@ program writes two csv files
 '''
 
 
-def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
+def observedmags_to_counts(sn_name, desired_filter_list, template_spectrum, interpFilter = "UVW1"):
     # Url of the csv file from the supernova catalog
     url = "https://api.sne.space/" + sn_name + "/photometry/time+magnitude+e_magnitude+upperlimit+band+instrument+telescope+source?format=csv&time&magnitude"
     data_list = []
@@ -85,7 +85,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         if filterFound[i]:
             observed_filter_list.append(desired_filter_list[i])
  
-    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(observed_filter_list)
+    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(observed_filter_list, template_spectrum)
 
     interpFirst = 1000000000000000
     interpLast = -1000000000000000
@@ -186,6 +186,6 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 line[2*j+2] = interp_counterrs_matrix[j][i]
             writer.writerow(line)
 
-
+    return filter_file_list,zeropointlist,pivotlist
 
 #end of code

@@ -63,7 +63,7 @@ if __name__ == "__main__":
     for filter in filter_copy:
         desired_filter_list.remove(filter)
 
-    observedmags_to_counts(sn_name,desired_filter_list)
+    filter_file_list,zeropointlist,pivotlist = observedmags_to_counts(sn_name, desired_filter_list, template_spectrum)
 
     inFile = '../input/'+sn_name+'_countsarray'+'.csv' #gets input count rates from existing file
 
@@ -76,23 +76,6 @@ if __name__ == "__main__":
 
     # This reads in the filter name headers and skips the error columnts
     filters_from_csv = next(reader)[1::2]
-   
-    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(filters_from_csv)
-
-    # Nathan's code: filter checks
-    print(pivotlist)
-    spectra_path = '../spectra/' + template_spectrum
-    spectra_file = open(spectra_path, "r")
-    wavelengths_template_spectrum = []
-    spectra_file_lines = spectra_file.readlines()
-    spectra_file.close()
-    for line_number, line in enumerate(spectra_file_lines, start=0):
-        if line_number == 1 or line_number == len(spectra_file_lines)-1:
-            line = line.split(" ")
-            wavelengths_template_spectrum.append(float(line[0]))
-    if not(wavelengths_template_spectrum[0] <= pivotlist[0] and wavelengths_template_spectrum[-1] >= pivotlist[-1]):
-        raise Exception("pivot wavelengths are not in spectrum")
-
 
     #### Create wavelength list to extend just before and after the pivot wavelengths 
     #### of the observed filters
