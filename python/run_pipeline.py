@@ -45,7 +45,7 @@ if __name__ == "__main__":
     # J, H, K causes error in example
     #desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
 
-    # Nathan's code: not running methods for filters with no data
+    # Nathan's code: Check if filter data exists for current supernova before running observed mags
     csv_name = str(sn_name) + "_osc.csv"
     csv_path = '../input/'+csv_name
     csv_file = open(csv_path, "r")
@@ -79,24 +79,19 @@ if __name__ == "__main__":
    
     filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(filters_from_csv)
 
-    #FIXME Nathan testing filter checks
-
-    print("filters_from_csv:", filters_from_csv)
-    # Must determine what values in pivot_list represent
-    print("pivot_list:", pivotlist)
-    # Time vs Wavelength
-    print("template_spectrum: ", template_spectrum)
-    # print("template_spectrum to csv: ", total_counts.dat_to_csv(template_spectrum))
-    ## Filters: (wavelength, tp)
-
+    # Nathan's code: filter checks
+    print(pivotlist)
     spectra_path = '../spectra/' + template_spectrum
     spectra_file = open(spectra_path, "r")
     wavelengths_template_spectrum = []
-    for line in spectra_file.readlines():
-        if line[0] != "#":
-            line = line.split(" ")
-            wavelengths_template_spectrum.append(float(line[1][0:-1]))
+    spectra_file_lines = spectra_file.readlines()
     spectra_file.close()
+    for line_number, line in enumerate(spectra_file_lines, start=0):
+        if line_number == 1 or line_number == len(spectra_file_lines)-1:
+            line = line.split(" ")
+            wavelengths_template_spectrum.append(float(line[0]))
+    if not(wavelengths_template_spectrum[0] <= pivotlist[0] and wavelengths_template_spectrum[-1] >= pivotlist[-1]):
+        raise Exception("pivot wavelengths are not in spectrum")
 
 
     #### Create wavelength list to extend just before and after the pivot wavelengths 
