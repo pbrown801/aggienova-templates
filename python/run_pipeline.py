@@ -14,6 +14,7 @@ from mangled_to_counts import *
 from mpl_toolkits.mplot3d import Axes3D
 import scipy
 import matplotlib.pyplot as plt
+import csv
 
 '''
 Main wrapper for aggienova-templates
@@ -25,6 +26,9 @@ Output is csv with matrix of wavelength,epoch,flux
 '''
 
 if __name__ == "__main__":
+    #Testing script array
+    array=[]
+
     parser = argparse.ArgumentParser(description='Process supernova through spectrum template.')
 
     parser.add_argument('supernova', metavar='supernova', type=str, nargs=1, help='A supernova to process.')
@@ -33,7 +37,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    sn_name = args.supernova[0]          #assign sn name at beginning and look for that file as an input
+    sn_name = args.supernova[0]         #assign sn name at beginning and look for that file as an input
     template_spectrum = args.template[0] #assign a template spectrum to use
     # dat_to_csv(args.template[0])
     store_as_csv = args.csv[0].upper()=='Y'
@@ -44,7 +48,13 @@ if __name__ == "__main__":
     desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
      
     desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-     
+
+    with open('Test_A.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([1, "Filterlist", desired_filter_list])
+
+
+     #Function Call 1
     observedmags_to_counts(sn_name,desired_filter_list)
 
     inFile = '../input/'+sn_name+'_countsarray'+'.csv' #gets input count rates from existing file
@@ -58,8 +68,17 @@ if __name__ == "__main__":
 
     # This reads in the filter name headers and skips the error columnts
     filters_from_csv = next(reader)[1::2]
-   
+
+    # Function Call 2
     filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(filters_from_csv)
+
+    #Dropping file into output
+    #'../output/' + sn_name +
+    with open('Test_A.csv', 'a', newline='') as out:
+        writer = csv.writer(out)
+        writer.writerow([7, "Filter File List", filter_file_list])
+        writer.writerow([8, "Zeropoint List", zeropointlist])
+        writer.writerow([9, "Pivot List", pivotlist])
    
     #### Create wavelength list to extend just before and after the pivot wavelengths 
     #### of the observed filters
@@ -92,6 +111,10 @@ if __name__ == "__main__":
 
     data = []
     ind = 0
+
+    #Mangled Spectrum
+    spec=[]
+
     for row in reader:
         print(row_count-1-ind)
         if len(row) == 0:
@@ -105,8 +128,11 @@ if __name__ == "__main__":
         mjd_list[ind]=epoch
         counts_list[ind,:] = counts_in #appending counts per filter at epoch
 
+        # Function Call 3
         #mangle the spectrum to match the given count rates
-        mangled_spec_wave, mangled_spec_flux = mangle_simple(template_spectrum, filter_file_list, zeropointlist,pivotlist, counts_in) 
+        mangled_spec_wave, mangled_spec_flux = mangle_simple(template_spectrum, filter_file_list, zeropointlist,pivotlist, counts_in)
+
+        spec+=[mangled_spec_flux]
 
        # if ind == 0:
        #     wavelengths =mangled_spec_wave #why are we only doing this once? The values of wavelength change every increment
@@ -120,17 +146,28 @@ if __name__ == "__main__":
         temp_data = [fill_epoch[:],wavelength_list[:],flux_interp[:]]
         data.extend(np.array(temp_data).transpose())
 
+
         #Getting counts of mangled template
         temp_template_spec =np.column_stack((wavelength_list[:],flux_interp[:]))
         #print(temp_template_spec)
         # temp_counts = get_counts_multi_filter(temp_template_spec,filter_file_list)
         # the above is what used to be called in case we want to revert
         #The unified total_counts function returns two additional values along with the counts array so using two dummy variables
+
+        # Function Call 4
         temp_counts=specarray_to_counts(temp_template_spec,filter_file_list)        
         #temp_1,temp_2,temp_counts = total_counts(temp_template_spec,filter_file_list)
         mangled_counts[ind,:] = temp_counts
 
         ind+=1
+
+    print("*****************************************")
+    print("A")
+    #Adding new variables to test file
+    with open('Test_A.csv', 'a', newline='') as out:
+        writer = csv.writer(out)
+        writer.writerow([10, "Input Wave", mangled_spec_wave])
+        writer.writerow([11, "Mangled Spectrum Flux", spec])
 
     df = pd.DataFrame(columns=['MJD','Wavelength','Flux'],data = data)
 
@@ -139,15 +176,19 @@ if __name__ == "__main__":
     if store_as_csv:
         df.to_csv(output_file,index=False,float_format='%g')
 
+    # Function Call 5
+    #m_counts is empty as the function does not return any value. Remove?
     m_counts = mangled_to_counts(sn_name,filters_from_csv,mangled_counts,mjd_list)
 
     counts_list = np.array(counts_list,dtype='float')
+    print(counts_list)
 
 #    filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.MJD < 54330)] #filters data to remove outliers
 #    filtered_df.to_csv('../output/'+sn_name+'_filtered.csv',index=False) 
 
 #Plot the mangled template count rates and the input count rates on the same plot with MJD or epoch on the x-axis
 
+    # Function Call 6
     validation_plotting(filters_from_csv,counts_list,mjd_list, mangled_counts, sn_name)
 
 #    from plot_3d import plot_3D

@@ -1,6 +1,7 @@
 import numpy as np
 import csv
 import math as math
+from utilities import *
 from scipy import interpolate
 import requests
 from contextlib import closing
@@ -87,6 +88,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
  
     filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(observed_filter_list)
 
+
     interpFirst = 1000000000000000
     interpLast = -1000000000000000
     for i in range(0, len(time)):
@@ -104,8 +106,18 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 interpTimes.append(time[i])
 
     # Uncomment following statements for print check
-    # print("Interptimes")
-    # print(interpTimes)
+    #print(interpTimes)
+    #print(time)
+
+    #Adding the variables
+    with open('Test_A.csv', 'a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([2, "Time", time])
+        writer.writerow([3, "Mag", mag])
+        writer.writerow([4, "Emag", emag])
+        writer.writerow([5, "Band", band])
+        writer.writerow([6, "Interptimes", interpTimes])
+
 
     #contains counts directly from measured values
     counts_matrix = np.zeros((len(observed_filter_list),len(time)), dtype=object)
@@ -175,6 +187,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 line[2*j + 2] = emagMatrix[j][i]
             writer.writerow(line)
 
+
     with open('../input/'+ sn_name + '_countsarray.csv', 'w', newline ='') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
@@ -186,6 +199,12 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 line[2*j+2] = interp_counterrs_matrix[j][i]
             writer.writerow(line)
 
+    #with open('../input/' + sn_name + '_test_array.csv', 'w', newline='') as test:
+        # Writing the magarray and counts array
+    #    writer = csv.writer(test, delimiter=',')
+    #    writer.writerow([column_names])
+    #   for i in range(0,len(interpTimes)):
+    #)
 
 
 #end of code
