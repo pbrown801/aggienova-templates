@@ -164,10 +164,7 @@ if __name__ == "__main__":
     print("*****************************************")
     print("A")
     #Adding new variables to test file
-    with open('Test_A.csv', 'a', newline='') as out:
-        writer = csv.writer(out)
-        writer.writerow([10, "Input Wave", mangled_spec_wave])
-        writer.writerow([11, "Mangled Spectrum Flux", spec])
+
 
     df = pd.DataFrame(columns=['MJD','Wavelength','Flux'],data = data)
 
@@ -182,6 +179,13 @@ if __name__ == "__main__":
 
     counts_list = np.array(counts_list,dtype='float')
     print(counts_list)
+
+    with open('Test_A.csv', 'a', newline='') as out:
+        writer = csv.writer(out)
+        writer.writerow([10, "Input Wave", mangled_spec_wave])
+        #writer.writerow([11, "Mangled Spectrum Flux", spec])
+        writer.writerow([11, "Counts List", counts_list])
+
 
 #    filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.MJD < 54330)] #filters data to remove outliers
 #    filtered_df.to_csv('../output/'+sn_name+'_filtered.csv',index=False) 
