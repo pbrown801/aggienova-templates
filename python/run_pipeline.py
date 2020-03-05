@@ -40,12 +40,30 @@ if __name__ == "__main__":
     reference_epoch_mjd=0.0
 
     #####              these are the filters we will check for from the OSC csv file
-     
-    desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
-     
+
     desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
-     
-    observedmags_to_counts(sn_name,desired_filter_list)
+    # J, H, K causes error in example
+    #desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
+
+    # Nathan's code: Check if filter data exists for current supernova before running observed mags
+    csv_name = str(sn_name) + "_osc.csv"
+    csv_path = '../input/'+csv_name
+    csv_file = open(csv_path, "r")
+    csv_read = csv.reader(csv_file, delimiter=',')
+    filters = []
+    # Filters that are not in csv file
+    filter_copy = desired_filter_list.copy()
+    for row in csv_read:
+        filter_i = row[5]
+        for filter in filter_copy:
+            if filter == filter_i:
+                filter_copy.remove(filter_i)
+    csv_file.close()
+    # If copy is empty, then all filters are in csv file
+    for filter in filter_copy:
+        desired_filter_list.remove(filter)
+
+    filter_file_list,zeropointlist,pivotlist = observedmags_to_counts(sn_name, desired_filter_list, template_spectrum)
 
     inFile = '../input/'+sn_name+'_countsarray'+'.csv' #gets input count rates from existing file
 
@@ -58,9 +76,7 @@ if __name__ == "__main__":
 
     # This reads in the filter name headers and skips the error columnts
     filters_from_csv = next(reader)[1::2]
-   
-    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(filters_from_csv)
-   
+
     #### Create wavelength list to extend just before and after the pivot wavelengths 
     #### of the observed filters
     wavelength_min=10.0*(math.floor(min(pivotlist)/10.0))-200.0
