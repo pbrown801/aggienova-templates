@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plot
 from speccounts import *
-from utilities import *
+from utilities import total_counts
 
 def mangle_simple(templatespectrum,filter_file_list, zeropointlist, pivotlist, counts_in):
 
