@@ -144,5 +144,4 @@ def filterlist_to_filterfiles(filterlist, template_spectrum):
             if valid_wavelength(pivot, wavelengths_template_spectrum):
                 pivotlist.append(pivot)
                 zeropointlist.append(11.77)
-    print(pivotlist)
     return(filterfilelist,zeropointlist,pivotlist)
