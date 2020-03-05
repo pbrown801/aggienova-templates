@@ -167,5 +167,5 @@ for i in range(len(mag_data)):
 
 ax01.legend()
 # Uncomment to save the figure
-# plt.savefig('test1.png')
+plt.savefig('test1.png')
 plt.show()
