@@ -76,4 +76,4 @@ def spectrum_plot(plots, spread = 3):
     plt.show()
 # END FUNC
 
-spectrum_plot(['SN2007af'])
+spectrum_plot(['SN2007af', 'SN2007af'])
