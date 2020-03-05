@@ -7,6 +7,7 @@ import numpy as np
 from mangle_simple import *
 from utilities import *
 from validation_plotting import *
+from Graphing import *
 import argparse
 from observedmags_to_counts import *
 from filterlist_to_filterfiles import *
@@ -146,9 +147,11 @@ if __name__ == "__main__":
 #    filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.MJD < 54330)] #filters data to remove outliers
 #    filtered_df.to_csv('../output/'+sn_name+'_filtered.csv',index=False) 
 
-#Plot the mangled template count rates and the input count rates on the same plot with MJD or epoch on the x-axis
 
-    validation_plotting(filters_from_csv,counts_list,mjd_list, mangled_counts, sn_name)
+
+#Plot the mangled template count rates and the input count rates on the same plot with MJD or epoch on the x-axis
+    spectrum_plot([sn_name])
+    # validation_plotting(filters_from_csv,counts_list,mjd_list, mangled_counts, sn_name)
 
 #    from plot_3d import plot_3D
     # filtered_df = pd.read_csv(output_file,header=0) #uncomment this if you have a saved df you just want to read and plot in 3d
