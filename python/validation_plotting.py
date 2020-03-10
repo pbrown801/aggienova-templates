@@ -1,3 +1,7 @@
+#NOT USING ANYMORE HOLD ON UNTIL CONFIRMED
+# -t8 3/4/20
+
+
 # code to take in emily's csv file and make plot of count rate vs mjd including all filters_curves
 import numpy as np
 import matplotlib.pyplot as plt
