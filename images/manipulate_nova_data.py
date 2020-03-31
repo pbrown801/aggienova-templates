@@ -9,6 +9,7 @@ import shutil
 
 
 def manipulate(nova_name, exp_limit):
+    # Variables
     f = []
     filterlst = ["bb", "m2", "uu", "vv", "w1", "w2"]
     name = []
@@ -19,14 +20,19 @@ def manipulate(nova_name, exp_limit):
     obs_idx = []
     exist = False
     exist2 = False
+    # list of files in current directory
     cur = os.getcwd()
     filelist = os.listdir(cur)
     for x in filelist:
         # if x.endswith('.fits') or x.endswith('.gz'):
+        # Checking if the downloaded files of the supernova exist in the current directory
         if '.fits' in x and nova_name in x:
             exist = True
+        # Checking for any final data manipulation output files in the currect diectory
         if x.endswith('.fits') and nova_name in x:
             exist2 = True
+
+    # If there are no supernova data files. Download them from archive
     if (not (exist)):
         print("Downloading " + nova_name + " image files")
         for i in range(6):
@@ -38,6 +44,7 @@ def manipulate(nova_name, exp_limit):
     else:
         print("Files already exist")
 
+    # Checking it there are any data manipulation files in the current directory
     if (not (exist2)):
         print("Data Manipulation Starts")
         filelist = os.listdir(cur)
@@ -62,6 +69,7 @@ def manipulate(nova_name, exp_limit):
                         # Same as exposure
                         date_obs[j].append(imgbb[count].header['DATE-OBS'])
                     except:
+                        # Checks to see if the loop skips only the primary header in the fits files which is at index 0.
                         if count != 0:
                             print("DATA FROM FITS IMAGE COULD PRODUCE ERRONEUS DATA")
                         pass
@@ -158,13 +166,18 @@ def manipulate(nova_name, exp_limit):
                 pass
         print("Data Manipulation Ends")
 
+    # Grabs the newest list of files in current directory
+    # Checks
     filelist = os.listdir(cur)
     for x in filelist:
         # if x.endswith('.fits') or x.endswith('.gz'):
+        # Checking if the downloaded files of the supernova exist in the current directory
         if '.fits' in x and nova_name in x:
             exist = True
+        # Checking for any final data manipulation output files in the currect diectory
         if x.endswith('.fits') and nova_name in x:
             exist2 = True
+    # Cleaning up directory by deleting the downloaded archive supernova data if files exist.
     print("Removing any downloaded files")
     if (exist):
         filelist = os.listdir(cur)
@@ -175,7 +188,7 @@ def manipulate(nova_name, exp_limit):
                 os.remove(fits_file)
     else:
         print("Nothing to remove.")
-
+    # Cleaning up directory by moving data manipulation files into count_rate and fits sub-directories if files exist.
     if (exist2):
         print("Moving into folders")
         filelist = os.listdir(cur)
@@ -196,11 +209,12 @@ def manipulate(nova_name, exp_limit):
                 if x not in folder2_list:
                     shutil.move(x, folder2)
                 else:
-                    print("File already in count_rate folder. Removing from directory")
+                    print("File already in fits folder. Removing from directory")
                     os.remove(x)
     else:
         print("Nothing to move.")
 
+
 # manipulate('sn2005cs', 0)
-# manipulate('sn2006x', 0)
-# manipulate('asassn-13co', 0)
+# manipulate('sn2006x', 0)pip
+manipulate('asassn-13co', 0)
