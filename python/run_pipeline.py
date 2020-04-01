@@ -49,7 +49,7 @@ if __name__ == "__main__":
      
     desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I']
 
-    with open('Test_A.csv', 'w', newline='') as file:
+    with open('../output/Test_A.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow([1, "Filterlist", desired_filter_list])
 
@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
     #Dropping file into output
     #'../output/' + sn_name +
-    with open('Test_A.csv', 'a', newline='') as out:
+    with open('../output/Test_A.csv', 'a', newline='') as out:
         writer = csv.writer(out)
         writer.writerow([7, "Filter File List", filter_file_list])
         writer.writerow([8, "Zeropoint List", zeropointlist])
@@ -161,8 +161,8 @@ if __name__ == "__main__":
 
         ind+=1
 
-    print("*****************************************")
-    print("A")
+    #print("*****************************************")
+    #print("A")
     #Adding new variables to test file
 
 
@@ -178,9 +178,9 @@ if __name__ == "__main__":
     m_counts = mangled_to_counts(sn_name,filters_from_csv,mangled_counts,mjd_list)
 
     counts_list = np.array(counts_list,dtype='float')
-    print(counts_list)
+    #print(counts_list)
 
-    with open('Test_A.csv', 'a', newline='') as out:
+    with open('../output/Test_A.csv', 'a', newline='') as out:
         writer = csv.writer(out)
         writer.writerow([10, "Input Wave", mangled_spec_wave])
         #writer.writerow([11, "Mangled Spectrum Flux", spec])

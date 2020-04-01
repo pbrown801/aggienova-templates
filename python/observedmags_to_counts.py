@@ -33,7 +33,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
     print(df.head())
     '''
     '''
-            #row.split(',')
+            #row.split(',)
             #print(row)
 
     #Old Code
@@ -110,7 +110,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
     #print(time)
 
     #Adding the variables
-    with open('Test_A.csv', 'a', newline='') as file:
+    with open('../output/Test_A.csv', 'a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow([2, "Time", time])
         writer.writerow([3, "Mag", mag])

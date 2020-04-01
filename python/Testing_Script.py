@@ -2,7 +2,7 @@
 
 import csv
 #Reading the test files
-with open('Test_A.csv.', 'r') as file_A, open('Test_Demo.csv', 'r') as file_B:
+with open('../output/Test_A.csv', 'r') as file_A, open('../input/Test_Demo.csv', 'r') as file_B:
     Line_1 = file_A.readlines()
     Line_2 = file_B.readlines()
 
