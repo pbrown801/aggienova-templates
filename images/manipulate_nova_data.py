@@ -132,17 +132,25 @@ def manipulate(nova_name, exp_limit):
         obs_idx2 = []
         hd = []
         cr = []
+        temp_hd = []
+        temp_cr = []
         for i in range(len(df2['exp1'])):
             obs_idx2.append(df2.index[i])
         for i in range(6):
+            temp_hd.append('new_hdul'+str(i))
+            temp_cr.append('new_crhdul'+str(i))
             hd.append('new_hdul'+str(i))
             cr.append('new_crhdul'+str(i))
+            temp_hd[i] = fits.HDUList()
+            temp_cr[i] = fits.HDUList()
             hd[i] = fits.HDUList()
             cr[i] = fits.HDUList()
 
         # Searches the original fits images files for the correct data for each observation date and each of the 6 exposures.
         # The data is appended to a final fits_data array. Added the HDUList for the multi extension fits files.
         fits_data = []
+        temphd_sort = [[], [], [], [], [], []]
+        tempcr_sort = [[], [], [], [], [], []]
         count = 0
         for i in range(6):
             for j in range(len(obs_idx2)):
@@ -152,11 +160,28 @@ def manipulate(nova_name, exp_limit):
                         with fits.open(f[i]) as imgbb:
                             fits_data.append(imgbb[k+1].data)
                             # count_rate_img.append(imgbb[k+1].data/exp[i][k])
-                            hd[i].append(imgbb[k+1])
+                            temp_hd[i].append(imgbb[k+1])
                             cr_data = imgbb[k+1].data/exp[i][k]
                             imgbb[k+1].data = cr_data
-                            cr[i].append(imgbb[k+1])
+                            temp_cr[i].append(imgbb[k+1])
                         break
+        # Sorting the temphd and tempcr lists by date observed
+        for s in range(len(temp_hd)):
+            for l in range(len(temp_hd[s])):
+                temphd_sort[s].append(temp_hd[s][l].header['DATE-OBS'])
+                tempcr_sort[s].append(temp_cr[s][l].header['DATE-OBS'])
+            temphd_sort[s].sort()
+            tempcr_sort[s].sort()
+        for i in range(len(temphd_sort)):
+            for j in range(len(temphd_sort[i])):
+                for k in range(len(temp_hd[i])):
+                    if temphd_sort[i][j] == temp_hd[i][k].header['DATE-OBS']:
+                        hd[i].append(temp_hd[i][k])
+                    if tempcr_sort[i][j] == temp_cr[i][k].header['DATE-OBS']:
+                        cr[i].append(temp_cr[i][k])
+
+        # Final sorted output multi extension files
+        for i in range(6):
             # Used the names list to appropriately write fits multi extension files
             try:
                 hd[i].writeto(name[i] + '.fits')
@@ -215,6 +240,6 @@ def manipulate(nova_name, exp_limit):
         print("Nothing to move.")
 
 
-# manipulate('sn2005cs', 0)
-# manipulate('sn2006x', 0)pip
+manipulate('sn2005cs', 0)
+manipulate('sn2006x', 0)
 manipulate('asassn-13co', 0)
