@@ -2,6 +2,7 @@
 # python3 run_pipeline.py SN2007af SN2017erp_m1_UVopt.dat y
 
 #  take an input spectrum
+import time
 import pandas as pd
 import numpy as np
 from mangle_simple import *
@@ -86,12 +87,18 @@ if __name__ == "__main__":
     flux_matrix = np.empty((row_count-1,wavelength_nbins)) #empty matrix to hold flux values
     flux_matrix.fill(np.nan)
     counts_list = np.empty((row_count-1,filter_count))
-    counterrs_list = np.empty((row_count-1,filter_count))
+    #counterrs_list = np.empty((row_count-1,filter_count))
     mangled_counts = np.empty((row_count-1,filter_count))
 
 
     data = []
     ind = 0
+    spectraname = "../spectra/" + template_spectrum
+    spectraWavelengths = np.array([])
+    flux = np.array([])
+    mangled_spec_wave = np.array([])
+    mangled_spec_flux = np.array([])
+    st = time.time()
     for row in reader:
         print(row_count-1-ind)
         if len(row) == 0:
@@ -100,19 +107,24 @@ if __name__ == "__main__":
         epoch = np.float64(row[0])-reference_epoch_mjd
         epoch_list[ind]=epoch
         counts_in = np.array(list(map(np.float64,row[1::2]))) #theres gotta be an easier way to do this #just double checking that it's a float -t8
-        counterrs_in = np.array(list(map(np.float64,row[2::2]))) #theres gotta be an easier way to do this #just double checking that it's a float -t8
+        #counterrs_in = np.array(list(map(np.float64,row[2::2]))) #theres gotta be an easier way to do this #just double checking that it's a float -t8
 
         mjd_list[ind]=epoch
         counts_list[ind,:] = counts_in #appending counts per filter at epoch
 
         #mangle the spectrum to match the given count rates
-        mangled_spec_wave, mangled_spec_flux = mangle_simple(template_spectrum, filter_file_list, zeropointlist,pivotlist, counts_in) 
-
+        print("row start")
+        if ind == 0:
+            spectraWavelengths, flux = clean_spectrum(spectraname)
+        mangled_spec_wave, mangled_spec_flux = mangle_simple(spectraWavelengths, flux , filter_file_list, zeropointlist,pivotlist, counts_in,st)
+        print("row end")
        # if ind == 0:
        #     wavelengths =mangled_spec_wave #why are we only doing this once? The values of wavelength change every increment
                                            #the wavelengths should be the same each time.  If not we need to fix something else
 
+        print("interp start")
         f=scipy.interpolate.interp1d(mangled_spec_wave, mangled_spec_flux, kind='linear')
+        print("interp end")
 
         flux_interp=f(wavelength_list)
         flux_matrix[ind,:]=flux_interp
@@ -126,12 +138,11 @@ if __name__ == "__main__":
         # temp_counts = get_counts_multi_filter(temp_template_spec,filter_file_list)
         # the above is what used to be called in case we want to revert
         #The unified total_counts function returns two additional values along with the counts array so using two dummy variables
-        temp_counts=specarray_to_counts(temp_template_spec,filter_file_list)        
+        temp_counts=specarray_to_counts(temp_template_spec,filter_file_list)
         #temp_1,temp_2,temp_counts = total_counts(temp_template_spec,filter_file_list)
         mangled_counts[ind,:] = temp_counts
 
         ind+=1
-
     df = pd.DataFrame(columns=['MJD','Wavelength','Flux'],data = data)
 
 
