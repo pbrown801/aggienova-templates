@@ -6,10 +6,9 @@ from astropy.io import fits
 import requests
 import shutil
 
-# Variables
-
 
 def manipulate(nova_name, exp_limit):
+    # Variables
     f = []
     filterlst = ["bb", "m2", "uu", "vv", "w1", "w2"]
     name = []
