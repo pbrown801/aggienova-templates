@@ -1,4 +1,3 @@
-
 # Archive of supernova images at https://archive.stsci.edu/missions/hlsp/sousa/
 
 import os
@@ -7,9 +6,10 @@ from astropy.io import fits
 import requests
 import shutil
 
+# Variables
+
 
 def manipulate(nova_name, exp_limit):
-    # Variables
     f = []
     filterlst = ["bb", "m2", "uu", "vv", "w1", "w2"]
     name = []
@@ -20,6 +20,7 @@ def manipulate(nova_name, exp_limit):
     obs_idx = []
     exist = False
     exist2 = False
+
     # list of files in current directory
     cur = os.getcwd()
     filelist = os.listdir(cur)
@@ -32,7 +33,6 @@ def manipulate(nova_name, exp_limit):
         if x.endswith('.fits') and nova_name in x:
             exist2 = True
 
-    # If there are no supernova data files. Download them from archive
     if (not (exist)):
         print("Downloading " + nova_name + " image files")
         for i in range(6):
@@ -45,6 +45,7 @@ def manipulate(nova_name, exp_limit):
         print("Files already exist")
 
     # Checking it there are any data manipulation files in the current directory
+    # Main manipulation of fits data using data frames
     if (not (exist2)):
         print("Data Manipulation Starts")
         filelist = os.listdir(cur)
@@ -125,7 +126,7 @@ def manipulate(nova_name, exp_limit):
         # Creating the dataframe using dict2 that makes the date obs the index.
         df2 = pd.DataFrame.from_dict(dict2, orient='index', columns=[
             'exp1', 'exp2', 'exp3', 'exp4', 'exp5', 'exp6']).sort_index(axis=0)
-        # print(df2)
+
         # Gets index from the data frame 2 and appends to an array.
         # Creates a list of fits.HDULists depending on the number of rows in df2. This is needed for the multi extension
         # fits image files.
@@ -136,6 +137,7 @@ def manipulate(nova_name, exp_limit):
         temp_cr = []
         for i in range(len(df2['exp1'])):
             obs_idx2.append(df2.index[i])
+        print(len(df2['exp1']))
         for i in range(6):
             temp_hd.append('new_hdul'+str(i))
             temp_cr.append('new_crhdul'+str(i))
@@ -167,11 +169,18 @@ def manipulate(nova_name, exp_limit):
                         break
         # Sorting the temphd and tempcr lists by date observed
         for s in range(len(temp_hd)):
+            print(name[s], "\n")
             for l in range(len(temp_hd[s])):
                 temphd_sort[s].append(temp_hd[s][l].header['DATE-OBS'])
                 tempcr_sort[s].append(temp_cr[s][l].header['DATE-OBS'])
+            print("Before temphd_sort: ", temphd_sort[s])
+            print("Before tempcr_sort: ", tempcr_sort[s])
+            print(len(temphd_sort[s]))
             temphd_sort[s].sort()
             tempcr_sort[s].sort()
+            print("Sorted temphd_sort: ", temphd_sort[s])
+            print("Sorted tempcr_sort: ", tempcr_sort[s])
+            print(len(tempcr_sort[s]))
         for i in range(len(temphd_sort)):
             for j in range(len(temphd_sort[i])):
                 for k in range(len(temp_hd[i])):
@@ -179,6 +188,7 @@ def manipulate(nova_name, exp_limit):
                         hd[i].append(temp_hd[i][k])
                     if tempcr_sort[i][j] == temp_cr[i][k].header['DATE-OBS']:
                         cr[i].append(temp_cr[i][k])
+                        break
 
         # Final sorted output multi extension files
         for i in range(6):
@@ -191,8 +201,8 @@ def manipulate(nova_name, exp_limit):
                 pass
         print("Data Manipulation Ends")
 
-    # Grabs the newest list of files in current directory
-    # Checks
+    # list of files in current directory
+    cur = os.getcwd()
     filelist = os.listdir(cur)
     for x in filelist:
         # if x.endswith('.fits') or x.endswith('.gz'):
@@ -202,8 +212,7 @@ def manipulate(nova_name, exp_limit):
         # Checking for any final data manipulation output files in the currect diectory
         if x.endswith('.fits') and nova_name in x:
             exist2 = True
-    # Cleaning up directory by deleting the downloaded archive supernova data if files exist.
-    print("Removing any downloaded files")
+
     if (exist):
         filelist = os.listdir(cur)
         for i in range(6):
@@ -240,6 +249,7 @@ def manipulate(nova_name, exp_limit):
         print("Nothing to move.")
 
 
+# Example Calls
 manipulate('sn2005cs', 0)
-manipulate('sn2006x', 0)
-manipulate('asassn-13co', 0)
+# manipulate('sn2006x', 0)
+# manipulate('asassn-13co', 0)
