@@ -6,20 +6,15 @@ from astropy.io import fits
 import requests
 import shutil
 
+exist = False
+exist2 = False
+filterlst = ["bb", "m2", "uu", "vv", "w1", "w2"]
 
-def manipulate(nova_name, exp_limit):
-    # Variables
-    f = []
-    filterlst = ["bb", "m2", "uu", "vv", "w1", "w2"]
-    name = []
-    date_obs = [[], [], [], [], [], []]
-    exp = [[], [], [], [], [], []]
-    dict1 = {}
-    dict2 = {}
-    obs_idx = []
+
+def check_dir(nova_name):
+    global exist, exist2
     exist = False
     exist2 = False
-
     # list of files in current directory
     cur = os.getcwd()
     filelist = os.listdir(cur)
@@ -31,7 +26,11 @@ def manipulate(nova_name, exp_limit):
         # Checking for any final data manipulation output files in the currect diectory
         if x.endswith('.fits') and nova_name in x:
             exist2 = True
+    print(exist)
+    print(exist2)
 
+
+def download_file(nova_name):
     if (not (exist)):
         print("Downloading " + nova_name + " image files")
         for i in range(6):
@@ -43,10 +42,19 @@ def manipulate(nova_name, exp_limit):
     else:
         print("Files already exist")
 
-    # Checking it there are any data manipulation files in the current directory
-    # Main manipulation of fits data using data frames
+
+def manipulate(nova_name, exp_limit):
+    f = []
+    name = []
+    date_obs = [[], [], [], [], [], []]
+    exp = [[], [], [], [], [], []]
+    dict1 = {}
+    dict2 = {}
+    obs_idx = []
+
     if (not (exist2)):
         print("Data Manipulation Starts")
+        cur = os.getcwd()
         filelist = os.listdir(cur)
         for x in filelist:
             if x.endswith('.gz') and nova_name in x:
@@ -136,7 +144,6 @@ def manipulate(nova_name, exp_limit):
         temp_cr = []
         for i in range(len(df2['exp1'])):
             obs_idx2.append(df2.index[i])
-        print(len(df2['exp1']))
         for i in range(6):
             temp_hd.append('new_hdul'+str(i))
             temp_cr.append('new_crhdul'+str(i))
@@ -168,18 +175,11 @@ def manipulate(nova_name, exp_limit):
                         break
         # Sorting the temphd and tempcr lists by date observed
         for s in range(len(temp_hd)):
-            print(name[s], "\n")
             for l in range(len(temp_hd[s])):
                 temphd_sort[s].append(temp_hd[s][l].header['DATE-OBS'])
                 tempcr_sort[s].append(temp_cr[s][l].header['DATE-OBS'])
-            print("Before temphd_sort: ", temphd_sort[s])
-            print("Before tempcr_sort: ", tempcr_sort[s])
-            print(len(temphd_sort[s]))
             temphd_sort[s].sort()
             tempcr_sort[s].sort()
-            print("Sorted temphd_sort: ", temphd_sort[s])
-            print("Sorted tempcr_sort: ", tempcr_sort[s])
-            print(len(tempcr_sort[s]))
         for i in range(len(temphd_sort)):
             for j in range(len(temphd_sort[i])):
                 for k in range(len(temp_hd[i])):
@@ -200,19 +200,10 @@ def manipulate(nova_name, exp_limit):
                 pass
         print("Data Manipulation Ends")
 
-    # list of files in current directory
-    cur = os.getcwd()
-    filelist = os.listdir(cur)
-    for x in filelist:
-        # if x.endswith('.fits') or x.endswith('.gz'):
-        # Checking if the downloaded files of the supernova exist in the current directory
-        if '.fits' in x and nova_name in x:
-            exist = True
-        # Checking for any final data manipulation output files in the currect diectory
-        if x.endswith('.fits') and nova_name in x:
-            exist2 = True
 
+def del_download(nova_name):
     if (exist):
+        cur = os.getcwd()
         filelist = os.listdir(cur)
         for i in range(6):
             fits_file = "hlsp_sousa_swift_uvot_"+nova_name + \
@@ -221,9 +212,13 @@ def manipulate(nova_name, exp_limit):
                 os.remove(fits_file)
     else:
         print("Nothing to remove.")
+
+
+def move(nova_name):
     # Cleaning up directory by moving data manipulation files into count_rate and fits sub-directories if files exist.
     if (exist2):
         print("Moving into folders")
+        cur = os.getcwd()
         filelist = os.listdir(cur)
         folder1 = cur + "\\" + 'count_rate'
         folder2 = cur + "\\"+'fits'
@@ -248,7 +243,19 @@ def manipulate(nova_name, exp_limit):
         print("Nothing to move.")
 
 
-# Example Calls
-manipulate('sn2005cs', 0)
-# manipulate('sn2006x', 0)
-# manipulate('asassn-13co', 0)
+def main(n_name, exp_limit):
+    global exist, exist2
+    check_dir(n_name)
+    print(exist)
+    print(exist2)
+    download_file(n_name)
+    manipulate(n_name, exp_limit)
+    check_dir(n_name)
+    del_download(n_name)
+    move(n_name)
+
+
+if __name__ == "__main__":
+    main('sn2005cs', 0)
+    main('sn2006x', 0)
+    main('asassn-13co', 0)
