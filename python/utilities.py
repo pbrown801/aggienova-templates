@@ -21,6 +21,12 @@ def pivot_wavelength(Filter):
     return pivot_lambda
 
 
+def test_file(sn_name,):
+    with open('../input/'+ sn_name + '_test_array.csv', 'w', newline ='') as test:
+        #Writing the magarray and counts array
+        writer=csv.writer(test,delimiter=',')
+
+
 def csv_to_ascii(inFile,outFile):
     """
         Converts csv file to ascii file
