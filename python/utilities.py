@@ -1,5 +1,6 @@
 #total_counts Modules
 import matplotlib
+import time
 from matplotlib import pyplot as plt
 import numpy as np
 import csv
@@ -135,6 +136,8 @@ def total_counts(spectraFileName,filter_file_list):
         spectraWavelengths = np.array([])
         # All flux measurements
         flux = np.array([])
+        #initialization of dataframe
+        specframe = pd.DataFrame(columns=["measuredWavelengths", "spectraWavelengths", "flux"])
         spectraDelim = ""
         if spectraFileName.endswith(".csv"):
             spectraDelim = ","
@@ -151,6 +154,8 @@ def total_counts(spectraFileName,filter_file_list):
                     measuredWavelengths = np.append(measuredWavelengths, float(row[0]))
                     flux = np.append(flux, float(row[1]))
             flux = np.interp(spectraWavelengths, measuredWavelengths, flux)
+        specframe = pd.DataFrame(data = measuredWavelengths, columns = ["measuredWavelengths"])
+        print(specframe)
         #return (spectraWavelengths, flux)
 
         #PART #2: CLEAN FILTER
@@ -223,7 +228,7 @@ def total_counts(spectraFileName,filter_file_list):
 def calculate_counts(spectraWavelengths, flux, effectiveAreas):
     counts = 0
     # Calculate counts
-    toPhotonFlux = 5.03 * (10 ** 7)
+    toPhotonFlux = 50300000
     for i in range(0, len(spectraWavelengths) - 1):
         photonFlux = toPhotonFlux * ((flux[i] + flux[i + 1]) / 2) * (
                     (spectraWavelengths[i] + spectraWavelengths[i + 1]) / 2)
@@ -247,6 +252,7 @@ def clean_spectrum(spectraFileName):
         exit()
 
     # For wavelengths with a flux measurement
+    #specframe = pd.DataFrame(columns = ["measuredWavelengths", "spectraWavelengths", "flux"])
     measuredWavelengths = np.array([])
     # For all spectra wavelengths
     spectraWavelengths = np.array([])
@@ -265,11 +271,17 @@ def clean_spectrum(spectraFileName):
         for row in spectraReader:
             if row[0].startswith('#'):
                 continue
+            #specframe = specframe.append({"spectraWavelengths" : float(row[0])}, ignore_index = True)
             spectraWavelengths = np.append(spectraWavelengths, float(row[0]))
             if row[1] != "NaN" and float(row[1]) != 0:
+                #specframe = specframe.append({"measuredWavelengths" : float(row[0])}, ignore_index = True)
                 measuredWavelengths = np.append(measuredWavelengths, float(row[0]))
+                #specframe = specframe.append({"flux" : float(row[1])}, ignore_index = True)
                 flux = np.append(flux, float(row[1]))
+        #pd.concat(specframe)
+        #flux = specframe.interpolate(method = 'linear', limit_direction = 'forward')
         flux = np.interp(spectraWavelengths, measuredWavelengths, flux)
+    #return (specframe)
     return (spectraWavelengths, flux)
 
 #Process data from a filter and interpolated to spectraWavelengths
@@ -288,11 +300,11 @@ def clean_filter(filterFileName, spectraWavelengths):
     # Effective areas for filter wavelengths
     effectiveAreas = np.array([])
 
-    filterDelim = ""
-    if filterFileName.endswith(".csv"):
-        filterDelim = ","
-    else:
-        filterDelim = " "
+    # filterDelim = ""
+    # if filterFileName.endswith(".csv"):
+        # filterDelim = ","
+    # else:
+        # filterDelim = " "
 
     # Input and interpolate filter data
     with open(filterFileName, 'r') as csvfile:
