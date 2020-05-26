@@ -1,6 +1,7 @@
 import numpy as np
 import csv
 import math as math
+from utilities import *
 from scipy import interpolate
 import requests
 from contextlib import closing
@@ -16,7 +17,7 @@ program writes two csv files
 '''
 
 
-def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
+def observedmags_to_counts(sn_name, desired_filter_list, template_spectrum, interpFilter = "UVW1"):
     # Url of the csv file from the supernova catalog
     url = "https://api.sne.space/" + sn_name + "/photometry/time+magnitude+e_magnitude+upperlimit+band+instrument+telescope+source?format=csv&time&magnitude"
     data_list = []
@@ -32,7 +33,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
     print(df.head())
     '''
     '''
-            #row.split(',')
+            #row.split(',)
             #print(row)
 
     #Old Code
@@ -85,7 +86,8 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
         if filterFound[i]:
             observed_filter_list.append(desired_filter_list[i])
  
-    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(observed_filter_list)
+    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(observed_filter_list, template_spectrum)
+
 
     interpFirst = 1000000000000000
     interpLast = -1000000000000000
@@ -104,8 +106,18 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 interpTimes.append(time[i])
 
     # Uncomment following statements for print check
-    # print("Interptimes")
-    # print(interpTimes)
+    #print(interpTimes)
+    #print(time)
+
+    #Adding the variables
+    with open('../output/Test_A.csv', 'a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([2, "Time", time])
+        writer.writerow([3, "Mag", mag])
+        writer.writerow([4, "Emag", emag])
+        writer.writerow([5, "Band", band])
+        writer.writerow([6, "Interptimes", interpTimes])
+
 
     #contains counts directly from measured values
     counts_matrix = np.zeros((len(observed_filter_list),len(time)), dtype=object)
@@ -175,6 +187,7 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 line[2*j + 2] = emagMatrix[j][i]
             writer.writerow(line)
 
+
     with open('../input/'+ sn_name + '_countsarray.csv', 'w', newline ='') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
@@ -185,6 +198,16 @@ def observedmags_to_counts(sn_name, desired_filter_list, interpFilter = "UVW1"):
                 line[2*j+1] = interp_counts_matrix[j][i]
                 line[2*j+2] = interp_counterrs_matrix[j][i]
             writer.writerow(line)
+
+
+    return filter_file_list,zeropointlist,pivotlist
+
+    #with open('../input/' + sn_name + '_test_array.csv', 'w', newline='') as test:
+        # Writing the magarray and counts array
+    #    writer = csv.writer(test, delimiter=',')
+    #    writer.writerow([column_names])
+    #   for i in range(0,len(interpTimes)):
+    #)
 
 
 
