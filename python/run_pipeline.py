@@ -77,7 +77,7 @@ if __name__ == "__main__":
 
 
      #Function Call 1
-    observedmags_to_counts(sn_name,desired_filter_list)
+    observedmags_to_counts(sn_name,desired_filter_list, template_spectrum)
 
     inFile = '../input/'+sn_name+'_countsarray'+'.csv' #gets input count rates from existing file
 
@@ -92,7 +92,7 @@ if __name__ == "__main__":
     filters_from_csv = next(reader)[1::2]
 
     # Function Call 2
-    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(filters_from_csv)
+    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(filters_from_csv, template_spectrum)
 
     #Dropping file into output
     #'../output/' + sn_name +
@@ -159,7 +159,7 @@ if __name__ == "__main__":
 
         # Function Call 3
         #mangle the spectrum to match the given count rates
-        mangled_spec_wave, mangled_spec_flux = mangle_simple(template_spectrum, filter_file_list, zeropointlist,pivotlist, counts_in)
+        mangled_spec_wave, mangled_spec_flux = mangle_simple(spectraWavelengths, flux , filter_file_list, zeropointlist,pivotlist, counts_in,st)
 
         spec+=[mangled_spec_flux]
 
