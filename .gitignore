@@ -121,3 +121,7 @@ ENV/
 
 #fits files
 .fits
+
+#images
+count_rate/
+fits/

@@ -26,8 +26,6 @@ def check_dir(nova_name):
         # Checking for any final data manipulation output files in the currect diectory
         if x.endswith('.fits') and nova_name in x:
             exist2 = True
-    print(exist)
-    print(exist2)
 
 
 def download_file(nova_name):
@@ -131,9 +129,12 @@ def manipulate(nova_name, exp_limit):
                     dict2[str(t.round('min'))] = val
 
         # Creating the dataframe using dict2 that makes the date obs the index.
+        
         df2 = pd.DataFrame.from_dict(dict2, orient='index', columns=[
             'exp1', 'exp2', 'exp3', 'exp4', 'exp5', 'exp6']).sort_index(axis=0)
 
+        df2['Time'] = df2.index
+        df2.to_csv(nova_name+'_'+str(exp_limit)+'.csv', index=False)
         # Gets index from the data frame 2 and appends to an array.
         # Creates a list of fits.HDULists depending on the number of rows in df2. This is needed for the multi extension
         # fits image files.
@@ -246,8 +247,6 @@ def move(nova_name):
 def main(n_name, exp_limit):
     global exist, exist2
     check_dir(n_name)
-    print(exist)
-    print(exist2)
     download_file(n_name)
     manipulate(n_name, exp_limit)
     check_dir(n_name)
