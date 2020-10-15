@@ -125,3 +125,6 @@ ENV/
 #images
 count_rate/
 fits/
+
+#uvot
+uvot/animation_images

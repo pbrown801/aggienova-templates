@@ -6,7 +6,7 @@ from operator import itemgetter
 
 # snname = 'SN2005cs'
 snname = ''
-filename = snname + '.\\aggienova-templates\\images\\animation_images\\SN2005cs_uvotB15.1.dat'
+filename = snname + 'SN2005cs_uvotB15.1.dat'
 data = open(filename, 'r')
 
 for line in data:
@@ -23,7 +23,6 @@ start = 0
 count = 1
 filter1 ='UVW1'
 filter2 = 'UVW2'
-
 
 mjds = []
 for j in mjdsorted:
@@ -91,12 +90,16 @@ def colorseries(filter1, filter2):
 		del dates[:]
 	maga = np.asarray(mag1s)
 	magb = np.asarray(mag2s)
+	print(maga)
+	print(magb)
 	error1temps = np.asarray(error1temp)
 	error2temps = np.asarray(error2temp)
 	errors = np.sqrt(error1temps**2 + (error2temps)**2)	
 	color = maga-magb		
 	return color, mag1s, mag2s, errors
 colorseries, mag1, mag2, errorseries= colorseries(filter1,filter2)
+
+print(colorseries)
 
 def epochseries(unavg, checkfilter1, checkfilter2):
 	sum = 0
@@ -135,21 +138,22 @@ def epochseries(unavg, checkfilter1, checkfilter2):
 	return avgepoch
 timeseries = epochseries(mjdgrouped,filter1, filter2)
 
+# print(timeseries)
+# print(colorseries)
 
 
 
+# plt.ion()
+# plt.figure()
+# plt.plot(timeseries,colorseries, 'o', linestyle = 'None', c = 'r')
+# plt.errorbar(timeseries, colorseries, yerr = errorseries, c='r', fmt='o')
+# plt.xlabel('MJD')
+# ylabel = filter1 + '-'+filter2
+# plt.ylabel(ylabel)
+# plt.title(snname)
+# plt.gca().get_xaxis().get_major_formatter().set_useOffset(False)
 
-plt.ion()
-plt.figure()
-plt.plot(timeseries,colorseries, 'o', linestyle = 'None', c = 'r')
-plt.errorbar(timeseries, colorseries, yerr = errorseries, c='r', fmt='o')
-plt.xlabel('MJD')
-ylabel = filter1 + '-'+filter2
-plt.ylabel(ylabel)
-plt.title(snname)
-plt.gca().get_xaxis().get_major_formatter().set_useOffset(False)
-
-plt.show()
+# plt.show()
 
 
 
