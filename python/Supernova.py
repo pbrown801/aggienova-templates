@@ -27,7 +27,7 @@ class Supernova():
 		self.desired_filter_list = available_filters
 
 	def getCountRates(self, template):
-
+		pass
 
 	def isDataLocal(self, magnitudes):
 		supernova_data = pd.read_csv(self.supernova_data_path, header=None, delimiter=',')

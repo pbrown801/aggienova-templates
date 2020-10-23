@@ -74,7 +74,7 @@ def uvot(sn_name, avg_time):
     df, cols=read_data(sn_name)
     combined_data, counts_array=manipulate(df, cols, avg_time)
     # print(counts_array)
-    counts_array.to_csv('../input/'+sn_name+'_uvot_countsarray'+'.csv')
+    counts_array.to_csv('../input/'+sn_name+'_uvot_countsarray'+'.csv', index=False)
     return combined_data
 
 # if __name__ == "__main__":
