@@ -1,5 +1,7 @@
 # this is what Peter can run and get a count rate plot and a 3d plot
+# Command to run without Uvot:
 # python3 run_pipeline.py SN2007af SN2017erp_m1_UVopt.dat y
+# Command to run Uvot:
 # python3 run_pipeline.py SN2005cs  SN2006bp_uvmodel.dat y y
 
 #  take an input spectrum
