@@ -19,16 +19,17 @@ def read_data(snname):
     for i in columns[1:]:
         df[i]=pd.to_numeric(df[i], errors='coerce')
     # return columns that are needed for script
-    return df[['Filter', 'MJD[days]', 'Rate[c/s]',  'RateErr[c/s]']], ['Filter', 'MJD[days]', 'Rate[c/s]',  'RateErr[c/s]']
+    return df[['Filter', 'MJD[days]', 'Mag', 'MagErr', 'Rate[c/s]',  'RateErr[c/s]']], ['Filter', 'MJD[days]', 'Mag', 'MagErr', 'Rate[c/s]',  'RateErr[c/s]']
 
 # Manipulates the input dataframe to combine each of the 6 bands with common times
 def manipulate(snname_df, cols, avg):
     MJD = []
-    MAG = []
-    combined_lists=[]
     df_groups = []
     combined_groups = []
+    counts_combined_lists=[]
+    mags_combined_lists=[]
     cols_counts_array = ['Time (MJD)']
+
     # Split into groups by filter
     snname_df=snname_df.groupby(['Filter'])
     filters = [f for f in snname_df.groups]
@@ -42,6 +43,15 @@ def manipulate(snname_df, cols, avg):
     # Creates a 3d list of each group of band with its own row of data values from the input data
     for df in groups:
         df_groups.append(df.values.tolist())
+
+    # Get index of each column
+    filter_idx=groups[0].columns.get_loc('MJD[days]')
+    MJD_idx=groups[0].columns.get_loc('MJD[days]')
+    count_rate_idx=groups[0].columns.get_loc('Rate[c/s]')
+    count_rate_err_idx=groups[0].columns.get_loc('RateErr[c/s]')
+    mag_idx=groups[0].columns.get_loc('Mag')
+    mag_err_idx=groups[0].columns.get_loc('MagErr')
+    print(groups[0].columns)
     # Combine each of the same indexed lines in each group so that we have the similar timed row data from each band group in a list
     for i in range(len(df_groups[0])):
         temp_combined = []
@@ -51,31 +61,50 @@ def manipulate(snname_df, cols, avg):
         df2=pd.DataFrame(temp_combined, columns=cols)
         MJD.append(np.average(df2['MJD[days]'])) 
         combined_groups.append(temp_combined)
+    # print(combined_groups)
     if (avg.upper() == 'Y'): # Change all the similar times for each row to a average time
         counts_array_list = []
+        mags_array_list = []
         for i in range(len(combined_groups)):
             counts_array_list_temp = []
+            mags_array_list_temp = []
             for j in range(len(combined_groups[i])):
                 combined_groups[i][j][1]=MJD[i]
                 # Create dataframe like countsarray file output from observedmagstocounts.py
                 if j==0:
-                    counts_array_list_temp.append(combined_groups[i][j][1])
-                counts_array_list_temp.append(combined_groups[i][j][2])
-                counts_array_list_temp.append(combined_groups[i][j][3])
+                    counts_array_list_temp.append(combined_groups[i][j][MJD_idx])
+                    mags_array_list_temp.append(combined_groups[i][j][MJD_idx])
+                mags_array_list_temp.append(combined_groups[i][j][mag_idx])
+                mags_array_list_temp.append(combined_groups[i][j][mag_err_idx])
+                counts_array_list_temp.append(combined_groups[i][j][count_rate_idx])
+                counts_array_list_temp.append(combined_groups[i][j][count_rate_err_idx])
             counts_array_list.append(counts_array_list_temp)
+            mags_array_list.append(mags_array_list_temp)
+
     counts_array = pd.DataFrame(counts_array_list, columns = cols_counts_array)
+    mags_array = pd.DataFrame(mags_array_list, columns = cols_counts_array)
+
     # Combine all the different timed data for each band into a list
     for lists in combined_groups:
-        combined_lists.append(lists)
-    return combined_lists, counts_array
+        temp_lists_counts = []
+        temp_lists_mags = []
+        for l in lists:
+            band= l[filter_idx]
+            time = l[MJD_idx]
+            mag=l.pop(mag_idx)
+            mag_err=l.pop(mag_err_idx-1)
+            temp_lists_mags.append([band, time, mag, mag_err])
+            temp_lists_counts.append(l)
+        counts_combined_lists.append(temp_lists_counts)
+        mags_combined_lists.append(temp_lists_mags)
+    return counts_combined_lists, counts_array, mags_combined_lists, mags_array
     
 
 def uvot(sn_name, avg_time):
     df, cols=read_data(sn_name)
-    combined_data, counts_array=manipulate(df, cols, avg_time)
-    # print(counts_array)
+    counts_combined_lists, counts_array, mags_combined_lists, mags_array=manipulate(df, cols, avg_time)
     counts_array.to_csv('../input/'+sn_name+'_uvot_countsarray'+'.csv', index=False)
-    return combined_data
+    return mags_array
 
-# if __name__ == "__main__":
-#     uvot('SN2005cs', 'y')
+if __name__ == "__main__":
+    uvot('SN2005cs', 'y')
