@@ -51,7 +51,6 @@ def manipulate(snname_df, cols, avg):
     count_rate_err_idx=groups[0].columns.get_loc('RateErr[c/s]')
     mag_idx=groups[0].columns.get_loc('Mag')
     mag_err_idx=groups[0].columns.get_loc('MagErr')
-    print(groups[0].columns)
     # Combine each of the same indexed lines in each group so that we have the similar timed row data from each band group in a list
     for i in range(len(df_groups[0])):
         temp_combined = []
