@@ -1,6 +1,6 @@
 # imports
 import matplotlib.pyplot as plt
-# import pandas as pd
+import pandas as pd
 # import csv
 # import math
 from pathlib import Path
@@ -32,9 +32,27 @@ ax3 = fig.add_subplot(gs[-1, 2])
 
 ax1.invert_yaxis()
 ax2.invert_yaxis()
+plots = "SN2005cs"
 
+# ------------------------ FIRST PLOT = FLux vs Wavelength ------------------------ 
+df1= pd.read_csv(os.path.join('..','output', 'SN2005cstemplate.csv'), header=0)
+time_df = df1.groupby(['MJD'])
+groups=[time_df.get_group(x).sort_values(by=('MJD')) for x in time_df.groups]
 
+times_plots=[]
+for i in range(len(groups)):
+        time_var='time'+str(i)
+        time_var,=ax1.plot([],[], 'o',  markersize=1)
+        times_plots.append(time_var)
 
+# Initialize the first plot to the first time mjd flux vs wavelength
+ax1.plot(groups[0]['Wavelength'],groups[0]['Flux'], 'o',   markersize=1)
+
+# Plot Settings
+ax1.set_xlabel('Wavelength (angstroms)')
+ax1.set_ylabel('log(flux)+constant')
+ax1.set_title('Flux vs Wavelength')
+# ------------------------ FIRST PLOT END ------------------------ 
 
 # ------------------------ SECOND PLOT = Magnitude vs Time (MJD) Plot ------------------------ 
 # Get data from uvot function that returns the manipulated combined data from the original .dat file 
@@ -72,8 +90,7 @@ ax2.plot(time_extrap, u_extrap, label="U")
 ax2.plot(time_extrap, uvw1_extrap, label="UVW1")
 # ax2.plot(time_extrap, uvw2_extrap, label="UVW2")
 ax2.plot(time_extrap, v_extrap, label="V")
-ax2.set_xlabel('Time (MJD)')
-ax2.set_ylabel('Magnitude')
+
 # Used to update the points ontop of the magnitude vs time plot
 B_plot,=ax2.plot([], [], 'ko', markersize=5)
 U_plot,=ax2.plot([], [], 'ko', markersize=5)
@@ -82,7 +99,14 @@ UVW1_plot,=ax2.plot([], [], 'ko', markersize=5)
 UVW2_plot,=ax2.plot([], [], 'ko', markersize=5)
 V_plot,=ax2.plot([], [], 'ko', markersize=5)
 
-
+# Plot Settings
+ax2.set_xlabel('Time (MJD)')
+ax2.set_ylabel('Magnitude')
+ax2.set_title('Magnitude vs Time')
+# Get the labels for the plot legend 
+handles,labels=ax2.get_legend_handles_labels()
+# Add the legend to plot 2 outside of the plot area
+ax2.legend(handles, labels,bbox_to_anchor=(1.01, 1), loc='upper left', borderaxespad=0.)
 # ------------------------ SECOND PLOT END ------------------------ 
 
 # ------------------------ THIRD PLOT = Image ------------------------ 
@@ -96,34 +120,37 @@ ax3.set_title(str(files_png[0][:-4]))
 plot_img = mpimg.imread(os.path.join('..','uvot','animation_images', files_png[0])) 
 show_img=ax3.imshow(plot_img)
 # ------------------------ THIRD PLOT END ------------------------ 
-def animation(fig, ax1, ax2, ax3):
+def animation(fig, ax1, ax2, ax3, times_plots):
 
     def update(i):
         if i==7:
             time.sleep(3)
         else:
-            # ----- Update the ax2 plot with the points based on the time(MJD) -----
+                # ----- Update the ax1 plot with the flux vs wavelength for each time mjd -----
+                # Clear the plot flux vs wavelength
+                if i ==0:
+                        for idx in range(len(times_plots)):
+                                times_plots[idx].set_data([], [])  
+                for idx in range(i+1):
+                        times_plots[idx].set_data(groups[idx]['Wavelength'], groups[idx]['Flux'])
+                # ----- Update the ax2 plot with the points based on the time(MJD) -----
 
-            B_plot.set_data(df['Time (MJD)'][0:(i+1)], df['B'][0:(i+1)])
-            U_plot.set_data(df['Time (MJD)'][0:(i+1)], df['U'][0:(i+1)])
-            # UVM2_plot.set_data(df['Time (MJD)'][0:(i+1)], df['UVM2'][0:(i+1)])
-            UVW1_plot.set_data(df['Time (MJD)'][0:(i+1)], df['UVW1'][0:(i+1)])
-            # UVW2_plot.set_data(df['Time (MJD)'][0:(i+1)], df['UVW2'][0:(i+1)])
-            V_plot.set_data(df['Time (MJD)'][0:(i+1)], df['V'][0:(i+1)]) 
+                B_plot.set_data(df['Time (MJD)'][0:(i+1)], df['B'][0:(i+1)])
+                U_plot.set_data(df['Time (MJD)'][0:(i+1)], df['U'][0:(i+1)])
+                # UVM2_plot.set_data(df['Time (MJD)'][0:(i+1)], df['UVM2'][0:(i+1)])
+                UVW1_plot.set_data(df['Time (MJD)'][0:(i+1)], df['UVW1'][0:(i+1)])
+                # UVW2_plot.set_data(df['Time (MJD)'][0:(i+1)], df['UVW2'][0:(i+1)])
+                V_plot.set_data(df['Time (MJD)'][0:(i+1)], df['V'][0:(i+1)]) 
 
-            # ------ Update the ax3 plot with the image corresponding to each MJD -----
-            ax3.set_title(str(files_png[i]))
-            plot_img = mpimg.imread(os.path.join('..','uvot','animation_images', files_png[i])) 
-            show_img.set_data(plot_img)
+                # ------ Update the ax3 plot with the image corresponding to each MJD -----
+                ax3.set_title(str(files_png[i]))
+                plot_img = mpimg.imread(os.path.join('..','uvot','animation_images', files_png[i])) 
+                show_img.set_data(plot_img)
 
-    return FuncAnimation(fig, update, frames=np.arange(0,8), interval=500, repeat=True)
+    return FuncAnimation(fig, update, frames=np.arange(0,8), interval=1000, repeat=True)
 
 def main():
-    anim=animation(fig,ax1, ax2, ax3)
-    # Get the labels for the plot legend 
-    handles,labels=ax2.get_legend_handles_labels()
-    # Add the legend to plot 2 outside of the plot area
-    ax2.legend(handles, labels,bbox_to_anchor=(1.01, 1), loc='upper left', borderaxespad=0.)
+    anim=animation(fig,ax1, ax2, ax3, times_plots)
     plt.show()
 
 
