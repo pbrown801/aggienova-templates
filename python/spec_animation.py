@@ -1,177 +1,156 @@
+# imports
 import matplotlib.pyplot as plt
-import scipy.interpolate as interp
 import pandas as pd
-import csv
-import math
+# import csv
+# import math
 from pathlib import Path
 import numpy as np
 from matplotlib.animation import FuncAnimation
 import matplotlib.gridspec as gridspec
 import os
 import time
-import statistics as s
+# import statistics as s
 from manipulate_readinuvot import uvot
 import scipy 
+from scipy.interpolate import interp1d
 import matplotlib.image as mpimg
 
-plotAvgs = []
-plots = "SN2005cs"
-spread=3
-# Open data file
-row_count = 0
-try:
-    file = open('../output/' + plots + 'template.csv').readlines()
-    row_count = sum(1 for r in file)
-    #print('Rows = ' + str(row_count))
-except OSError as err:
-    print("Could not find template for supernova " + plots + ": {0}".format(err))
-    exit
-
-# Read in output data
-wave = []
-log_fluxTot = [] # Sums of log(flux) vals for each given wave
-log_fluxCount = [] # Count of total times a wave's flux val has been added to Tot
-log_fluxAvg = [] # Avg of all given flux vals for each given wave
-for row in range(1, row_count):
-    r = file[row].split(',')
-    if(float(r[2]) > 0):
-        #print('Adding ' + r[1] + ', ' + str(math.log(float(r[2]), 10)))
-        if(not float(r[1]) in wave):
-            wave.append(int(r[1]))
-            log_fluxTot.append( math.log(float(r[2]), 10) )
-            log_fluxCount.append(1)
-        else:
-            waveInd = wave.index(int(r[1]))
-            log_fluxTot[waveInd] += math.log(float(r[2]), 10)
-            log_fluxCount[waveInd] += 1
-
-# Compute avg. flux values and find avg total value for 'centering'
-plot_sum = 0
-for i in range(len(wave)):
-    log_fluxAvg.append( log_fluxTot[i] / log_fluxCount[i] )
-    plot_sum += log_fluxAvg[i]
-
-# Save the avg log(flux) to center line around
-plotAvgs.append(plot_sum / len(wave))
-#print("Avg for supernova " + plots[p] + " = " + str(plotAvgs[p]))
-
-# Constant value to add to cur plot for spreading (each should be centered around multiples of 3)
-c = spread*(1) - plotAvgs[0]
-
-# Add c to plot
-for i in range(len(wave)):
-    log_fluxAvg[i] += c
-
-# print(s.mean(log_fluxAvg))
-# print(uvot(plots, 'y'))
-df = uvot(plots, 'y')
-print(df['Time (MJD)'])
-
-gs = gridspec.GridSpec(2, 3)
-
-fig = plt.figure()
+# Global plot variables 
+# Define the gridspec which is 2 rows by 3 columns and the figure for the matplotlib plot
+gs = gridspec.GridSpec(nrows=2, ncols=7)
+fig = plt.figure(figsize=(10,5))
 fig.set_tight_layout(True)
 
-# ---------------------------------------------------------- ax1 plot ---------------------------------------------------------
 
-ax1 = fig.add_subplot(gs[-1, :-1]) 
-f_b= scipy.interpolate.interp1d(
-        df['Time (MJD)'], df['B'], kind='cubic', fill_value="extrapolate")
-f_u= scipy.interpolate.interp1d(
-        df['Time (MJD)'], df['U'], kind='cubic', fill_value="extrapolate")
-f_uvm2= scipy.interpolate.interp1d(
-        df['Time (MJD)'], df['UVM2'], kind='cubic', fill_value="extrapolate")
-f_uvw1= scipy.interpolate.interp1d(
-        df['Time (MJD)'], df['UVW1'], kind='cubic', fill_value="extrapolate")
-f_uvw2= scipy.interpolate.interp1d(
-        df['Time (MJD)'], df['UVW2'], kind='cubic', fill_value="extrapolate")
-f_v= scipy.interpolate.interp1d(
-        df['Time (MJD)'], df['V'], kind='cubic', fill_value="extrapolate")
-time_extrap = [i for i in np.arange(df['Time (MJD)'][0], df['Time (MJD)'].iloc[-1]+.5, ((df['Time (MJD)'].iloc[-1]+.5)-(df['Time (MJD)'][0]))/380)]
+# Set the three different plots to the specific locations in the gridspec
+# First Plot - First Row, All Columns
+ax1 = fig.add_subplot(gs[0, :4])
+# Second Plot - Last row, ALl available columns
+ax2 = fig.add_subplot(gs[-1, :4]) 
+# Third Plot - Last Row, 3rd column 
+ax3 = fig.add_subplot(gs[0:, 4:]) 
+
+ax1.invert_yaxis()
+ax2.invert_yaxis()
+plots = "SN2005cs"
+
+# ------------------------ FIRST PLOT = FLux vs Wavelength ------------------------ 
+df1= pd.read_csv(os.path.join('..','output', 'SN2005cstemplate.csv'), header=0)
+time_df = df1.groupby(['MJD'])
+groups=[time_df.get_group(x).sort_values(by=('MJD')) for x in time_df.groups]
+
+times_plots=[]
+for i in range(len(groups)):
+        time_var='time'+str(i)
+        time_var,=ax1.plot([],[], 'o',  markersize=1)
+        times_plots.append(time_var)
+
+# Initialize the first plot to the first time mjd flux vs wavelength
+ax1.plot(groups[0]['Wavelength'],groups[0]['Flux'], 'o',   markersize=1)
+
+# Plot Settings
+ax1.set_xlabel('Wavelength (angstroms)')
+ax1.set_ylabel('log(flux)+constant')
+ax1.set_title('Flux vs Wavelength')
+# ------------------------ FIRST PLOT END ------------------------ 
+
+# ------------------------ SECOND PLOT = Magnitude vs Time (MJD) Plot ------------------------ 
+# Get data from uvot function that returns the manipulated combined data from the original .dat file 
+# The combined data is simply each row is the appropriate time the data was measured and the associated band magnitude measurements
+plots = "SN2005cs"
+df = uvot(plots, 'y') 
+
+f_b= interp1d(
+        df['Time (MJD)'], df['B'], kind='cubic')
+f_u= interp1d(
+        df['Time (MJD)'], df['U'], kind='cubic')
+f_uvm2= interp1d(
+        df['Time (MJD)'], df['UVM2'], kind='cubic')
+f_uvw1= interp1d(
+        df['Time (MJD)'], df['UVW1'], kind='cubic')
+f_uvw2= interp1d(
+        df['Time (MJD)'], df['UVW2'], kind='cubic')
+f_v= interp1d(
+        df['Time (MJD)'], df['V'], kind='cubic')
+
+time_extrap = np.linspace(df['Time (MJD)'][0], df['Time (MJD)'].iloc[-1], num=1000, endpoint=True)       
 b_extrap = f_b(time_extrap)
 u_extrap = f_u(time_extrap)
-uvm2_extrap = f_uvm2(time_extrap)
+# uvm2_extrap = f_uvm2(time_extrap) # Has NaN values so cannot interpolate
 uvw1_extrap = f_uvw1(time_extrap)
-uvw2_extrap = f_uvw2(time_extrap)
+# uvw2_extrap = f_uvw2(time_extrap) # Has Nan Values so cannot interpolate
 v_extrap = f_v(time_extrap)
 
-b_plot,=ax1.plot([], [])
-u_plot,=ax1.plot([], [])
-uvm2_plot,=ax1.plot([], [])
-uvw1_plot,=ax1.plot([], [])
-uvw2_plot,=ax1.plot([], [])
-v_plot,=ax1.plot([], [])
-ax1.plot(time_extrap, b_extrap)
-ax1.plot(time_extrap, u_extrap)
-ax1.plot(time_extrap, uvm2_extrap)
-ax1.plot(time_extrap, uvw1_extrap)
-ax1.plot(time_extrap, uvw2_extrap)
-ax1.plot(time_extrap, v_extrap)
+ax2.plot(time_extrap, b_extrap, label="B")
+ax2.plot(time_extrap, u_extrap, label="U")
+# ax2.plot(time_extrap, uvm2_extrap, label="UVM2")
+ax2.plot(time_extrap, uvw1_extrap, label="UVW1")
+# ax2.plot(time_extrap, uvw2_extrap, label="UVW2")
+ax2.plot(time_extrap, v_extrap, label="V")
 
-min_ = min(min(b_extrap), min(u_extrap), min(uvm2_extrap), min(uvw1_extrap), min(uvw2_extrap), min(v_extrap))
-max_ = max(max(b_extrap), max(u_extrap), max(uvm2_extrap), max(uvw1_extrap), max(uvw2_extrap), max(v_extrap))
-# ---------------------------------------------------------- ax2 plot ----------------------------------------------------------
-ax2 = fig.add_subplot(gs[-1, 2]) 
-ax2.plot([0,1])
-# mpimg image
-ax2.set_xticks([])
-ax2.set_yticks([])
+# Used to update the points ontop of the magnitude vs time plot
+B_plot,=ax2.plot([], [], 'ko', markersize=5)
+U_plot,=ax2.plot([], [], 'ko', markersize=5)
+UVM2_plot,=ax2.plot([], [], 'ko', markersize=5)
+UVW1_plot,=ax2.plot([], [], 'ko', markersize=5)
+UVW2_plot,=ax2.plot([], [], 'ko', markersize=5)
+V_plot,=ax2.plot([], [], 'ko', markersize=5)
+
+# Plot Settings
+ax2.set_xlabel('Time (MJD)')
+ax2.set_ylabel('Magnitude')
+ax2.set_title('Magnitude vs Time')
+# Get the labels for the plot legend 
+handles,labels=ax2.get_legend_handles_labels()
+# Add the legend to plot 2 outside of the plot area
+ax2.legend(handles, labels,bbox_to_anchor=(1.01, 1), loc='upper left', borderaxespad=0.)
+# ------------------------ SECOND PLOT END ------------------------ 
+
+# ------------------------ THIRD PLOT = Image ------------------------ 
+ax3.set_xticks([])
+ax3.set_yticks([])
 files=os.listdir(os.path.join('..','uvot','animation_images'))
 files_png = [f for f in files if (f.endswith('.png') and f.startswith("SN2005cs"))]
-imgs_dict={}
-change_idx = []
-for idx,t in enumerate(df['Time (MJD)']):
-    change_idx=list(filter(lambda i: i >= t, time_extrap))[0]
-    # print(change_idx)
-    imgs_dict[time_extrap.index(change_idx)]=files_png[idx]
 
-
-
-ax2.set_title("Image: "+str(files_png[0]))
+# Initialize the plot to the first image in the beginning
+ax3.set_title(str(files_png[0][:-4]))
 plot_img = mpimg.imread(os.path.join('..','uvot','animation_images', files_png[0])) 
-show_img=ax2.imshow(plot_img)
+show_img=ax3.imshow(plot_img)
+# ------------------------ THIRD PLOT END ------------------------ 
+def animation(fig, ax1, ax2, ax3, times_plots):
+
+    def update(i):
+        if i==7:
+            time.sleep(3)
+        else:
+                # ----- Update the ax1 plot with the flux vs wavelength for each time mjd -----
+                # Clear the plot flux vs wavelength
+                if i ==0:
+                        for idx in range(len(times_plots)):
+                                times_plots[idx].set_data([], [])  
+                for idx in range(i+1):
+                        times_plots[idx].set_data(groups[idx]['Wavelength'], groups[idx]['Flux'])
+                # ----- Update the ax2 plot with the points based on the time(MJD) -----
+
+                B_plot.set_data(df['Time (MJD)'][0:(i+1)], df['B'][0:(i+1)])
+                U_plot.set_data(df['Time (MJD)'][0:(i+1)], df['U'][0:(i+1)])
+                # UVM2_plot.set_data(df['Time (MJD)'][0:(i+1)], df['UVM2'][0:(i+1)])
+                UVW1_plot.set_data(df['Time (MJD)'][0:(i+1)], df['UVW1'][0:(i+1)])
+                # UVW2_plot.set_data(df['Time (MJD)'][0:(i+1)], df['UVW2'][0:(i+1)])
+                V_plot.set_data(df['Time (MJD)'][0:(i+1)], df['V'][0:(i+1)]) 
+
+                # ------ Update the ax3 plot with the image corresponding to each MJD -----
+                ax3.set_title(str(files_png[i]))
+                plot_img = mpimg.imread(os.path.join('..','uvot','animation_images', files_png[i])) 
+                show_img.set_data(plot_img)
+
+    return FuncAnimation(fig, update, frames=np.arange(0,8), interval=1000, repeat=True)
+
+def main():
+    anim=animation(fig,ax1, ax2, ax3, times_plots)
+    plt.show()
 
 
-# ---------------------------------------------------------- ax3 plot ----------------------------------------------------------
-ax3 = fig.add_subplot(gs[0, :])
-ax3.set_xlabel('Wavelength (angstroms)')
-ax3.set_ylabel('log(flux)+constant')
-wave_flux,=ax3.plot([],[])
 
-def init():
-    ax1.set_xlim(df['Time (MJD)'][0]-1-((time_extrap[-1]-time_extrap[0])/20), time_extrap[-1]+1+((time_extrap[-1]-time_extrap[0])/20))
-    ax1.set_ylim(min_-(max_-min_)/20,max_+(max_-min_)/20)
-    ax3.set_xlim(wave[0]-((wave[-1]-wave[0])/20), wave[-1]+((wave[-1]-wave[0])/20))
-    ax3.set_ylim(log_fluxAvg[0]-((log_fluxAvg[-1]-log_fluxAvg[0])/20), log_fluxAvg[-1]+((log_fluxAvg[-1]-log_fluxAvg[0])/20))
-    ax3.invert_yaxis()
-    ax1.invert_yaxis()
-    return wave_flux,
-
-
-def update(i):
-    wave_flux.set_data(wave[0:i],log_fluxAvg[0:i])
-    # ax2.set_title("Image: "+str(files_png[i]))
-    # plot_img = mpimg.imread(os.path.join('animation_images', files_png[i])) 
-    # show_img.set_data(plot_img)
-    # b_plot.set_data(time_extrap[0:i],b_extrap[0:i])
-    # u_plot.set_data(time_extrap[0:i],u_extrap[0:i])
-    # uvm2_plot.set_data(time_extrap[0:i],uvm2_extrap[0:i])
-    # uvw1_plot.set_data(time_extrap[0:i],uvw1_extrap[0:i])
-    # uvw2_plot.set_data(time_extrap[0:i],uvw2_extrap[0:i])
-    # v_plot.set_data(time_extrap[0:i],v_extrap[0:i])
-
-
-
-    if i in imgs_dict.keys():
-        ax1.plot(time_extrap[i], b_extrap[i], 'o')
-        ax1.plot(time_extrap[i], u_extrap[i], 'o')
-        ax1.plot(time_extrap[i], uvm2_extrap[i], 'o')
-        ax1.plot(time_extrap[i], uvw1_extrap[i], 'o')
-        ax1.plot(time_extrap[i], uvw2_extrap[i], 'o')
-        ax1.plot(time_extrap[i], v_extrap[i], 'o')
-        ax2.set_title("Image: "+str(imgs_dict[i]))
-        plot_img = mpimg.imread(os.path.join('..','uvot','animation_images', imgs_dict[i])) 
-        show_img.set_data(plot_img)
-
-anim = FuncAnimation(fig, update, frames=np.arange(0,379), init_func=init, interval=5, repeat=False)
-plt.show()
+if __name__ == "__main__":
+    main()
