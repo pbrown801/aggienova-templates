@@ -18,7 +18,6 @@ gs = gridspec.GridSpec(nrows=2, ncols=7)
 fig = plt.figure(figsize=(10,5))
 fig.set_tight_layout(True)
 
-
 # Set the three different plots to the specific locations in the gridspec
 # First Plot - First Row, All Columns
 ax1 = fig.add_subplot(gs[0, :4])
@@ -32,10 +31,12 @@ ax2.invert_yaxis()
 plots = "SN2005cs"
 
 # ------------------------ FIRST PLOT = FLux vs Wavelength ------------------------ 
-df1= pd.read_csv(os.path.join('..','output', 'SN2005cstemplate.csv'), header=0)
+# Get data and group by the different times
+df1= pd.read_csv(os.path.join('..','output', plots+'template.csv'), header=0)
 time_df = df1.groupby(['MJD'])
 groups=[time_df.get_group(x).sort_values(by=('MJD')) for x in time_df.groups]
 
+# Plot empty plots for each time that will be used by funcAnimation and set_data function to plot the data at certain frames
 times_plots=[]
 for i in range(len(groups)):
         time_var='time'+str(i)
@@ -57,41 +58,35 @@ ax1.set_title('Flux vs Wavelength')
 plots = "SN2005cs"
 df = uvot(plots, 'y') 
 
-f_b= interp1d(
-        df['Time (MJD)'], df['B'], kind='cubic')
-f_u= interp1d(
-        df['Time (MJD)'], df['U'], kind='cubic')
-f_uvm2= interp1d(
-        df['Time (MJD)'], df['UVM2'], kind='cubic')
-f_uvw1= interp1d(
-        df['Time (MJD)'], df['UVW1'], kind='cubic')
-f_uvw2= interp1d(
-        df['Time (MJD)'], df['UVW2'], kind='cubic')
-f_v= interp1d(
-        df['Time (MJD)'], df['V'], kind='cubic')
+# Interpolate linearly for the missing NaN values in the each band that has Nan values. We do not do it for band error measurements
+filter_bands = list(filter(lambda i: ('Time' not in i and 'err' not in i),list(df.columns)))
+for band in filter_bands:
+    nan_idx =list(df[band].index[df[band].apply(np.isnan)])
+    if len(nan_idx)!=0:
+        val_idx = [df[band][i] for i in range(len(df[band])) if i not in nan_idx]
+        replace_nan_idx_times = [df['Time (MJD)'][i] for i in range(len(df[band])) if i in nan_idx]
+        df_temp = df[df[band].isin(val_idx)] 
+        nan_interp_func = interp1d(df_temp['Time (MJD)'], df_temp[band], kind='linear', fill_value='extrapolate')
+        for idx,i in enumerate(nan_idx):
+            df[band][i] = nan_interp_func(replace_nan_idx_times[idx])
 
-time_extrap = np.linspace(df['Time (MJD)'][0], df['Time (MJD)'].iloc[-1], num=1000, endpoint=True)       
-b_extrap = f_b(time_extrap)
-u_extrap = f_u(time_extrap)
-# uvm2_extrap = f_uvm2(time_extrap) # Has NaN values so cannot interpolate
-uvw1_extrap = f_uvw1(time_extrap)
-# uvw2_extrap = f_uvw2(time_extrap) # Has Nan Values so cannot interpolate
-v_extrap = f_v(time_extrap)
+# Create the time interpolation function for each band
+interp_func_templates = [interp1d(df['Time (MJD)'], df[band], kind='cubic') for band in filter_bands]
+# Get a 1000 time points between the start and end times
+time_extrap = np.linspace(df['Time (MJD)'][0], df['Time (MJD)'].iloc[-1], num=1000, endpoint=True) 
+# Interpolate magnitude for each band  for each of the 1000 time points
+interp_funcs = [i(time_extrap) for i in interp_func_templates]     
 
-ax2.plot(time_extrap, b_extrap, label="B")
-ax2.plot(time_extrap, u_extrap, label="U")
-# ax2.plot(time_extrap, uvm2_extrap, label="UVM2")
-ax2.plot(time_extrap, uvw1_extrap, label="UVW1")
-# ax2.plot(time_extrap, uvw2_extrap, label="UVW2")
-ax2.plot(time_extrap, v_extrap, label="V")
+# Plot the interpolated plots that are smooth because of high enumeration of values inbetween the times given
+for idx,func in enumerate(interp_funcs):
+    ax2.plot(time_extrap,func, label=filter_bands[idx])
 
-# Used to update the points ontop of the magnitude vs time plot
-B_plot,=ax2.plot([], [], 'ko', markersize=5)
-U_plot,=ax2.plot([], [], 'ko', markersize=5)
-UVM2_plot,=ax2.plot([], [], 'ko', markersize=5)
-UVW1_plot,=ax2.plot([], [], 'ko', markersize=5)
-UVW2_plot,=ax2.plot([], [], 'ko', markersize=5)
-V_plot,=ax2.plot([], [], 'ko', markersize=5)
+# Used to update the points given to us in original data on top of the magnitude vs time plot
+bands_plots=[]
+for bands in filter_bands:
+    bands_var = bands + '_plot'
+    bands_var,=ax2.plot([],[], 'ko',  markersize=3)
+    bands_plots.append(bands_var)
 
 # Plot Settings
 ax2.set_xlabel('Time (MJD)')
@@ -114,39 +109,37 @@ ax3.set_title(str(files_png[0][:-4]))
 plot_img = mpimg.imread(os.path.join('..','uvot','animation_images', files_png[0])) 
 show_img=ax3.imshow(plot_img)
 # ------------------------ THIRD PLOT END ------------------------ 
+
+# ------------------------ Animation Function --------------------
 def animation(fig, ax1, ax2, ax3, times_plots):
 
     def update(i):
         if i==7:
-            time.sleep(3)
+            time.sleep(1.75)
         else:
-                # ----- Update the ax1 plot with the flux vs wavelength for each time mjd -----
+                # --------- Update the ax1 plot with the flux vs wavelength for each time mjd ---------
                 # Clear the plot flux vs wavelength
                 if i ==0:
                         for idx in range(len(times_plots)):
                                 times_plots[idx].set_data([], [])  
+                # Plot the FLux and wavelength values up to the ith time. This is so that it appears as if we are adding on top of the previous plot.
                 for idx in range(i+1):
                         times_plots[idx].set_data(groups[idx]['Wavelength'], groups[idx]['Flux'])
-                # ----- Update the ax2 plot with the points based on the time(MJD) -----
+                # --------- Update the ax2 plot with the points based on the time(MJD) ---------
+                # Plot the original points up to the ith time based on the frame so that it appears as if we are adding one more plot of points each time.
+                for idx,plot in enumerate(bands_plots):
+                    plot.set_data(df['Time (MJD)'][0:(i+1)], df[filter_bands[idx]][0:(i+1)])
 
-                B_plot.set_data(df['Time (MJD)'][0:(i+1)], df['B'][0:(i+1)])
-                U_plot.set_data(df['Time (MJD)'][0:(i+1)], df['U'][0:(i+1)])
-                # UVM2_plot.set_data(df['Time (MJD)'][0:(i+1)], df['UVM2'][0:(i+1)])
-                UVW1_plot.set_data(df['Time (MJD)'][0:(i+1)], df['UVW1'][0:(i+1)])
-                # UVW2_plot.set_data(df['Time (MJD)'][0:(i+1)], df['UVW2'][0:(i+1)])
-                V_plot.set_data(df['Time (MJD)'][0:(i+1)], df['V'][0:(i+1)]) 
-
-                # ------ Update the ax3 plot with the image corresponding to each MJD -----
+                # --------- Update the ax3 plot with the image corresponding to each MJD ---------
                 ax3.set_title(str(files_png[i]))
                 plot_img = mpimg.imread(os.path.join('..','uvot','animation_images', files_png[i])) 
                 show_img.set_data(plot_img)
 
-    return FuncAnimation(fig, update, frames=np.arange(0,8), interval=1000, repeat=True)
+    return FuncAnimation(fig, update, frames=np.arange(0,len(groups)+1), interval=1000, repeat=True)
 
 def main():
     anim=animation(fig,ax1, ax2, ax3, times_plots)
     plt.show()
-
 
 
 if __name__ == "__main__":
