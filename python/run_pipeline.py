@@ -138,16 +138,17 @@ if __name__ == "__main__":
         writer.writerow([8, "Zeropoint List", zeropointlist])
         writer.writerow([9, "Pivot List", pivotlist])
 
-    # Create wavelength list to extend just before and after the pivot wavelengths
-    # of the observed filters
-    wavelength_min = 10.0*(math.floor(min(pivotlist)/10.0))-200.0
-    wavelength_max = 10.0*(math.ceil(max(pivotlist)/10.0)) + 200.0
+
 
 # Akash -- read in the template spectrum.
 # If it starts after wavelength_min or ends before wavelength_max
 # then change these values so that the template spectrum covers the whole range
 # we are making the spectrum for
-
+    # Create wavelength list to extend just before and after the pivot wavelengths
+    # of the observed filters
+    wavelength_min = 10.0*(math.floor(min(pivotlist)/10.0))-200.0
+    wavelength_max = 10.0*(math.ceil(max(pivotlist)/10.0)) + 200.0
+    
     wavelength_nbins = int((wavelength_max-wavelength_min)/10.0+1)
     print("# of wavelength bins", wavelength_nbins)
     wavelength_list = np.empty(wavelength_nbins)
@@ -187,6 +188,7 @@ if __name__ == "__main__":
         epoch_list[ind] = epoch
         # theres gotta be an easier way to do this #just double checking that it's a float -t8
         counts_in = np.array(list(map(np.float64, row[1::2])))
+        print(row[1::2])
         # counterrs_in = np.array(list(map(np.float64,row[2::2]))) #theres gotta be an easier way to do this #just double checking that it's a float -t8
 
         mjd_list[ind] = epoch

@@ -26,7 +26,6 @@ ax2 = fig.add_subplot(gs[-1, :4])
 # Third Plot - Last Row, 3rd column 
 ax3 = fig.add_subplot(gs[0:, 4:]) 
 
-ax1.invert_yaxis()
 ax2.invert_yaxis()
 plots = "SN2005cs"
 

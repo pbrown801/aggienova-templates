@@ -38,5 +38,3 @@ def mangle_simple(spectraWavelengths, flux, filter_file_list, zeropointlist, piv
 
     mangledspectrumflux=manglefunction*flux
     return spectraWavelengths, mangledspectrumflux
-
-
