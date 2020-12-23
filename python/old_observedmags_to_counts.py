@@ -10,25 +10,54 @@ import string
 
 '''
 sn_name is a string with the desired supernova name
-desired_filter_list is an array of the filters which have data
+observed_filter_list is an array of the filters which have data
 program writes two csv files
 --magarray.csv has the magnitudes and errors for the desired filters
 --countsarray.csv has the interpolated counts for all times at all filters
 '''
 
 
-def observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum, interpFilter = "UVW1"):
+def observedmags_to_counts(sn_name, desired_filter_list, template_spectrum, interpFilter = "UVW1"):
+    # Url of the csv file from the supernova catalog
+    url = "https://api.sne.space/" + sn_name + "/photometry/time+magnitude+e_magnitude+upperlimit+band+instrument+telescope+source?format=csv&time&magnitude"
+    data_list = []
+    with closing(requests.get(url, stream=True)) as i:
+        temp = (line.decode('utf-8') for line in i.iter_lines())
+        reader = csv.reader(temp, delimiter=',', quotechar='"')
+        # Takes each one of the rows and adds them to the datalist array
+        for line in reader:
+            data_list.append(line)
+    '''
+    #Pandas method for reading the csv via the web but undesirable output
+    df = pd.read_csv(url)
+    print(df.head())
+    '''
+    '''
+            #row.split(',)
+            #print(row)
+
+    #Old Code
+    
     input_file = open('../input/'+ sn_name + '_osc.csv', 'r+')
     data = input_file.read()
     data = data.splitlines()
     data_list = []
     for line in data:
+        print(line)
         data_list.append(line.split(','))
-
+    #print(data_list)
+    '''
     time = []
     mag  = []
     emag = []
     band = []
+
+
+    #contains true or false depending on whether or not there is a non-zero observation for that filter
+    # start with false and change to true if the filter is found
+    filterFound = []
+    for i in range(0, len(desired_filter_list)):
+        filterFound.append(False)
     
     for x, line in enumerate(data_list):
         if x != 0 and str(line[5]).upper() in desired_filter_list:
@@ -39,8 +68,26 @@ def observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum, in
                 mag.append(float(line[2]))
                 emag.append(float(line[3]))
                 band.append((str(line[5])).upper())
+                if mag[-1] > 0:
+                    filterFound[desired_filter_list.index(band[-1])] = True
 
-    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(desired_filter_list, template_spectrum)
+            # else:
+            #    continue
+            
+            # this sets the flag to true if there.
+            # probably a little slower since it doesn't need to be set so many times
+
+            # if mag[-1] > 0:
+            #    filterFound[desired_filter_list.index(band[-1])] = True
+
+    # make a new list of which of the desired filters is actually observed  
+    observed_filter_list = []
+    for i in range(0, len(desired_filter_list)):
+        if filterFound[i]:
+            observed_filter_list.append(desired_filter_list[i])
+ 
+    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(observed_filter_list, template_spectrum)
+
 
     interpFirst = 1000000000000000
     interpLast = -1000000000000000
@@ -58,6 +105,10 @@ def observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum, in
             if band[i] == interpFilter:
                 interpTimes.append(time[i])
 
+    # Uncomment following statements for print check
+    #print(interpTimes)
+    #print(time)
+
     #Adding the variables
     with open('../output/Test_A.csv', 'a', newline='') as file:
         writer = csv.writer(file)
@@ -69,19 +120,19 @@ def observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum, in
 
 
     #contains counts directly from measured values
-    counts_matrix = np.zeros((len(desired_filter_list),len(time)), dtype=object)
-    counterrs_matrix = np.zeros((len(desired_filter_list),len(time)), dtype=object)
+    counts_matrix = np.zeros((len(observed_filter_list),len(time)), dtype=object)
+    counterrs_matrix = np.zeros((len(observed_filter_list),len(time)), dtype=object)
     #contains measured magnitudes
-    magMatrix = np.zeros((len(desired_filter_list),len(time)), dtype=object)
+    magMatrix = np.zeros((len(observed_filter_list),len(time)), dtype=object)
     #contains measured error on magnitudes
-    emagMatrix = np.zeros((len(desired_filter_list),len(time)), dtype=object)
+    emagMatrix = np.zeros((len(observed_filter_list),len(time)), dtype=object)
 
     #contains interpolated count values for all filters over all times
-    interp_counts_matrix =  np.zeros((len(desired_filter_list),len(interpTimes)))
-    interp_counterrs_matrix =  np.zeros((len(desired_filter_list),len(interpTimes)))
-    interpMatrix = np.zeros((len(desired_filter_list),len(interpTimes)))
+    interp_counts_matrix =  np.zeros((len(observed_filter_list),len(interpTimes)))
+    interp_counterrs_matrix =  np.zeros((len(observed_filter_list),len(interpTimes)))
+    interpMatrix = np.zeros((len(observed_filter_list),len(interpTimes)))
 
-    for i in range(len(desired_filter_list)):
+    for i in range(len(observed_filter_list)):
         measured_counts = np.zeros(len(time))
         measured_counterrs = np.zeros(len(time))
         measured_times = np.zeros(len(time))
@@ -91,7 +142,7 @@ def observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum, in
 
         for j in range(len(time)):
 
-            if band[j] == desired_filter_list[i]:
+            if band[j] == observed_filter_list[i]:
 
                 counts_matrix[i][j] = str(math.pow(10, -0.4*(mag[j]-zeropointlist[i])))  
                 counterrs_matrix[i][j] = str(abs(float(counts_matrix[i][j])*float(emag[j])*-1.0857)) # need to check if this works
@@ -115,13 +166,13 @@ def observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum, in
 
     column_err_names = []
 
-    for l in range(len(desired_filter_list)):
-        column_err_names.append(desired_filter_list[l]+'err')
+    for l in range(len(observed_filter_list)):
+        column_err_names.append(observed_filter_list[l]+'err')
 
     column_names = ['Time (MJD)']
 
-    for l in range(len(desired_filter_list)):
-        column_names.append(desired_filter_list[l])
+    for l in range(len(observed_filter_list)):
+        column_names.append(observed_filter_list[l])
         column_names.append(column_err_names[l])
 
 
@@ -129,9 +180,9 @@ def observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum, in
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
         for i in range(0,len(interpTimes)):
-            line = np.zeros(1+2*len(desired_filter_list),dtype=object)
+            line = np.zeros(1+2*len(observed_filter_list),dtype=object)
             line[0] = str(interpTimes[i])
-            for j in range(0,len(desired_filter_list)):
+            for j in range(0,len(observed_filter_list)):
                 line[2*j + 1] = magMatrix[j][i]
                 line[2*j + 2] = emagMatrix[j][i]
             writer.writerow(line)
@@ -141,9 +192,19 @@ def observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum, in
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
         for i in range(0,len(interpTimes)):
-            line = np.zeros(1+2*len(desired_filter_list))
+            line = np.zeros(1+2*len(observed_filter_list))
             line[0] = interpTimes[i]
-            for j in range(0,len(desired_filter_list)):
+            for j in range(0,len(observed_filter_list)):
                 line[2*j+1] = interp_counts_matrix[j][i]
                 line[2*j+2] = interp_counterrs_matrix[j][i]
             writer.writerow(line)
+
+
+    return filter_file_list,zeropointlist,pivotlist
+
+    #with open('../input/' + sn_name + '_test_array.csv', 'w', newline='') as test:
+        # Writing the magarray and counts array
+    #    writer = csv.writer(test, delimiter=',')
+    #    writer.writerow([column_names])
+    #   for i in range(0,len(interpTimes)):
+    #)
