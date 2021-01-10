@@ -4,9 +4,9 @@ import numpy as np
 from astropy.io import fits
 
 # Create Dataframe out of the data
-def read_data(snname):
+def read_data(sn_name):
     lines = [] 
-    data = open(os.path.join('..','input',snname + '_uvotB15.1.dat'), 'r')
+    data = open(os.path.join('..','input',sn_name + '_uvotB15.1.dat'), 'r')
     for line in data:
         # Ignore comments
         if line[0]!= '#': 
@@ -102,7 +102,8 @@ def manipulate(snname_df, cols, avg):
 def uvot(sn_name, avg_time):
     df, cols=read_data(sn_name)
     counts_combined_lists, counts_array, mags_combined_lists, mags_array=manipulate(df, cols, avg_time)
-    counts_array.to_csv('../input/'+sn_name+'_uvot_countsarray'+'.csv', index=False)
+    mags_array.to_csv('../output/'+sn_name+'_uvot_magsarray.csv', index=False)
+    counts_array.to_csv('../input/'+sn_name+'_uvot_countsarray.csv', index=False)
     return mags_array
 
 if __name__ == "__main__":

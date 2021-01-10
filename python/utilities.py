@@ -10,6 +10,9 @@ import os.path
 import sys
 import pandas as pd
 
+import math
+from filterlist_to_filterfiles import filterlist_to_filterfiles
+
 def pivot_wavelength(Filter):
 
     filter_wave,filter_tp = np.loadtxt(Filter, dtype = float, usecols=(0,1), unpack=True)
@@ -338,3 +341,13 @@ def get_counts_multi_filter(spectra, filter_file_list):
         counts_array += [get_counts(spectra, fileName)]
     return counts_array
 
+# conversion function of mangled count rates to magnitudes. 
+# Call filterlist_to_filterfiles to get the pivotlists in the same order as the column in the df since order can change
+def countrates2mags(sn_name, template_spectrum):
+    counts_df=pd.read_csv(r'../input/'+sn_name+'_mangledcounts.csv')
+    filter_bands= list(counts_df.columns[1:])
+    filter_file_list, zeropointlist, pivotlist = filterlist_to_filterfiles(
+       filter_bands , template_spectrum)
+    for idx,zeropoint in enumerate(zeropointlist):
+        counts_df[filter_bands[idx]]=counts_df[filter_bands[idx]].apply(lambda count: (math.log10(count)/-0.4)+zeropoint)
+    counts_df.to_csv('../output/'+sn_name+'_mangledmagsarray.csv', index=False)

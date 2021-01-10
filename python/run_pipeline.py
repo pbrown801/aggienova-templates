@@ -2,7 +2,7 @@
 # Command to run without Uvot:
 # python3 run_pipeline.py SN2007af SN2017erp_m1_UVopt.dat y
 # Command to run Uvot:
-# python3 run_pipeline.py SN2005cs  SN2006bp_uvmodel.dat y y
+# python3 run_pipeline.py SN2005cs SN2006bp_uvmodel.dat y y
 
 # imports 
 import time
@@ -242,12 +242,14 @@ def main():
             writer = csv.writer(file)
             writer.writerow([1, "Filterlist", desired_filter_list])
     
-        inFile = '../input/'+sn_name+'_countsarray'+'.csv'
     else:
         uvot(sn_name, "y")
-        inFile = '../input/'+sn_name+'_uvot_countsarray'+'.csv'
+        sn_name = sn_name+'_uvot'
 
-    file = open(inFile, 'r', newline='').readlines()
+    # Convert the mangled count rates to magnitudes
+    countrates2mags(sn_name, template_spectrum)
+
+    file = open('../input/'+sn_name+'_countsarray'+'.csv', 'r', newline='').readlines()
     reader = csv.reader(file, delimiter=',')
 
     #  these are the filters actually present in the csv file
@@ -272,7 +274,7 @@ def main():
     df = pd.DataFrame(columns=['MJD', 'Wavelength', 'Flux'], data=data)
 
     # format is different than input template (see vega.dat.csv)
-    output_file = '../output/'+sn_name+'template.csv'
+    output_file = '../output/'+sn_name+'_template.csv'
     if store_as_csv:
         df.to_csv(output_file, index=False, float_format='%g')
 
