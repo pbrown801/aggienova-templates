@@ -13,19 +13,19 @@ def mangle_simple(spectraWavelengths, flux, filter_file_list, zeropointlist, piv
     count = 0
     for fileName in filter_file_list:
       fileName = "../filters/"+fileName
-      print("clean filter start")
+      # print("clean filter start")
       effectiveAreas = clean_filter(fileName, spectraWavelengths)
-      print(effectiveAreas)
+      # print(effectiveAreas)
       en = time.time()
-      print(en-st)
-      print("clean filter end")
-      print("calc counts start")
+      # print(en-st)
+      # print("clean filter end")
+      # print("calc counts start")
       count = calculate_counts(spectraWavelengths, flux, effectiveAreas)#dtype=float,usecols=(0,1),unpack=True)
       en = time.time()
-      print(en-st)
-      print("calc counts end")
+      # print(en-st)
+      # print("calc counts end")
       counts_array +=[count]
-      print(counts_array)
+      # print(counts_array)
     # input_wave,input_flux,counts_array = total_counts(templatespectrum,filter_file_list)#dtype=float,usecols=(0,1),unpack=True)
     clean_template = np.column_stack((spectraWavelengths,flux))
 

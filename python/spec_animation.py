@@ -183,7 +183,7 @@ def animation(plot,fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_pl
 
     return FuncAnimation(fig, update, init_func=init, frames=np.arange(0,num_groups+1), interval=interval_time, repeat=True)
 
-def main(plot,save, show, isStatic, interval_param=1):
+def summary_plot(plot,save, show, isStatic, interval_param=1):
     fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots,df, filter_bands, num_groups, files=initialize_plots(plot)
     anim=animation(plot,fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots,df, filter_bands, num_groups, files, interval_param, isStatic)
     if save:
@@ -194,4 +194,5 @@ def main(plot,save, show, isStatic, interval_param=1):
 
 
 if __name__ == "__main__":
-    main("SN2005cs_uvot", True, True, False, 500)
+    # main("SN200", True, True, False, 500)
+    summary_plot("SN2007af", True, True, True, 500)

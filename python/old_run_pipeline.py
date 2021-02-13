@@ -53,7 +53,8 @@ if __name__ == "__main__":
     template_spectrum = args.template[0]  # assign a template spectrum to use
     # dat_to_csv(args.template[0])
     store_as_csv = args.csv[0].upper() == 'Y'
-    reference_epoch_mjd = 0.0
+    
+    reference_epoch_mjd = 0.0 # Min mjd - 1
     process_uvot = args.uvot[0].upper() == 'Y'
 
     # these are the filters we will check for from the OSC csv file

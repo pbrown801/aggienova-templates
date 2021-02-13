@@ -4,7 +4,7 @@ def valid_wavelength(wavelength, template_minmax):
     return False
 
 def filterlist_to_filterfiles(filterlist, template_spectrum):
-    from mangle_simple import pivot_wavelength
+    from utilities import pivot_wavelength
 
 
     # wavelengths_template_spectrum contains lowest and highest value in range of template_spectrum

@@ -19,7 +19,7 @@ def read_data(sn_name):
     for i in columns[1:]:
         df[i]=pd.to_numeric(df[i], errors='coerce')
     # return columns that are needed for script
-    return df[['Filter', 'MJD[days]', 'Mag', 'MagErr', 'Rate[c/s]',  'RateErr[c/s]']], ['Filter', 'MJD[days]', 'Mag', 'MagErr', 'Rate[c/s]',  'RateErr[c/s]']
+    return df[['Filter', 'MJD[days]', 'Mag', 'MagErr', 'Rate[c/s]',  'RateErr[c/s]']], ['Filter', 'MJD[days]', 'Mag', 'MagErr', 'Rate[c/s]',  'RateErr[c/s]'], min(df['MJD[days]'])
 
 # Manipulates the input dataframe to combine each of the 6 bands with common times
 def manipulate(snname_df, cols, avg):
@@ -100,11 +100,11 @@ def manipulate(snname_df, cols, avg):
     
 
 def uvot(sn_name, avg_time):
-    df, cols=read_data(sn_name)
+    df, cols, earliest_obv=read_data(sn_name)
     counts_combined_lists, counts_array, mags_combined_lists, mags_array=manipulate(df, cols, avg_time)
     mags_array.to_csv('../output/'+sn_name+'_uvot_magsarray.csv', index=False)
     counts_array.to_csv('../input/'+sn_name+'_uvot_countsarray.csv', index=False)
-    return mags_array
+    return earliest_obv
 
 if __name__ == "__main__":
     uvot('SN2005cs', 'y')

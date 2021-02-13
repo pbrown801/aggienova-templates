@@ -246,9 +246,6 @@ def main():
         uvot(sn_name, "y")
         sn_name = sn_name+'_uvot'
 
-    # Convert the mangled count rates to magnitudes
-    countrates2mags(sn_name, template_spectrum)
-
     file = open('../input/'+sn_name+'_countsarray'+'.csv', 'r', newline='').readlines()
     reader = csv.reader(file, delimiter=',')
 
@@ -283,6 +280,9 @@ def main():
     mangled_to_counts(
         sn_name, filters_from_csv, mangled_counts, mjd_list)
 
+    # Convert the mangled count rates to magnitudes
+    countrates2mags(sn_name, template_spectrum)
+
     counts_list = np.array(counts_list, dtype='float')
 
     with open('../output/Test_A.csv', 'a', newline='') as out:
@@ -304,4 +304,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
