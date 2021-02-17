@@ -30,7 +30,7 @@ def initialize_plots(plot):
 
     # ------------------------ FIRST PLOT = FLux vs Wavelength ------------------------ 
     # Get data and group by the different times
-    df1= pd.read_csv(os.path.join('..','output', plot+'_template.csv'), header=0)
+    df1= pd.read_csv(os.path.join('..','output', 'TEMPLATE', plot+'_template.csv'), header=0)
     time_df = df1.groupby(['MJD'])
     groups=[time_df.get_group(x).sort_values(by=('MJD')).reset_index() for x in time_df.groups]
     num_groups= len(groups)
@@ -66,7 +66,7 @@ def initialize_plots(plot):
     # ------------------------ SECOND PLOT = Magnitude vs Time (MJD) Plot ------------------------ 
     # Get data from uvot function that returns the manipulated combined data from the original .dat file 
     # The combined data is simply each row is the appropriate time the data was measured and the associated band magnitude measurements
-    df=pd.read_csv('../output/'+plot+'_mangledmagsarray.csv')
+    df=pd.read_csv('../output/MAGS/'+plot+'_mangledmagsarray.csv')
 
     # Interpolate linearly for the missing NaN values in the each band that has Nan values. We do not do it for band error measurements
     filter_bands = list(filter(lambda i: ('Time' not in i and 'err' not in i),list(df.columns)))
@@ -144,7 +144,7 @@ def animation(plot,fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_pl
                 else:
                     files_png = [f for f in files if (f.endswith('.png') and f.startswith(plot))]
                 # Initialize the plot to the first image in the beginning
-                ax3.set_title(str(files_png[0][:-4]))
+                # ax3.set_title(str(files_png[0][:-4]))
                 plot_img = mpimg.imread(os.path.join('..','uvot','animation_images', files_png[0])) 
                 show_img=ax3.imshow(plot_img)
         except FileNotFoundError:
@@ -187,8 +187,8 @@ def summary_plot(plot,save, show, isStatic, interval_param=1):
     fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots,df, filter_bands, num_groups, files=initialize_plots(plot)
     anim=animation(plot,fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots,df, filter_bands, num_groups, files, interval_param, isStatic)
     if save:
-        anim.save(r'../output/'+plot+'_animation.gif', writer="imagemagick")
-        fig.savefig(r'../output/'+plot+'_summaryPlot.png')
+        anim.save(r'../output/PLOTS/'+plot+'_animation.gif', writer="imagemagick")
+        fig.savefig(r'../output/PLOTS/'+plot+'_summaryPlot.png')
     if show:
         plt.show()
 

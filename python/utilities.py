@@ -344,10 +344,10 @@ def get_counts_multi_filter(spectra, filter_file_list):
 # conversion function of mangled count rates to magnitudes. 
 # Call filterlist_to_filterfiles to get the pivotlists in the same order as the column in the df since order can change
 def countrates2mags(sn_name, template_spectrum):
-    counts_df=pd.read_csv(r'../input/'+sn_name+'_mangledcounts.csv')
+    counts_df=pd.read_csv('../input/COUNTS/'+sn_name+'_mangledcounts.csv')
     filter_bands= list(counts_df.columns[1:])
     filter_file_list, zeropointlist, pivotlist = filterlist_to_filterfiles(
        filter_bands , template_spectrum)
     for idx,zeropoint in enumerate(zeropointlist):
         counts_df[filter_bands[idx]]=counts_df[filter_bands[idx]].apply(lambda count: (math.log10(count)/-0.4)+zeropoint)
-    counts_df.to_csv('../output/'+sn_name+'_mangledmagsarray.csv', index=False)
+    counts_df.to_csv('../output/MAGS/'+sn_name+'_mangledmagsarray.csv', index=False)

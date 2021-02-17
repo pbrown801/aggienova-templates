@@ -10,4 +10,4 @@ def mangled_to_counts(sn_name, filter_list, mangled_counts, epochs):
                       index = epochs,
                       columns = filter_list)
 
-    df.to_csv('../input/'+sn_name+'_mangledcounts.csv',index_label = 'Time (MJD)')
+    df.to_csv('../input/COUNTS/'+sn_name+'_mangledcounts.csv',index_label = 'Time (MJD)')

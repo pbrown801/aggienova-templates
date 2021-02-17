@@ -102,8 +102,8 @@ def manipulate(snname_df, cols, avg):
 def uvot(sn_name, avg_time):
     df, cols, earliest_obv=read_data(sn_name)
     counts_combined_lists, counts_array, mags_combined_lists, mags_array=manipulate(df, cols, avg_time)
-    mags_array.to_csv('../output/'+sn_name+'_uvot_magsarray.csv', index=False)
-    counts_array.to_csv('../input/'+sn_name+'_uvot_countsarray.csv', index=False)
+    mags_array.to_csv('../output/MAGS/'+sn_name+'_uvot_magsarray.csv', index=False)
+    counts_array.to_csv('../input/COUNTS/'+sn_name+'_uvot_countsarray.csv', index=False)
     return earliest_obv
 
 if __name__ == "__main__":

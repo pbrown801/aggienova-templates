@@ -125,7 +125,7 @@ def observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum, in
         column_names.append(column_err_names[l])
 
 
-    with open('../output/'+ sn_name + '_magarray.csv', 'w', newline='') as csvFile:
+    with open('../output/MAGS/'+ sn_name + '_magarray.csv', 'w', newline='') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
         for i in range(0,len(interpTimes)):
@@ -137,7 +137,7 @@ def observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum, in
             writer.writerow(line)
 
 
-    with open('../input/'+ sn_name + '_countsarray.csv', 'w', newline ='') as csvFile:
+    with open('../input/COUNTS'+ sn_name + '_countsarray.csv', 'w', newline ='') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
         for i in range(0,len(interpTimes)):
