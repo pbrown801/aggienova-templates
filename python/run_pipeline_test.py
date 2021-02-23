@@ -4,8 +4,8 @@
 # Command to run Uvot:
 # python3 run_pipeline.py SN2005cs SN2006bp_uvmodel.dat y y
 # Command to add template series for mangling:
-# python3 run_pipeline.py SN2007af SNII_series y n 
-# python3 run_pipeline.py SN2005cs SNII_series y y 
+# python3 run_pipeline.py SN2007af SNII_series y 
+# python3 run_pipeline.py SN2005cs SNIa_series y y 
 
 
 
@@ -187,7 +187,7 @@ def mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, re
     return mangled_counts, mjd_list, data, counts_list, mangled_spec_wave, wavelength_list, epoch_list, flux_matrix
 
 
-def plots(sn_name, wavelength_list, epoch_list, flux_matrix, template_spectrum):
+def plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum):
     '''
     Function to house all the plotting that is to be done at the end of the pipeline.
     '''
@@ -212,17 +212,17 @@ def plots(sn_name, wavelength_list, epoch_list, flux_matrix, template_spectrum):
     surf = ax.plot_surface(
         X, Y, flux_matrix, rstride=1, cstride=1, cmap='hot')
     ax.set_zlim(0, np.amax(Z))
-    save_name=r'../output/PLOTS/'+sn_name
+    save_name=r'../output/PLOTS/'+output_file_name
     if "series" in template_spectrum:
         save_name += '_series_3d_surface.png'
     else:
         save_name += '_3d_surface.png'
     plt.savefig(save_name)
 
-    if "uvot" in sn_name:
-            summary_plot(sn_name, True, False, False, 1000)
+    if "uvot" in output_file_name:
+        summary_plot(sn_name, output_file_name, True, True, False, 750)
     else:
-            summary_plot(sn_name, True, False, True, 1000)
+        summary_plot(sn_name, output_file_name, True, True, True, 750)
     # plot.show()  # without this the 3d surface plot doesn't show but extra plot shows too
 
 
@@ -255,8 +255,6 @@ def main():
     store_as_csv = args.csv[0].upper() == 'Y'
     process_uvot = args.uvot[0].upper() == 'Y'
 
-    output_file_name = sn_name+"_"+template_spectrum
-
     if 'series' in template_spectrum:
         f=open('../spectra/'+template_spectrum+'.txt').readline()
         template_spectrum_default=f.strip().split(" ")[1][11:]
@@ -267,7 +265,6 @@ def main():
         bool_error, bool_online_data=sn_data_online(sn_name)
         if not bool_error:
             check_filter_data(sn_name)
-
         # Function call 1
         # Convert the magnitudes from the sn data to count rates
         observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum_default)
@@ -276,19 +273,18 @@ def main():
             writer = csv.writer(file)
             writer.writerow([1, "Filterlist", desired_filter_list])
         
-        
         orig_file = open('../input/'+sn_name+'_osc.csv', 'r', newline='').readlines()
         orig_file_reader = csv.reader(orig_file, delimiter=',')
         next(orig_file_reader)
         first_obv=next(orig_file_reader)[1]
     else:
-        first_obv=uvot(sn_name, "y")
+        first_obv=uvot(sn_name,"y")
         sn_name = sn_name+'_uvot'
         orig_file = open('../input/'+sn_name+'B15.1.dat', 'r', newline='').readlines()
         # print(orig_file)
-        
+    output_file_name = sn_name+"_"+template_spectrum
 
-    file = open('../input/COUNTS/'+sn_name+'_countsarray'+'.csv', 'r', newline='').readlines()
+    file = open('../input/COUNTS/'+sn_name+'_countsarray.csv', 'r', newline='').readlines()
     reader = csv.reader(file, delimiter=',')
 
     #  these are the filters actually present in the csv file
@@ -317,17 +313,17 @@ def main():
     df = pd.DataFrame(columns=['MJD', 'Wavelength', 'Flux'], data=data)
 
     # format is different than input template (see vega.dat.csv)
-    output_file = '../output/TEMPLATE/'+sn_name+'_template.csv'
+    output_file = '../output/TEMPLATE/'+output_file_name+'_template.csv'
     if store_as_csv:
         df.to_csv(output_file, index=False, float_format='%g')
 
     # Function Call 5
     # Creates an output file of the mangled counts for each filter band for each epoch
     mangled_to_counts(
-        sn_name, filters_from_csv, mangled_counts, mjd_list)
+        output_file_name, filters_from_csv, mangled_counts, mjd_list)
 
     # Convert the mangled count rates to magnitudes
-    countrates2mags(sn_name, template_spectrum_default)
+    countrates2mags(output_file_name, template_spectrum_default)
 
     counts_list = np.array(counts_list, dtype='float')
 
@@ -346,7 +342,7 @@ def main():
             print("Removing" + sn_name + "_osc.csv from input folder")
             os.remove('../input/'+sn_name+'_osc.csv')
 
-    plots(sn_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
+    plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
 
 if __name__ == "__main__":
     main()

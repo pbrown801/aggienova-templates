@@ -12,7 +12,7 @@ import scipy
 from scipy.interpolate import interp1d
 import matplotlib.image as mpimg
 
-def initialize_plots(plot):
+def initialize_plots(plot, output_file_name):
     # Define the gridspec which is 2 rows by 3 columns and the figure for the matplotlib plot
     gs = gridspec.GridSpec(nrows=2, ncols=7)
     fig = plt.figure(figsize=(15,8))
@@ -30,7 +30,7 @@ def initialize_plots(plot):
 
     # ------------------------ FIRST PLOT = FLux vs Wavelength ------------------------ 
     # Get data and group by the different times
-    df1= pd.read_csv(os.path.join('..','output', 'TEMPLATE', plot+'_template.csv'), header=0)
+    df1= pd.read_csv(os.path.join('..','output', 'TEMPLATE', output_file_name+'_template.csv'), header=0)
     time_df = df1.groupby(['MJD'])
     groups=[time_df.get_group(x).sort_values(by=('MJD')).reset_index() for x in time_df.groups]
     num_groups= len(groups)
@@ -66,7 +66,7 @@ def initialize_plots(plot):
     # ------------------------ SECOND PLOT = Magnitude vs Time (MJD) Plot ------------------------ 
     # Get data from uvot function that returns the manipulated combined data from the original .dat file 
     # The combined data is simply each row is the appropriate time the data was measured and the associated band magnitude measurements
-    df=pd.read_csv('../output/MAGS/'+plot+'_mangledmagsarray.csv')
+    df=pd.read_csv('../output/MAGS/'+output_file_name+'_mangledmagsarray.csv')
 
     # Interpolate linearly for the missing NaN values in the each band that has Nan values. We do not do it for band error measurements
     filter_bands = list(filter(lambda i: ('Time' not in i and 'err' not in i),list(df.columns)))
@@ -118,7 +118,7 @@ def initialize_plots(plot):
 
     return fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots,df, filter_bands, num_groups, files
 # ------------------------ Animation Function --------------------
-def animation(plot,fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots,df, filter_bands, num_groups, files, interval_time, static):
+def animation(plot, fig, ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots,df, filter_bands, num_groups, files, interval_time, static):
 
     def init():
         # Third plot initialization
@@ -149,6 +149,7 @@ def animation(plot,fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_pl
                 show_img=ax3.imshow(plot_img)
         except FileNotFoundError:
             print("No image file for the supernova")
+            exit()
 
     def update(i):
         if i==num_groups:
@@ -183,16 +184,18 @@ def animation(plot,fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_pl
 
     return FuncAnimation(fig, update, init_func=init, frames=np.arange(0,num_groups+1), interval=interval_time, repeat=True)
 
-def summary_plot(plot,save, show, isStatic, interval_param=1):
-    fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots,df, filter_bands, num_groups, files=initialize_plots(plot)
-    anim=animation(plot,fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots,df, filter_bands, num_groups, files, interval_param, isStatic)
+def summary_plot(plot, output_file_name, save, show, isStatic, interval_param=1):
+    fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots,df, filter_bands, num_groups, files=initialize_plots(plot, output_file_name)
+    anim=animation(plot, fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots,df, filter_bands, num_groups, files, interval_param, isStatic)
     if save:
-        anim.save(r'../output/PLOTS/'+plot+'_animation.gif', writer="imagemagick")
-        fig.savefig(r'../output/PLOTS/'+plot+'_summaryPlot.png')
+        print("Saving summary plot for", output_file_name)
+        fig.savefig(r'../output/PLOTS/'+output_file_name+'_summaryPlot.png')
+        anim.save(r'../output/PLOTS/'+output_file_name+'_animation.gif', writer="imagemagick")
     if show:
         plt.show()
 
 
 if __name__ == "__main__":
+    pass
     # main("SN200", True, True, False, 500)
-    summary_plot("SN2007af", True, True, True, 500)
+    summary_plot("SN2007af","SN2007af_SN2017erp_m1_UVopt.dat", True, True, True, 500)

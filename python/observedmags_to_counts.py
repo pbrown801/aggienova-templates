@@ -137,7 +137,7 @@ def observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum, in
             writer.writerow(line)
 
 
-    with open('../input/COUNTS'+ sn_name + '_countsarray.csv', 'w', newline ='') as csvFile:
+    with open('../input/COUNTS/'+ sn_name + '_countsarray.csv', 'w', newline ='') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
         for i in range(0,len(interpTimes)):
