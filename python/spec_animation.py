@@ -189,8 +189,8 @@ def summary_plot(plot, output_file_name, save, show, isStatic, interval_param=1)
     anim=animation(plot, fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots,df, filter_bands, num_groups, files, interval_param, isStatic)
     if save:
         print("Saving summary plot for", output_file_name)
-        fig.savefig(r'../output/PLOTS/'+output_file_name+'_summaryPlot.png')
         anim.save(r'../output/PLOTS/'+output_file_name+'_animation.gif', writer="imagemagick")
+        fig.savefig(r'../output/PLOTS/'+output_file_name+'_summaryPlot.png')
     if show:
         plt.show()
 
