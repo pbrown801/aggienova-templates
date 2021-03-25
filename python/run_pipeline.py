@@ -20,6 +20,7 @@ from Graphing import *
 from manipulate_readinuvot import *
 from select_template import sel_template
 from spec_animation import summary_plot
+import Lumniosity_Converter
 import argparse
 from observedmags_to_counts import *
 from old_observedmags_to_counts import *
@@ -318,6 +319,11 @@ def main():
     output_file = '../output/TEMPLATE/'+output_file_name+'_template.csv'
     if store_as_csv:
         df.to_csv(output_file, index=False, float_format='%g')
+    
+    lum_df= Lumniosity_Converter.Lum_conv(sn_name, output_file)
+    lum_output_file= '../output/TEMPLATE/'+output_file_name+'_lum_template.csv'
+    if store_as_csv:
+        lum_df.to_csv(lum_output_file, index=False, float_format='%g')
 
     # Function Call 5
     # Creates an output file of the mangled counts for each filter band for each epoch
@@ -344,7 +350,8 @@ def main():
             print("Removing" + sn_name + "_osc.csv from input folder")
             os.remove('../input/'+sn_name+'_osc.csv')
 
-    plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
+    #plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
+    
 
 if __name__ == "__main__":
     main()
