@@ -4,8 +4,8 @@
 # Command to run Uvot:
 # python3 run_pipeline.py SN2005cs SN2006bp_uvmodel.dat y y
 # Command to add template series for mangling:
-# python3 run_pipeline.py SN2007af SNII_series y 
-# python3 run_pipeline.py SN2005cs SNIa_series y y 
+# python3 run_pipeline.py SN2007af SNIa_ series y 
+# python3 run_pipeline.py SN2005cs SNII_ series y y 
 
 
 
@@ -344,7 +344,7 @@ def main():
             print("Removing" + sn_name + "_osc.csv from input folder")
             os.remove('../input/'+sn_name+'_osc.csv')
 
-    plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
+    # plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
 
 if __name__ == "__main__":
     main()
