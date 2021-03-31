@@ -344,7 +344,7 @@ def main():
             print("Removing" + sn_name + "_osc.csv from input folder")
             os.remove('../input/'+sn_name+'_osc.csv')
 
-    # plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
+    plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
 
 if __name__ == "__main__":
     main()
