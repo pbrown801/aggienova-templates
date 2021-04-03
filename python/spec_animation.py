@@ -14,18 +14,30 @@ import matplotlib.image as mpimg
 
 def initialize_plots(plot, output_file_name):
     # Define the gridspec which is 2 rows by 3 columns and the figure for the matplotlib plot
-    gs = gridspec.GridSpec(nrows=2, ncols=7)
+    gs = gridspec.GridSpec(nrows=2, ncols=2)
+    
     fig = plt.figure(figsize=(15,8))
     fig.set_tight_layout(True)
 
     # Set the three different plots to the specific locations in the gridspec
-    # First Plot - First Row, All Columns
-    ax1 = fig.add_subplot(gs[0, :4])
+    # First Plot - First Row, All available Columns
+    ax1 = fig.add_subplot(gs[0, :-1])
     # Second Plot - Last row, ALl available columns
-    ax2 = fig.add_subplot(gs[-1, :4]) 
-    # Third Plot - Last Row, 3rd column 
-    ax3 = fig.add_subplot(gs[0:, 4:]) 
+    ax2 = fig.add_subplot(gs[-1, :-1]) 
+    
+    ax3 = " "
+    files = " "
+    print("UVOT img", os.path.exists(os.path.join('..','uvot','animation_images')))
+    print("web img", os.path.exists(os.path.join('..', 'images', 'website_images')))
+    if os.path.exists(os.path.join('..','uvot','animation_images')) and os.path.exists(os.path.join('..', 'images', 'website_images')):
+        ax3 = fig.add_subplot(gs[0:, -1]) 
+        # # ------------------------ THIRD PLOT = Image Globals  ------------------------ 
+        ax3.set_xticks([])
+        ax3.set_yticks([])
 
+        files=os.listdir(os.path.join('..','uvot','animation_images'))
+
+        # # ------------------------ THIRD PLOT END ------------------------ 
     ax2.invert_yaxis()
 
     # ------------------------ FIRST PLOT = FLux vs Wavelength ------------------------ 
@@ -34,7 +46,7 @@ def initialize_plots(plot, output_file_name):
     time_df = df1.groupby(['MJD'])
     groups=[time_df.get_group(x).sort_values(by=('MJD')).reset_index() for x in time_df.groups]
     num_groups= len(groups)
-    time_groups=[groups[idx]["MJD"][0] for idx in range(num_groups)]
+    time_groups=[round(groups[idx]["MJD"][0], 5) for idx in range(num_groups)]
 
     # Invisibly set the plot with all the data then overwrite it with the animation
     for i in range(num_groups):
@@ -108,13 +120,7 @@ def initialize_plots(plot, output_file_name):
     ax2.legend(handles, labels,bbox_to_anchor=(1.01, 1), loc='upper left', borderaxespad=0.)
     # ------------------------ SECOND PLOT END ------------------------ 
 
-    # # ------------------------ THIRD PLOT = Image Globals  ------------------------ 
-    ax3.set_xticks([])
-    ax3.set_yticks([])
 
-    files=os.listdir(os.path.join('..','uvot','animation_images'))
-
-    # # ------------------------ THIRD PLOT END ------------------------ 
 
     return fig,ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots,df, filter_bands, num_groups, files
 # ------------------------ Animation Function --------------------
@@ -123,33 +129,33 @@ def animation(plot, fig, ax1, ax2, ax3, times_plots, groups, time_groups, bands_
     def init():
         # Third plot initialization
         global files_png, web_img, show_img
+        if ax3 != " ":
+            ax3.set_xticks([])
+            ax3.set_yticks([])
 
-        ax3.set_xticks([])
-        ax3.set_yticks([])
-
-        try:
-            if static:
-                if "uvot"in plot:
-                    web_img=os.path.join('..', 'images', 'website_images', plot+'.png')
+            try:
+                if static:
+                    if "uvot"in plot:
+                        web_img=os.path.join('..', 'images', 'website_images', plot+'.png')
+                    else:
+                        web_img=os.path.join('..', 'images', 'website_images', plot+'_uvot.png')
+                    # Initialize the plot to the first image in the beginning
+                    ax3.set_title(str(plot))
+                    plot_img = mpimg.imread(web_img) 
+                    show_img=ax3.imshow(plot_img)
                 else:
-                    web_img=os.path.join('..', 'images', 'website_images', plot+'_uvot.png')
-                # Initialize the plot to the first image in the beginning
-                ax3.set_title(str(plot))
-                plot_img = mpimg.imread(web_img) 
-                show_img=ax3.imshow(plot_img)
-            else:
-                if "uvot"in plot:
-                    files_png = [f for f in files if (f.endswith('.png') and f.startswith(plot[:-5]))]
+                    if "uvot"in plot:
+                        files_png = [f for f in files if (f.endswith('.png') and f.startswith(plot[:-5]))]
 
-                else:
-                    files_png = [f for f in files if (f.endswith('.png') and f.startswith(plot))]
-                # Initialize the plot to the first image in the beginning
-                # ax3.set_title(str(files_png[0][:-4]))
-                plot_img = mpimg.imread(os.path.join('..','uvot','animation_images', files_png[0])) 
-                show_img=ax3.imshow(plot_img)
-        except FileNotFoundError:
-            print("No image file for the supernova")
-            exit()
+                    else:
+                        files_png = [f for f in files if (f.endswith('.png') and f.startswith(plot))]
+                    # Initialize the plot to the first image in the beginning
+                    # ax3.set_title(str(files_png[0][:-4]))
+                    plot_img = mpimg.imread(os.path.join('..','uvot','animation_images', files_png[0])) 
+                    show_img=ax3.imshow(plot_img)
+            except FileNotFoundError:
+                print("No image file for the supernova")
+                exit()
 
     def update(i):
         if i==num_groups:
@@ -177,10 +183,11 @@ def animation(plot, fig, ax1, ax2, ax3, times_plots, groups, time_groups, bands_
                     plot.set_data(df['Time (MJD)'][0:(i+1)], df[filter_bands[idx]][0:(i+1)])
 
                 # --------- Update the ax3 plot with the image corresponding to each MJD ---------
-                if not(static):
-                    ax3.set_title(str(files_png[i]))
-                    plot_img = mpimg.imread(os.path.join('..','uvot','animation_images', files_png[i])) 
-                    show_img.set_data(plot_img)                    
+                if ax3 != " ":
+                    if not(static):
+                        ax3.set_title(str(files_png[i]))
+                        plot_img = mpimg.imread(os.path.join('..','uvot','animation_images', files_png[i])) 
+                        show_img.set_data(plot_img)                    
 
     return FuncAnimation(fig, update, init_func=init, frames=np.arange(0,num_groups+1), interval=interval_time, repeat=True)
 

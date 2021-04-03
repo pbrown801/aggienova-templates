@@ -11,16 +11,24 @@ from manipulate_readinuvot import uvot
 import scipy 
 from scipy.interpolate import interp1d
 import matplotlib.image as mpimg
-from bokeh.plotting import figure, output_file, show, ColumnDataSource
-from bokeh.themes import built_in_themes
+from bokeh.plotting import figure, output_file, show, ColumnDataSource, output_file, save
 from bokeh.io import curdoc
 from bokeh.palettes import Turbo256
 from bokeh.layouts import gridplot
 import random
 import bokeh.plotting
 import bokeh.layouts
+import bokeh.embed
+from bokeh.embed import json_item, file_html, components
+from bokeh.resources import CDN
+import json
 
-def initialize_plots(plot, output_file_name, isStatic):
+def random_color(num):
+    random_color_arr = [random.sample(list(split_color_arr),1)[0]  for split_color_arr in np.array_split(Turbo256[20:], num)]
+    random.shuffle(random_color_arr)
+    return random_color_arr
+
+def bokeh_plots(plot, output_file_name):
     curdoc().theme = 'dark_minimal'
     # ------------------------ FIRST PLOT = FLux vs Wavelength ------------------------ 
     # Get data and group by the different times
@@ -38,10 +46,10 @@ def initialize_plots(plot, output_file_name, isStatic):
     )
     groups_list_wavelength = [list(i['Wavelength']) for i in groups]
     groups_list_Flux = [list(i['Flux']) for i in groups]
-    for t, w, f, color,  in zip(time_groups, groups_list_wavelength, groups_list_Flux, random.sample(Turbo256, num_groups)):
+    for t, w, f, color,  in zip(time_groups, groups_list_wavelength, groups_list_Flux, random_color(num_groups)):
         spec.circle(w, f, color=color, alpha=0.8, muted_color=color, muted_alpha=0.075, legend_label=str(t))
     
-    spec.legend.click_policy="mute"
+    spec.legend.click_policy="hide"
     spec.add_layout(spec.legend[0], 'right')
     
     # ------------------------ FIRST PLOT END ------------------------ 
@@ -82,10 +90,11 @@ def initialize_plots(plot, output_file_name, isStatic):
     
     x= [list(df['Time (MJD)']) for fb in filter_bands] 
     y = [ list(df[fb]) for fb in filter_bands]
-    print(y)
+
+    
+
     # for idx,func in enumerate(interp_funcs):
-    for filter_legend, time, bands, color,  in zip(filter_bands, x, y, random.sample(Turbo256,len(filter_bands))):
-        print(bands)
+    for filter_legend, time, bands, color,  in zip(filter_bands, x, y, random_color(len(filter_bands))):
         light.line(time, bands, color=color, legend_label=filter_legend)
         light.circle(time, bands, color=color, alpha=0.8, muted_color=color, muted_alpha=0.075, legend_label=filter_legend)
     
@@ -94,39 +103,23 @@ def initialize_plots(plot, output_file_name, isStatic):
     light.y_range.flipped = True
     spec.sizing_mode = 'stretch_both'
     light.sizing_mode = 'stretch_both'    
-    grid = gridplot([[spec], [light]])
-    grid.sizing_mode= 'stretch_both'
+    grid = gridplot([[spec], [light]], sizing_mode='stretch_both', toolbar_options=dict(logo=None), toolbar_location=None)
+    # output_file(r'../output/PLOTS/HTML/'+output_file_name+'_summaryPlot.html')
+    # save(grid)
+    # print(file_html(grid, CDN,r'../output/PLOTS/HTML/'+output_file_name+'_summaryPlot.html'))
+    # plots={'spec':spec, 'light': light}
+    # scripts,div = components(plots)
+    # print(scripts)
+    # print(div)
+    # item_text = json.dumps(json_item(grid, output_file_name+'_summaryPlot'))
+    # print(item_text)
+    return spec, light
+    # show(grid)    # ------------------------ SECOND PLOT END ------------------------ 
 
-    show(grid)    # ------------------------ SECOND PLOT END ------------------------ 
-
-    # # ------------------------ THIRD PLOT = Image Globals  ------------------------ 
-
-    uvot_folder_exists = os.path.exists(os.path.join('..','uvot','animation_images'))
-    webImg_folder_exists = os.path.exists(os.path.join('..', 'images', 'website_images', plot+'.png'))
-
-
-    if isStatic:
-        if(webImg_folder_exists):
-            if "uvot"in plot:
-                web_img=os.path.join('..', 'images', 'website_images', plot+'.png')
-            else:
-                web_img=os.path.join('..', 'images', 'website_images', plot+'_uvot.png')
-    else:
-        if(uvot_folder_exists):
-            files=os.listdir(os.path.join('..','uvot','animation_images'))
-            if "uvot"in plot:
-                files_png = [f for f in files if (f.endswith('.png') and f.startswith(plot[:-5]))]
-            else:
-                files_png = [f for f in files if (f.endswith('.png') and f.startswith(plot))]
-                
-    # # ------------------------ THIRD PLOT END ------------------------ 
-
-    return 
-
-def summary_plot(plot, output_file_name, save, show, isStatic, interval_param=1):
-    initialize_plots(plot, output_file_name, isStatic)
+def summary_plot(plot, output_file_name):
+    bokeh_plots(plot, output_file_name)
 
 
 if __name__ == "__main__":
-    summary_plot("SN2007af","SN2007af_SNIa_series", True, True, True, 500)
-    # summary_plot("SN2005cs","SN2005cs_SNII_series", True, True, True, 500)
+    # summary_plot("SN2007af","SN2007af_SNIa_series")
+    summary_plot("SN2005cs","SN2005cs_uvot_SNII_series")

@@ -28,21 +28,21 @@ def initialize_plots(plot, output_file_name, isStatic):
     groups_list_wavelength = [list(i['Wavelength']) for i in groups]
     groups_list_Flux = [list(i['Flux']) for i in groups]
 
-    fig = make_subplots(rows=2, cols=1, subplot_titles=("Flux vs Wavelength", "Magnitude vs Time"))
-    # fig=go.Figure()
+    # fig = make_subplots(rows=2, cols=1, subplot_titles=("Flux vs Wavelength", "Magnitude vs Time"))
+    spec=go.Figure()
     for i in range(num_groups):
-        fig.add_trace(go.Scatter(x=groups_list_wavelength[i], y=groups_list_Flux[i],
+        spec.add_trace(go.Scatter(x=groups_list_wavelength[i], y=groups_list_Flux[i],
                 marker=dict(
                     size=4),
                     mode='markers',
-                    name=time_groups[i]), row=1, col=1)
-        print(groups_list_Flux[i])
+                    name=time_groups[i]))
     # fig.update_layout(
     # title_text="Flux vs Wavelength", template='plotly_dark')
-    fig.update_xaxes(title_text="Wavelength (angstroms)", row=1, col=1)
-    fig.update_yaxes(title_text="Log(flux)+constant", row=1, col=1)
-
-    # fig.show()
+    spec.update_xaxes(title_text="Wavelength (angstroms)")
+    spec.update_yaxes(title_text="Log(flux)+constant")
+    spec.update_layout(template='plotly_dark')
+    spec.update_yaxes(tickformat=".2g")
+    spec.show()
 
     # ------------------------ FIRST PLOT END ------------------------ 
 
@@ -75,42 +75,22 @@ def initialize_plots(plot, output_file_name, isStatic):
 
     times = [df['Time (MJD)'][0:(i+1)] for i in range(num_groups)]
     filter_ = []
+    light=go.Figure()
 
     for idx,func in enumerate(interp_funcs):
-        fig.add_trace(go.Scatter(x=df['Time (MJD)'], y=df[filter_bands[idx]],
+        light.add_trace(go.Scatter(x=df['Time (MJD)'], y=df[filter_bands[idx]],
                 marker=dict(
                     size=10),
-                    mode='lines+markers',showlegend=True, name=filter_bands[idx]), row=2, col=1)    
+                    mode='lines+markers',showlegend=True, name=filter_bands[idx]))    
 
-    fig.update_xaxes(title_text="Time (MJD)", row=2, col=1)
-    fig.update_yaxes(title_text="Magnitude", row=2, col=1)
-
-    fig.update_layout(title_text="Summary Plot", template='plotly_dark')
-    fig.show()
+    light.update_xaxes(title_text="Time (MJD)")
+    light.update_yaxes(title_text="Magnitude")
+    light.update_layout(template='plotly_dark')
+    light.update_yaxes(autorange="reversed", autotypenumbers="strict")
+    # fig.update_layout(title_text="Summary Plot", template='plotly_dark')
+    # light.show()
 
     # ------------------------ SECOND PLOT END ------------------------ 
-
-    # # ------------------------ THIRD PLOT = Image Globals  ------------------------ 
-
-    uvot_folder_exists = os.path.exists(os.path.join('..','uvot','animation_images'))
-    webImg_folder_exists = os.path.exists(os.path.join('..', 'images', 'website_images', plot+'.png'))
-
-
-    if isStatic:
-        if(webImg_folder_exists):
-            if "uvot"in plot:
-                web_img=os.path.join('..', 'images', 'website_images', plot+'.png')
-            else:
-                web_img=os.path.join('..', 'images', 'website_images', plot+'_uvot.png')
-    else:
-        if(uvot_folder_exists):
-            files=os.listdir(os.path.join('..','uvot','animation_images'))
-            if "uvot"in plot:
-                files_png = [f for f in files if (f.endswith('.png') and f.startswith(plot[:-5]))]
-            else:
-                files_png = [f for f in files if (f.endswith('.png') and f.startswith(plot))]
-                
-    # # ------------------------ THIRD PLOT END ------------------------ 
 
     return 
 
