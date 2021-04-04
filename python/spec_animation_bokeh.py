@@ -104,8 +104,9 @@ def bokeh_plots(plot, output_file_name):
     spec.sizing_mode = 'stretch_both'
     light.sizing_mode = 'stretch_both'    
     grid = gridplot([[spec], [light]], sizing_mode='stretch_both', toolbar_options=dict(logo=None), toolbar_location=None)
-    # output_file(r'../output/PLOTS/HTML/'+output_file_name+'_summaryPlot.html')
-    # save(grid)
+    output_file(r'../output/PLOTS/HTML/'+output_file_name+'_summaryPlot.html')
+    save(grid)
+    show(spec)
     # print(file_html(grid, CDN,r'../output/PLOTS/HTML/'+output_file_name+'_summaryPlot.html'))
     # plots={'spec':spec, 'light': light}
     # scripts,div = components(plots)
@@ -122,4 +123,5 @@ def summary_plot(plot, output_file_name):
 
 if __name__ == "__main__":
     # summary_plot("SN2007af","SN2007af_SNIa_series")
-    summary_plot("SN2005cs","SN2005cs_uvot_SNII_series")
+    # summary_plot("SN2005cs","SN2005cs_uvot_SNII_series")
+    summary_plot("SN2011by","SN2011by_SNIa_series")

@@ -27,8 +27,6 @@ def initialize_plots(plot, output_file_name):
     
     ax3 = " "
     files = " "
-    print("UVOT img", os.path.exists(os.path.join('..','uvot','animation_images')))
-    print("web img", os.path.exists(os.path.join('..', 'images', 'website_images')))
     if os.path.exists(os.path.join('..','uvot','animation_images')) and os.path.exists(os.path.join('..', 'images', 'website_images')):
         ax3 = fig.add_subplot(gs[0:, -1]) 
         # # ------------------------ THIRD PLOT = Image Globals  ------------------------ 

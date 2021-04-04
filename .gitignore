@@ -131,3 +131,9 @@ uvot/animation_images
 
 # output plots
 output/PLOTS
+
+input/COUNTS
+
+output/MAGS
+
+output/TEMPLATE

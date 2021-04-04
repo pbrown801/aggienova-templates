@@ -11,11 +11,13 @@ from manipulate_readinuvot import uvot
 import scipy 
 from scipy.interpolate import interp1d
 import matplotlib.image as mpimg
+# Plotly imports
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import plotly.io as pio
 
-def initialize_plots(plot, output_file_name, isStatic):
+def plotly_plots(plot, output_file_name):
 
     # ------------------------ FIRST PLOT = FLux vs Wavelength ------------------------ 
     # Get data and group by the different times
@@ -28,6 +30,7 @@ def initialize_plots(plot, output_file_name, isStatic):
     groups_list_wavelength = [list(i['Wavelength']) for i in groups]
     groups_list_Flux = [list(i['Flux']) for i in groups]
 
+    # --------------------------- PLOTLY SPECTRUM --------------------------------
     # fig = make_subplots(rows=2, cols=1, subplot_titles=("Flux vs Wavelength", "Magnitude vs Time"))
     spec=go.Figure()
     for i in range(num_groups):
@@ -42,7 +45,7 @@ def initialize_plots(plot, output_file_name, isStatic):
     spec.update_yaxes(title_text="Log(flux)+constant")
     spec.update_layout(template='plotly_dark')
     spec.update_yaxes(tickformat=".2g")
-    spec.show()
+    # spec.show()
 
     # ------------------------ FIRST PLOT END ------------------------ 
 
@@ -70,14 +73,9 @@ def initialize_plots(plot, output_file_name, isStatic):
     # Interpolate magnitude for each band  for each of the 1000 time points
     interp_funcs = [i(time_extrap) for i in interp_func_templates]     
 
-    # # Plot the interpolated plots that are smooth because of high enumeration of values inbetween the times given
-        # ax2.plot(time_extrap,func, label=filter_bands[idx])
-
-    times = [df['Time (MJD)'][0:(i+1)] for i in range(num_groups)]
-    filter_ = []
+    # --------------------------- PLOTLY Light --------------------------------
     light=go.Figure()
-
-    for idx,func in enumerate(interp_funcs):
+    for idx in range(len(interp_funcs)):
         light.add_trace(go.Scatter(x=df['Time (MJD)'], y=df[filter_bands[idx]],
                 marker=dict(
                     size=10),
@@ -87,16 +85,25 @@ def initialize_plots(plot, output_file_name, isStatic):
     light.update_yaxes(title_text="Magnitude")
     light.update_layout(template='plotly_dark')
     light.update_yaxes(autorange="reversed", autotypenumbers="strict")
-    # fig.update_layout(title_text="Summary Plot", template='plotly_dark')
     # light.show()
-
     # ------------------------ SECOND PLOT END ------------------------ 
 
-    return 
+    # --------------------------- PLOTLY convert to html --------------------------------
+    output_html_spec_name = output_file_name+'_spec_summaryPlot.html'
+    output_html_light_name = output_file_name+'_light_summaryPlot.html'
 
-def summary_plot(plot, output_file_name, save, show, isStatic, interval_param=1):
-    initialize_plots(plot, output_file_name, isStatic)
+    pio.write_html(spec, file=r'../output/PLOTS/HTML/'+output_html_spec_name)
+    pio.write_html(light, file=r'../output/PLOTS/HTML/'+output_html_light_name)
+  
+def summary_plot(plot, output_file_name):
+    plotly_plots(plot, output_file_name)
 
 
 if __name__ == "__main__":
-    summary_plot("SN2007af","SN2007af_SNIa_series", True, True, True, 500)
+    # sn_output_names = [ 'SN2006bp_SNII_series', 'SN2008aw_SNII_series', 'SN2012aw_SNII_series', 'SN2017eaw_SNII_series', 'SN2017cbv_SNIa_series', 'SN2007on_SNIa_series', 'SN2005ke_SNIa_series']
+    # sn_names = ['SN2006bp', 'SN2008aw', 'SN2012aw', 'SN2017eaw', 'SN2017cbv', 'SN2007on', 'SN2005ke']
+    # for idx, sn in enumerate(sn_names):
+    #     summary_plot(sn, sn_output_names[idx])
+    summary_plot("SN2007af","SN2007af_SNIa_series")
+    # summary_plot("SN2005cs","SN2005cs_uvot_SNII_series")
+    # summary_plot("SN2011by","SN2011by_SNIa_series")

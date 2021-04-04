@@ -4,8 +4,8 @@
 # Command to run Uvot:
 # python3 run_pipeline.py SN2005cs SN2006bp_uvmodel.dat y y
 # Command to add template series for mangling:
-# python3 run_pipeline.py SN2007af SNIa_ series y 
-# python3 run_pipeline.py SN2005cs SNII_ series y y 
+# python3 run_pipeline.py SN2007af SNIa_series y 
+# python3 run_pipeline.py SN2005cs SNII_series y y 
 
 
 
@@ -22,7 +22,6 @@ from select_template import sel_template
 from spec_animation import summary_plot
 import argparse
 from observedmags_to_counts import *
-from old_observedmags_to_counts import *
 from filterlist_to_filterfiles import *
 from mangled_to_counts import *
 from mpl_toolkits.mplot3d import Axes3D
@@ -269,7 +268,7 @@ def main():
             check_filter_data(sn_name)
         # Function call 1
         # Convert the magnitudes from the sn data to count rates
-        observedmags_to_counts(sn_name, desired_filter_list, template_spectrum_default)
+        observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum_default)
 
         with open('../output/Test_A.csv', 'w', newline='') as file:
             writer = csv.writer(file)
@@ -344,7 +343,7 @@ def main():
             print("Removing" + sn_name + "_osc.csv from input folder")
             os.remove('../input/'+sn_name+'_osc.csv')
 
-    plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
+    # plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
 
 if __name__ == "__main__":
     main()
