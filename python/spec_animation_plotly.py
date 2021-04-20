@@ -12,9 +12,7 @@ import scipy
 from scipy.interpolate import interp1d
 import matplotlib.image as mpimg
 # Plotly imports
-import plotly.express as px
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 import plotly.io as pio
 
 def plotly_plots(plot, output_file_name):
@@ -32,6 +30,7 @@ def plotly_plots(plot, output_file_name):
 
     # --------------------------- PLOTLY SPECTRUM --------------------------------
     # fig = make_subplots(rows=2, cols=1, subplot_titles=("Flux vs Wavelength", "Magnitude vs Time"))
+    # config = {'modeBarButtonsToRemove': ['toggleSpikelines', 'select2d', 'resetScale2d', 'lasso2d', 'toggleHover'], 'scrollZoom': False, 'editable': False, 'showspikes': False}
     spec=go.Figure()
     for i in range(num_groups):
         spec.add_trace(go.Scatter(x=groups_list_wavelength[i], y=groups_list_Flux[i],
@@ -43,9 +42,9 @@ def plotly_plots(plot, output_file_name):
     # title_text="Flux vs Wavelength", template='plotly_dark')
     spec.update_xaxes(title_text="Wavelength (angstroms)")
     spec.update_yaxes(title_text="Log(flux)+constant")
-    spec.update_layout(template='plotly_dark')
+    spec.update_layout(template='plotly_dark', title="Spectrum (Flux vs Wavelength)", legend_title=dict(text='Times (MJD)'),title_font_size=20, legend_title_font_size=15)
     spec.update_yaxes(tickformat=".2g")
-    # spec.show()
+    spec.show()
 
     # ------------------------ FIRST PLOT END ------------------------ 
 
@@ -83,27 +82,55 @@ def plotly_plots(plot, output_file_name):
 
     light.update_xaxes(title_text="Time (MJD)")
     light.update_yaxes(title_text="Magnitude")
-    light.update_layout(template='plotly_dark')
+    light.update_layout(template='plotly_dark', title="Light Curve (Magnitude vs Time (MJD)", legend_title=dict(text='Filter Bands'),title_font_size=20, legend_title_font_size=15)
     light.update_yaxes(autorange="reversed", autotypenumbers="strict")
-    # light.show()
+    light.show()
     # ------------------------ SECOND PLOT END ------------------------ 
 
     # --------------------------- PLOTLY convert to html --------------------------------
     output_html_spec_name = output_file_name+'_spec_summaryPlot.html'
     output_html_light_name = output_file_name+'_light_summaryPlot.html'
-
     pio.write_html(spec, file=r'../output/PLOTS/HTML/'+output_html_spec_name)
     pio.write_html(light, file=r'../output/PLOTS/HTML/'+output_html_light_name)
-  
+
 def summary_plot(plot, output_file_name):
     plotly_plots(plot, output_file_name)
 
+def plotly_3d_template(plot, output_file_name):
+    df_template= pd.read_csv(os.path.join('..','output', 'TEMPLATE', output_file_name+'_template.csv'), header=0)
+    time_df = df_template.groupby(['MJD'])
+    groups=[time_df.get_group(x).sort_values(by=('MJD')).reset_index() for x in time_df.groups]
+    groups2D_flux = [f['Flux'] for f in groups ]
+    groups2D_MJD = [f['MJD'] for f in groups ]
+    groups2D_wave = [f['Wavelength'] for f in groups ]
+
+    surface = go.Figure(data=[go.Surface(
+        x=groups2D_wave,
+        y=groups2D_MJD,
+        z=groups2D_flux,
+        colorscale='Rainbow',
+        colorbar=dict(exponentformat='e', title="Flux", thickness=15,titlefont=dict(size=15))
+    )])
+    surface.update_layout(
+    scene = dict(
+        xaxis = dict(title="Wavelength (angstroms)"),
+        yaxis = dict(title="Time (MJD)"),
+        zaxis = dict(title="Flux",tickformat=".2g"),
+    ),margin=dict(l=65, r=50, b=50, t=80))
+    surface.update_layout(template='plotly_dark', title="Surface Plot of Flux vs Time(MJD) vs Wavelength",title_font_size=18)
+    surface.show()
+
+    output_html_surface_name = output_file_name+'_surface_summaryPlot.html'
+    pio.write_html(surface, file=r'../output/PLOTS/HTML/'+output_html_surface_name)
 
 if __name__ == "__main__":
-    # sn_output_names = [ 'SN2006bp_SNII_series', 'SN2008aw_SNII_series', 'SN2012aw_SNII_series', 'SN2017eaw_SNII_series', 'SN2017cbv_SNIa_series', 'SN2007on_SNIa_series', 'SN2005ke_SNIa_series']
-    # sn_names = ['SN2006bp', 'SN2008aw', 'SN2012aw', 'SN2017eaw', 'SN2017cbv', 'SN2007on', 'SN2005ke']
+    # sn_output_names = ['SN2005cs_uvot_SNII_series', 'SN2006bp_SNII_series', 'SN2008aw_SNII_series', 'SN2012aw_SNII_series', 'SN2017eaw_SNII_series', 'SN2007af_SNIa_series', 'SN2011by_SNIa_series', 'SN2017cbv_SNIa_series', 'SN2007on_SNIa_series', 'SN2005ke_SNIa_series']
+    # sn_names = ['SN2005cs', 'SN2006bp', 'SN2008aw', 'SN2012aw', 'SN2017eaw', 'SN2007af','SN2011by', 'SN2017cbv', 'SN2007on', 'SN2005ke']
     # for idx, sn in enumerate(sn_names):
+    #     print(sn, sn_output_names[idx])
     #     summary_plot(sn, sn_output_names[idx])
-    summary_plot("SN2007af","SN2007af_SNIa_series")
+    #     plotly_3d_template(sn, sn_output_names[idx])
+    # plotly_3d_template('SN2005cs', 'SN2005cs_uvot_SNII_series')
+    # summary_plot("SN2007af","SN2007af_SNIa_series")
     # summary_plot("SN2005cs","SN2005cs_uvot_SNII_series")
     # summary_plot("SN2011by","SN2011by_SNIa_series")
