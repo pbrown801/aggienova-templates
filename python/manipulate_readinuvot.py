@@ -6,7 +6,11 @@ from astropy.io import fits
 # Create Dataframe out of the data
 def read_data(sn_name):
     lines = [] 
-    data = open(os.path.join('..','input',sn_name + '_uvotB15.1.dat'), 'r')
+    try:
+        data = open(os.path.join('..','input',sn_name + '_uvotB15.1.dat'), 'r')
+    except FileNotFoundError:
+        print("File is not in input directory or is not a uvot file.")
+        exit()
     for line in data:
         # Ignore comments
         if line[0]!= '#': 

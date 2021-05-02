@@ -5,7 +5,6 @@ from dust_extinction.parameter_averages import F19
 
 
 def extinction_adjustment(rv):
-    text_model = F19()
     len_wave=len(sn_templ['Wavelength'])
     wavenum_waves = [1/(a/10000) for a in sn_templ['Wavelength']]
     ext_model = F19(Rv=rv)
@@ -27,11 +26,7 @@ def Dm_to_Lum(sn_name):
     Dist_mod= swift['Dist_mod_cor'][idex]
 
     Lum= pd.Series(sn_templ.apply(lambda row: Grab_Lum(Dist_mod=Dist_mod, Flux= row['Flux']), axis=1))
-    print(Lum[0])
-    print(Lum[10])
     Lum=Lum/extinction_adjustment(3.1)
-    print(Lum[0])
-    print(Lum[10])
 
     Lum=pd.DataFrame({'MJD': sn_templ['MJD'], 'Wavelength': sn_templ['Wavelength'], 'Luminosity': Lum.tolist()})
     return Lum

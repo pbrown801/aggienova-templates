@@ -7,8 +7,6 @@
 # python3 run_pipeline.py SN2007af SNIa_series y 
 # python3 run_pipeline.py SN2005cs SNII_series y y 
 
-
-
 # imports 
 import time
 import pandas as pd
@@ -224,9 +222,9 @@ def plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, t
     plt.savefig(save_name)
 
     if "uvot" in output_file_name:
-        summary_plot(sn_name, output_file_name, True, True, False, 750)
+        summary_plot(sn_name, output_file_name, True, True, False, 750, False)
     else:
-        summary_plot(sn_name, output_file_name, True, True, True, 750)
+        summary_plot(sn_name, output_file_name, True, True, True, 750, False)
 
 def main():
     '''

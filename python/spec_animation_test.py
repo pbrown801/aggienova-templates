@@ -172,10 +172,10 @@ def animation(plot, fig, ax1, ax2, ax3, times_plots, groups, time_groups, bands_
                 # Get the labels for the plot legend 
                 handles,labels=ax1.get_legend_handles_labels()
                 # Add the legend to plot 2 outside of the plot area
-                if m.ceil(num_groups/15) <= 0:
+                if m.floor(num_groups/15) <= 0:
                     legend_cols = 1
                 else:
-                    legend_cols = m.ceil(num_groups/15)
+                    legend_cols = m.floor(num_groups/15)
                 ax1.legend(handles[1:], labels[1:],bbox_to_anchor=(1.01, 1), loc='upper left', borderaxespad=0, ncol=legend_cols)
                
                # --------- Update the ax2 plot with the points based on the time(MJD) ---------
@@ -239,10 +239,10 @@ def static_plots(plot, fig, ax1, ax2, ax3, times_plots, groups, time_groups, ban
         # Get the labels for the plot legend 
         handles,labels=ax1.get_legend_handles_labels()
         # Add the legend to plot 2 outside of the plot area
-        if m.ceil(num_groups/15) <= 0:
+        if m.floor(num_groups/15) <= 0:
             legend_cols = 1
         else:
-            legend_cols = m.ceil(num_groups/15)
+            legend_cols = m.floor(num_groups/15)
         ax1.legend(handles[1:], labels[1:],bbox_to_anchor=(1.01, 1), loc='upper left', borderaxespad=0, ncol=legend_cols)
         
         # --------- Update the ax2 plot with the points based on the time(MJD) ---------
@@ -286,6 +286,7 @@ def summary_plot(plot, output_file_name, save, show, amt_image=True, interval_ti
     if show:
         print("Showing plot for", output_file_name)
         plt.show()
+
 
 if __name__ == "__main__":
     pass
