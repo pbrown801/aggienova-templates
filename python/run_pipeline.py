@@ -46,8 +46,12 @@ def sn_data_online(sn_name):
     files = os.listdir('../input')
     if sn_name + "_osc.csv" not in files:
         # Url of the csv file from the supernova catalog
-        df = pd.read_csv("https://api.sne.space/" + sn_name +
+        try:
+            df = pd.read_csv("https://api.sne.space/" + sn_name +
                         "/photometry/time+magnitude+e_magnitude+upperlimit+band+instrument+telescope+source?format=csv&time&magnitude")
+        except:
+            print("The supernova "+sn_name+" is not in the supernovae catalog.")
+            exit()
         df.to_csv('../input/'+sn_name+'_osc.csv', index=False)
         x = df.shape
         if (x[0] > 10):
@@ -240,11 +244,11 @@ def main():
     parser.add_argument('supernova', metavar='supernova',
                         type=str, nargs=1, help='A supernova to process.')
     parser.add_argument('template', metavar='template', type=str,
-                        nargs=1, help='A template file to process supernova with.') 
+                        nargs=1, help='A template file(s) to process the supernova with.') 
     parser.add_argument('csv', metavar='csv', type=str, nargs='?', default='y', choices=[
-                        'y', 'n', 'Y', 'N'], help='Save data as csv, y/n.')
+                        'y', 'n', 'Y', 'N'], help='Save data as csv, y(default)/n.')
     parser.add_argument('uvot', metavar='uvot', type=str, nargs='?', default='n', choices=[
-                        'y', 'n', 'Y', 'N'], help='Process uvot supernova file.')
+                        'y', 'n', 'Y', 'N'], help='Process a uvot supernova file, y/n(default).')
     # parser.add_argument('template_series', metavar='template_series', type=str,nargs='?',default="",
     #                      help='A template series used to mangle the supernova with')   
     args = parser.parse_args()

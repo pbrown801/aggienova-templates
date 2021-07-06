@@ -1,14 +1,12 @@
 import pandas as pd 
 import numpy as np
-import math
 from dust_extinction.parameter_averages import F19
-
+import astropy.units as u
 
 def extinction_adjustment(rv):
-    len_wave=len(sn_templ['Wavelength'])
-    wavenum_waves = [1/(a/10000) for a in sn_templ['Wavelength']]
+    wavenum_waves = [1/((a/10000)) for a in sn_templ['Wavelength']]
     ext_model = F19(Rv=rv)
-    return(pd.Series(ext_model(wavenum_waves)))
+    return(pd.Series(ext_model(wavenum_waves/u.micron)))
 
 
 def Dm_to_Lum(sn_name):
@@ -47,5 +45,6 @@ def Lum_conv(sn_name,output_file):
 
 if __name__ == "__main__":
     l=Lum_conv('SN2005cs_uvot','../output/TEMPLATE/SN2005cs_uvot_SNIa_series_template.csv')
+    # print(l)
     # print(type(l))
     # extinction_adjustment(3.1)

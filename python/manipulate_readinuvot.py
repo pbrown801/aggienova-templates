@@ -9,7 +9,7 @@ def read_data(sn_name):
     try:
         data = open(os.path.join('..','input',sn_name + '_uvotB15.1.dat'), 'r')
     except FileNotFoundError:
-        print("File is not in input directory or is not a uvot file.")
+        print("File is not in input directory or is not a uvot file. If this is not a uvot file, please remove the last argument in the command.")
         exit()
     for line in data:
         # Ignore comments
