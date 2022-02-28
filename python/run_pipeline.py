@@ -32,7 +32,7 @@ import csv
 # Global Variables
 desired_filter_list = ['UVW2', 'UVM2', 'UVW1',  'U', 'B', 'V', 'R', 'I']
 # J, H, K causes error in example
-#desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
+desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
 
 def sn_data_online(sn_name):
     '''
@@ -244,7 +244,7 @@ def main():
     parser.add_argument('csv', metavar='csv', type=str, nargs='?', default='y', choices=[
                         'y', 'n', 'Y', 'N'], help='Save data as csv, y/n.')
     parser.add_argument('uvot', metavar='uvot', type=str, nargs='?', default='n', choices=[
-                        'y', 'n', 'Y', 'N'], help='Process uvot supernova file.')
+                        'y', 'n', 'Y', 'N'], help='Process only uvot supernova file.')
     # parser.add_argument('template_series', metavar='template_series', type=str,nargs='?',default="",
     #                      help='A template series used to mangle the supernova with')   
     args = parser.parse_args()
