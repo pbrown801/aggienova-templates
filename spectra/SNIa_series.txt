@@ -8,4 +8,3 @@
 38.5 ../spectra/SN2011fe_spectra/ptf11kly_20111001.obs.dat
 44.6 ../spectra/SN2011fe_spectra/ptf11kly_20111007.obs.dat
 58.4 ../spectra/SN2011fe_spectra/ptf11kly_20111021.obs.dat
-#### uses 17.6 days as the rise time

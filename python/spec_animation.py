@@ -59,7 +59,7 @@ def initialize_plots(plot, output_file_name):
     times_plots=[]
     for i in range(num_groups):
             time_var='time'+str(i)
-            time_var,=ax1.plot([],[], 'o',  markersize=1)
+            time_var,=ax1.plot([],[], '-',  markersize=1)
             times_plots.append(time_var)
 
     # Plot Settings
@@ -231,7 +231,7 @@ def static_plots(plot, fig, ax1, ax2, ax3, times_plots, groups, time_groups, ban
                 for idx in range(len(times_plots)):
                     times_plots[idx].set_data([], [])  
                     times_plots[idx].set_label("")  
-        # Plot the FLux and wavelength values up to the ith time. This is so that it appears as if we are adding on top of the previous plot.
+        # Plot the Flux and wavelength values up to the ith time. This is so that it appears as if we are adding on top of the previous plot.
         for idx in range(i+1):
             times_plots[idx].set_data(groups[idx]['Wavelength'], groups[idx]['Flux'])
             times_plots[idx].set_label(time_groups[idx])
