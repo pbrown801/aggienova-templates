@@ -250,8 +250,8 @@ def main():
     args = parser.parse_args()
     
     # Assign the arguments to variables
-    sn_name = input()
-    template_spectrum = input()
+    sn_name = args.supernova[0]
+    template_spectrum = args.template[0]
     store_as_csv = args.csv[0].upper() == 'Y'
     process_uvot = args.uvot[0].upper() == 'Y'
 
