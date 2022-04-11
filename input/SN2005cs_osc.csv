@@ -1,0 +1,677 @@
+event,time,magnitude,e_magnitude,upperlimit,band,instrument,telescope,source
+SN2005cs,53483.09,19.8,,T,V,,,2009MNRAS.394.2266P
+SN2005cs,53540.05,17.0,,T,R,,,2009MNRAS.394.2266P
+SN2005cs,53546.94,18.4,,T,R,,,2009MNRAS.394.2266P
+SN2005cs,53547.89,17.3,,T,B,,,2009MNRAS.394.2266P
+SN2005cs,53547.89,17.6,,T,R,,,2009MNRAS.394.2266P
+SN2005cs,53547.89,17.7,,T,V,,,2009MNRAS.394.2266P
+SN2005cs,53547.93,19.7,,T,R,,,2009MNRAS.394.2266P
+SN2005cs,53548.91,16.728,0.122,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53548.92,16.367,0.33,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53548.93,16.301,0.073,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53548.93,16.25,0.161,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53548.94,16.302,0.086,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53548.95,16.375,0.145,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53548.96,16.319,0.153,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53548.96,16.224,0.278,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53548.99,16.214,0.154,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53549.91,14.677,0.124,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53549.92,14.654,0.148,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53549.93,14.872,0.15,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53551.01,14.475,0.17,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53551.27,14.375,0.01,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53551.27,14.505,0.011,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53551.27,14.471,0.011,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53551.27,14.519,0.014,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53551.86,14.393,0.009,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53551.86,14.455,0.016,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53551.86,14.459,0.016,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53551.86,13.46,0.008,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53551.86,14.496,0.011,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53551.87,14.499,0.15,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53551.8764,13.113,0.044,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53551.8826,14.641,0.057,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53551.8875,12.683,0.043,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53551.8929,12.726,0.032,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53551.94,14.493,0.222,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53551.96,14.491,0.165,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53551.96,14.495,0.174,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53552.06,14.498,0.155,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53552.2,14.367,0.01,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53552.2,14.443,0.01,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53552.2,14.405,0.01,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53552.2,14.491,0.011,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53552.7,14.42,0.02,F,B,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53552.7,14.42,0.02,F,V,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53552.85,14.41,0.023,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53552.85,14.369,0.028,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53552.85,14.435,0.018,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53552.85,13.448,0.012,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53552.85,14.531,0.026,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53552.96,14.527,0.169,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53553.21,14.347,0.01,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53553.21,14.387,0.011,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53553.21,14.369,0.01,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53553.21,14.462,0.012,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53553.7,14.47,0.01,F,B,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53553.7,13.5,0.02,F,U,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53553.7,14.41,0.01,F,V,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53553.88,14.17,0.031,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53553.88,14.434,0.052,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53553.96,14.47,0.02,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53553.96,14.336,0.012,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53553.96,14.46,0.017,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53553.96,13.573,0.014,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53553.96,14.538,0.146,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53553.96,14.541,0.01,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53554.23,14.425,0.011,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53554.23,14.405,0.015,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53554.23,14.377,0.01,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53554.23,14.509,0.01,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53554.5562,14.198,0.055,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53554.5608,14.603,0.065,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53554.7,14.52,0.02,F,B,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53554.7,14.46,0.02,F,V,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53554.83,14.45,0.02,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53554.83,14.37,0.05,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53554.83,14.3,0.02,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53554.83,14.45,0.02,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53554.94,14.539,0.085,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53554.98,14.552,0.046,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53554.99,14.488,0.015,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53554.99,14.38,0.009,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53554.99,14.541,0.008,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53555.7,14.55,0.01,F,B,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53555.7,14.52,0.02,F,V,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53556.7693,15.051,0.08,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53556.7737,14.701,0.061,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53556.7773,14.859,0.084,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53556.7817,14.291,0.049,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53556.7844,13.603,0.035,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53556.7861,14.752,0.043,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53556.92,14.553,0.026,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53556.92,14.333,0.056,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53556.92,14.396,0.024,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53556.92,14.549,0.027,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53556.94,14.375,0.008,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53556.94,14.497,0.016,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53557.25,14.536,0.011,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53557.25,14.339,0.01,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53557.25,14.371,0.01,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53557.25,14.545,0.01,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53557.34,14.58,0.029,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53557.34,14.462,0.012,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53557.34,14.35,0.018,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53557.34,13.997,0.018,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53557.34,14.578,0.019,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53557.3676,15.346,0.093,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53557.3734,14.632,0.057,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53557.3779,15.224,0.092,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53557.3837,14.533,0.054,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53557.3872,13.729,0.036,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53557.3893,14.725,0.042,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53557.7,14.61,0.02,F,B,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53557.7,13.87,0.02,F,U,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53557.7,14.52,0.02,F,V,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53557.82,14.57,0.02,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53557.82,14.29,0.03,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53557.82,14.34,0.02,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53557.82,14.54,0.02,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53557.94,14.334,0.13,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53558.3032,15.915,0.132,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53558.3068,15.853,0.121,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53558.3102,14.877,0.068,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53558.3698,14.675,0.058,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53558.3735,13.85,0.037,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53558.3769,14.761,0.042,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53558.7,14.58,0.03,F,B,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53558.7,14.53,0.01,F,V,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53558.9,14.624,0.024,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53558.9,14.359,0.105,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53558.9,14.393,0.08,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53558.9,14.575,0.083,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53559.5149,16.608,0.178,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53559.5194,14.598,0.057,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53559.523,16.666,0.179,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53559.5276,15.475,0.087,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53559.5303,14.124,0.04,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53559.532,14.771,0.043,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53559.7,14.54,0.01,F,V,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53559.8,14.72,0.01,F,B,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53559.92,14.358,0.121,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53559.98,14.586,0.086,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53560.1236,17.211,0.267,F,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53560.1263,14.577,0.059,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53560.1284,17.021,0.241,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53560.1311,15.812,0.105,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53560.1327,14.293,0.044,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53560.1338,14.767,0.044,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53560.23,14.673,0.01,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53560.23,14.26,0.021,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53560.23,14.333,0.012,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53560.23,14.525,0.01,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53560.82,14.74,0.02,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53560.82,14.25,0.03,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53560.82,14.26,0.02,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53560.82,14.5,0.02,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53560.93,14.588,0.075,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53561.456,18.301,,T,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53561.4584,14.642,0.064,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53561.4603,17.621,0.383,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53561.4627,16.62,0.165,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53561.4641,14.671,0.053,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53561.465,14.831,0.046,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53561.7,14.84,0.02,F,B,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53561.7,14.64,0.03,F,U,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53561.7,14.52,0.02,F,V,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53561.93,14.829,0.012,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53561.97,14.6,0.093,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53562.3276,18.302,,T,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53562.3299,14.688,0.065,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53562.3318,17.677,0.4,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53562.3342,16.805,0.186,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53562.3357,14.983,0.063,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53562.3365,14.963,0.048,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53562.6,14.93,0.01,F,B,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53562.6,14.5,0.02,F,V,,,"2008ApJ...675..644D,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53562.8,14.5,0.02,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53562.88,14.904,0.006,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53562.88,14.229,0.008,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53562.88,14.355,0.008,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53562.88,14.735,0.008,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53562.88,14.603,0.007,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53562.91,13.813,0.068,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53562.91,14.202,0.075,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53562.91,13.848,0.085,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53562.92,14.911,0.01,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53562.92,14.251,0.013,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53562.92,14.355,0.011,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53562.92,14.75,0.011,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53562.92,14.575,0.009,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53563.25,14.922,0.014,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53563.25,14.27,0.012,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53563.25,14.356,0.01,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53563.25,14.57,0.01,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53563.79,14.92,0.02,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53563.79,14.2,0.03,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53563.79,14.32,0.02,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53563.79,14.5,0.02,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53563.9368,18.221,,T,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53563.94,14.593,0.082,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53564.0038,18.245,,T,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53564.0058,14.627,0.064,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53564.0074,17.789,0.452,F,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53564.0092,17.399,0.314,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53564.86,15.08,0.05,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53564.86,14.29,0.06,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53564.86,14.42,0.04,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53564.86,14.65,0.04,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53564.88,15.046,0.02,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53564.88,14.287,0.018,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53564.88,14.36,0.014,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53564.88,15.292,0.03,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53564.88,14.652,0.013,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53564.88,14.215,0.02,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53564.93,14.628,0.107,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53564.95,15.056,0.014,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53564.95,14.368,0.021,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53564.95,14.648,0.011,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.0038,18.384,,T,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53565.0069,14.763,0.066,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53565.0094,18.075,,T,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53565.0125,17.783,0.36,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53565.0144,15.428,0.08,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53565.0156,15.197,0.052,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53565.83,15.19,0.02,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.83,14.32,0.03,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.83,14.39,0.02,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.83,15.36,0.06,F,U,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.83,14.63,0.02,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.86,15.115,0.01,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.86,14.229,0.013,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.86,14.389,0.018,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.86,15.263,0.012,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.86,14.684,0.01,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.9,15.092,0.025,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.9,14.282,0.025,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.9,14.38,0.016,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.9,14.666,0.027,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53565.97,14.663,0.071,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53566.22,15.139,0.016,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53566.22,14.267,0.021,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53566.22,14.324,0.011,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53566.22,14.629,0.01,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53566.79,15.13,0.03,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53566.79,14.23,0.03,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53566.79,14.34,0.02,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53566.79,14.6,0.02,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53566.96,14.692,0.239,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53568.0198,18.304,,T,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53568.0222,14.806,0.069,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53568.0242,17.972,,T,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53568.0266,17.812,0.387,F,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53568.028,15.941,0.107,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53568.0289,15.494,0.064,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53568.9,14.731,0.073,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53568.92,15.345,0.017,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53568.92,14.273,0.022,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53568.92,14.382,0.016,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53568.92,15.994,0.034,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53568.92,14.723,0.019,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53568.92,14.192,0.021,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53569.22,15.309,0.015,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53569.22,14.247,0.013,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53569.22,14.421,0.017,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53569.22,14.702,0.014,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53570.79,15.4,0.02,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53570.79,14.27,0.03,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53570.79,14.43,0.02,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53570.79,14.72,0.02,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53570.9,15.34,0.02,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53570.9,15.374,0.025,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53570.9,14.22,0.04,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53570.9,14.258,0.028,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53570.9,14.38,0.04,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53570.9,14.454,0.019,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53570.9,14.72,0.02,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53570.9,14.724,0.02,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53570.95,14.724,0.241,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53571.9,15.389,0.037,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53571.9,14.282,0.019,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53571.9,14.447,0.02,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53571.9,14.723,0.027,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53571.91,14.724,0.148,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53572.89,13.742,0.045,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53572.89,13.98,0.022,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53573.0447,18.307,,T,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53573.0472,14.853,0.069,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53573.0491,17.973,,T,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53573.0515,18.078,,T,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53573.053,16.26,0.124,F,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53573.0538,15.633,0.069,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53573.22,15.476,0.014,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53573.22,14.235,0.01,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53573.22,14.402,0.01,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53573.95,13.637,0.073,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53575.03,13.69,0.013,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53575.03,13.91,0.022,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53575.03,13.621,0.022,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53576.25,15.573,0.017,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53576.25,14.781,0.018,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53576.9,15.489,0.078,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53576.9,14.239,0.045,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53576.9,14.327,0.059,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53576.9,14.746,0.039,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53578.9,15.605,0.046,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53578.9,14.167,0.025,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53578.9,14.394,0.03,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53578.9,14.754,0.037,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53578.94,13.668,0.039,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53578.94,13.901,0.028,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53578.94,13.652,0.109,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53579.19,15.651,0.012,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53579.19,14.158,0.015,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53579.19,14.371,0.01,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53579.19,14.718,0.01,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53579.82,15.69,0.05,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53579.82,14.2,0.04,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53579.82,14.42,0.03,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53579.82,14.73,0.03,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53579.9,13.699,0.105,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53579.9,13.887,0.028,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53579.9,13.623,0.157,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53582.22,14.083,0.01,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53582.22,14.34,0.011,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53582.22,14.71,0.01,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53582.89,15.758,0.022,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53582.89,14.118,0.013,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53582.89,14.334,0.014,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53582.89,16.741,0.065,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53582.89,14.75,0.015,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53582.97,15.768,0.037,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53582.97,14.164,0.012,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53582.97,14.325,0.012,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53582.97,16.746,0.077,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53582.97,14.755,0.012,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53582.97,13.999,0.011,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53583.6313,18.241,,T,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53583.92,13.626,0.037,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53583.92,13.843,0.031,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53583.92,13.557,0.065,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53584.83,13.608,0.058,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53584.83,13.814,0.027,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53584.83,13.549,0.16,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53584.88,15.772,0.075,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53584.88,14.099,0.026,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53584.88,14.327,0.038,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53584.88,14.753,0.064,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53584.9,15.798,0.009,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53584.9,14.129,0.008,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53584.9,14.328,0.006,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53584.9,14.764,0.008,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53585.19,15.782,0.013,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53585.19,14.056,0.013,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53585.19,14.337,0.01,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53585.19,14.721,0.01,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53585.93,15.839,0.014,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53585.93,14.089,0.01,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53585.93,14.271,0.01,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53585.93,16.94,0.048,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53585.93,14.75,0.012,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53585.93,13.956,0.01,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53586.81,15.77,0.05,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53586.81,14.08,0.03,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53586.81,14.31,0.02,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53586.81,14.72,0.03,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53587.88,15.85,0.017,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53587.88,14.096,0.007,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53587.88,14.267,0.006,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53587.88,14.769,0.01,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53588.88,15.89,0.015,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53588.88,14.094,0.01,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53588.88,14.263,0.008,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53588.88,17.04,0.093,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53588.88,14.767,0.009,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53588.88,13.93,0.01,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53590.86,13.507,0.039,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53590.86,13.717,0.057,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53590.86,13.398,0.058,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53591.19,15.872,0.013,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53591.19,14.04,0.01,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53591.19,14.284,0.01,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53591.19,14.722,0.01,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53592.81,15.82,0.03,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53592.81,14.03,0.03,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53592.81,14.28,0.02,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53592.81,14.72,0.03,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53592.92,15.934,0.018,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53592.92,13.962,0.01,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53592.92,14.285,0.011,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53592.92,17.166,0.184,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53592.92,14.784,0.015,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53594.18,15.898,0.021,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53594.18,14.013,0.011,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53594.18,14.231,0.01,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53594.18,14.696,0.015,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53594.88,15.969,0.021,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53594.88,14.009,0.008,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53594.88,14.241,0.012,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53594.88,14.778,0.01,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53594.89,15.96,0.012,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53594.89,13.983,0.009,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53594.89,14.241,0.011,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53594.89,17.244,0.077,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53594.89,14.776,0.01,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53594.89,13.847,0.01,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53597.17,15.906,0.02,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53597.17,13.994,0.012,F,I,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53597.17,14.223,0.01,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53597.17,14.708,0.011,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53598.94,16.009,0.037,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53598.94,13.967,0.004,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53598.94,14.211,0.004,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53598.94,14.772,0.013,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53599.91,16.012,0.035,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53599.91,14.206,0.02,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53599.91,14.768,0.006,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53603.16,15.952,0.018,F,B,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53603.16,14.211,0.01,F,R,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53603.16,14.716,0.01,F,V,KAIT,KAIT,2014MNRAS.442..844F
+SN2005cs,53604.85,16.088,0.061,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53604.85,13.946,0.02,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53604.85,14.198,0.021,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53604.85,14.745,0.019,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53604.85,13.774,0.017,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53604.92,16.095,0.026,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53604.92,13.922,0.01,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53604.92,14.198,0.01,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53604.92,14.761,0.014,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53605.83,13.392,0.023,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53605.83,13.553,0.022,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53605.83,13.287,0.028,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53605.92,16.11,0.034,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53605.92,13.886,0.009,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53605.92,14.164,0.011,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53605.92,14.771,0.009,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53606.84,15.89,0.06,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53606.84,13.89,0.08,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53606.84,14.15,0.07,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53606.84,14.63,0.12,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53609.84,16.105,0.029,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53609.84,13.906,0.01,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53609.84,14.139,0.009,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53609.84,17.601,0.21,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53609.84,14.734,0.011,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53609.84,13.729,0.008,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53609.87,16.102,0.019,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53609.87,13.903,0.008,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53609.87,14.15,0.008,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53609.87,14.724,0.008,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53609.88,13.357,0.019,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53609.88,13.521,0.008,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53609.88,13.242,0.039,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53609.9,16.07,0.018,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53609.9,13.944,0.015,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53609.9,14.181,0.015,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53609.9,17.586,0.102,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53609.9,14.793,0.015,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53611.79,16.08,0.03,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53611.79,13.87,0.05,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53611.79,14.14,0.02,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53611.79,14.74,0.02,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53611.82,13.352,0.018,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53611.82,13.515,0.013,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53612.82,13.256,0.031,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53612.84,16.099,0.078,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53612.84,13.838,0.023,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53612.84,14.149,0.03,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53612.84,14.73,0.028,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53612.84,13.687,0.024,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53612.85,16.107,0.047,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53612.85,13.886,0.023,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53612.85,14.122,0.01,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53612.85,14.732,0.012,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53612.86,13.84,0.13,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53612.86,14.14,0.05,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53612.86,14.63,0.06,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53614.83,16.116,0.026,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53614.83,14.122,0.011,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53614.83,14.752,0.018,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53614.85,16.128,0.034,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53614.85,13.874,0.012,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53614.85,14.128,0.012,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53614.85,14.765,0.016,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53616.85,16.14,0.034,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53616.85,13.84,0.018,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53616.85,14.171,0.015,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53616.85,17.636,0.19,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53616.85,14.768,0.013,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53616.85,13.67,0.013,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53617.78,15.99,0.06,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53617.78,14.16,0.03,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53617.78,14.71,0.05,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53618.85,16.138,0.035,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53618.85,13.853,0.013,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53618.85,14.155,0.011,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53618.85,17.669,0.27,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53618.85,14.778,0.016,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53618.85,13.681,0.016,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53619.75,13.83,0.04,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53619.75,14.12,0.02,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53619.75,14.68,0.03,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53620.75,16.15,0.08,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53620.75,13.8,0.06,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53620.75,14.15,0.03,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53620.75,14.84,0.07,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53623.81,13.251,0.028,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53623.81,13.5,0.018,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53625.76,13.249,0.029,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53625.76,13.474,0.033,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53625.76,13.24,0.037,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53627.75,16.11,0.04,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53627.75,13.83,0.05,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53627.75,14.17,0.04,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53627.75,14.79,0.04,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53627.85,16.194,0.039,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53627.85,13.801,0.009,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53627.85,14.11,0.01,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53627.85,17.718,0.3,F,U,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53627.85,14.838,0.011,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53627.85,13.641,0.014,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53627.9638,18.496,,T,UVW2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53627.9688,14.984,0.065,F,V,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53627.9728,18.231,,T,UVM2,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53627.9778,18.332,,T,UVW1,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53627.9808,18.338,,T,U,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53627.9826,16.511,0.096,F,B,UVOT,Swift,2014Ap&SS.354...89B
+SN2005cs,53628.79,13.258,0.041,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53628.79,13.463,0.058,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53628.79,13.186,0.029,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53639.77,13.257,0.046,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53639.77,13.517,0.019,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53639.77,13.14,0.039,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53641.78,13.228,0.053,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53641.78,13.53,0.032,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53641.78,13.159,0.03,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53643.69,16.53,0.19,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53643.69,13.96,0.1,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53643.69,14.29,0.05,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53643.69,14.96,0.11,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53652.74,16.37,0.13,F,B,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53652.74,14.03,0.12,F,I,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53652.74,14.39,0.08,F,R,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53652.74,15.04,0.15,F,V,,,"2006lcvs.book53680T,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53653.76,16.574,0.23,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53653.76,13.942,0.041,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53654.78,16.608,0.237,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53654.78,13.959,0.024,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53654.78,15.109,0.076,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53659.78,16.815,0.027,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53659.78,14.43,0.007,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53659.78,15.156,0.041,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53659.81,16.822,0.092,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53661.76,16.872,0.122,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53661.76,14.488,0.009,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53661.76,15.218,0.013,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53671.17,18.099,0.11,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53671.17,15.067,0.012,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53671.17,16.055,0.049,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53672.18,18.45,0.033,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53672.18,14.576,0.021,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53672.18,15.134,0.03,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53672.18,16.26,0.045,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53678.14,19.6,,T,B,,,2009MNRAS.394.2266P
+SN2005cs,53678.14,17.419,0.042,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53678.14,18.825,0.28,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53679.27,21.053,0.29,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53679.27,16.673,0.078,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53679.27,17.483,0.089,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53679.27,19.93,,T,U,,,2009MNRAS.394.2266P
+SN2005cs,53679.27,18.87,0.176,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53679.27,15.943,0.28,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53681.26,19.34,,T,B,,,2009MNRAS.394.2266P
+SN2005cs,53681.26,16.656,0.044,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53681.26,17.422,0.122,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53681.26,18.68,,T,U,,,2009MNRAS.394.2266P
+SN2005cs,53681.26,18.864,0.33,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53681.26,15.916,0.104,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53682.15,17.441,0.04,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53682.15,18.929,0.086,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53683.2,21.132,0.29,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53683.2,17.46,0.042,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53683.2,19.063,0.067,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53683.26,17.53,0.032,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53683.26,18.21,,T,U,,,2009MNRAS.394.2266P
+SN2005cs,53683.26,17.53,0.032,F,V,,,2009MNRAS.394.2266P
+SN2005cs,53685.27,17.547,0.052,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53685.27,19.256,0.16,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53687.28,17.556,0.088,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53699.22,21.393,0.53,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53699.22,16.984,0.193,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53699.22,17.859,0.103,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53699.22,19.28,0.44,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53699.22,16.204,0.42,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53706.21,21.511,0.34,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53706.21,18.007,0.024,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53706.21,19.448,0.075,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53707.24,17.096,0.061,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53707.24,19.429,0.12,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53707.25,21.562,0.47,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53707.25,17.051,0.163,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53707.25,19.435,0.095,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53707.25,16.196,0.45,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53709.24,21.545,0.244,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53709.24,17.062,0.095,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53709.24,17.875,0.045,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53709.24,19.433,0.174,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53709.24,16.285,0.051,F,z,,,2009MNRAS.394.2266P
+SN2005cs,53715.07,21.636,0.43,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53715.07,17.195,0.095,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53715.07,17.871,0.148,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53718.19,20.34,,T,B,,,2009MNRAS.394.2266P
+SN2005cs,53718.19,17.191,0.048,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53718.19,17.959,0.042,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53718.19,19.524,0.102,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53725.22,21.632,0.35,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53725.22,17.261,0.063,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53725.22,19.542,0.115,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53731.14,17.237,0.047,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53731.14,18.077,0.078,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53731.14,19.563,0.22,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53735.12,17.29,0.032,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53735.12,18.13,0.122,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53735.12,19.577,0.184,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53750.24,19.479,0.22,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53769.04,20.3,,T,B,,,2009MNRAS.394.2266P
+SN2005cs,53769.22,19.525,0.079,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53770.07,17.523,0.038,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53770.07,18.38,0.111,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53770.07,19.61,0.044,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53774.13,21.774,0.25,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53774.13,17.645,0.081,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53774.13,18.55,0.043,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53774.13,19.613,0.102,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53780.98,17.222,0.22,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53780.98,16.452,0.38,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53786.07,17.749,0.052,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53786.07,18.578,0.136,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53786.07,19.642,0.052,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53800.07,17.879,0.31,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53800.07,18.604,0.053,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53800.07,19.708,0.42,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53813.96,21.823,0.21,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53814.95,17.88,0.082,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53814.95,18.605,0.034,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53814.95,19.707,0.1,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53818.13,17.92,0.09,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53818.13,18.63,0.034,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53818.13,19.727,0.046,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53818.24,17.354,0.169,F,H,,,2009MNRAS.394.2266P
+SN2005cs,53818.24,17.621,0.137,F,J,,,2009MNRAS.394.2266P
+SN2005cs,53818.24,17.119,0.119,F,K,,,2009MNRAS.394.2266P
+SN2005cs,53829.96,17.951,0.036,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53829.96,18.667,0.041,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53829.96,19.808,0.094,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53844.9,18.023,0.039,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53844.9,18.757,0.063,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53844.9,19.896,0.046,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53858.92,22.033,0.32,F,B,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53859.91,18.182,0.058,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53859.91,18.964,0.064,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53859.91,20.001,0.087,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53871.17,18.217,0.11,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53871.17,18.983,0.225,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53871.17,20.128,0.119,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53904.01,18.545,0.05,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53904.01,19.437,0.091,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53904.01,20.355,0.081,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53925.93,18.967,0.24,F,I,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53925.93,19.505,0.28,F,R,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,53925.93,20.679,0.2,F,V,,,"2009MNRAS.394.2266P,Sternberg Astronomical Institute Supernova Light Curve Catalogue"
+SN2005cs,54065.17,17.809,0.45,F,H,,,2009MNRAS.394.2266P
+SN2005cs,54065.17,18.114,0.32,F,J,,,2009MNRAS.394.2266P
+SN2005cs,54070.16,18.129,0.31,F,J,,,2009MNRAS.394.2266P
+SN2005cs,54071.16,17.428,0.32,F,K,,,2009MNRAS.394.2266P
+SN2005cs,54130.06,20.69,,T,I,,,2009MNRAS.394.2266P
+SN2005cs,54130.06,21.99,,T,R,,,2009MNRAS.394.2266P
+SN2005cs,54130.06,22.42,,T,V,,,2009MNRAS.394.2266P

@@ -207,7 +207,7 @@ def plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, t
     # plot_3D(df,sn_name)
 
     fig = plt.figure()
-    ax = Axes3D(fig)
+    ax = Axes3D(fig,auto_add_to_figure=False)
     X, Y = np.meshgrid(wavelength_list, epoch_list)
     Z = flux_matrix
 
@@ -237,10 +237,10 @@ def main():
     '''
     # Use command line to grab arguments from the user
     parser=argparse.ArgumentParser(description='Process supernova thrrough spectrum template.')
-    parser.add_argument('supernova', metavar='supernova',
-                        type=str, nargs=1, help='A supernova to process.')
-    parser.add_argument('template', metavar='template', type=str,
-                        nargs=1, help='A template file to process supernova with.') 
+    #parser.add_argument('supernova', metavar='supernova',
+    #                    type=str, nargs=1, help='A supernova to process.')
+    #parser.add_argument('template', metavar='template', type=str,
+    #                    nargs=1, help='A template file to process supernova with.')
     parser.add_argument('csv', metavar='csv', type=str, nargs='?', default='y', choices=[
                         'y', 'n', 'Y', 'N'], help='Save data as csv, y/n.')
     parser.add_argument('uvot', metavar='uvot', type=str, nargs='?', default='n', choices=[
