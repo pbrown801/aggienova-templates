@@ -27,6 +27,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import scipy
 import matplotlib.pyplot as plt
 import csv
+import os
 
 
 # Global Variables
@@ -237,10 +238,10 @@ def main():
     '''
     # Use command line to grab arguments from the user
     parser=argparse.ArgumentParser(description='Process supernova thrrough spectrum template.')
-    #parser.add_argument('supernova', metavar='supernova',
-    #                    type=str, nargs=1, help='A supernova to process.')
-    #parser.add_argument('template', metavar='template', type=str,
-    #                    nargs=1, help='A template file to process supernova with.')
+    parser.add_argument('supernova', metavar='supernova',
+                        type=str, nargs=1, help='A supernova to process.')
+    parser.add_argument('template', metavar='template', type=str,
+                        nargs=1, help='A template file to process supernova with.')
     parser.add_argument('csv', metavar='csv', type=str, nargs='?', default='y', choices=[
                         'y', 'n', 'Y', 'N'], help='Save data as csv, y/n.')
     parser.add_argument('uvot', metavar='uvot', type=str, nargs='?', default='n', choices=[
@@ -255,6 +256,11 @@ def main():
     store_as_csv = args.csv[0].upper() == 'Y'
     process_uvot = args.uvot[0].upper() == 'Y'
 
+    cur_path = os.path.dirname(__file__)
+    new_path = os.path.relpath('..\\input\\NewSwiftSNweblist.csv', cur_path)
+    with open(new_path, 'r') as f:
+        SNList = f.read()
+    print(SNList)
     if 'series' in template_spectrum:
         f=open('../spectra/'+template_spectrum+'.txt').readline()
         template_spectrum_default=f.strip().split(" ")[1][11:]
