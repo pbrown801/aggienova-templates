@@ -2,13 +2,17 @@ import pandas as pd
 import numpy as np
 import math
 from dust_extinction.parameter_averages import F19
+import astropy.units as u
 
 
-def extinction_adjustment(rv):
-    len_wave=len(sn_templ['Wavelength'])
-    wavenum_waves = [1/(a/10000) for a in sn_templ['Wavelength']]
-    ext_model = F19(Rv=rv)
-    return(pd.Series(ext_model(wavenum_waves)))
+#def extinction_adjustment(rv):
+#    len_wave=len(sn_templ['Wavelength'])
+#    print(sn_templ['Wavelength'])
+#    wavelength=sn_templ['Wavelength']*u.AA
+#    wavenum_waves = [1/(a/10000) for a in sn_templ['Wavelength']]
+#    ext_model = F19(Rv=rv)
+#    print(pd.Series(ext_model(wavenum_waves)))
+#    return(pd.Series(ext_model(wavenum_waves)))
 
 
 def Dm_to_Lum(sn_name):
@@ -23,10 +27,15 @@ def Dm_to_Lum(sn_name):
     
     idex= swift.loc[swift.isin([sn_name]).any(axis=1)].index.tolist()
     idex=idex[0]
-    Dist_mod= swift['Dist_mod_cor'][idex]
-
+    Dist_mod= swift['Distance_best'][idex]
+    MWAV=swift['AV'][idex]
+    ext = F19(Rv=3.1)
+    wavenum_waves = [1/(a/10000) for a in sn_templ['Wavelength']]
     Lum= pd.Series(sn_templ.apply(lambda row: Grab_Lum(Dist_mod=Dist_mod, Flux= row['Flux']), axis=1))
-    Lum=Lum/extinction_adjustment(3.1)
+    Lum=Lum/ext.extinguish(wavenum_waves,Ebv=MWAV)
+
+
+
 
     Lum=pd.DataFrame({'MJD': sn_templ['MJD'], 'Wavelength': sn_templ['Wavelength'], 'Luminosity': Lum.tolist()})
     return Lum

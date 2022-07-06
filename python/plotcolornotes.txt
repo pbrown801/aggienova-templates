@@ -1,0 +1,33 @@
+
+
+https://matplotlib.org/3.1.1/tutorials/colors/colormaps.html
+
+plot each spectrum as a separate line with the rainbow colormap
+
+or plot each color bin as an array in time and flux
+
+cmap=plt.cm.get_cmap('Spectral')
+
+
+
+
+https://www.pluralsight.com/guides/customizing-colormaps
+
+norm = mpl.colors.Normalize(vmin=4000, vmax=9000)
+mpl.colorbar.ColorbarBase(ax2, cmap=plt.cm.get_cmap('Spectral'), norm=norm) 
+
+
+change the color map for each spectrum to scale the intensity by the flux
+
+https://stackoverflow.com/questions/37517587/how-can-i-change-the-intensity-of-a-colormap-in-matplotlib
+
+
+
+
+
+there is a trisurf triangulation program which might be useful for the 3d printing
+
+
+
+different styles for presentation plots or articles
+https://matplotlib.org/tutorials/introductory/customizing.html

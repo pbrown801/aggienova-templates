@@ -18,7 +18,7 @@ from Graphing import *
 from manipulate_readinuvot import *
 from select_template import sel_template
 from spec_animation import summary_plot
-import Lumniosity_Converter
+import Luminosity_Converter
 import argparse
 from observedmags_to_counts import *
 from filterlist_to_filterfiles import *
@@ -28,8 +28,20 @@ import scipy
 import matplotlib.pyplot as plt
 import csv
 import os
+from pathlib import Path
+'''
+might need to use this to run on windows and mac
+from https://medium.com/@ageitgey/python-3-quick-tip-the-easy-way-to-deal-with-file-paths-on-windows-mac-and-linux-11a072b58d5f
 
+data_folder = Path("source_data/text_files/")
 
+file_to_open = data_folder / "raw_data.txt"
+
+f = open(file_to_open)
+
+print(f.read())
+
+'''
 # Global Variables
 desired_filter_list = ['UVW2', 'UVM2', 'UVW1',  'U', 'B', 'V', 'R', 'I']
 # J, H, K causes error in example
@@ -158,12 +170,12 @@ def mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, re
             spectraWavelengths, flux, filter_file_list, zeropointlist, pivotlist, counts_in, st)
         spec += [mangled_spec_flux]
 
-        print("row end")
+        #print("row end")
 
-        print("interp start")
+        #print("interp start")
         f = scipy.interpolate.interp1d(
             mangled_spec_wave, mangled_spec_flux, kind='linear')
-        print("interp end")
+        #print("interp end")
 
         flux_interp = f(wavelength_list)
         flux_matrix[ind, :] = flux_interp
@@ -323,7 +335,7 @@ def main():
     if store_as_csv:
         df.to_csv(output_file, index=False, float_format='%g')
     
-    lum_df= Lumniosity_Converter.Lum_conv(sn_name, output_file)
+    lum_df= Luminosity_Converter.Lum_conv(sn_name, output_file)
     lum_output_file= '../output/TEMPLATE/'+output_file_name+'_lum_template.csv'
     if store_as_csv:
         lum_df.to_csv(lum_output_file, index=False, float_format='%g')
