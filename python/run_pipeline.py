@@ -141,7 +141,7 @@ def mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, re
         # appending counts per filter at epoch
         counts_list[ind, :] = counts_in
 
-        print("row start")
+        #print("row start")
         if 'series' in template_spectrum:
             spectraname=sel_template(epoch, "../spectra/"+template_spectrum+".txt")
             print(spectraname)
@@ -257,10 +257,10 @@ def main():
     process_uvot = args.uvot[0].upper() == 'Y'
 
     cur_path = os.path.dirname(__file__)
-    new_path = os.path.relpath('..\\input\\NewSwiftSNweblist.csv', cur_path)
+    new_path = os.path.relpath('../input/NewSwiftSNweblist.csv', cur_path)
     with open(new_path, 'r') as f:
         SNList = f.read()
-    print(SNList)
+    # print(SNList)
     if 'series' in template_spectrum:
         f=open('../spectra/'+template_spectrum+'.txt').readline()
         template_spectrum_default=f.strip().split(" ")[1][11:]
