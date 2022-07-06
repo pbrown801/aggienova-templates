@@ -220,7 +220,8 @@ def plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, t
     # plot_3D(df,sn_name)
 
     fig = plt.figure()
-    ax = Axes3D(fig,auto_add_to_figure=False)
+    ax = Axes3D(fig)
+#    ax = Axes3D(fig,auto_add_to_figure=False)  2022 07 06 commented out, then was working
     X, Y = np.meshgrid(wavelength_list, epoch_list)
     Z = flux_matrix
 

@@ -96,7 +96,7 @@ def initialize_plots(plot, output_file_name):
                 df[band][i] = nan_interp_func(replace_nan_idx_times[idx])
 
     # Create the time interpolation function for each band
-    interp_func_templates = [interp1d(df['Time (MJD)'], df[band], kind='cubic') for band in filter_bands]
+    interp_func_templates = [interp1d(df['Time (MJD)'], df[band], kind='linear') for band in filter_bands]
     # Get a 1000 time points between the start and end times
     time_extrap = np.linspace(df['Time (MJD)'][0], df['Time (MJD)'].iloc[-1], num=1000, endpoint=True)
     # Interpolate magnitude for each band  for each of the 1000 time points
