@@ -18,7 +18,7 @@ from Graphing import *
 from manipulate_readinuvot import *
 from select_template import sel_template
 from spec_animation import summary_plot
-import Lumniosity_Converter
+import Luminosity_Converter
 import argparse
 from observedmags_to_counts import *
 from filterlist_to_filterfiles import *
@@ -27,8 +27,21 @@ from mpl_toolkits.mplot3d import Axes3D
 import scipy
 import matplotlib.pyplot as plt
 import csv
+import os
+from pathlib import Path
+'''
+might need to use this to run on windows and mac
+from https://medium.com/@ageitgey/python-3-quick-tip-the-easy-way-to-deal-with-file-paths-on-windows-mac-and-linux-11a072b58d5f
 
+data_folder = Path("source_data/text_files/")
 
+file_to_open = data_folder / "raw_data.txt"
+
+f = open(file_to_open)
+
+print(f.read())
+
+'''
 # Global Variables
 desired_filter_list = ['UVW2', 'UVM2', 'UVW1',  'U', 'B', 'V', 'R', 'I']
 # J, H, K causes error in example
@@ -140,7 +153,7 @@ def mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, re
         # appending counts per filter at epoch
         counts_list[ind, :] = counts_in
 
-        print("row start")
+        #print("row start")
         if 'series' in template_spectrum:
             spectraname=sel_template(epoch, "../spectra/"+template_spectrum+".txt")
             print(spectraname)
@@ -157,12 +170,12 @@ def mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, re
             spectraWavelengths, flux, filter_file_list, zeropointlist, pivotlist, counts_in, st)
         spec += [mangled_spec_flux]
 
-        print("row end")
+        #print("row end")
 
-        print("interp start")
+        #print("interp start")
         f = scipy.interpolate.interp1d(
             mangled_spec_wave, mangled_spec_flux, kind='linear')
-        print("interp end")
+        #print("interp end")
 
         flux_interp = f(wavelength_list)
         flux_matrix[ind, :] = flux_interp
@@ -208,6 +221,7 @@ def plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, t
 
     fig = plt.figure()
     ax = Axes3D(fig)
+#    ax = Axes3D(fig,auto_add_to_figure=False)  2022 07 06 commented out, then was working
     X, Y = np.meshgrid(wavelength_list, epoch_list)
     Z = flux_matrix
 
@@ -240,7 +254,7 @@ def main():
     parser.add_argument('supernova', metavar='supernova',
                         type=str, nargs=1, help='A supernova to process.')
     parser.add_argument('template', metavar='template', type=str,
-                        nargs=1, help='A template file to process supernova with.') 
+                        nargs=1, help='A template file to process supernova with.')
     parser.add_argument('csv', metavar='csv', type=str, nargs='?', default='y', choices=[
                         'y', 'n', 'Y', 'N'], help='Save data as csv, y/n.')
     parser.add_argument('uvot', metavar='uvot', type=str, nargs='?', default='n', choices=[
@@ -255,6 +269,11 @@ def main():
     store_as_csv = args.csv[0].upper() == 'Y'
     process_uvot = args.uvot[0].upper() == 'Y'
 
+    cur_path = os.path.dirname(__file__)
+    new_path = os.path.relpath('../input/NewSwiftSNweblist.csv', cur_path)
+    with open(new_path, 'r') as f:
+        SNList = f.read()
+    # print(SNList)
     if 'series' in template_spectrum:
         f=open('../spectra/'+template_spectrum+'.txt').readline()
         template_spectrum_default=f.strip().split(" ")[1][11:]
@@ -317,7 +336,7 @@ def main():
     if store_as_csv:
         df.to_csv(output_file, index=False, float_format='%g')
     
-    lum_df= Lumniosity_Converter.Lum_conv(sn_name, output_file)
+    lum_df= Luminosity_Converter.Lum_conv(sn_name, output_file)
     lum_output_file= '../output/TEMPLATE/'+output_file_name+'_lum_template.csv'
     if store_as_csv:
         lum_df.to_csv(lum_output_file, index=False, float_format='%g')
