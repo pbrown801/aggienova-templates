@@ -18,9 +18,7 @@ import astropy.units as u
 def Dm_to_Lum(sn_name):
     def Grab_Lum(Dist_mod, Flux):
         P_cm= 3.08567758128*10**(18)
-
-        D_cm= 10**((Dist_mod/5)+1)*P_cm
-
+        D_cm= 10**((float(Dist_mod)/5)+1)*P_cm
         S_a= 4*np.pi*D_cm**2
         lum= Flux*S_a
         return lum
