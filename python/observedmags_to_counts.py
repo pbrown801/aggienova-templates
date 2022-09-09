@@ -2,7 +2,7 @@ import numpy as np
 import csv
 import math as math
 from utilities import *
-from scipy import interpolate
+#from scipy import interpolate
 import requests
 from contextlib import closing
 from filterlist_to_filterfiles import *
