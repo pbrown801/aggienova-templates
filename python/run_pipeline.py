@@ -370,7 +370,8 @@ def main():
 #        if bool_online_data == True:
 #            print("Removing" + sn_name + "_osc.csv from input folder")
 #            os.remove('../input/'+sn_name+'_osc.csv')
-# Commented out so we keep the files we make, but they are on the gitignorelist so that they don't get committed back
+# Commented out so we keep the files we make, 
+# but they are on the gitignorelist so that they don't get committed back
 
 
     plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
