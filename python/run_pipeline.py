@@ -269,6 +269,11 @@ def main():
     store_as_csv = args.csv[0].upper() == 'Y'
     process_uvot = args.uvot[0].upper() == 'Y'
 
+	#     add as inputs the MW reddening, the host reddening, the distance, the redshift and maybe all of the uncertainties
+	#     rather than pulling them from the csv
+
+
+
     cur_path = os.path.dirname(__file__)
     new_path = os.path.relpath('../input/NewSwiftSNweblist.csv', cur_path)
     with open(new_path, 'r') as f:
@@ -360,11 +365,13 @@ def main():
 #    filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.MJD < 54330)] #filters data to remove outliers
 #    filtered_df.to_csv('../output/'+sn_name+'_filtered.csv',index=False)
 
-    # The bool statment was to ensure that we only delete the temporary online data file we downloaded.
-    if(not process_uvot):
-        if bool_online_data == True:
-            print("Removing" + sn_name + "_osc.csv from input folder")
-            os.remove('../input/'+sn_name+'_osc.csv')
+# The bool statment was to ensure that we only delete the temporary online data file we downloaded.
+#    if(not process_uvot):
+#        if bool_online_data == True:
+#            print("Removing" + sn_name + "_osc.csv from input folder")
+#            os.remove('../input/'+sn_name+'_osc.csv')
+# Commented out so we keep the files we make, but they are on the gitignorelist so that they don't get committed back
+
 
     plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
 
