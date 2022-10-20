@@ -25,9 +25,7 @@ def Dm_to_Lum(sn_name):
     #print(Dist
     idex= swift.loc[swift.isin([sn_name]).any(axis=1)].index.tolist()
     idex=idex[0]
-    #
-    #Dist_mod= 32.10
-    #print("DISTANCE MODULUS IS FAKE!!!!!!!!!!!   Fix csv file")
+    Dist_mod= swift['Distance_best'][idex]
     MWAV=swift['AV'][idex]
     ext = F19(Rv=3.1)
     wavenum_waves = [1/(a/10000) for a in sn_templ['Wavelength']]
