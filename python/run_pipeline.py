@@ -46,6 +46,7 @@ print(f.read())
 desired_filter_list = ['UVW2', 'UVM2', 'UVW1',  'U', 'B', 'V', 'R', 'I']
 # J, H, K causes error in example
 desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
+desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V']
 
 def sn_data_online(sn_name):
     '''
@@ -291,7 +292,7 @@ def main():
             check_filter_data(sn_name)
         # Function call 1
         # Convert the magnitudes from the sn data to count rates
-        observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum_default)
+        observedmags_to_counts(sn_name, desired_filter_list, template_spectrum_default)
 
         with open('../output/Test_A.csv', 'w', newline='') as file:
             writer = csv.writer(file)
@@ -332,7 +333,7 @@ def main():
         writer.writerow([8, "Zeropoint List", zeropointlist])
         writer.writerow([9, "Pivot List", pivotlist])
 
-    mangled_counts, mjd_list, data, counts_list, mangled_spec_wave, wavelength_list, epoch_list, flux_matrix =mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, reference_epoch_mjd, zeropointlist)
+    mangled_counts, mjd_list, data, counts_list, mangled_spec_wave, wavelength_list, epoch_list, flux_matrix = mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, reference_epoch_mjd, zeropointlist)
 
     df = pd.DataFrame(columns=['MJD', 'Wavelength', 'Flux'], data=data)
 

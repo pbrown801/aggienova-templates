@@ -17,7 +17,7 @@ program writes two csv files
 '''
 
 
-def observedmags_to_counts_2(sn_name, desired_filter_list, template_spectrum, interpFilter = "UVW1"):
+def observedmags_to_counts(sn_name, desired_filter_list, template_spectrum, interpFilter = "UVW1"):
     input_file = open('../input/'+ sn_name + '_osc.csv', 'r+')
     data = input_file.read()
     data = data.splitlines()
