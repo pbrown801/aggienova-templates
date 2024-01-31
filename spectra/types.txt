@@ -1,0 +1,5 @@
+Ia SNIa_series.txt
+II SNII_series.txt
+Ib SN1994I_UV.dat
+Ic SN1994I_UV.dat
+SLSN Gaia16apd_UV.dat

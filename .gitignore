@@ -130,10 +130,12 @@ fits/
 uvot/animation_images
 
 # output plots
-output/PLOTS
+output/PLOTS/
 
-input/COUNTS
+input/COUNTS/
 
-output/MAGS
+output/MAGS/
 
-output/TEMPLATE
+output/TEMPLATE/
+
+input/*osc.csv

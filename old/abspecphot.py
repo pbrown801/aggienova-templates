@@ -10,7 +10,7 @@ using the code, type into your program:
 abspecphot(x_array, y_array,filter)
 '''
 #Vega for reference#
-vega_wave,vega_flux = np.loadtxt('spectra/vega.dat',dtype=float,usecols=(0,1),unpack=True)
+vega_wave,vega_flux = np.loadtxt('../spectra/vega.dat',dtype=float,usecols=(0,1),unpack=True)
 # input vega_wave and vega_flux into w_f_in to test #
 
 #####################
@@ -25,7 +25,7 @@ def abspecphot(wavez,fluxz,filter):
     #wavez=vega_wave
     #fluxz=vega_flux
 
-    #filter= 'filters/U_UVOT.txt'
+    #filter= '../filters/U_UVOT.txt'
     f = open(filter,'r')
 
     filter_lambda = []
@@ -35,7 +35,7 @@ def abspecphot(wavez,fluxz,filter):
         column = line.split()
         wavelen = column[0]
         area = column[1]
-	if wavelen[0] != '#':
+        if wavelen[0] != '#':
        	    filter_lambda.append(float(wavelen))
             filter_area.append(float(area))
 
@@ -59,7 +59,7 @@ def abspecphot(wavez,fluxz,filter):
     f.close()
 
     if filter_lambda[11] < 10:
-	filter_lambda = filter_lambda * 10000.0
+        filter_lambda = filter_lambda * 10000.0
 
     ##############   calculate ab zeropoint from ab spectrum
     abfluxspec=[]

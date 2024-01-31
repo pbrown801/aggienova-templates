@@ -13,14 +13,14 @@ cosmo = FlatLambdaCDM(H0=73, Om0=0.3)
 
 # Here is the input spectrum and the corresponding distance
 
-input_wave,input_flux = np.loadtxt('spectra/Gaia16apd_uv.dat', dtype=float,usecols=(0,1),unpack=True)
+input_wave,input_flux = np.loadtxt('../spectra/Gaia16apd_uv.dat', dtype=float,usecols=(0,1),unpack=True)
 # distance in Megaparsecs, here calculated from redshift for Gaia16apd
 distance_sn=cosmo.luminosity_distance(0.102).value
 
-wave11fe, flux11fe=np.loadtxt('spectra/SN2011fe_uv.dat', dtype=float,usecols=(0,1),unpack=True)
+wave11fe, flux11fe=np.loadtxt('../spectra/SN2011fe_uv.dat', dtype=float,usecols=(0,1),unpack=True)
 distance_11fe=6.7
 
-wave16ccj, flux16ccj=np.loadtxt('spectra/SN2016ccj_uv.dat', dtype=float,usecols=(0,1),unpack=True)
+wave16ccj, flux16ccj=np.loadtxt('../spectra/SN2016ccj_uv.dat', dtype=float,usecols=(0,1),unpack=True)
 distance_16ccj=cosmo.luminosity_distance(0.032).value
 
 
@@ -57,8 +57,8 @@ for counter in range(0,len(redshifts),1):
 
 
 
-    filter2='filters/F444W_NRC_and_OTE_ModAB_mean.txt'
-    filter='filters/F200W_NRC_and_OTE_ModAB_mean.txt'
+    filter2='../filters/F444W_NRC_and_OTE_ModAB_mean.txt'
+    filter='../filters/F200W_NRC_and_OTE_ModAB_mean.txt'
 #    print(z)
 #    abmag=[]
     abmag=abspecphot(wave16ccj*(1.0+z),redshifted16ccjflux,filter )
