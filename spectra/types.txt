@@ -1,5 +1,32 @@
 Ia SNIa_series.txt
-II SNII_series.txt
+Ia-91T-like SNIa_series.txt
+Ia-91bg-like SNIa_series.txt
+Ia-pec SNIa_series.txt
+Ia-SC SN2016ccj_160514_uvopt_obswave_obsflux.dat
+Ia-CSM  SNIa_series.txt
+Ia-Ca-rich  SNIa_series.txt
+Iax SNIa_series.txt
+
+
 Ib SN1994I_UV.dat
+Ib/c SN1994I_UV.dat
+Ibn SN1994I_UV.dat
+Ib-pec SN1994I_UV.dat
 Ic SN1994I_UV.dat
+Ic-BL SN1994I_UV.dat
+Ib-Ca-rich SN1994I_UV.dat
+Icn  SN1994I_UV.dat
+Ic-pec SN1994I_UV.dat
+Ibn/Icn SN1994I_UV.dat
+Ic-Ca-rich SN1994I_UV.dat
 SLSN Gaia16apd_UV.dat
+SLSN-I Gaia16apd_UV.dat
+
+II SNII_series.txt
+IIP SNII_series.txt
+IIL SNII_series.txt
+IIb SNII_series.txt
+II-pec SNII_series.txt
+IIn SNII_series.txt
+IIn-pec SNII_series.txt
+SLSN-II Gaia16apd_UV.dat
