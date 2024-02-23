@@ -260,10 +260,7 @@ def main():
                         'y', 'n', 'Y', 'N'], help='Save data as csv, y/n.')
     parser.add_argument('uvot', metavar='uvot', type=str, nargs='?', default='n', choices=[
                         'y', 'n', 'Y', 'N'], help='Process only uvot supernova file.')
-    # parser.add_argument('template_series', metavar='template_series', type=str,nargs='?',default="",
-    #                      help='A template series used to mangle the supernova with')   
-    args = parser.parse_args()
-    
+   
     # Assign the arguments to variables
     sn_name = args.supernova[0]
     template_spectrum = args.template[0]
@@ -280,11 +277,13 @@ def main():
     with open(new_path, 'r') as f:
         SNList = f.read()
     # print(SNList)
+
     if 'series' in template_spectrum:
         f=open('../spectra/'+template_spectrum+'.txt').readline()
         template_spectrum_default=f.strip().split(" ")[1][11:]
     else:
         template_spectrum_default=template_spectrum
+
     # If the files are not uvot we call the sn_data_online and check_filter_data
     if(not process_uvot):
         bool_error, bool_online_data=sn_data_online(sn_name)
@@ -305,6 +304,7 @@ def main():
     else:
         first_obv=uvot(sn_name,"y")
         sn_name = sn_name+'_uvot'
+		#   this could pull from the SOUSA repo
         orig_file = open('../input/'+sn_name+'B15.1.dat', 'r', newline='').readlines()
         # print(orig_file)
     output_file_name = sn_name+"_"+template_spectrum
@@ -315,7 +315,7 @@ def main():
     #  these are the filters actually present in the csv file
     #  blank columns are removed by observedmags_to_counts
 
-    # This reads in the filter name headers and skips the error columnts
+    # This reads in the filter name headers and skips the error columns
     filters_from_csv = next(reader)[1::2]
 
     # adjust the reference epoch with the first observed epoch
