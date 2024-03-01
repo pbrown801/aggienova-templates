@@ -260,7 +260,7 @@ def main():
                         'y', 'n', 'Y', 'N'], help='Save data as csv, y/n.')
     parser.add_argument('uvot', metavar='uvot', type=str, nargs='?', default='n', choices=[
                         'y', 'n', 'Y', 'N'], help='Process only uvot supernova file.')
-   
+    args = parser.parse_args()
     # Assign the arguments to variables
     sn_name = args.supernova[0]
     template_spectrum = args.template[0]
