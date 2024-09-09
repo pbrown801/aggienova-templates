@@ -165,6 +165,8 @@ def mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, re
             print(spectraname)
             spectraWavelengths, flux = clean_spectrum(spectraname)
 
+
+        ########### where most of the work happens
         # Function Call 3
         # mangle the spectrum to match the given count rates
         mangled_spec_wave, mangled_spec_flux = mangle_simple(
