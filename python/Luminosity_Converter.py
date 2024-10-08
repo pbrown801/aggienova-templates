@@ -30,7 +30,7 @@ def Dm_to_Lum(sn_name):
     ext = F19(Rv=3.1)
     wavenum_waves = [1/(a/10000) for a in sn_templ['Wavelength']]
     Lum= pd.Series(sn_templ.apply(lambda row: Grab_Lum(Dist_mod=Dist_mod, Flux= row['Flux']), axis=1))
-    Lum=Lum/ext.extinguish(wavenum_waves,Ebv=MWAV)
+    Lum=Lum/ext.extinguish(wavenum_waves,Ebv=MWAV/3.1)
 
 
 
