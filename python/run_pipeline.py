@@ -4,8 +4,8 @@
 # Command to run Uvot:
 # python3 run_pipeline.py SN2005cs SN2006bp_uvmodel.dat y y
 # Command to add template series for mangling:
-# python3 run_pipeline.py SN2007af SNIa_series y 
-# python3 run_pipeline.py SN2005cs SNII_series y y 
+# python3 run_pipeline.py SN2007af SNIa_series.txt y 
+# python3 run_pipeline.py SN2005cs SNII_series.txt y y 
 
 # imports 
 import time
@@ -20,7 +20,6 @@ from select_template import sel_template
 from spec_animation import summary_plot
 import Luminosity_Converter
 import argparse
-from observedmags_to_counts import *
 from filterlist_to_filterfiles import *
 from mangled_to_counts import *
 from mpl_toolkits.mplot3d import Axes3D
@@ -29,6 +28,14 @@ import matplotlib.pyplot as plt
 import csv
 import os
 from pathlib import Path
+import math as math
+import requests
+from contextlib import closing
+from filterlist_to_filterfiles import *
+import string
+
+
+
 '''
 might need to use this to run on windows and mac
 from https://medium.com/@ageitgey/python-3-quick-tip-the-easy-way-to-deal-with-file-paths-on-windows-mac-and-linux-11a072b58d5f
@@ -73,6 +80,283 @@ def sn_data_online(sn_name):
             print(df)
             bool_error = True
     return bool_error, bool_online_data
+
+
+'''
+sn_name is a string with the desired supernova name
+desired_filter_list is an array of the filters which have data
+program writes two csv files
+--magarray.csv has the magnitudes and errors for the desired filters
+--countsarray.csv has the interpolated counts for all times at all filters
+'''
+
+
+def oscmags_to_counts(sn_name, desired_filter_list, template_spectrum, interpFilter = "UVW1"):
+    input_file = open('../input/'+ sn_name + '_osc.csv', 'r+')
+    data = input_file.read()
+    data = data.splitlines()
+    data_list = []
+    for line in data:
+        data_list.append(line.split(','))
+
+    time = []
+    mag  = []
+    emag = []
+    band = []
+    
+    for x, line in enumerate(data_list):
+        if x != 0 and str(line[5]).upper() in desired_filter_list:
+            # This checks if there is an uncertainty (error) given.  
+            # If not, skip it as the magnitude is an upper limit not a measurement
+            if line[3] != '':
+                time.append(float(line[1]))
+                mag.append(float(line[2]))
+                emag.append(float(line[3]))
+                band.append((str(line[5])).upper())
+
+    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(desired_filter_list, template_spectrum)
+
+    interpFirst = 1000000000000000
+    interpLast = -1000000000000000
+    for i in range(0, len(time)):
+        if(band[i] == interpFilter and mag[i] > 0):
+            if(time[i] < interpFirst):
+                interpFirst = time[i]
+            if(time[i] > interpLast):
+                interpLast = time[i]
+
+    interpTimes = []
+    #for nonzero filters in interval of interpolation
+    for i in range(0, len(time)):
+        if interpFirst <= time[i] <= interpLast:
+            if band[i] == interpFilter:
+                interpTimes.append(time[i])
+
+    #Adding the variables
+    with open('../output/Test_A.csv', 'a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([2, "Time", time])
+        writer.writerow([3, "Mag", mag])
+        writer.writerow([4, "Emag", emag])
+        writer.writerow([5, "Band", band])
+        writer.writerow([6, "Interptimes", interpTimes])
+
+
+    #contains counts directly from measured values
+    counts_matrix = np.zeros((len(desired_filter_list),len(time)), dtype=object)
+    counterrs_matrix = np.zeros((len(desired_filter_list),len(time)), dtype=object)
+    #contains measured magnitudes
+    magMatrix = np.zeros((len(desired_filter_list),len(time)), dtype=object)
+    #contains measured error on magnitudes
+    emagMatrix = np.zeros((len(desired_filter_list),len(time)), dtype=object)
+
+    #contains interpolated count values for all filters over all times
+    interp_counts_matrix =  np.zeros((len(desired_filter_list),len(interpTimes)))
+    interp_counterrs_matrix =  np.zeros((len(desired_filter_list),len(interpTimes)))
+    interpMatrix = np.zeros((len(desired_filter_list),len(interpTimes)))
+
+    for i in range(len(desired_filter_list)):
+        measured_counts = np.zeros(len(time))
+        measured_counterrs = np.zeros(len(time))
+        measured_times = np.zeros(len(time))
+        length = 0
+
+###### does this have to be done in a for loop or can python operate on the whole row/column at once?
+
+        for j in range(len(time)):
+
+            if band[j] == desired_filter_list[i]:
+
+                counts_matrix[i][j] = str(math.pow(10, -0.4*(mag[j]-zeropointlist[i])))  
+                counterrs_matrix[i][j] = str(abs(float(counts_matrix[i][j])*float(emag[j])*-1.0857)) # need to check if this works
+
+                magMatrix[i][j] = str(mag[j])
+                emagMatrix[i][j] = emag[j]
+                measured_counts[length] = float(counts_matrix[i][j])
+                measured_counterrs[length] = float(counterrs_matrix[i][j])
+                measured_times[length] = time[j]
+                length += 1
+            else:
+                counts_matrix[i][j] = ''
+                counterrs_matrix[i][j] = ''
+                magMatrix[i][j] = ''
+                emagMatrix[i][j] = ''
+        measured_counts.resize(length)
+        measured_counterrs.resize(length)
+        measured_times.resize(length)
+        interp_counts_matrix[i] = np.interp(interpTimes, measured_times, measured_counts)
+        interp_counterrs_matrix[i] = np.interp(interpTimes, measured_times, measured_counterrs)
+
+    column_err_names = []
+
+    for l in range(len(desired_filter_list)):
+        column_err_names.append(desired_filter_list[l]+'err')
+
+    column_names = ['Time (MJD)']
+
+    for l in range(len(desired_filter_list)):
+        column_names.append(desired_filter_list[l])
+        column_names.append(column_err_names[l])
+
+
+    with open('../output/MAGS/'+ sn_name + '_magarray.csv', 'w', newline='') as csvFile:
+        writer = csv.writer(csvFile, delimiter=',')
+        writer.writerows([column_names])
+        for i in range(0,len(interpTimes)):
+            line = np.zeros(1+2*len(desired_filter_list),dtype=object)
+            line[0] = str(interpTimes[i])
+            for j in range(0,len(desired_filter_list)):
+                line[2*j + 1] = magMatrix[j][i]
+                line[2*j + 2] = emagMatrix[j][i]
+            writer.writerow(line)
+
+
+    with open('../input/COUNTS/'+ sn_name + '_countsarray.csv', 'w', newline ='') as csvFile:
+        writer = csv.writer(csvFile, delimiter=',')
+        writer.writerows([column_names])
+        for i in range(0,len(interpTimes)):
+            line = np.zeros(1+2*len(desired_filter_list))
+            line[0] = interpTimes[i]
+            for j in range(0,len(desired_filter_list)):
+                line[2*j+1] = interp_counts_matrix[j][i]
+                line[2*j+2] = interp_counterrs_matrix[j][i]
+            writer.writerow(line)
+
+
+
+
+# Main function to run the program
+def uvotmags_to_counts(sn_name, template_spectrum):
+    file_path='../input/'+sn_name+'_uvotB15.1.dat'
+    tolerance=0.15
+    # Parse the data from the file
+    columns = ['Filter', 'MJD', 'Mag', 'MagErr', '3SigMagLim', '0.98SatLim', 'Rate', 'RateErr', 'Ap', 'Frametime', 'Exp', 'Telapse']
+    data = []
+
+    # Open and read the file
+    with open(file_path, 'r') as f:
+        for line in f:
+            # Ignore lines starting with '#' (comments)
+            if line.startswith("#"):
+                continue
+            parts = line.split()
+            if len(parts) == 12:  # Ensure correct number of columns
+                filter_name, mjd, mag, mag_err, sig_lim, sat_lim, rate, rate_err, ap, frame_time, exp, telapse = parts
+                # Handle 'NULL' entries as None
+                rate = np.nan if rate == 'NULL' else float(rate)
+                mjd = float(mjd)
+                data.append([filter_name, mjd, rate, rate_err,telapse])
+
+    # Convert the list to a pandas DataFrame
+    df = pd.DataFrame(data,columns=['Filter','MJD','Rate','RateErr','Telapse'])  # Only use Filter, MJD, and Rate
+
+    ## mjd_groups=group_mjds(df, tolerance=0.15)
+    
+    # Organize the data by MJD with the tolerance of 0.15 days
+    # Initialize an empty list to store rows
+    result = []
+
+    # Get unique MJDs
+    unique_mjd = sorted(df['MJD'].unique())
+
+    avgmjd_list=[]
+    # Iterate through each unique MJD
+    for mjd in unique_mjd:
+        # Filter data within 0.15 days of the current MJD
+        subset = df[np.abs(df['MJD'] - mjd) <= tolerance ]
+        #subset = df[np.abs(df['MJD'] - mjd) <= tolerance or (((df['MJD'] - df['Telapse']/60/60/24/2) < mjd) and ((df['MJD'] + df['Telapse']/60/60/24/2) > mjd))]
+        avgmjd=np.mean(subset['MJD'])
+        #print(avgmjd)
+        avgmjd_list.append(avgmjd)
+    mjddf=pd.DataFrame(avgmjd_list)
+    #print(mjddf)
+    mjd_groups=sorted(mjddf[0].unique())
+    
+
+    
+    # Iterate through each unique MJD
+    for mjd in mjd_groups:
+        # Filter data within 0.15 days of the current MJD
+        subset = df[np.abs(df['MJD'] - mjd) <= tolerance]
+        #print(subset)
+        # Initialize a row with MJD and placeholders for each filter
+        row = [mjd, None, None, None, None, None, None, None, None, None, None, None, None]  # MJD, UVW2, UVM2, UVW1, U, B, V
+        
+        # Fill in the count rates for each filter
+        for _, entry in subset.iterrows():
+            #print(entry)
+            if entry['Filter'] == 'UVW2':
+                row[1] = entry['Rate']
+                row[2] = entry['RateErr']
+            elif entry['Filter'] == 'UVM2':
+                row[3] = entry['Rate']
+                row[4] = entry['RateErr']
+            elif entry['Filter'] == 'UVW1':
+                row[5] = entry['Rate']
+                row[6] = entry['RateErr']
+            elif entry['Filter'] == 'U':
+                row[7] = entry['Rate']
+                row[8] = entry['RateErr']
+            elif entry['Filter'] == 'B':
+                row[9] = entry['Rate']
+                row[10] = entry['RateErr']
+            elif entry['Filter'] == 'V':
+                row[11] = entry['Rate']
+                row[12] = entry['RateErr']
+        
+        # Append the row to the result
+        result.append(row)
+
+    # Convert result to a numpy array for convenience
+    result_array = np.array(result)
+
+    # Convert to a DataFrame for better visualization
+    result_df = pd.DataFrame(result_array, columns=['MJD', 'UVW2', 'UVW2err', 'UVM2', 'UVM2err', 'UVW1', 'UVW1err', 'U', 'Uerr', 'B', 'Berr', 'V', 'Verr'])
+    
+    desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V']
+
+
+    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(desired_filter_list, template_spectrum)
+
+
+    counts_matrix = np.zeros((len(desired_filter_list),len(df['MJD'])), dtype=object)
+    counterrs_matrix = np.zeros((len(desired_filter_list),len(df['MJD'])), dtype=object)
+    
+
+    column_err_names = []
+
+    for l in range(len(desired_filter_list)):
+        column_err_names.append(desired_filter_list[l]+'err')
+
+    column_names = ['Time (MJD)']
+
+
+    for l in range(len(desired_filter_list)):
+        column_names.append(desired_filter_list[l])
+        column_names.append(column_err_names[l])
+
+    result_df = result_df.fillna(value=np.nan)
+
+    print(result_df)
+    print(len(result_df['MJD']))
+    with open('../input/COUNTS/'+ sn_name + '_countsarray.csv', 'w', newline ='') as csvFile:
+        writer = csv.writer(csvFile, delimiter=',')
+        writer.writerows([column_names])
+        for i in range(0,len(result_df['MJD'])-1):
+            
+            line = np.zeros(1+2*len(desired_filter_list))
+            
+            line = [result_df.loc[i,'MJD'],result_df.loc[i,'UVW2'],result_df.loc[i,'UVW2err'],result_df.loc[i,'UVM2'],result_df.loc[i,'UVM2err'], result_df.loc[i,'UVW1'],result_df.loc[i,'UVW1err'],result_df.loc[i,'U'],result_df.loc[i,'Uerr'], result_df.loc[i,'B'],result_df.loc[i,'Berr'],result_df.loc[i,'V'],result_df.loc[i,'Verr']]
+
+            writer.writerow(line)
+
+
+    #print(result_df)
+    #return result_df
+
+
+
+
 
 
 def check_filter_data(sn_name):
@@ -147,6 +431,7 @@ def mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, re
         
         epoch_list[ind] = epoch
         # The count rates from the counts_array file of the supernova which is the converted magnitudes from the original observations of each epoch of each band
+        
         counts_in = np.array(list(map(np.float64, row[1::2])))
         # counterrs_in = np.array(list(map(np.float64,row[2::2]))) #theres gotta be an easier way to do this #just double checking that it's a float -t8
 
@@ -156,7 +441,7 @@ def mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, re
 
         #print("row start")
         if 'series' in template_spectrum:
-            spectraname=sel_template(epoch, "../spectra/"+template_spectrum+".txt")
+            spectraname=sel_template(epoch, "../spectra/"+template_spectrum)
             print(spectraname)
             spectraWavelengths, flux = clean_spectrum(spectraname)
         else:
@@ -230,7 +515,8 @@ def plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, t
 
     surf = ax.plot_surface(
         X, Y, flux_matrix, rstride=1, cstride=1, cmap='hot')
-    ax.set_zlim(0, np.amax(Z))
+   
+    ax.set_zlim(0, np.amax(Z[Z>0]))
     save_name=r'../output/PLOTS/'+output_file_name
     if "series" in template_spectrum:
         save_name += '_series_3d_surface.png'
@@ -281,11 +567,15 @@ def main():
     # print(SNList)
 
     if 'series' in template_spectrum:
-        f=open('../spectra/'+template_spectrum+'.txt').readline()
+        f=open('../spectra/'+template_spectrum).readline()
         template_spectrum_default=f.strip().split(" ")[1][11:]
     else:
         template_spectrum_default=template_spectrum
 
+
+
+
+    ##############  SELECT THE SOURCE OF THE INPUT DATA: OPEN SUPERNOVA CATALOG OR UVOT
     # If the files are not uvot we call the sn_data_online and check_filter_data
     if(not process_uvot):
         bool_error, bool_online_data=sn_data_online(sn_name)
@@ -293,7 +583,7 @@ def main():
             check_filter_data(sn_name)
         # Function call 1
         # Convert the magnitudes from the sn data to count rates
-        observedmags_to_counts(sn_name, desired_filter_list, template_spectrum_default)
+        oscmags_to_counts(sn_name, desired_filter_list, template_spectrum_default)
 
         with open('../output/Test_A.csv', 'w', newline='') as file:
             writer = csv.writer(file)
@@ -304,11 +594,14 @@ def main():
         next(orig_file_reader)
         first_obv=next(orig_file_reader)[1]
     else:
-        first_obv=uvot(sn_name,"y")
-        sn_name = sn_name+'_uvot'
+        uvotfilepath=('../input/'+sn_name+'_uvotB15.1.dat')
+        uvotmags_to_counts(sn_name,template_spectrum)
+        #first_obv=uvot(sn_name,"y")
+        #sn_name = sn_name+'_uvot'
 		#   this could pull from the SOUSA repo
-        orig_file = open('../input/'+sn_name+'B15.1.dat', 'r', newline='').readlines()
+        #orig_file = open('../input/'+sn_name+'_uvotB15.1.dat', 'r', newline='').readlines()
         # print(orig_file)
+
     output_file_name = sn_name+"_"+template_spectrum
 
     file = open('../input/COUNTS/'+sn_name+'_countsarray.csv', 'r', newline='').readlines()
@@ -319,6 +612,8 @@ def main():
 
     # This reads in the filter name headers and skips the error columns
     filters_from_csv = next(reader)[1::2]
+    first_obv=(next(reader)[0])
+    
 
     # adjust the reference epoch with the first observed epoch
     reference_epoch_mjd = float(first_obv) - 1 

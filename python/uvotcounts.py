@@ -100,6 +100,27 @@ def main(file_path):
     # Convert to a DataFrame for better visualization
     result_df = pd.DataFrame(result_array, columns=['MJD', 'UVW2', 'UVW2err', 'UVM2', 'UVM2err', 'UVW1', 'UVW1err', 'U', 'Uerr', 'B', 'Berr', 'V', 'Verr'])
     
+    desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V']
+
+
+    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(desired_filter_list, template_spectrum)
+
+
+    counts_matrix = np.zeros((len(desired_filter_list),len(df['MJD'])), dtype=object)
+    counterrs_matrix = np.zeros((len(desired_filter_list),len(df['MJD'])), dtype=object)
+    
+
+
+    with open('../input/COUNTS/'+ sn_name + '_countsarray.csv', 'w', newline ='') as csvFile:
+        writer = csv.writer(csvFile, delimiter=',')
+        writer.writerows([column_names])
+        for i in range(0,len(df['MJD'])):
+            line = np.zeros(1+2*len(desired_filter_list))
+            line = [df['MJD'][i],df['UVW2'][i],df['UVW2err'][i],df['UVM2'][i],df['UVM2err'][i],df['UVW1'][i],df['UVW1err'][i],df['U'][i],df['Uerr'][i],df['B'][i],df['Berr'][i],df['V'][i],df['Verr'][i]]
+
+            writer.writerow(line)
+
+
     #print(result_df)
     return result_df
 

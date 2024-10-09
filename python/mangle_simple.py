@@ -3,7 +3,6 @@ import time
 import numpy as np
 from matplotlib import pyplot as plot
 from speccounts import *
-from observedmags_to_counts import *
 from utilities import *
 
 def mangle_simple(spectraWavelengths, flux, filter_file_list, zeropointlist, pivotlist, counts_in, st):
