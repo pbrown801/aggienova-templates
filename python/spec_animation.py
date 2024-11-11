@@ -16,6 +16,7 @@ import math as m
 
 
 def initialize_plots(plot, output_file_name):
+
     # Define the gridspec which is 2 rows by 3 columns and the figure for the matplotlib plot
     gs = gridspec.GridSpec(nrows=2, ncols=2)
 
@@ -45,9 +46,11 @@ def initialize_plots(plot, output_file_name):
     # ------------------------ FIRST PLOT = FLux vs Wavelength ------------------------ 
     # Get data and group by the different times
     df1 = pd.read_csv(os.path.join('..', 'output', 'TEMPLATE', output_file_name + '_template.csv'), header=0)
-    print(output_file_name)
+
     time_df = df1.groupby(['MJD'])
     groups = [time_df.get_group(x).sort_values(by=('MJD')).reset_index() for x in time_df.groups]
+    
+
     num_groups = len(groups)
     time_groups = [round(groups[idx]["MJD"][0], 5) for idx in range(num_groups)]
 
@@ -97,6 +100,7 @@ def initialize_plots(plot, output_file_name):
 
     # Create the time interpolation function for each band
     interp_func_templates = [interp1d(df['Time (MJD)'], df[band], kind='linear') for band in filter_bands]
+
     # Get a 1000 time points between the start and end times
     time_extrap = np.linspace(df['Time (MJD)'][0], df['Time (MJD)'].iloc[-1], num=1000, endpoint=True)
     # Interpolate magnitude for each band  for each of the 1000 time points
@@ -105,12 +109,15 @@ def initialize_plots(plot, output_file_name):
     # Plot the interpolated plots that are smooth because of high enumeration of values inbetween the times given
     for idx, func in enumerate(interp_funcs):
         ax2.plot(time_extrap, func, label=filter_bands[idx])
-
+        
     # Used to update the points given to us in original data on top of the magnitude vs time plot
     bands_plots = []
+     
     for bands in filter_bands:
         bands_var = bands + '_plot'
+        
         bands_var, = ax2.plot([], [], 'ko', markersize=3)
+        
         bands_plots.append(bands_var)
 
     # Plot Settings
@@ -158,7 +165,7 @@ def animation(plot, fig, ax1, ax2, ax3, times_plots, groups, time_groups, bands_
                         print(
                             "No image file for the supernova. Try to use True for the amt_img parameter to get a single image.")
                     else:
-                        plot_img = mpimg.imread(os.path.join('..', 'uvot', 'animation_images', files_png[0]))
+                        plot_img = mpimg.imread(os.path.join('..', 'uvot', files_png[0]))
                         show_img = ax3.imshow(plot_img)
             except FileNotFoundError:
                 print("No image file for the supernova")
@@ -193,6 +200,7 @@ def animation(plot, fig, ax1, ax2, ax3, times_plots, groups, time_groups, bands_
             # Plot the original points up to the ith time based on the frame so that it appears as if we are adding one more plot of points each time.
             for idx, plot in enumerate(bands_plots):
                 plot.set_data(df['Time (MJD)'][0:(i + 1)], df[filter_bands[idx]][0:(i + 1)])
+
 
             # --------- Update the ax3 plot with the image corresponding to each MJD ---------
             if ax3 != " ":
@@ -266,11 +274,12 @@ def static_plots(plot, fig, ax1, ax2, ax3, times_plots, groups, time_groups, ban
         for idx, plot in enumerate(bands_plots):
             plot.set_data(df['Time (MJD)'][0:(i + 1)], df[filter_bands[idx]][0:(i + 1)])
 
+
         # --------- Update the ax3 plot with the image corresponding to each MJD ---------
         if ax3 != " ":
             if not (amt_image):
                 ax3.set_title(str(files_png[i]))
-                plot_img = mpimg.imread(os.path.join('..', 'uvot', 'animation_images', files_png[i]))
+                plot_img = mpimg.imread(os.path.join('..', 'uvot',  files_png[i]))
                 show_img.set_data(plot_img)
 
 
@@ -289,6 +298,7 @@ def summary_plot(plot, output_file_name, save, show, amt_image=True, interval_ti
 
     fig, ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots, df, filter_bands, num_groups, files = initialize_plots(
         plot, output_file_name)
+    
     if (type_plot):
         static_plots(plot, fig, ax1, ax2, ax3, times_plots, groups, time_groups, bands_plots, df, filter_bands,
                      num_groups, files, amt_image)

@@ -21,7 +21,6 @@ from spec_animation import summary_plot
 import Luminosity_Converter
 import argparse
 from filterlist_to_filterfiles import *
-from mangled_to_counts import *
 from mpl_toolkits.mplot3d import Axes3D
 import scipy
 import matplotlib.pyplot as plt
@@ -46,7 +45,6 @@ file_to_open = data_folder / "raw_data.txt"
 
 f = open(file_to_open)
 
-print(f.read())
 
 '''
 # Global Variables
@@ -54,6 +52,8 @@ desired_filter_list = ['UVW2', 'UVM2', 'UVW1',  'U', 'B', 'V', 'R', 'I']
 # J, H, K causes error in example
 desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
 desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V']
+
+
 
 def sn_data_online(sn_name):
     '''
@@ -77,7 +77,7 @@ def sn_data_online(sn_name):
         else:
             print("Error too few rows. " + sn_name +
                 " data from catalog below:")
-            print(df)
+            
             bool_error = True
     return bool_error, bool_online_data
 
@@ -337,8 +337,7 @@ def uvotmags_to_counts(sn_name, template_spectrum):
 
     result_df = result_df.fillna(value=np.nan)
 
-    print(result_df)
-    print(len(result_df['MJD']))
+    
     with open('../input/COUNTS/'+ sn_name + '_countsarray.csv', 'w', newline ='') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerows([column_names])
@@ -380,7 +379,8 @@ def check_filter_data(sn_name):
         desired_filter_list.remove(filter)
 
 
-def mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, reference_epoch_mjd, zeropointlist):
+
+def mangle_data(countsfromfile, pivotlist, template_spectrum, filter_file_list, reader, reference_epoch_mjd, zeropointlist):
     '''
     Use the template spectrum or series to create a mangled spectrum of the flux using the effective areas of each filter bands, 
     the flux of the template spectrum, and the ratio between the sn_name count rates and template spectrum's count rates.
@@ -400,9 +400,13 @@ def mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, re
     for counter in range(wavelength_nbins):
         wavelength_list[counter] = wavelength_min+10.0*counter
 
-    row_count = len(file)
+    row_count = len(countsfromfile)
     filter_count = len(filter_file_list)
 
+    reader = csv.reader(countsfromfile, delimiter=',')
+    filters_from_csv = next(reader)[1::2]
+
+    #  countsfromfile includes a header row
     mjd_list = np.empty((row_count-1))
     epoch_list = np.empty((row_count-1)) 
     flux_matrix = np.empty((row_count-1, wavelength_nbins))
@@ -424,18 +428,21 @@ def mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, re
     mangled_spec_flux = np.array([])
     st = time.time()
     for row in reader:
+         
         if len(row) == 0:
             continue
         mjd_list[ind] = np.float64(row[0])
         epoch = np.float64(row[0])-reference_epoch_mjd
         
         epoch_list[ind] = epoch
+        
+
         # The count rates from the counts_array file of the supernova which is the converted magnitudes from the original observations of each epoch of each band
         
         counts_in = np.array(list(map(np.float64, row[1::2])))
         # counterrs_in = np.array(list(map(np.float64,row[2::2]))) #theres gotta be an easier way to do this #just double checking that it's a float -t8
 
-        mjd_list[ind] = epoch
+        #mjd_list[ind] = epoch
         # appending counts per filter at epoch
         counts_list[ind, :] = counts_in
 
@@ -487,10 +494,23 @@ def mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, re
         #temp_1,temp_2,temp_counts = total_counts(temp_template_spec,filter_file_list)
         mangled_counts[ind, :] = temp_counts
         ind += 1
+    
     return mangled_counts, mjd_list, data, counts_list, mangled_spec_wave, wavelength_list, epoch_list, flux_matrix
 
 
-def plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum):
+def mangled_to_counts(output_file_name, filter_list, mangled_counts, epochs):
+
+    print('epochs')
+    print(epochs)
+
+    df = pd.DataFrame(data = mangled_counts,
+                      index = epochs,
+                      columns = filter_list)
+
+    df.to_csv('../input/COUNTS/'+output_file_name+'_mangledcounts.csv',index_label = 'Time (MJD)')
+
+
+def plots3d(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum):
     '''
     Function to house all the plotting that is to be done at the end of the pipeline.
     '''
@@ -498,7 +518,9 @@ def plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, t
     # spectrum_plot([sn_name])
     # validation_plotting(filters_from_csv,counts_list,mjd_list, mangled_counts, sn_name)
 
-#    from plot_3d import plot_3D    # filtered_df = pd.read_csv(output_file,header=0) #uncomment this if you have a saved df you just want to read and plot in 3d
+    #    from plot_3d import plot_3D       
+    # filtered_df = pd.read_csv(output_file,header=0) 
+    #uncomment this if you have a saved df you just want to read and plot in 3d
 
     # mjd_list = np.array(filtered_df['MJD'],dtype='float')
     # wavelengths = np.array(filtered_df['Wavelength'],dtype='float')
@@ -524,11 +546,7 @@ def plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, t
         save_name += '_3d_surface.png'
     plt.savefig(save_name)
 
-    if "uvot" in output_file_name:
-        summary_plot(sn_name, output_file_name, True, True, False, 750, False)
-    else:
-        summary_plot(sn_name, output_file_name, True, True, True, 750, False)
-
+##################################################################
 def main():
     '''
     Main wrapper for aggienova-templates
@@ -604,19 +622,20 @@ def main():
 
     output_file_name = sn_name+"_"+template_spectrum
 
-    file = open('../input/COUNTS/'+sn_name+'_countsarray.csv', 'r', newline='').readlines()
-    reader = csv.reader(file, delimiter=',')
+    countsfromfile = open('../input/COUNTS/'+sn_name+'_countsarray.csv', 'r', newline='').readlines()
+    reader = csv.reader(countsfromfile, delimiter=',')
 
     #  these are the filters actually present in the csv file
     #  blank columns are removed by observedmags_to_counts
 
     # This reads in the filter name headers and skips the error columns
     filters_from_csv = next(reader)[1::2]
-    first_obv=(next(reader)[0])
-    
+    first_obs=(next(reader)[0])
+    #first_obs=53556.8
 
     # adjust the reference epoch with the first observed epoch
-    reference_epoch_mjd = float(first_obv) - 1 
+    reference_epoch_mjd = float(first_obs) - 1 
+    print(reference_epoch_mjd)
 
     # Function call 2
     filter_file_list, zeropointlist, pivotlist = filterlist_to_filterfiles(
@@ -629,11 +648,11 @@ def main():
         writer.writerow([7, "Filter File List", filter_file_list])
         writer.writerow([8, "Zeropoint List", zeropointlist])
         writer.writerow([9, "Pivot List", pivotlist])
-
-    mangled_counts, mjd_list, data, counts_list, mangled_spec_wave, wavelength_list, epoch_list, flux_matrix = mangle_data(file, pivotlist, template_spectrum, filter_file_list, reader, reference_epoch_mjd, zeropointlist)
-
+   
+    mangled_counts, mjd_list, data, counts_list, mangled_spec_wave, wavelength_list, epoch_list, flux_matrix = mangle_data(countsfromfile, pivotlist, template_spectrum, filter_file_list, reader, reference_epoch_mjd, zeropointlist)
+    
     df = pd.DataFrame(columns=['MJD', 'Wavelength', 'Flux'], data=data)
-
+    
     # format is different than input template (see vega.dat.csv)
     output_file = '../output/TEMPLATE/'+output_file_name+'_template.csv'
     if store_as_csv:
@@ -672,7 +691,19 @@ def main():
 # but they are on the gitignorelist so that they don't get committed back
 
 
-    plots(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
+    #  3d plot
+    #plots3d(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
+
+
+    # uses mangledmagsarray
+
+    # summary animation plot with light curves and spectra in spec_animation.py
+    if "uvot" in output_file_name:
+        summary_plot(sn_name, output_file_name, True, True, False, 750, False)
+    else:
+        summary_plot(sn_name, output_file_name, True, True, True, 750, False)
+
+
 
 if __name__ == "__main__":
     main()

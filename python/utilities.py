@@ -348,7 +348,7 @@ def countrates2mags(output_file_name, template_spectrum):
     filter_bands= list(counts_df.columns[1:])
     filter_file_list, zeropointlist, pivotlist = filterlist_to_filterfiles(
        filter_bands , template_spectrum)
-    counts_df[counts_df<0]=np.nan
+    counts_df[counts_df<=0]=np.nan
     for idx,zeropoint in enumerate(zeropointlist):
         #if counts_df[filter_bands[idx]] > 0:
         counts_df[filter_bands[idx]]=counts_df[filter_bands[idx]].apply(lambda count: (math.log10(count)/-0.4)+zeropoint)            
