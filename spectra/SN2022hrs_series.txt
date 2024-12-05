@@ -1,0 +1,5 @@
+10 ../spectra/SN2022hrs_20220422_11fe_appended.dat
+14 ../spectra/SN2022hrs_20220426_11fe_appended.dat
+15 ../spectra/SN2022hrs_20220427_11fe_appended.dat
+25 ../spectra/SN2022hrs_20220507_11fe_appended.dat
+32 ../spectra/SN2022hrs_20220514_11fe_appended.dat

@@ -1,0 +1,1 @@
+Having "series" as part of the name lets run_pipeline know that it is a list of spectra filenames rather than a single filename

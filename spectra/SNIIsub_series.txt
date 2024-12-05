@@ -1,0 +1,13 @@
+1.85 SN2005cs_modelspectra/cs0_1_l1b1_rho_v1_B.fl
+2.85 SN2005cs_modelspectra/cs0_1_l1b1_rho3_B_v1.fl
+4.10 SN2005cs_modelspectra/cs0_1_l1b1_rho3_B.fl
+4.85 SN2005cs_modelspectra/cs0_1_l1b_B1_v1.fl
+5.60 SN2005cs_modelspectra/cs0_1_l1b_B1_v1_2.fl
+7.35 SN2005cs_modelspectra/cs0_1_l1b_B1_v1_5.fl
+7.85 SN2005cs_modelspectra/cs1_7_abund.fl
+10.85 SN2005cs_modelspectra/r3_ba.fl
+12.10 SN2005cs_modelspectra/cs3_5.fl
+13.10 SN2005cs_modelspectra/r3_e_abund.fl
+13.85 SN2005cs_modelspectra/r3_abund.fl
+15.60 SN2005cs_modelspectra/r3_g_abund.fl
+ 
