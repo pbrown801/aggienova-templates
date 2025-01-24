@@ -69,8 +69,9 @@ def specin_countsout(wavez,fluxz):
 
         nonzero = np.where(filter_area > 0.0)
 
-        filter_lambda = filter_lambda[nonzero]
-        filter_area = filter_area[nonzero]
+# having unequal lengths bothered someone's code, so I'm taking this out
+#        filter_lambda = filter_lambda[nonzero]
+#       filter_area = filter_area[nonzero]
 
         filter_WL.append(filter_lambda)
         filter_A.append(filter_area)
