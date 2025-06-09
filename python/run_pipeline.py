@@ -4,14 +4,13 @@
 # Command to run Uvot:
 # python3 run_pipeline.py SN2005cs SN2006bp_uvmodel.dat y y
 # Command to add template series for mangling:
-# python run_pipeline.py SN2007af SNIa_series.txt y 
-# python run_pipeline.py SN2005cs SNII_series.txt y y 
+# python3 run_pipeline.py SN2007af SNIa_series.txt y 
+# python3 run_pipeline.py SN2005cs SNII_series.txt y y 
 
 # imports 
 import time
 import pandas as pd
 import numpy as np
-from mangle_simple import *
 from utilities import *
 from validation_plotting import *
 from Graphing import *
@@ -20,7 +19,6 @@ from select_template import sel_template
 from spec_animation import summary_plot
 import Luminosity_Converter
 import argparse
-from filterlist_to_filterfiles import *
 from mpl_toolkits.mplot3d import Axes3D
 import scipy
 import matplotlib.pyplot as plt
@@ -30,7 +28,6 @@ from pathlib import Path
 import math as math
 import requests
 from contextlib import closing
-from filterlist_to_filterfiles import *
 import string
 
 
@@ -692,7 +689,7 @@ def main():
 
 
     #  3d plot
-    #plots3d(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
+    plots3d(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
 
 
     # uses mangledmagsarray

@@ -11,7 +11,10 @@ import sys
 import pandas as pd
 
 import math
-from filterlist_to_filterfiles import filterlist_to_filterfiles
+
+import scipy.interpolate as interpolate
+import matplotlib.pyplot as plt  
+
 
 def pivot_wavelength(Filter):
 
@@ -355,3 +358,297 @@ def countrates2mags(output_file_name, template_spectrum):
         #else:
             #counts_df[filter_bands[idx]]=np.nan
     counts_df.to_csv('../output/MAGS/'+output_file_name+'_mangledmagsarray.csv', index=False)
+
+
+def mangle_simple(spectraWavelengths, flux, filter_file_list, zeropointlist, pivotlist, counts_in):
+    #######  Calculate the counts in each filter from the template and compare to counts_in]
+	
+    counts_array = []
+    count = 0
+    for fileName in filter_file_list:
+      fileName = "../filters/"+fileName
+      # print("clean filter start")
+      effectiveAreas = clean_filter(fileName, spectraWavelengths)
+      # print(effectiveAreas)
+      en = time.time()
+      # print(en-st)
+      # print("clean filter end")
+      # print("calc counts start")
+      count = calculate_counts(spectraWavelengths, flux, effectiveAreas)#dtype=float,usecols=(0,1),unpack=True)
+      en = time.time()
+      # print(en-st)
+      # print("calc counts end")
+      counts_array +=[count]
+      # print(counts_array)
+    # input_wave,input_flux,counts_array = total_counts(templatespectrum,filter_file_list)#dtype=float,usecols=(0,1),unpack=True)
+    clean_template = np.column_stack((spectraWavelengths,flux))
+
+    #input_wave,input_flux = np.loadtxt('spectra/Gaia16apd_uv.dat', dtype=float,usecols=(0,1),unpack=True)
+    #counts_array=get_counts_multi_filter(clean_template, filter_file_list)
+    ratio = np.zeros(len(counts_array))
+    for x in range(0,len(counts_array)):
+        ratio[x]=counts_in[x]/counts_array[x]
+    manglefunction= np.interp(spectraWavelengths, pivotlist, ratio)
+
+    mangledspectrumflux=manglefunction*flux
+    return spectraWavelengths, mangledspectrumflux
+
+
+
+#  this one takes n as the degrees of the polynomial fit
+def mangle_poly(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, pivotlist, counts_in,n):
+
+    #input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum)#dtype=float,usecols=(0,1),unpack=True)
+    clean_template = np.column_stack((spectrum_wave,spectrum_flux))
+
+    #######  Calculate the counts in each filter from the template and compare to counts_in
+
+    counts_array=get_counts_multi_filter(clean_template, filter_file_list)
+    ratio = np.zeros(len(counts_array))
+
+    for x in range(0,len(counts_array)):
+        ratio[x]=counts_in[x]/counts_array[x]
+
+    p=np.polyfit(pivotlist, ratio,n)
+    manglefunction= np.polyval(p,input_wave)
+
+    mangledspectrumflux=input_flux*manglefunction
+
+    return input_wave, mangledspectrumflux
+
+
+def mangle_poly2(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, pivotlist, counts_in,n):
+
+    #input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum)#dtype=float,usecols=(0,1),unpack=True)
+    clean_template = np.column_stack((spectrum_wave,spectrum_flux))
+
+    #######  Calculate the counts in each filter from the template and compare to counts_in
+
+    counts_array=get_counts_multi_filter(clean_template, filter_file_list)
+    ratio = np.zeros(len(counts_array))
+
+    for x in range(0,len(counts_array)):
+        ratio[x]=counts_in[x]/counts_array[x]
+
+    p2=np.polyfit(pivotlist, ratio,2)
+    manglefunction= np.polyval(p2,input_wave)
+
+    mangledspectrumflux=input_flux*manglefunction
+
+    return input_wave, mangledspectrumflux
+
+def mangle_poly3(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, pivotlist, counts_in,n):
+
+    #input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum)#dtype=float,usecols=(0,1),unpack=True)
+    clean_template = np.column_stack((spectrum_wave,spectrum_flux))
+
+    #######  Calculate the counts in each filter from the template and compare to counts_in
+
+    counts_array=get_counts_multi_filter(clean_template, filter_file_list)
+    ratio = np.zeros(len(counts_array))
+
+    for x in range(0,len(counts_array)):
+        ratio[x]=counts_in[x]/counts_array[x]
+
+    p3=np.polyfit(pivotlist, ratio,3)
+    manglefunction= np.polyval(p3,input_wave)
+
+    mangledspectrumflux=input_flux*manglefunction
+
+    return input_wave, mangledspectrumflux
+
+def mangle_poly4(templatespectrum,filter_file_list, zeropointlist, pivotlist, counts_in):
+
+    input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum)#dtype=float,usecols=(0,1),unpack=True)
+    clean_template = np.column_stack((input_wave,input_flux))
+
+    #######  Calculate the counts in each filter from the template and compare to counts_in
+
+    counts_array=get_counts_multi_filter(clean_template, filter_file_list)
+    ratio = np.zeros(len(counts_array))
+
+    for x in range(0,len(counts_array)):
+        ratio[x]=counts_in[x]/counts_array[x]
+
+    p4=np.polyfit(pivotlist, ratio,4)
+    manglefunction= np.polyval(p4,input_wave)
+
+    mangledspectrumflux=input_flux*manglefunction
+
+    return input_wave, mangledspectrumflux
+
+
+def mangle_Bspline(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, pivotlist, counts_in,n):
+
+    #input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum)#dtype=float,usecols=(0,1),unpack=True)
+    clean_template = np.column_stack((spectrum_wave,spectrum_flux))
+
+    #input_wave,input_flux = np.loadtxt('spectra/Gaia16apd_uv.dat', dtype=float,usecols=(0,1),unpack=True)
+    #counts_array=get_counts_multi_filter(clean_template, filter_file_list)
+    ratio = np.zeros(len(counts_array))
+    for x in range(0,len(counts_array)):
+        ratio[x]=counts_in[x]/counts_array[x]
+    t, c, k = interpolate.splrep(pivotlist,ratio,s=0,k=4)
+    print('''\
+    t: {}
+    c: {}
+    k: {}
+    '''.format(t,c,k))
+    xx = input_wave
+    spline = interpolate.BSpline(t,c,k, extrapolate=True)
+    manglefunction= spline(xx)
+
+    mangledspectrumflux=input_flux*manglefunction
+    return input_wave, mangledspectrumflux
+
+
+def valid_wavelength(wavelength, template_minmax):
+    if(wavelength <= template_minmax[1]) and (wavelength >= template_minmax[0]):
+        return True
+    return False
+
+def filterlist_to_filterfiles(filterlist,template_spectrum):
+    from utilities import pivot_wavelength
+
+
+    # wavelengths_template_spectrum contains lowest and highest value in range of template_spectrum
+    spectra_path = '../spectra/' + template_spectrum
+    spectra_file = open(spectra_path, "r")
+    wavelengths_template_spectrum = []
+    spectra_file_lines = spectra_file.readlines()
+    spectra_file.close()
+    line_0 = True
+    for line_number, line in enumerate(spectra_file_lines, start=0):
+        line = line.strip()
+        if (line_number == 0) and (line[0] != "#"):
+            line = line.split(" ")
+            wavelengths_template_spectrum.append(float(line[0]))
+            line_0 = False
+        if line_0 and line_number == 1:
+            line = line.split(" ")
+            wavelengths_template_spectrum.append(float(line[0]))
+        if line_number == len(spectra_file_lines) - 1:
+            line = line.split(" ")
+            wavelengths_template_spectrum.append(float(line[0]))
+
+    zeropointlist = []
+    pivotlist = []
+    filterfilelist=[' '] * len(filterlist)
+
+    for idx,filtertocheck in enumerate(filterlist):
+        if filtertocheck == 'UVW2':
+            filterfilelist[idx]='../filters/UVW2_2010.txt'
+            pivot=pivot_wavelength('../filters/UVW2_2010.txt')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(17.39)
+        if filtertocheck == 'UVM2':
+            filterfilelist[idx]='../filters/UVM2_2010.txt'
+            pivot=pivot_wavelength('../filters/UVM2_2010.txt')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(16.86)
+        if filtertocheck == 'UVW1':
+            filterfilelist[idx]='../filters/UVW1_2010.txt'
+            pivot=pivot_wavelength('../filters/UVW1_2010.txt')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(17.44)
+        if filtertocheck == 'U':
+            filterfilelist[idx]='../filters/U_UVOT.txt'
+            pivot=pivot_wavelength('../filters/U_UVOT.txt')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(18.34)
+        if filtertocheck == 'B':
+            filterfilelist[idx]='../filters/B_UVOT.txt'
+            pivot=pivot_wavelength('../filters/B_UVOT.txt')
+            pivotlist.append(pivot)
+            zeropointlist.append(19.1)
+        if filtertocheck == 'V':
+            filterfilelist[idx]='../filters/V_UVOT.txt'
+            pivot=pivot_wavelength('../filters/V_UVOT.txt')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(17.88)
+        if filtertocheck == 'R':
+            filterfilelist[idx]='../filters/R_Harris_c6004.txt'
+            pivot=pivot_wavelength('../filters/R_Harris_c6004.txt')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(19.86)
+        if filtertocheck == 'I':
+            filterfilelist[idx]='../filters/johnson_i.txt'
+            pivot=pivot_wavelength('../filters/johnson_i.txt')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(14.91)
+        if filtertocheck == 'g':
+            filterfilelist[idx]='../filters/LSST_g.dat'
+            pivot=pivot_wavelength('../filters/LSST_g.dat')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(14.91)
+        if filtertocheck == 'r':
+            filterfilelist[idx]='../filters/LSST_r.dat'
+            pivot=pivot_wavelength('../filters/LSST_r.dat')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(14.42)
+        if filtertocheck == 'i':
+            filterfilelist[idx]='../filters/LSST_i.dat'
+            pivot=pivot_wavelength('../filters/LSST_i.dat')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(13.87)
+        if filtertocheck == 'u':
+            filterfilelist[idx]='../filters/LSST_u.dat'
+            pivot=pivot_wavelength('../filters/LSST_u.dat')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(12.84)
+        if filtertocheck == 'z':
+            filterfilelist[idx]='../filters/LSST_z.dat'
+            pivot=pivot_wavelength('../filters/LSST_z.dat')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(13.33)
+        if filtertocheck == 'y':
+            filterfilelist[idx]='../filters/LSST_y4.dat'
+            pivot=pivot_wavelength('../filters/LSST_y4.dat')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(12.59)
+        if filtertocheck == 'F200W':
+            filterfilelist[idx]='../filters/F200W_NRC_and_OTE_ModAB_mean.txt'
+            pivot=pivot_wavelength('../filters/F200W_NRC_and_OTE_ModAB_mean.txt')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(22.8)
+        if filtertocheck == 'F444W':
+            filterfilelist[idx]='../filters/F444W_NRC_and_OTE_ModAB_mean.txt'
+            pivot=pivot_wavelength('../filters/F444W_NRC_and_OTE_ModAB_mean.txt')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(21.34)
+        if filtertocheck == 'J':
+            filterfilelist[idx]='../filters/J_2mass.txt'
+            pivot=pivot_wavelength('../filters/J_2mass.txt')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(12.95)
+        if filtertocheck == 'H':
+            filterfilelist[idx]='../filters/H_2mass.txt'
+            pivot=pivot_wavelength('../filters/H_2mass.txt')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(12.45)
+        if filtertocheck == 'K':
+            filterfilelist[idx]='../filters/Ks_2mass.txt'
+            pivot=pivot_wavelength('../filters/Ks_2mass.txt')
+            if valid_wavelength(pivot, wavelengths_template_spectrum):
+                pivotlist.append(pivot)
+                zeropointlist.append(11.77)
+    print(pivotlist)
+    return(filterfilelist,zeropointlist,pivotlist)
+

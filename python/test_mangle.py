@@ -1,15 +1,8 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from mangle_simple import *
-from mangle_poly import *
-from mangle_Bspline import *
-#from mangle_bspline import *
+import matplotlib.pyplot as plot
 from validation_plotting import *
 import argparse
-from observedmags_to_counts import *
-from filterlist_to_filterfiles import *
-from mangled_to_counts import *
-
+from utilities import *
 #####################
 
 if __name__ == "__main__":
@@ -30,7 +23,7 @@ if __name__ == "__main__":
     spectrum_integrated_flux = np.trapz(spectrum_flux[spectrumbolo_lambda_range[0]]*spectrum_wave[spectrumbolo_lambda_range[0]]/hc,spectrum_wave[spectrumbolo_lambda_range[0]])
 
     test_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V','R', 'I', 'J', 'H', 'K']
-    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(test_filter_list)
+    filter_file_list,zeropointlist,pivotlist = filterlist_to_filterfiles(test_filter_list,spectrum_file)
     
     spectrum_spec =np.column_stack((spectrum_wave,spectrum_flux))
     counts_in = get_counts_multi_filter(spectrum_spec,filter_file_list)
@@ -41,7 +34,7 @@ if __name__ == "__main__":
 
     #   Now test a mangling method to see how well the template spectrum can be forced to match the input spectrum
 
-    mangled_spec_wave, mangled_spec_flux = mangle_simple(template_file, filter_file_list, zeropointlist,pivotlist, counts_in) 
+    mangled_spec_wave, mangled_spec_flux = mangle_simple(spectrum_wave,spectrum_flux, filter_file_list, zeropointlist,pivotlist, counts_in) 
      
     mangledbolo_lambda_range = np.where((mangled_spec_wave>=2000.0)&(mangled_spec_wave<=10000.0))
     mangled_integrated_flux = np.trapz(mangled_spec_flux[mangledbolo_lambda_range[0]]*mangled_spec_wave[mangledbolo_lambda_range[0]]/hc,mangled_spec_wave[mangledbolo_lambda_range[0]])
@@ -62,7 +55,7 @@ if __name__ == "__main__":
    
     #   Now test polynomial fitting
 
-    mangled_spec_wave, mangled_spec_flux = mangle_poly2(template_file, filter_file_list, zeropointlist,pivotlist, counts_in) 
+    mangled_spec_wave, mangled_spec_flux = mangle_poly2(spectrum_wave,spectrum_flux, filter_file_list, zeropointlist,pivotlist, counts_in) 
      
     mangledbolo_lambda_range = np.where((mangled_spec_wave>=2000.0)&(mangled_spec_wave<=10000.0))
     mangled_integrated_flux = np.trapz(mangled_spec_flux[mangledbolo_lambda_range[0]]*mangled_spec_wave[mangledbolo_lambda_range[0]]/hc,mangled_spec_wave[mangledbolo_lambda_range[0]])
@@ -74,7 +67,7 @@ if __name__ == "__main__":
     plot.plot(mangled_spec_wave[mangledbolo_lambda_range[0]], mangled_spec_flux[mangledbolo_lambda_range[0]])
     plot.show()
 
-    mangled_spec_wave, mangled_spec_flux = mangle_poly3(template_file, filter_file_list, zeropointlist,pivotlist, counts_in) 
+    mangled_spec_wave, mangled_spec_flux = mangle_poly3(spectrum_wave,spectrum_flux, filter_file_list, zeropointlist,pivotlist, counts_in) 
      
     mangledbolo_lambda_range = np.where((mangled_spec_wave>=2000.0)&(mangled_spec_wave<=10000.0))
     mangled_integrated_flux = np.trapz(mangled_spec_flux[mangledbolo_lambda_range[0]]*mangled_spec_wave[mangledbolo_lambda_range[0]]/hc,mangled_spec_wave[mangledbolo_lambda_range[0]])
@@ -86,7 +79,7 @@ if __name__ == "__main__":
     plot.plot(mangled_spec_wave[mangledbolo_lambda_range[0]], mangled_spec_flux[mangledbolo_lambda_range[0]])
     plot.show()
 
-    mangled_spec_wave, mangled_spec_flux = mangle_poly4(template_file, filter_file_list, zeropointlist,pivotlist, counts_in) 
+    mangled_spec_wave, mangled_spec_flux = mangle_poly4(spectrum_wave,spectrum_flux, filter_file_list, zeropointlist,pivotlist, counts_in) 
      
     mangledbolo_lambda_range = np.where((mangled_spec_wave>=2000.0)&(mangled_spec_wave<=10000.0))
     mangled_integrated_flux = np.trapz(mangled_spec_flux[mangledbolo_lambda_range[0]]*mangled_spec_wave[mangledbolo_lambda_range[0]]/hc,mangled_spec_wave[mangledbolo_lambda_range[0]])
@@ -101,7 +94,7 @@ if __name__ == "__main__":
     
     #   Now test a different method
 
-    mangled_spec_wave, mangled_spec_flux = mangle_Bspline(template_file, filter_file_list, zeropointlist,pivotlist, counts_in) 
+    mangled_spec_wave, mangled_spec_flux = mangle_Bspline(spectrum_wave,spectrum_flux, filter_file_list, zeropointlist,pivotlist, counts_in) 
      
     mangledbolo_lambda_range = np.where((mangled_spec_wave>=2000.0)&(mangled_spec_wave<=10000.0))
     mangled_integrated_flux = np.trapz(mangled_spec_flux[mangledbolo_lambda_range[0]]*mangled_spec_wave[mangledbolo_lambda_range[0]]/hc,mangled_spec_wave[mangledbolo_lambda_range[0]])
