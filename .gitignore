@@ -18,10 +18,12 @@ __pycache__/
 #input
 input/*countsarray.csv
 input/*mangledcounts.csv
-
+input/COUNTS/*
 #output
 output/*.csv
 output/*.png
+output/MAGS/*
+output/TEMPLATE/*
 
 # Distribution / packaging
 .Python
