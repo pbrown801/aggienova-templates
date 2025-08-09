@@ -1,7 +1,7 @@
 import pandas as pd 
 import numpy as np
 import math
-from dust_extinction.parameter_averages import F19
+#from dust_extinction.parameter_averages import F19
 import astropy.units as u
 
 
@@ -27,12 +27,12 @@ def Dm_to_Lum(sn_name):
     idex=idex[0]
     Dist_mod= swift['Distance_best'][idex]
     MWAV=swift['AV'][idex]
-    ext = F19(Rv=3.1)
+   # ext = F19(Rv=3.1)
     wavenum_waves = [1/(a/10000) for a in sn_templ['Wavelength']]
     Lum= pd.Series(sn_templ.apply(lambda row: Grab_Lum(Dist_mod=Dist_mod, Flux= row['Flux']), axis=1))
-    Lum=Lum/ext.extinguish(wavenum_waves,Ebv=MWAV/3.1)
+   # Lum=Lum/ext.extinguish(wavenum_waves,Ebv=MWAV/3.1)
 
-
+    print('warning: luminosity converter does not have extinction right now')
 
 
     Lum=pd.DataFrame({'MJD': sn_templ['MJD'], 'Wavelength': sn_templ['Wavelength'], 'Luminosity': Lum.tolist()})
