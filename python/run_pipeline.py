@@ -54,7 +54,7 @@ desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V']
 
 
 
-def arrange_data(openedcountsfile, template_spectrum, filterlist, reference_epoch_mjd):
+def arange_data(openedcountsfile, template_spectrum, filterlist, reference_epoch_mjd):
     '''
     Use the template spectrum or series to create a mangled spectrum of the flux using the effective areas of each filter bands, 
     the flux of the template spectrum, and the ratio between the sn_name count rates and template spectrum's count rates.
@@ -285,7 +285,7 @@ def main():
         writer.writerow([8, "Zeropoint List", zeropointlist])
         writer.writerow([9, "Pivot List", pivotlist])
    
-    mjd_list, input_counts_list, epoch_list, mangled_counts_list, wavelength_list, flux_matrix, data  = arrange_data(openedcountsfile, template_spectrum, filters_from_csv, reference_epoch_mjd)
+    mjd_list, input_counts_list, epoch_list, mangled_counts_list, wavelength_list, flux_matrix, data  = arange_data(openedcountsfile, template_spectrum, filters_from_csv, reference_epoch_mjd)
     #mangled_counts, mjd_list, data, counts_list, mangled_spec_wave, wavelength_list, epoch_list, flux_matrix = mangle_data(openedcountsfile, pivotlist, template_spectrum, filter_file_list, reference_epoch_mjd, zeropointlist)
     
     df = pd.DataFrame(columns=['MJD', 'Wavelength', 'Flux'], data=data)
