@@ -326,6 +326,7 @@ def check_filter_data(sn_name):
     '''
     Nathan's code: Check if filter data exists for current supernova before running observed mags
     '''
+    desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V']
     csv_name = str(sn_name) + "_osc.csv"
     csv_path = '../input/'+csv_name
     csv_file = open(csv_path, "r")
@@ -364,7 +365,7 @@ def plots3d(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix,
     # plot_3D(df,sn_name)
 
     fig = plt.figure()
-    ax = Axes3D(fig)
+    ax = plt.axes(projection='3d')
 #    ax = Axes3D(fig,auto_add_to_figure=False)  2022 07 06 commented out, then was working
     X, Y = np.meshgrid(wavelength_list, epoch_list)
     Z = flux_matrix
