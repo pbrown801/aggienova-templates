@@ -4,8 +4,8 @@
 # Command to run Uvot:
 # python3 run_pipeline.py SN2005cs SN2006bp_uvmodel.dat y y
 # Command to add template series for mangling:
-# python3 run_pipeline.py SN2007af SNIa_series.txt y 
-# python3 run_pipeline.py SN2005cs SNII_series.txt y y 
+# python3 run_pipeline.py SN2007af SNIa_series.txt y y
+# python3 run_pipeline.py SN2007af SNII_series.txt y y
 
 # imports 
 import time
@@ -65,7 +65,6 @@ def arrange_data(openedcountsfile, template_spectrum, filterlist, reference_epoc
     if 'series' in template_spectrum:
         spectraname=sel_template(0, "../spectra/"+template_spectrum)
     else:
-     if ind == 0:
         spectraname = "../spectra/" + template_spectrum
     
     
