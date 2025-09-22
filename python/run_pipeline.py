@@ -182,6 +182,10 @@ def arrange_data(openedcountsfile, template_spectrum, filterlist, reference_epoc
 
 
 ##################################################################
+
+##################################################################
+
+##################################################################
 def main():
     '''
     Main wrapper for aggienova-templates
@@ -326,19 +330,26 @@ def main():
 # Commented out so we keep the files we make, 
 # but they are on the gitignorelist so that they don't get committed back
 
+    '''
+    Testing output
+    '''
+    print("run finished")
 
     #  3d plot
     plots3d(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
-
-
+    
     # uses mangledmagsarray
 
     # summary animation plot with light curves and spectra in spec_animation.py
+    '''
+    Fix plots changing size as animating
+    '''
+    
     if "uvot" in output_file_name:
         summary_plot(sn_name, output_file_name, True, True, False, 750, False)
     else:
         summary_plot(sn_name, output_file_name, True, True, True, 750, False)
-
+    
 
 
 if __name__ == "__main__":
