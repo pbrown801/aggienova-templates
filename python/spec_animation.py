@@ -13,15 +13,18 @@ from scipy.interpolate import interp1d
 import matplotlib.image as mpimg
 from matplotlib.transforms import Bbox
 import math as m
+from matplotlib.gridspec import GridSpec
 
 
 def initialize_plots(plot, output_file_name):
 
+    fig = plt.figure(figsize=(15, 8))
+    plt.subplots_adjust(hspace= 0.2)
+    #fig.set_tight_layout(True)
+    fixed_ax = [0.1, 0.1, 0.5, 0.5] #define axis positions to keep consistent through animation
+    
     # Define the gridspec which is 2 rows by 3 columns and the figure for the matplotlib plot
     gs = gridspec.GridSpec(nrows=2, ncols=2)
-
-    fig = plt.figure(figsize=(15, 8))
-    fig.set_tight_layout(True)
 
     # Set the three different plots to the specific locations in the gridspec
     # First Plot - First Row, All available Columns
@@ -75,7 +78,7 @@ def initialize_plots(plot, output_file_name):
     # Plot Settings
     ax1.set_xlabel('Wavelength (angstroms)')
     ax1.set_ylabel('log(flux)+constant')
-    ax1.set_title('Flux vs Wavelength')
+    ax1.set_title('Spectra for all Epochs')
 
     # ------------------------ FIRST PLOT END ------------------------ 
 
@@ -123,7 +126,7 @@ def initialize_plots(plot, output_file_name):
     # Plot Settings
     ax2.set_xlabel('Time (MJD)')
     ax2.set_ylabel('Magnitude')
-    ax2.set_title('Magnitude vs Time')
+    #ax2.set_title('Magnitude vs Time')
     # Get the labels for the plot legend 
     handles, labels = ax2.get_legend_handles_labels()
     # Add the legend to plot 2 outside of the plot area
@@ -177,6 +180,10 @@ def animation(plot, fig, ax1, ax2, ax3, times_plots, groups, time_groups, bands_
         else:
             # --------- Update the ax1 plot with the flux vs wavelength for each time mjd ---------
             # Clear the plot flux vs wavelength
+            '''
+            use num_groups to prefill legend with empty entries that get overwritten as we animate the graph, should lead
+            to constant figure size since the legend stays the same size
+            '''
             if i == 0:
                 for idx in range(len(times_plots)):
                     times_plots[idx].set_data([], [])
