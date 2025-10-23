@@ -446,8 +446,9 @@ def specarray_to_counts(spectrum, filter_file_list):
     flux=spectrum[:,1]
 
     counts_array = []
-    counts=0
+    #counts=0
     for fileName in filter_file_list:
+        counts=0
         fileName = "../filters/" + fileName
  
         try:
@@ -484,7 +485,7 @@ def specarray_to_counts(spectrum, filter_file_list):
         # spectraWavelengths, flux, and effectiveAreas are np_arrays with the same length
         # Value returned is counts, which is a floating-point numeric value
         # Calculate counts
-        toPhotonFlux = 5.03 * (10 ** 7)
+        toPhotonFlux = 5.03 * (10 ** 7)   # this is 1/hc
         for i in range(0, len(spectraWavelengths) - 1):
             photonFlux = toPhotonFlux * ((flux[i] + flux[i + 1]) / 2) * (
                     (spectraWavelengths[i] + spectraWavelengths[i + 1]) / 2)
@@ -499,8 +500,9 @@ def specarray_to_counts(spectrum, filter_file_list):
 def total_counts(spectraFileName,filter_file_list):
     spectraFileName = "../spectra/" + spectraFileName
     counts_array = []
-    counts=0
+    #counts=0
     for fileName in filter_file_list:
+        counts=0
         fileName = "../filters/" + fileName
         #PART #1 : CLEAN SPECTRUM
         # Process data from a spectrum file and interpolate missing values
@@ -741,35 +743,25 @@ def countrates2mags(output_file_name, template_spectrum):
 
 def mangle_simple(spectraWavelengths, flux, filter_file_list, zeropointlist, pivotlist, counts_in):
     #######  Calculate the counts in each filter from the template and compare to counts_in]
-	
-    counts_array = []
-    count = 0
-    for fileName in filter_file_list:
-      fileName = "../filters/"+fileName
-      # print("clean filter start")
-      effectiveAreas = clean_filter(fileName, spectraWavelengths)
-      # print(effectiveAreas)
-      en = time.time()
-      # print(en-st)
-      # print("clean filter end")
-      # print("calc counts start")
-      count = calculate_counts(spectraWavelengths, flux, effectiveAreas)#dtype=float,usecols=(0,1),unpack=True)
-      en = time.time()
-      # print(en-st)
-      # print("calc counts end")
-      counts_array +=[count]
-      # print(counts_array)
-    # input_wave,input_flux,counts_array = total_counts(templatespectrum,filter_file_list)#dtype=float,usecols=(0,1),unpack=True)
-    clean_template = np.column_stack((spectraWavelengths,flux))
-
-    #input_wave,input_flux = np.loadtxt('spectra/Gaia16apd_uv.dat', dtype=float,usecols=(0,1),unpack=True)
-    #counts_array=get_counts_multi_filter(clean_template, filter_file_list)
-    ratio = np.zeros(len(counts_array))
-    for x in range(0,len(counts_array)):
-        ratio[x]=counts_in[x]/counts_array[x]
+    print("inside mangle simple")
+    template_spec = np.column_stack((spectraWavelengths, flux))
+    speccounts_array = specarray_to_counts(template_spec, filter_file_list)
+    inspeccounts, inspecmags=specin_countsout(spectraWavelengths, flux)
+    ratio=counts_in/speccounts_array
+    print(ratio)
+    ratio = np.zeros(len(counts_in))
+    for x in range(0,len(counts_in)):
+        ratio[x]=counts_in[x]/speccounts_array[x]
+    print(ratio)
     manglefunction= np.interp(spectraWavelengths, pivotlist, ratio)
 
-    mangledspectrumflux=manglefunction*flux
+    mangledspectrumflux=flux*manglefunction
+    
+    mangled_spec = np.column_stack((spectraWavelengths, mangledspectrumflux))
+    temp_counts = specarray_to_counts(mangled_spec, filter_file_list)
+    
+    print("fractional error", (temp_counts-counts_in)/counts_in )
+    
     return spectraWavelengths, mangledspectrumflux
 
 
