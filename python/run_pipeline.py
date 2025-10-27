@@ -4,8 +4,8 @@
 # Command to run Uvot:
 # python3 run_pipeline.py SN2005cs SN2006bp_uvmodel.dat y y
 # Command to add template series for mangling:
-# python3 run_pipeline.py SN2007af SNIa_series.txt y 
-# python3 run_pipeline.py SN2005cs SNII_series.txt y y 
+# python3 run_pipeline.py SN2007af SNIa_series.txt y y
+# python3 run_pipeline.py SN2005cs SNII_series.txt y y
 
 #python3 run_pipeline.py SN2007af SNIa_series.txt y y
 
