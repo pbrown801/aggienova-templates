@@ -186,6 +186,8 @@ def oscmags_to_counts(sn_name, desired_filter_list, template_spectrum, interpFil
                 line[2*j+2] = interp_counterrs_matrix[j][i]
             writer.writerow(line)
 
+    counts_frame = pd.read_csv('../input/COUNTS/'+ sn_name + '_countsarray.csv')
+    return counts_frame
 
 
 
@@ -313,13 +315,8 @@ def uvotmags_to_counts(sn_name, template_spectrum):
 
             writer.writerow(line)
 
-
     #print(result_df)
-    #return result_df
-
-
-
-
+    return result_df
 
 
 def check_filter_data(sn_name):
@@ -342,8 +339,6 @@ def check_filter_data(sn_name):
     # If copy is empty, then all filters are in csv file
     for filter in filter_copy:
         desired_filter_list.remove(filter)
-
-
 
 def plots3d(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum):
     '''
@@ -381,6 +376,7 @@ def plots3d(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix,
         save_name += '_3d_surface.png'
     plt.savefig(save_name)
 
+
 def mangled_to_counts(output_file_name, filter_list, mangled_counts, epochs):
 
     # print('epochs')
@@ -391,7 +387,6 @@ def mangled_to_counts(output_file_name, filter_list, mangled_counts, epochs):
                       columns = filter_list)
 
     df.to_csv('../input/COUNTS/'+output_file_name+'_mangledcounts.csv',index_label = 'Time (MJD)')
-
 
 
 def pivot_wavelength(Filter):
@@ -424,6 +419,7 @@ def csv_to_ascii(inFile,outFile):
                 for col in row:
                     output.write(str(col) + ' ')
                 output.write('\n')
+
 
 def dat_to_csv(dat):
     """
@@ -816,6 +812,7 @@ def mangle_poly2(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, pi
 
     return input_wave, mangledspectrumflux
 
+
 def mangle_poly3(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, pivotlist, counts_in,n):
 
     #input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum)#dtype=float,usecols=(0,1),unpack=True)
@@ -835,6 +832,7 @@ def mangle_poly3(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, pi
     mangledspectrumflux=input_flux*manglefunction
 
     return input_wave, mangledspectrumflux
+
 
 def mangle_poly4(templatespectrum,filter_file_list, zeropointlist, pivotlist, counts_in):
 
@@ -886,6 +884,7 @@ def valid_wavelength(wavelength, template_minmax):
         return True
     return False
 
+
 def sel_template(epoch, series_path):
     '''
     Round epoch to the nearest value in the input series file that correspond to template files
@@ -896,6 +895,7 @@ def sel_template(epoch, series_path):
     file_data = dict([line.strip().split(" ") for line in lines])
     # use the smallest difference between the input epoch and the keys in the dict as the file to use
     return file_data[min(file_data, key=lambda x: abs(float(x)-epoch))]
+
 
 def filterlist_to_filterfiles(filterlist,template_spectrum):
     from utilities import pivot_wavelength
@@ -1042,3 +1042,42 @@ def filterlist_to_filterfiles(filterlist,template_spectrum):
     #print(pivotlist)
     return(filterfilelist,zeropointlist,pivotlist)
 
+#checks the efficieny of mangling and how much it differs from actual observation
+def mangle_check(input_counts, mangled_counts, epoch_list, filters_from_csv, counts_frame):
+    mangle_diff = input_counts - mangled_counts
+    mangle_ratio = (input_counts - mangled_counts) / input_counts
+    #using counts_frame from earlier, which holds all the input counts and their error in a pandas dataframe
+    #order of filters is UVW2, UVM2, UVW1, U, B, V (in either uvot or non-uvot case)
+    #extracting counts erorr for each filter
+    err_data = np.zeros((len(epoch_list))) #array to hold all filter errors over all epochs
+    for filter in filters_from_csv:
+        err_data = np.vstack((err_data, counts_frame.loc[:, filter].to_numpy(dtype = float)))
+    err_data = np.transpose(err_data[1:])
+    mangle_error = False
+    mangle_error_num = 0
+    for err,mang in zip(err_data, np.abs(mangle_diff)): #grabs 6 filter measurements per epoch for both arrays
+        for i,j in zip(err,mang):
+            if(j > 2*i):
+                mangle_error = True
+                mangle_error_num += 1
+    if(mangle_error):
+        print("warning: mangling counts > 2*count error for", mangle_error_num, "observations")
+    print("Spectra mangled outside of parameters:", '{0:.2f}'.format((mangle_error_num) / (len(err_data)*len(err_data[0])) * 100), "%")    
+    
+    #producing graphs showing mangling
+    #6 residual graphs for each filter, 
+    fig, ax = plt.subplots(6,1,sharex=True, figsize=(4,8))
+    plt.subplots_adjust(hspace= 0.35)
+    ax[0].set_xlim([epoch_list[0], epoch_list[-1]])
+    #ax[0].set_ylim([-3,3])
+    ax[-1].set_xlabel("Epoch")
+    
+    #use filters_from_csv as array for titles
+    #rows in arrays are epochs, columns are filters
+    for i in np.arange(0,len(ax)):
+        ax[i].axhline(y=0, c="red")
+        #ax[i].plot(epoch_list, mangle_ratio[:,i], color="black")
+        ax[i].scatter(epoch_list, mangle_ratio[:,i], color = "black", s = 5)
+        #ax[i].set_ylim([-0.25*max(mangle_diff[:,i]), 1.25*max(mangle_diff[:,i])])
+        
+    plt.show()

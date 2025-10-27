@@ -7,6 +7,8 @@
 # python3 run_pipeline.py SN2007af SNIa_series.txt y 
 # python3 run_pipeline.py SN2005cs SNII_series.txt y y 
 
+#python3 run_pipeline.py SN2007af SNIa_series.txt y y
+
 # imports 
 import time
 import pandas as pd
@@ -234,13 +236,14 @@ def main():
 
     ##############  SELECT THE SOURCE OF THE INPUT DATA: OPEN SUPERNOVA CATALOG OR UVOT
     # If the files are not uvot we call the sn_data_online and check_filter_data
+    #both these inputs are in mags
     if(not process_uvot):
         bool_error, bool_online_data=sn_data_online(sn_name)
         if not bool_error:
             check_filter_data(sn_name)
         # Function call 1
         # Convert the magnitudes from the sn data to count rates
-        oscmags_to_counts(sn_name, desired_filter_list, template_spectrum_default)
+        counts_frame = oscmags_to_counts(sn_name, desired_filter_list, template_spectrum_default)
 
         with open('../output/Test_A.csv', 'w', newline='') as file:
             writer = csv.writer(file)
@@ -252,7 +255,9 @@ def main():
         first_obv=next(orig_file_reader)[1]
     else:
         uvotfilepath=('../input/'+sn_name+'_uvotB15.1.dat')
-        uvotmags_to_counts(sn_name,template_spectrum)
+        counts_frame = uvotmags_to_counts(sn_name,template_spectrum)
+        #counts_frame has one element more than later error array, likely that error doesn't include first element
+        counts_frame.drop(index=counts_frame.index[0], axis=0, inplace=True)
         #first_obv=uvot(sn_name,"y")
         #sn_name = sn_name+'_uvot'
 		#   this could pull from the SOUSA repo
@@ -319,37 +324,33 @@ def main():
         #writer.writerow([11, "Mangled Spectrum Flux", spec])
         writer.writerow([11, "Counts List", input_counts_list])
 
-#    filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.MJD < 54330)] #filters data to remove outliers
-#    filtered_df.to_csv('../output/'+sn_name+'_filtered.csv',index=False)
-
-# The bool statment was to ensure that we only delete the temporary online data file we downloaded.
-#    if(not process_uvot):
-#        if bool_online_data == True:
-#            print("Removing" + sn_name + "_osc.csv from input folder")
-#            os.remove('../input/'+sn_name+'_osc.csv')
-# Commented out so we keep the files we make, 
-# but they are on the gitignorelist so that they don't get committed back
-
     '''
-    Testing output
-    '''
-    print("run finished")
+    #    filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.MJD < 54330)] #filters data to remove outliers
+    #    filtered_df.to_csv('../output/'+sn_name+'_filtered.csv',index=False)
 
+    # The bool statment was to ensure that we only delete the temporary online data file we downloaded.
+    #    if(not process_uvot):
+    #        if bool_online_data == True:
+    #            print("Removing" + sn_name + "_osc.csv from input folder")
+    #            os.remove('../input/'+sn_name+'_osc.csv')
+    # Commented out so we keep the files we make, 
+    # but they are on the gitignorelist so that they don't get committed back
+    '''
+    
     #  3d plot
     plots3d(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
     
     # uses mangledmagsarray
 
     # summary animation plot with light curves and spectra in spec_animation.py
-    '''
-    Fix plots changing size as animating
-    '''
-    
+
     if "uvot" in output_file_name:
         summary_plot(sn_name, output_file_name, True, True, False, 750, False)
+        mangle_check(input_counts_list, mangled_counts_list, epoch_list, filters_from_csv, counts_frame)
     else:
         summary_plot(sn_name, output_file_name, True, True, True, 750, False)
-    
+        mangle_check(input_counts_list, mangled_counts_list, epoch_list, filters_from_csv, counts_frame)
+        
 
 
 if __name__ == "__main__":
