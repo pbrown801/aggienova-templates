@@ -319,6 +319,124 @@ def uvotmags_to_counts(sn_name, template_spectrum):
 
 
 
+# Main function to run the program
+def uvotfile_to_array(file_path,type):
+
+    tolerance=0.15
+    # Parse the data from the file
+    columns = ['Filter', 'MJD', 'Mag', 'MagErr', '3SigMagLim', '0.98SatLim', 'Rate', 'RateErr', 'Ap', 'Frametime', 'Exp', 'Telapse']
+    data = []
+
+    # Open and read the file
+    with open(file_path, 'r') as f:
+        for line in f:
+            # Ignore lines starting with '#' (comments)
+            if line.startswith("#"):
+                continue
+            parts = line.split()
+            if len(parts) == 12:  # Ensure correct number of columns
+                filter_name, mjd, mag, mag_err, sig_lim, sat_lim, rate, rate_err, ap, frame_time, exp, telapse = parts
+                # Handle 'NULL' entries as None
+                rate = np.nan if rate == 'NULL' else float(rate)
+                rate_err = np.nan if rate_err == 'NULL' else float(rate_err)
+                mjd = float(mjd)
+                mag = np.nan if mag == 'NULL' else float(mag)
+                mag_err = np.nan if mag_err == 'NULL' else float(mag_err)
+                data.append([filter_name, mjd, rate, rate_err,telapse,mag,mag_err])
+                
+
+    # Convert the list to a pandas DataFrame
+    df = pd.DataFrame(data,columns=['Filter','MJD','Rate','RateErr','Telapse','Mag','MagErr'])  # Only use Filter, MJD, and Rate
+
+    ## mjd_groups=group_mjds(df, tolerance=0.15)
+    
+    # Organize the data by MJD with the tolerance of 0.15 days
+    # Initialize an empty list to store rows
+    result = []
+
+    # Get unique MJDs
+    unique_mjd = sorted(df['MJD'].unique())
+
+    avgmjd_list=[]
+    # Iterate through each unique MJD
+    for mjd in unique_mjd:
+        # Filter data within 0.15 days of the current MJD
+        subset = df[np.abs(df['MJD'] - mjd) <= tolerance ]
+        #subset = df[np.abs(df['MJD'] - mjd) <= tolerance or (((df['MJD'] - df['Telapse']/60/60/24/2) < mjd) and ((df['MJD'] + df['Telapse']/60/60/24/2) > mjd))]
+        avgmjd=np.mean(subset['MJD'])
+        #print(avgmjd)
+        avgmjd_list.append(avgmjd)
+    mjddf=pd.DataFrame(avgmjd_list)
+    #print(mjddf)
+    mjd_groups=sorted(mjddf[0].unique())
+    
+
+    
+    # Iterate through each unique MJD
+    for mjd in mjd_groups:
+        # Filter data within 0.15 days of the current MJD
+        subset = df[np.abs(df['MJD'] - mjd) <= tolerance]
+        #print(subset)
+        # Initialize a row with MJD and placeholders for each filter
+        row = [mjd, None, None, None, None, None, None, None, None, None, None, None, None]  # MJD, UVW2, UVM2, UVW1, U, B, V
+        
+        # Fill in the count rates for each filter
+        for _, entry in subset.iterrows():
+            #print(entry)
+            if entry['Filter'] == 'UVW2' and type =='rate':
+                row[1] = float(entry['Rate'])
+                row[2] = float(entry['RateErr'])
+            elif entry['Filter'] == 'UVM2' and type =='rate':
+                row[3] = entry['Rate']
+                row[4] = entry['RateErr']
+            elif entry['Filter'] == 'UVW1' and type =='rate':
+                row[5] = entry['Rate']
+                row[6] = entry['RateErr']
+            elif entry['Filter'] == 'U' and type =='rate':
+                row[7] = entry['Rate']
+                row[8] = entry['RateErr']
+            elif entry['Filter'] == 'B' and type =='rate':
+                row[9] = entry['Rate']
+                row[10] = entry['RateErr']
+            elif entry['Filter'] == 'V' and type =='rate':
+                row[11] = entry['Rate']
+                row[12] = entry['RateErr']
+            elif entry['Filter'] == 'UVW2' and type =='mag':
+                row[1] = float(entry['Mag'])
+                row[2] = float(entry['MagErr'])
+            elif entry['Filter'] == 'UVM2' and type =='mag':
+                row[3] = entry['Mag']
+                row[4] = entry['MagErr']
+            elif entry['Filter'] == 'UVW1' and type =='mag':
+                row[5] = entry['Mag']
+                row[6] = entry['MagErr']
+            elif entry['Filter'] == 'U' and type =='mag':
+                row[7] = entry['Rate']
+                row[8] = entry['MagErr']
+            elif entry['Filter'] == 'B' and type =='mag':
+                row[9] = entry['Mag']
+                row[10] = entry['MagErr']
+            elif entry['Filter'] == 'V' and type =='mag':
+                row[11] = entry['Mag']
+                row[12] = entry['MagErr']
+        
+        # Append the row to the result
+        result.append(row)
+
+    # Convert result to a numpy array for convenience
+    result_array = np.array(result)
+
+    # Convert to a DataFrame for better visualization
+    result_df = pd.DataFrame(result_array, columns=['MJD', 'UVW2', 'UVW2err', 'UVM2', 'UVM2err', 'UVW1', 'UVW1err', 'U', 'Uerr', 'B', 'Berr', 'V', 'Verr'])
+    
+
+
+
+    #print(result_df)
+    return result_df
+
+
+
 
 
 

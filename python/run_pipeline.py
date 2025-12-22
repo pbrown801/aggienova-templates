@@ -173,7 +173,6 @@ def arrange_data(openedcountsfile, template_spectrum, filterlist, reference_epoc
         # Function Call 4
         # Get the count rates for each filter band for the new spectrum created.
         temp_counts = specarray_to_counts(temp_template_spec, filter_file_list)
-
         #temp_1,temp_2,temp_counts = total_counts(temp_template_spec,filter_file_list)
         mangled_counts_list[ind, :] = temp_counts
         ind += 1
