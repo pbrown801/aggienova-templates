@@ -99,7 +99,7 @@ def initialize_plots(plot, output_file_name):
             df_temp = df[df[band].isin(val_idx)]
             nan_interp_func = interp1d(df_temp['Time (MJD)'], df_temp[band], kind='linear', fill_value='extrapolate')
             for idx, i in enumerate(nan_idx):
-                df[band][i] = nan_interp_func(replace_nan_idx_times[idx])
+                df.loc[i, band] = nan_interp_func(replace_nan_idx_times[idx])
 
     # Create the time interpolation function for each band
     interp_func_templates = [interp1d(df['Time (MJD)'], df[band], kind='linear') for band in filter_bands]
@@ -176,7 +176,7 @@ def animation(plot, fig, ax1, ax2, ax3, times_plots, groups, time_groups, bands_
 
     def update(i):
         if i == num_groups:
-            time.sleep(1.75)
+            time.sleep(1)
         else:
             # --------- Update the ax1 plot with the flux vs wavelength for each time mjd ---------
             # Clear the plot flux vs wavelength
