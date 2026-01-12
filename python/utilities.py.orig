@@ -13,7 +13,6 @@ from mpl_toolkits.mplot3d import Axes3D
 
 import math
 
-import scipy
 import scipy.interpolate as interpolate
 import matplotlib.pyplot as plt  
 
@@ -317,7 +316,129 @@ def uvotmags_to_counts(sn_name, template_spectrum):
             writer.writerow(line)
 
     #print(result_df)
+    #return result_df
+
+
+
+# Main function to run the program
+def uvotfile_to_array(file_path,type):
+
+    tolerance=0.15
+    # Parse the data from the file
+    columns = ['Filter', 'MJD', 'Mag', 'MagErr', '3SigMagLim', '0.98SatLim', 'Rate', 'RateErr', 'Ap', 'Frametime', 'Exp', 'Telapse']
+    data = []
+
+    # Open and read the file
+    with open(file_path, 'r') as f:
+        for line in f:
+            # Ignore lines starting with '#' (comments)
+            if line.startswith("#"):
+                continue
+            parts = line.split()
+            if len(parts) == 12:  # Ensure correct number of columns
+                filter_name, mjd, mag, mag_err, sig_lim, sat_lim, rate, rate_err, ap, frame_time, exp, telapse = parts
+                # Handle 'NULL' entries as None
+                rate = np.nan if rate == 'NULL' else float(rate)
+                rate_err = np.nan if rate_err == 'NULL' else float(rate_err)
+                mjd = float(mjd)
+                mag = np.nan if mag == 'NULL' else float(mag)
+                mag_err = np.nan if mag_err == 'NULL' else float(mag_err)
+                data.append([filter_name, mjd, rate, rate_err,telapse,mag,mag_err])
+                
+
+    # Convert the list to a pandas DataFrame
+    df = pd.DataFrame(data,columns=['Filter','MJD','Rate','RateErr','Telapse','Mag','MagErr'])  # Only use Filter, MJD, and Rate
+
+    ## mjd_groups=group_mjds(df, tolerance=0.15)
+    
+    # Organize the data by MJD with the tolerance of 0.15 days
+    # Initialize an empty list to store rows
+    result = []
+
+    # Get unique MJDs
+    unique_mjd = sorted(df['MJD'].unique())
+
+    avgmjd_list=[]
+    # Iterate through each unique MJD
+    for mjd in unique_mjd:
+        # Filter data within 0.15 days of the current MJD
+        subset = df[np.abs(df['MJD'] - mjd) <= tolerance ]
+        #subset = df[np.abs(df['MJD'] - mjd) <= tolerance or (((df['MJD'] - df['Telapse']/60/60/24/2) < mjd) and ((df['MJD'] + df['Telapse']/60/60/24/2) > mjd))]
+        avgmjd=np.mean(subset['MJD'])
+        #print(avgmjd)
+        avgmjd_list.append(avgmjd)
+    mjddf=pd.DataFrame(avgmjd_list)
+    #print(mjddf)
+    mjd_groups=sorted(mjddf[0].unique())
+    
+
+    
+    # Iterate through each unique MJD
+    for mjd in mjd_groups:
+        # Filter data within 0.15 days of the current MJD
+        subset = df[np.abs(df['MJD'] - mjd) <= tolerance]
+        #print(subset)
+        # Initialize a row with MJD and placeholders for each filter
+        row = [mjd, None, None, None, None, None, None, None, None, None, None, None, None]  # MJD, UVW2, UVM2, UVW1, U, B, V
+        
+        # Fill in the count rates for each filter
+        for _, entry in subset.iterrows():
+            #print(entry)
+            if entry['Filter'] == 'UVW2' and type =='rate':
+                row[1] = float(entry['Rate'])
+                row[2] = float(entry['RateErr'])
+            elif entry['Filter'] == 'UVM2' and type =='rate':
+                row[3] = entry['Rate']
+                row[4] = entry['RateErr']
+            elif entry['Filter'] == 'UVW1' and type =='rate':
+                row[5] = entry['Rate']
+                row[6] = entry['RateErr']
+            elif entry['Filter'] == 'U' and type =='rate':
+                row[7] = entry['Rate']
+                row[8] = entry['RateErr']
+            elif entry['Filter'] == 'B' and type =='rate':
+                row[9] = entry['Rate']
+                row[10] = entry['RateErr']
+            elif entry['Filter'] == 'V' and type =='rate':
+                row[11] = entry['Rate']
+                row[12] = entry['RateErr']
+            elif entry['Filter'] == 'UVW2' and type =='mag':
+                row[1] = float(entry['Mag'])
+                row[2] = float(entry['MagErr'])
+            elif entry['Filter'] == 'UVM2' and type =='mag':
+                row[3] = entry['Mag']
+                row[4] = entry['MagErr']
+            elif entry['Filter'] == 'UVW1' and type =='mag':
+                row[5] = entry['Mag']
+                row[6] = entry['MagErr']
+            elif entry['Filter'] == 'U' and type =='mag':
+                row[7] = entry['Rate']
+                row[8] = entry['MagErr']
+            elif entry['Filter'] == 'B' and type =='mag':
+                row[9] = entry['Mag']
+                row[10] = entry['MagErr']
+            elif entry['Filter'] == 'V' and type =='mag':
+                row[11] = entry['Mag']
+                row[12] = entry['MagErr']
+        
+        # Append the row to the result
+        result.append(row)
+
+    # Convert result to a numpy array for convenience
+    result_array = np.array(result)
+
+    # Convert to a DataFrame for better visualization
+    result_df = pd.DataFrame(result_array, columns=['MJD', 'UVW2', 'UVW2err', 'UVM2', 'UVM2err', 'UVW1', 'UVW1err', 'U', 'Uerr', 'B', 'Berr', 'V', 'Verr'])
+    
+
+
+
+    #print(result_df)
     return result_df
+
+
+
+
 
 
 def check_filter_data(sn_name):
@@ -737,50 +858,30 @@ def countrates2mags(output_file_name, template_spectrum):
             #counts_df[filter_bands[idx]]=np.nan
     counts_df.to_csv('../output/MAGS/'+output_file_name+'_mangledmagsarray.csv', index=False)
 
-#conversion function of count rates to magnitudes.
-#intakes single epoch/set of counts for each filter
-#requires passing in filter bands since order can change and isn't attached to input_counts
-#returns array with mags, not file output
-def countrates2mags_all(input_counts, template_spectrum, filter_bands):
-    filter_file_list, zeropointlist, pivotlist = filterlist_to_filterfiles(
-        filter_bands, template_spectrum)
-    input_counts = pd.DataFrame(input_counts)
-    input_counts[input_counts <= 0] = np.nan
-    output_mags = pd.DataFrame(np.zeros(len(filter_bands)))
-    for idx,zeropoint in enumerate(zeropointlist):
-        output_mags.iloc[idx]= input_counts.iloc[idx].apply(lambda count: (math.log10(count)/-0.4)+zeropoint)          
-    print('Input counts: \n', input_counts)
-    print("output_mags: \n", output_mags)
-    return output_mags.to_numpy()
-
 
 def mangle_simple(spectraWavelengths, flux, filter_file_list, zeropointlist, pivotlist, counts_in):
     #######  Calculate the counts in each filter from the template and compare to counts_in]
-    #print("inside mangle simple")
+    print("inside mangle simple")
     template_spec = np.column_stack((spectraWavelengths, flux))
     speccounts_array = specarray_to_counts(template_spec, filter_file_list)
     inspeccounts, inspecmags=specin_countsout(spectraWavelengths, flux)
     ratio=counts_in/speccounts_array
-    #print(ratio)
-    '''
+    print(ratio)
     ratio = np.zeros(len(counts_in))
     for x in range(0,len(counts_in)):
         ratio[x]=counts_in[x]/speccounts_array[x]
     print(ratio)
-    '''
     manglefunction= np.interp(spectraWavelengths, pivotlist, ratio)
-    
+
     mangledspectrumflux=flux*manglefunction
     
     mangled_spec = np.column_stack((spectraWavelengths, mangledspectrumflux))
     temp_counts = specarray_to_counts(mangled_spec, filter_file_list)
     
-    #print("fractional error", (temp_counts-counts_in)/counts_in )
+    print("fractional error", (temp_counts-counts_in)/counts_in )
     
-    #plt.plot(spectraWavelengths, manglefunction)
-    #plt.show()
-    
-    return spectraWavelengths, mangledspectrumflux, temp_counts, speccounts_array
+    return spectraWavelengths, mangledspectrumflux
+
 
 
 #  this one takes n as the degrees of the polynomial fit
@@ -798,43 +899,32 @@ def mangle_poly(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, piv
         ratio[x]=counts_in[x]/counts_array[x]
 
     p=np.polyfit(pivotlist, ratio,n)
-    manglefunction= np.polyval(p,spectrum_wave)
+    manglefunction= np.polyval(p,input_wave)
 
-    mangledspectrumflux=spectrum_flux*manglefunction
-    
-    mangled_spec = np.column_stack((spectrum_wave, mangledspectrumflux))
-    temp_counts = specarray_to_counts(mangled_spec, filter_file_list)
+    mangledspectrumflux=input_flux*manglefunction
 
-    return spectrum_wave, mangledspectrumflux, temp_counts, counts_array
+    return input_wave, mangledspectrumflux
 
 
-def mangle_poly2(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, pivotlist, counts_in,n=2):
+def mangle_poly2(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, pivotlist, counts_in,n):
 
     #input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum)#dtype=float,usecols=(0,1),unpack=True)
     clean_template = np.column_stack((spectrum_wave,spectrum_flux))
+
     #######  Calculate the counts in each filter from the template and compare to counts_in
 
     counts_array=get_counts_multi_filter(clean_template, filter_file_list)
-    ratio = counts_in / counts_array
-    
-    #ratio = np.zeros(len(counts_array))
-    #for x in range(0,len(counts_array)):
-    #    ratio[x]=counts_in[x]/counts_array[x]
+    ratio = np.zeros(len(counts_array))
+
+    for x in range(0,len(counts_array)):
+        ratio[x]=counts_in[x]/counts_array[x]
 
     p2=np.polyfit(pivotlist, ratio,2)
-    manglefunction= np.polyval(p2,spectrum_wave)
+    manglefunction= np.polyval(p2,input_wave)
 
-    '''
-    plt.plot(spectrum_wave, manglefunction)
-    plt.plot(pivotlist, ratio)
-    plt.xlim([1700,5700])
-    plt.ylim([0,0.5])
-    plt.show()
-    '''
+    mangledspectrumflux=input_flux*manglefunction
 
-    mangledspectrumflux=spectrum_flux*manglefunction
-
-    return spectrum_wave, mangledspectrumflux
+    return input_wave, mangledspectrumflux
 
 
 def mangle_poly3(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, pivotlist, counts_in,n):
@@ -923,6 +1013,7 @@ def sel_template(epoch, series_path):
 
 def filterlist_to_filterfiles(filterlist,template_spectrum):
     from utilities import pivot_wavelength
+
 
     # wavelengths_template_spectrum contains lowest and highest value in range of template_spectrum
     spectra_path = '../spectra/' + template_spectrum
@@ -1068,15 +1159,14 @@ def filterlist_to_filterfiles(filterlist,template_spectrum):
 #checks the efficieny of mangling and how much it differs from actual observation
 def mangle_check(input_counts, mangled_counts, epoch_list, filters_from_csv, counts_frame):
     mangle_diff = input_counts - mangled_counts
-    mangle_ratio = ((input_counts - mangled_counts) / input_counts)
+    mangle_ratio = (input_counts - mangled_counts) / input_counts
     #using counts_frame from earlier, which holds all the input counts and their error in a pandas dataframe
     #order of filters is UVW2, UVM2, UVW1, U, B, V (in either uvot or non-uvot case)
     #extracting counts erorr for each filter
     err_data = np.zeros((len(epoch_list))) #array to hold all filter errors over all epochs
     for filter in filters_from_csv:
-        err_data = np.vstack((err_data, counts_frame.loc[:, filter + "err"].to_numpy(dtype = float)))
+        err_data = np.vstack((err_data, counts_frame.loc[:, filter].to_numpy(dtype = float)))
     err_data = np.transpose(err_data[1:])
-    err_data_ratio = (err_data) / input_counts
     mangle_error = False
     mangle_error_num = 0
     for err,mang in zip(err_data, np.abs(mangle_diff)): #grabs 6 filter measurements per epoch for both arrays
@@ -1091,12 +1181,10 @@ def mangle_check(input_counts, mangled_counts, epoch_list, filters_from_csv, cou
     #producing graphs showing mangling
     #6 residual graphs for each filter, 
     fig, ax = plt.subplots(6,1,sharex=True, figsize=(4,8))
-    plt.subplots_adjust(hspace= 0.4)
+    plt.subplots_adjust(hspace= 0.35)
     ax[0].set_xlim([epoch_list[0], epoch_list[-1]])
-    ax[2].set_ylabel("Difference Ratio to original input")
     #ax[0].set_ylim([-3,3])
     ax[-1].set_xlabel("Epoch")
-    plt.suptitle("Input and Mangled count comparision")
     
     #use filters_from_csv as array for titles
     #rows in arrays are epochs, columns are filters
@@ -1104,9 +1192,6 @@ def mangle_check(input_counts, mangled_counts, epoch_list, filters_from_csv, cou
         ax[i].axhline(y=0, c="red")
         #ax[i].plot(epoch_list, mangle_ratio[:,i], color="black")
         ax[i].scatter(epoch_list, mangle_ratio[:,i], color = "black", s = 5)
-        ax[i].plot(epoch_list, err_data_ratio[:,i], color = "blue", linewidth = 2)
-        ax[i].set_title(filters_from_csv[i])
         #ax[i].set_ylim([-0.25*max(mangle_diff[:,i]), 1.25*max(mangle_diff[:,i])])
         
     plt.show()
-        
