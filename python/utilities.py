@@ -13,6 +13,7 @@ from mpl_toolkits.mplot3d import Axes3D
 
 import math
 
+import scipy
 import scipy.interpolate as interpolate
 import matplotlib.pyplot as plt  
 
@@ -736,30 +737,44 @@ def countrates2mags(output_file_name, template_spectrum):
             #counts_df[filter_bands[idx]]=np.nan
     counts_df.to_csv('../output/MAGS/'+output_file_name+'_mangledmagsarray.csv', index=False)
 
+#conversion function of count rates to magnitudes.
+#intakes single epoch/set of counts for each filter
+#requires passing in filter bands since order can change and isn't attached to input_counts
+#returns array with mags, not file output
+def countrates2mags_all(input_counts, template_spectrum, filter_bands):
+    filter_file_list, zeropointlist, pivotlist = filterlist_to_filterfiles(
+        filter_bands, template_spectrum)
+    input_counts = pd.DataFrame(input_counts)
+    input_counts[input_counts <= 0] = np.nan
+    output_mags = pd.DataFrame(np.zeros(len(filter_bands)))
+    for idx,zeropoint in enumerate(zeropointlist):
+        output_mags.iloc[idx]= input_counts.iloc[idx].apply(lambda count: (math.log10(count)/-0.4)+zeropoint)          
+    print('Input counts: \n', input_counts)
+    print("output_mags: \n", output_mags)
+    return output_mags.to_numpy()
+
 
 def mangle_simple(spectraWavelengths, flux, filter_file_list, zeropointlist, pivotlist, counts_in):
     #######  Calculate the counts in each filter from the template and compare to counts_in]
-    print("inside mangle simple")
+    #print("inside mangle simple")
     template_spec = np.column_stack((spectraWavelengths, flux))
     speccounts_array = specarray_to_counts(template_spec, filter_file_list)
     inspeccounts, inspecmags=specin_countsout(spectraWavelengths, flux)
     ratio=counts_in/speccounts_array
-    print(ratio)
-    ratio = np.zeros(len(counts_in))
-    for x in range(0,len(counts_in)):
-        ratio[x]=counts_in[x]/speccounts_array[x]
-    print(ratio)
+    #print(ratio)
     manglefunction= np.interp(spectraWavelengths, pivotlist, ratio)
-
+    
     mangledspectrumflux=flux*manglefunction
     
     mangled_spec = np.column_stack((spectraWavelengths, mangledspectrumflux))
     temp_counts = specarray_to_counts(mangled_spec, filter_file_list)
     
-    print("fractional error", (temp_counts-counts_in)/counts_in )
+    #print("fractional error", (temp_counts-counts_in)/counts_in )
     
-    return spectraWavelengths, mangledspectrumflux
-
+    #plt.plot(spectraWavelengths, manglefunction)
+    #plt.show()
+    
+    return spectraWavelengths, mangledspectrumflux, temp_counts, speccounts_array
 
 
 #  this one takes n as the degrees of the polynomial fit
@@ -777,32 +792,43 @@ def mangle_poly(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, piv
         ratio[x]=counts_in[x]/counts_array[x]
 
     p=np.polyfit(pivotlist, ratio,n)
-    manglefunction= np.polyval(p,input_wave)
+    manglefunction= np.polyval(p,spectrum_wave)
 
-    mangledspectrumflux=input_flux*manglefunction
+    mangledspectrumflux=spectrum_flux*manglefunction
+    
+    mangled_spec = np.column_stack((spectrum_wave, mangledspectrumflux))
+    temp_counts = specarray_to_counts(mangled_spec, filter_file_list)
 
-    return input_wave, mangledspectrumflux
+    return spectrum_wave, mangledspectrumflux, temp_counts, counts_array
 
 
-def mangle_poly2(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, pivotlist, counts_in,n):
+def mangle_poly2(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, pivotlist, counts_in,n=2):
 
     #input_wave,input_flux = clean_spectrum("../spectra/" + templatespectrum)#dtype=float,usecols=(0,1),unpack=True)
     clean_template = np.column_stack((spectrum_wave,spectrum_flux))
-
     #######  Calculate the counts in each filter from the template and compare to counts_in
 
     counts_array=get_counts_multi_filter(clean_template, filter_file_list)
-    ratio = np.zeros(len(counts_array))
-
-    for x in range(0,len(counts_array)):
-        ratio[x]=counts_in[x]/counts_array[x]
+    ratio = counts_in / counts_array
+    
+    #ratio = np.zeros(len(counts_array))
+    #for x in range(0,len(counts_array)):
+    #    ratio[x]=counts_in[x]/counts_array[x]
 
     p2=np.polyfit(pivotlist, ratio,2)
-    manglefunction= np.polyval(p2,input_wave)
+    manglefunction= np.polyval(p2,spectrum_wave)
 
-    mangledspectrumflux=input_flux*manglefunction
+    '''
+    plt.plot(spectrum_wave, manglefunction)
+    plt.plot(pivotlist, ratio)
+    plt.xlim([1700,5700])
+    plt.ylim([0,0.5])
+    plt.show()
+    '''
 
-    return input_wave, mangledspectrumflux
+    mangledspectrumflux=spectrum_flux*manglefunction
+
+    return spectrum_wave, mangledspectrumflux
 
 
 def mangle_poly3(spectrum_wave,spectrum_flux,filter_file_list, zeropointlist, pivotlist, counts_in,n):
@@ -891,7 +917,6 @@ def sel_template(epoch, series_path):
 
 def filterlist_to_filterfiles(filterlist,template_spectrum):
     from utilities import pivot_wavelength
-
 
     # wavelengths_template_spectrum contains lowest and highest value in range of template_spectrum
     spectra_path = '../spectra/' + template_spectrum
@@ -1037,14 +1062,15 @@ def filterlist_to_filterfiles(filterlist,template_spectrum):
 #checks the efficieny of mangling and how much it differs from actual observation
 def mangle_check(input_counts, mangled_counts, epoch_list, filters_from_csv, counts_frame):
     mangle_diff = input_counts - mangled_counts
-    mangle_ratio = (input_counts - mangled_counts) / input_counts
+    mangle_ratio = ((input_counts - mangled_counts) / input_counts)
     #using counts_frame from earlier, which holds all the input counts and their error in a pandas dataframe
     #order of filters is UVW2, UVM2, UVW1, U, B, V (in either uvot or non-uvot case)
     #extracting counts erorr for each filter
     err_data = np.zeros((len(epoch_list))) #array to hold all filter errors over all epochs
     for filter in filters_from_csv:
-        err_data = np.vstack((err_data, counts_frame.loc[:, filter].to_numpy(dtype = float)))
+        err_data = np.vstack((err_data, counts_frame.loc[:, filter + "err"].to_numpy(dtype = float)))
     err_data = np.transpose(err_data[1:])
+    err_data_ratio = (err_data) / input_counts
     mangle_error = False
     mangle_error_num = 0
     for err,mang in zip(err_data, np.abs(mangle_diff)): #grabs 6 filter measurements per epoch for both arrays
@@ -1059,10 +1085,12 @@ def mangle_check(input_counts, mangled_counts, epoch_list, filters_from_csv, cou
     #producing graphs showing mangling
     #6 residual graphs for each filter, 
     fig, ax = plt.subplots(6,1,sharex=True, figsize=(4,8))
-    plt.subplots_adjust(hspace= 0.35)
+    plt.subplots_adjust(hspace= 0.4)
     ax[0].set_xlim([epoch_list[0], epoch_list[-1]])
+    ax[2].set_ylabel("Difference Ratio to original input")
     #ax[0].set_ylim([-3,3])
     ax[-1].set_xlabel("Epoch")
+    plt.suptitle("Input and Mangled count comparision")
     
     #use filters_from_csv as array for titles
     #rows in arrays are epochs, columns are filters
@@ -1070,6 +1098,9 @@ def mangle_check(input_counts, mangled_counts, epoch_list, filters_from_csv, cou
         ax[i].axhline(y=0, c="red")
         #ax[i].plot(epoch_list, mangle_ratio[:,i], color="black")
         ax[i].scatter(epoch_list, mangle_ratio[:,i], color = "black", s = 5)
+        ax[i].plot(epoch_list, err_data_ratio[:,i], color = "blue", linewidth = 2)
+        ax[i].set_title(filters_from_csv[i])
         #ax[i].set_ylim([-0.25*max(mangle_diff[:,i]), 1.25*max(mangle_diff[:,i])])
         
     plt.show()
+        
