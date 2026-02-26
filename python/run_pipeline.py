@@ -114,7 +114,7 @@ def arrange_data(openedcountsfile, template_spectrum, filterlist, reference_epoc
     mangled_spec_wave = np.array([])
     mangled_spec_flux = np.array([])
     st = time.time()
-    for row in reader:
+    for row in reader: #runs for each epoch
          
         if len(row) == 0:
             continue
@@ -148,7 +148,7 @@ def arrange_data(openedcountsfile, template_spectrum, filterlist, reference_epoc
         ########### where most of the work happens
         # Function Call 3
         # mangle the spectrum to match the given count rates
-        mangled_spec_wave, mangled_spec_flux = mangle_simple(
+        mangled_spec_wave, mangled_spec_flux, mangled_counts, template_counts = mangle_simple(
             spectraWavelengths, flux, filter_file_list, zeropointlist, pivotlist, counts_in)
         spec += [mangled_spec_flux]
 
@@ -338,8 +338,6 @@ def main():
     
     #  3d plot
     plots3d(sn_name, output_file_name, wavelength_list, epoch_list, flux_matrix, template_spectrum)
-    
-    # uses mangledmagsarray
 
     # summary animation plot with light curves and spectra in spec_animation.py
 

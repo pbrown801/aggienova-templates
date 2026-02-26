@@ -316,7 +316,6 @@ def uvotmags_to_counts(sn_name, template_spectrum):
             writer.writerow(line)
 
     #print(result_df)
-<<<<<<< HEAD
     #return result_df
 
 
@@ -440,9 +439,6 @@ def uvotfile_to_array(file_path,type):
 
 
 
-=======
-    return result_df
->>>>>>> 9462b53ff8dab4de1aad043435b218aca793527c
 
 
 def check_filter_data(sn_name):
