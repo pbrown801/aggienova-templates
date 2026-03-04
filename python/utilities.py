@@ -191,7 +191,6 @@ def oscmags_to_counts(sn_name, desired_filter_list, template_spectrum, interpFil
     return counts_frame
 
 
-
 # Main function to run the program
 def uvotmags_to_counts(sn_name, template_spectrum):
     file_path='../input/'+sn_name+'_uvotB15.1.dat'
@@ -497,7 +496,6 @@ def specarray_to_counts(spectrum, filter_file_list):
 def total_counts(spectraFileName,filter_file_list):
     spectraFileName = "../spectra/" + spectraFileName
     counts_array = []
-    #counts=0
     for fileName in filter_file_list:
         counts=0
         fileName = "../filters/" + fileName
@@ -592,7 +590,7 @@ def total_counts(spectraFileName,filter_file_list):
         #return counts
         counts_array +=[counts]
     return (spectraWavelengths,flux,counts_array)
-    #spectraFileName = "../spectra/" + spectraFileName
+    '''#spectraFileName = "../spectra/" + spectraFileName
     #filterFileName = "../filters/" + filterFileName
     #spectraWavelengths, flux = clean_spectrum(spectraFileName)
     #effectiveAreas = clean_filter(filterFileName, spectraWavelengths)
@@ -602,7 +600,7 @@ def total_counts(spectraFileName,filter_file_list):
     #counts_array = []
     #for fileName in filter_file_list:
     #   counts_array += [get_counts(spectraFileName, fileName)]
-    #return counts_array
+    #return counts_array'''
 
 #Total counts split into individual functions
 
@@ -741,7 +739,7 @@ def countrates2mags(output_file_name, template_spectrum):
 #intakes single epoch/set of counts for each filter
 #requires passing in filter bands since order can change and isn't attached to input_counts
 #returns array with mags, not file output
-def countrates2mags_all(input_counts, template_spectrum, filter_bands):
+def countrates2mags_general(input_counts, template_spectrum, filter_bands):
     filter_file_list, zeropointlist, pivotlist = filterlist_to_filterfiles(
         filter_bands, template_spectrum)
     input_counts = pd.DataFrame(input_counts)
@@ -751,6 +749,19 @@ def countrates2mags_all(input_counts, template_spectrum, filter_bands):
         output_mags.iloc[idx]= input_counts.iloc[idx].apply(lambda count: (math.log10(count)/-0.4)+zeropoint)          
     print('Input counts: \n', input_counts)
     print("output_mags: \n", output_mags)
+    return output_mags.to_numpy()
+
+#Accessory function to find magnitudes from count rates
+#Doesn't produce file output
+#Avoids redundant calculation by intaking zeropoints directly
+#Most cutdown countrate to mag conversion function
+def countrates2mags_b(input_counts, zeropointlist):
+    input_counts = pd.DataFrame(input_counts)
+    input_counts[input_counts <= 0] = np.nan
+    output_mags = pd.DataFrame(np.zeros(len(zeropointlist)))
+    for idx,zeropoint in enumerate(zeropointlist):
+        output_mags.iloc[idx] = input_counts.iloc[idx].apply(lambda count: (math.log10(count)/-0.4)+zeropoint)
+    #print(output_mags)
     return output_mags.to_numpy()
 
 
