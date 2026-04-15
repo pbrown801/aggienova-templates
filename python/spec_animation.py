@@ -51,8 +51,7 @@ def initialize_plots(plot, output_file_name):
     df1 = pd.read_csv(os.path.join('..', 'output', 'TEMPLATE', output_file_name + '_template.csv'), header=0)
 
     time_df = df1.groupby(['MJD'])
-    groups = [time_df.get_group((x,)).sort_values(by=('MJD')).reset_index() for x in time_df.groups]
-    
+    groups = [time_df.get_group(x).sort_values(by=('MJD')).reset_index() for x in time_df.groups]
 
     num_groups = len(groups)
     time_groups = [round(groups[idx]["MJD"][0], 5) for idx in range(num_groups)]
