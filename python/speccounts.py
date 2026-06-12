@@ -105,7 +105,7 @@ def specin_countsout(wavez,fluxz):
 
         sp_ea = np.interp(wavez,filter_wave[x],filter_array[x]) ### spectrum effective area
 
-        counts_array[x] = np.trapz(sp_ea*fluxz*wavez/hc,wavez) ### Integrating under the curve using numpy
+        counts_array[x] = np.trapezoid(sp_ea*fluxz*wavez/hc,wavez) ### Integrating under the curve using numpy
 
         mag_array[x] = -2.5*np.log10(counts_array[x])+zeropoints[x] ### Calculated magnitudes
 

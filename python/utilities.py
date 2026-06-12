@@ -10,7 +10,6 @@ import os.path
 import sys
 import pandas as pd
 from mpl_toolkits.mplot3d import Axes3D
-
 import math
 
 import scipy
@@ -393,8 +392,8 @@ def pivot_wavelength(Filter):
 
     filter_wave,filter_tp = np.loadtxt(Filter, dtype = float, usecols=(0,1), unpack=True)
 
-    numerator = np.trapz(filter_tp*filter_wave,filter_wave)
-    denominator = np.trapz(filter_tp/filter_wave,filter_wave)
+    numerator = np.trapezoid(filter_tp*filter_wave,filter_wave)
+    denominator = np.trapezoid(filter_tp/filter_wave,filter_wave)
 
     pivot_lambda = np.sqrt(numerator/denominator)
 
@@ -861,7 +860,7 @@ def countrates2mags_general(input_counts, template_spectrum, filter_bands):
 #Doesn't produce file output
 #Avoids redundant calculation by intaking zeropoints directly
 #Most cutdown countrate to mag conversion function
-def countrates2mags_b(input_counts, zeropointlist):
+def countrates2mags_zeropoints(input_counts, zeropointlist):
     input_counts = pd.DataFrame(input_counts)
     input_counts[input_counts <= 0] = np.nan
     output_mags = pd.DataFrame(np.zeros(len(zeropointlist)))
@@ -875,14 +874,14 @@ def mangle_simple(spectraWavelengths, flux, filter_file_list, zeropointlist, piv
     #######  Calculate the counts in each filter from the template and compare to counts_in]
     #print("inside mangle simple")
     template_spec = np.column_stack((spectraWavelengths, flux))
-    speccounts_array = specarray_to_counts(template_spec, filter_file_list)
+    tempcounts_array = specarray_to_counts(template_spec, filter_file_list)
     inspeccounts, inspecmags=specin_countsout(spectraWavelengths, flux)
-    ratio=counts_in/speccounts_array
+    ratio=counts_in/tempcounts_array
     #print(ratio)
     '''
     ratio = np.zeros(len(counts_in))
     for x in range(0,len(counts_in)):
-        ratio[x]=counts_in[x]/speccounts_array[x]
+        ratio[x]=counts_in[x]/tempcounts_array[x]
     print(ratio)
     '''
     manglefunction= np.interp(spectraWavelengths, pivotlist, ratio)
@@ -890,14 +889,14 @@ def mangle_simple(spectraWavelengths, flux, filter_file_list, zeropointlist, piv
     mangledspectrumflux=flux*manglefunction
     
     mangled_spec = np.column_stack((spectraWavelengths, mangledspectrumflux))
-    temp_counts = specarray_to_counts(mangled_spec, filter_file_list)
+    mangled_counts = specarray_to_counts(mangled_spec, filter_file_list)
     
-    #print("fractional error", (temp_counts-counts_in)/counts_in )
+    #print("fractional error", (mangled_counts-counts_in)/counts_in )
     
     #plt.plot(spectraWavelengths, manglefunction)
     #plt.show()
     
-    return spectraWavelengths, mangledspectrumflux, temp_counts, speccounts_array
+    return spectraWavelengths, mangledspectrumflux, mangled_counts, tempcounts_array
 
 
 #  this one takes n as the degrees of the polynomial fit
