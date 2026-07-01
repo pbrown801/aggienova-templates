@@ -254,7 +254,7 @@ def main():
         first_obv=next(orig_file_reader)[1]
     else:
         uvotfilepath=('../input/'+sn_name+'_uvotB15.1.dat')
-        counts_frame = uvotmags_to_counts(sn_name,template_spectrum)
+        counts_frame = uvotmags_to_counts(sn_name,template_spectrum_default)
         #counts_frame has one element more than later error array, likely that error doesn't include first element
         counts_frame.drop(index=counts_frame.index[0], axis=0, inplace=True)
         #first_obv=uvot(sn_name,"y")
