@@ -1043,24 +1043,28 @@ def filterlist_to_filterfiles(filterlist,template_spectrum):
     # wavelengths_template_spectrum contains lowest and highest value in range of template_spectrum
     spectra_path = '../spectra/' + template_spectrum
     spectra_file = open(spectra_path, "r")
-    wavelengths_template_spectrum = []
+    wavelengths_template_spectrum = [0,0]
     spectra_file_lines = spectra_file.readlines()
     spectra_file.close()
     line_0 = True
-    for line_number, line in enumerate(spectra_file_lines, start=0):
-        line = line.strip()
-        if (line_number == 0) and (line[0] != "#"):
-            line = line.split(" ")
-            wavelengths_template_spectrum.append(float(line[0]))
-            line_0 = False
-        if line_0 and line_number == 1:
-            line = line.split(" ")
-            wavelengths_template_spectrum.append(float(line[0]))
-        if line_number == len(spectra_file_lines) - 1:
-            line = line.split(" ")
-            wavelengths_template_spectrum.append(float(line[0]))
+    #for line_number, line in enumerate(spectra_file_lines, start=0):
+        #line = line.strip()
+       # if (line_number == 0) and (line[0] != "#"):
+      #      line = line.split(" ")
+     #       wavelengths_template_spectrum.append(float(line[0]))
+    #        line_0 = False
+   #     if line_0  and (line[0] != "#") and line_number == 1:
+  #          line = line.split(" ")
+        #    wavelengths_template_spectrum.append(float(line[0]))
+       # if line_number == len(spectra_file_lines) - 1:
+      #      line = line.split(" ")
+     #       wavelengths_template_spectrum.append(float(line[0]))
+    input_wave,input_flux = clean_spectrum(spectra_path)
+    wavelengths_template_spectrum[0]=min(input_wave)
+    wavelengths_template_spectrum[1]=max(input_wave)
 
     zeropointlist = []
+    
     pivotlist = []
     filterfilelist=[' '] * len(filterlist)
 
