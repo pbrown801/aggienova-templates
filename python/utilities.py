@@ -391,9 +391,13 @@ def mangled_to_counts(output_file_name, filter_list, mangled_counts, epochs):
 def pivot_wavelength(Filter):
 
     filter_wave,filter_tp = np.loadtxt(Filter, dtype = float, usecols=(0,1), unpack=True)
+    try:
+        numerator = np.trapezoid(filter_tp*filter_wave,filter_wave)
+        denominator = np.trapezoid(filter_tp/filter_wave,filter_wave)
+    except AttributeError:
+        numerator = np.trapz(filter_tp*filter_wave,filter_wave)
+        denominator = np.trapz(filter_tp/filter_wave,filter_wave)
 
-    numerator = np.trapezoid(filter_tp*filter_wave,filter_wave)
-    denominator = np.trapezoid(filter_tp/filter_wave,filter_wave)
 
     pivot_lambda = np.sqrt(numerator/denominator)
 
