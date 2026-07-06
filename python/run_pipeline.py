@@ -244,9 +244,9 @@ def main():
         # Convert the magnitudes from the sn data to count rates
         counts_frame = oscmags_to_counts(sn_name, desired_filter_list, template_spectrum_default)
 
-        with open('../output/Test_A.csv', 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow([1, "Filterlist", desired_filter_list])
+        #with open('../output/Test_A.csv', 'w', newline='') as file:
+         #   writer = csv.writer(file)
+          #  writer.writerow([1, "Filterlist", desired_filter_list])
         
         orig_file = open('../input/'+sn_name+'_osc.csv', 'r', newline='').readlines()
         orig_file_reader = csv.reader(orig_file, delimiter=',')
@@ -317,11 +317,11 @@ def main():
 
     input_counts_list = np.array(input_counts_list, dtype='float')
 
-    with open('../output/Test_A.csv', 'a', newline='') as out:
-        writer = csv.writer(out)
-        writer.writerow([10, "Input Wave", wavelength_list])
+    #with open('../output/Test_A.csv', 'a', newline='') as out:
+     #   writer = csv.writer(out)
+      #  writer.writerow([10, "Input Wave", wavelength_list])
         #writer.writerow([11, "Mangled Spectrum Flux", spec])
-        writer.writerow([11, "Counts List", input_counts_list])
+       # writer.writerow([11, "Counts List", input_counts_list])
 
     '''
     #    filtered_df = df[(df.Wavelength > 1000) & (df.Wavelength < 10000) & (df.MJD < 54330)] #filters data to remove outliers
