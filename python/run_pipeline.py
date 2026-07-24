@@ -8,6 +8,7 @@
 # python3 run_pipeline.py SN2005cs SNII_series.txt y y
 
 #python3 run_pipeline.py SN2007af SNIa_series.txt y y
+#python3 run_pipeline.py Gaia16apd Gaia16apd_uv.dat y y
 
 # imports 
 import time
