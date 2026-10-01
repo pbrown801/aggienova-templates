@@ -1,7 +1,7 @@
-1.5 ../spectra/SN2006bp_modelspectra/tst_n20_5_B.fl              
-2.5 ../spectra/SN2006bp_modelspectra/tst_n20_6_v1.fl             
-7.5 ../spectra/SN2006bp_modelspectra/n7_j20b_v4_s1_l3_v2.fl      
-9.5 ../spectra/SN2006bp_modelspectra/n7_j16b_v4_s1_l3_v1_B.fl    
+1.50 ../spectra/SN2006bp_modelspectra/tst_n20_5_B.fl
+2.50 ../spectra/SN2006bp_modelspectra/tst_n20_6_v1.fl             
+7.50 ../spectra/SN2006bp_modelspectra/n7_j20b_v4_s1_l3_v2.fl      
+9.50 ../spectra/SN2006bp_modelspectra/n7_j16b_v4_s1_l3_v1_B.fl    
 14.5 ../spectra/SN2006bp_modelspectra/n16_n10_s0_v1_B_new2.fl     
 15.5 ../spectra/SN2006bp_modelspectra/n16_n10_s0_v1_B_new2_3.fl   
 20.6 ../spectra/SN2006bp_modelspectra/n16_n10_s0_v1_B_new6.fl       

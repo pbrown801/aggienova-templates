@@ -1,0 +1,69 @@
+# ASASSN-15ut magnitudes from Swift UVOT                                                        
+# generated Fri May 12 16:58:32 CDT 2023 using version 2015.1                                         
+# of Peter Brown's photometry pipeline                                                      
+# and version Swift_Rel5.5(Bld44)_15Jul2021 of HEASOFT                                                      
+#                                                                                         
+# Data comes from the Swift Data Center                                                   
+# A 5 arcsec aperture is used to measure the counts for the coincidence loss correction,  
+# a 3 or 5 arcsec source aperture (based on the error) was used for the aperture photometry 
+# subtracting off the galaxy count rate in a template image  (if available),              
+# and applying an aperture correction as appropriate (based on average psf in Swift CALDB)
+# and zeropoints from Breeveld et al. (2011) which update Poole et al. (2008)             
+# including a time-dependent sensitivity loss                                             
+# to put the magnitudes on the UVOT photometric system described in that paper.   
+# The sensitivity correction has been updated based on the 2015 redetermination.        
+#
+#  Brown, P. J., Holland, S. T., Immler, S., et al. 2009, ApJ, 137, 4517
+#  Brown, P. J., et al. 2014, Ap&SS, submitted
+#  Breeveld, A. A., Landsman, W., Holland, S. T., et al. 2011, in AIP Conf. Proc. 1358,   
+#     Gamma-Ray Bursts 2010, ed. J. E. McEnergy, J. L. Racusin, & N. Gehrels                 
+#     (Melville, NY: AIP), 373; arXiv:1102.4717                                              
+#  Poole, T. S., Breeveld, A. A., Page, M. J., et al. 2008, MNRAS, 383, 627
+#                                                                                         
+#                                                                                           
+#                                                                                           
+# The underlying galaxy had the following count rates                                       
+# in a 5 arcsec aperture at the source position  
+# (missing filters list 0 but used a background region similar to the SN ):                 
+# Galaxy count rates in 5" aperture
+# V               1.34548       0.189063
+# B               2.00723       0.294555
+# U              0.781550       0.162378
+# UVW1           0.297198      0.0419929
+# UVM2           0.125651      0.0137074
+# UVW2           0.195242      0.0241431
+#                                                                                           
+# There are no known issues with this photometry.                                           
+#                                                                                           
+# Filter MJD[days] Mag MagErr 3SigMagLim 0.98SatLim[mag] Rate[c/s] RateErr[c/s] Ap[arcsec] Frametime[s] Exp[s] Telapse[s]
+#                                                                                           
+UVW2     57387.2429  18.463   0.135  19.935  11.088   0.369   0.046   3.000  0.0110     629.47    6035.50
+UVW2     57390.4100  18.901   0.199  19.761  11.087   0.246   0.045   3.000  0.0110     367.43   44956.25
+UVW2     57392.1048    NULL    NULL  19.918  11.087   0.095   0.030   3.000  0.0110     524.14    6689.05
+UVW2     57394.4897    NULL    NULL  19.747  11.088   0.051   0.032   3.000  0.0110     385.15   28851.60
+#                                                                                           
+UVM2     57387.2215  18.577   0.117  20.254  10.556   0.204   0.022   3.000  0.0110    1501.96    1526.03
+UVM2     57390.4770  19.374   0.297  19.634  10.556   0.098   0.027   3.000  0.0110     385.49   33847.98
+UVM2     57392.1089    NULL    NULL  19.982  10.556   0.049   0.018   3.000  0.0110     773.52    6500.91
+UVM2     57394.4919    NULL    NULL  19.817  10.556   0.015   0.017   3.000  0.0110     573.25   28886.43
+#                                                                                           
+UVW1     57387.2381  17.567   0.122  19.133  11.162   0.890   0.100   3.000  0.0110     314.48    5875.87
+UVW1     57390.3343  17.861   0.105  19.716  11.150   0.678   0.066   3.000  0.0110     513.49   57644.09
+UVW1     57392.1011  18.467   0.171  19.509  11.151   0.388   0.061   3.000  0.0110     314.48    6833.93
+UVW1     57394.4877  18.762   0.237  19.321  11.151   0.296   0.065   3.000  0.0110     231.56   28824.02
+#                                                                                           
+U        57387.2396  16.360   0.076  19.029  12.092   6.197   0.432   3.000  0.0110     157.04    5795.66
+U        57390.4087  16.619   0.095  18.939  12.067   4.878   0.426   3.000  0.0110      72.14   44845.83
+U        57392.1027  16.793   0.092  19.068  12.070   4.156   0.352   3.000  0.0110     103.87    6642.77
+U        57394.4884  17.679   0.163  18.816  12.084   1.838   0.276   3.000  0.0110      77.07   28765.00
+#                                                                                           
+B        57387.2405  16.964   0.075  19.434  12.916   7.218   0.502   3.000  0.0110     157.04    5795.58
+B        57390.4091  16.807   0.081  19.334  12.870   8.338   0.623   3.000  0.0110      72.15   44848.29
+B        57392.1033  16.815   0.075  19.470  12.872   8.279   0.572   3.000  0.0110     103.89    6600.82
+B        57394.4887  17.279   0.100  19.217  12.901   5.399   0.497   3.000  0.0110      77.09   28760.99
+#                                                                                           
+V        57387.2452  16.549   0.092  18.585  11.631   3.440   0.291   3.000  0.0110     138.67    5777.17
+V        57390.4109  16.277   0.098  18.380  11.625   4.417   0.398   3.000  0.0110      72.28   44864.50
+V        57392.1071  16.243   0.086  18.550  11.623   4.560   0.361   3.000  0.0110     103.89    6349.60
+V        57394.4906  16.299   0.099  18.312  11.634   4.329   0.396   3.000  0.0110      77.04   28737.54
+#                                                                                           
