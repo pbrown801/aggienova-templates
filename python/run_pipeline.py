@@ -37,6 +37,11 @@ import string
 # this drops the np.float64( from printing in front of float values
 np.set_printoptions(legacy="1.25")
 
+z=0.005
+distance_mpc=20
+EBV_mw=0.1
+EBV_host=0.1
+Rv_host = 2.6
 
 '''
 might need to use this to run on windows and mac
@@ -145,6 +150,9 @@ def arrange_data(openedcountsfile, template_spectrum, filterlist, reference_epoc
             spectraname = "../spectra/" + template_spectrum
             print(spectraname)
             spectraWavelengths, flux = clean_spectrum(spectraname)
+
+        # Autumn  redden the template spectrum for host E(B-V) and host Rv using rest wavelength
+        #   redden the reddened spectrum for MW E(B-V) with Rv=3.1 using wave*(1+z)
 
 
         ########### where most of the work happens
@@ -304,6 +312,16 @@ def main():
     if store_as_csv:
         df.to_csv(output_file, index=False, float_format='%g')
     
+    ##  Autumn   -- take the reddened, redshifted template spectrum flux 
+    ##              this is as observed on the Earth
+   ##               deredden for MW E(B-V) (use -) with Rv=3.1 and redshifted wavelength
+     ##              deredshifting and deredden with host E(B-V) with host Rv in rest wave
+
+     ### use distance_mpc from the input rather than looking it up
+      ### but Ava might use that to get the inputs
+      ###  take as input the SN name and fetch the z, distance_mpc, EBV_MW, EBV_host, Rv_host
+       ###  from the csv output from datagrabber
+
     lum_df= Luminosity_Converter.Lum_conv(sn_name, output_file)
     lum_output_file= '../output/TEMPLATE/'+output_file_name+'_lum_template.csv'
     if store_as_csv:
