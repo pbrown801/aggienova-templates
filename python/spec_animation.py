@@ -316,7 +316,7 @@ def summary_plot(plot, output_file_name, save, show, amt_image=True, interval_ti
                          num_groups, files, interval_time, amt_image)
         if save:
             print("Saving summary plot for", output_file_name)
-            anim.save(r'../output/PLOTS/' + output_file_name + '_animation.gif', writer="Pillow")
+            anim.save(r'../output/PLOTS/' + output_file_name + '_animation.gif', writer="pillow")
             fig.savefig(r'../output/PLOTS/' + output_file_name + '_summaryPlot.png')
     if show:
         print("Showing plot for", output_file_name)

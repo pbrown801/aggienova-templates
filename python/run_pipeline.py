@@ -33,6 +33,8 @@ import math as math
 import requests
 from contextlib import closing
 import string
+import astropy.units as u
+from dust_extinction.parameter_averages import CCM89
 
 # this drops the np.float64( from printing in front of float values
 np.set_printoptions(legacy="1.25")
@@ -152,14 +154,39 @@ def arrange_data(openedcountsfile, template_spectrum, filterlist, reference_epoc
             spectraWavelengths, flux = clean_spectrum(spectraname)
 
         # Autumn  redden the template spectrum for host E(B-V) and host Rv using rest wavelength
+        host=CCM89(Rv=Rv_host)  #create host galaxy extinction model with Rv_host=2.6
+        host_red_flux = flux * host.extinguish(spectraWavelengths*u.AA, Ebv=EBV_host) 
+        #takes the template wavelength in spectraWavelengths, in Angstrom
+        # #then applies host reddening with host.extinguish
+
         #   redden the reddened spectrum for MW E(B-V) with Rv=3.1 using wave*(1+z)
+        mw_ext = CCM89(Rv=3.1)
+        observed_wave=spectraWavelengths*(1+z)
+        mw_red_flux=host_red_flux*mw_ext.extinguish(observed_wave*u.AA, Ebv=EBV_mw)
 
 
         ########### where most of the work happens
         # Function Call 3
         # mangle the spectrum to match the given count rates
         mangled_spec_wave, mangled_spec_flux, mangled_counts, template_counts = mangle_simple(
-            spectraWavelengths, flux, filter_file_list, zeropointlist, pivotlist, counts_in)
+            observed_wave, mw_red_flux, filter_file_list, zeropointlist, pivotlist, counts_in)
+        
+    ##  Autumn   -- take the reddened, redshifted template spectrum flux 
+        ##              this is as observed on the Earth
+        ##               deredden for MW E(B-V) (use -) with Rv=3.1 and redshifted wavelength
+                ##              deredshifting and deredden with host E(B-V) with host Rv in rest wave
+        mw_ext=CCM89(Rv=3.1) 
+        mw_dered_flux=mangled_spec_flux*mw_ext.extinguish(mangled_spec_wave*u.AA, Ebv=-EBV_mw) #dividing extinguish function dereddens
+        rest_wave=mangled_spec_wave/(1+z) #wavelength back in rest frame
+        host_ext = CCM89(Rv=Rv_host)
+        host_dered_flux=mw_dered_flux*host_ext.extinguish(rest_wave*u.AA,Ebv=-EBV_host)
+    
+            ### use distance_mpc from the input rather than looking it up
+            ### but Ava might use that to get the inputs
+            ###  take as input the SN name and fetch the z, distance_mpc, EBV_MW, EBV_host, Rv_host
+            ###  from the csv output from datagrabber
+        
+        
         spec += [mangled_spec_flux]
 
         #print("row end")
@@ -312,15 +339,7 @@ def main():
     if store_as_csv:
         df.to_csv(output_file, index=False, float_format='%g')
     
-    ##  Autumn   -- take the reddened, redshifted template spectrum flux 
-    ##              this is as observed on the Earth
-   ##               deredden for MW E(B-V) (use -) with Rv=3.1 and redshifted wavelength
-     ##              deredshifting and deredden with host E(B-V) with host Rv in rest wave
-
-     ### use distance_mpc from the input rather than looking it up
-      ### but Ava might use that to get the inputs
-      ###  take as input the SN name and fetch the z, distance_mpc, EBV_MW, EBV_host, Rv_host
-       ###  from the csv output from datagrabber
+    
 
     lum_df= Luminosity_Converter.Lum_conv(sn_name, output_file)
     lum_output_file= '../output/TEMPLATE/'+output_file_name+'_lum_template.csv'
