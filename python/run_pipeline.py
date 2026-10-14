@@ -21,7 +21,6 @@ from Graphing import *
 from manipulate_readinuvot import *
 #from select_template import sel_template
 from spec_animation import summary_plot
-import Luminosity_Converter
 import argparse
 from mpl_toolkits.mplot3d import Axes3D
 import scipy
@@ -180,16 +179,16 @@ def arrange_data(openedcountsfile, template_spectrum, filterlist, reference_epoc
         rest_wave=mangled_spec_wave/(1+z) #wavelength back in rest frame
         host_ext = CCM89(Rv=Rv_host)
         host_dered_flux=mw_dered_flux*host_ext.extinguish(rest_wave*u.AA,Ebv=-EBV_host)
+        host_dered_luminosity= host_dered_flux*(4*np.pi*(distance_mpc*(3.08567758128*10**(18)))**2) #evil units
+        spec += [host_dered_luminosity]
+                    
     
             ### use distance_mpc from the input rather than looking it up
             ### but Ava might use that to get the inputs
             ###  take as input the SN name and fetch the z, distance_mpc, EBV_MW, EBV_host, Rv_host
             ###  from the csv output from datagrabber
-        
-        
-        spec += [mangled_spec_flux]
 
-        #print("row end")
+      #print("row end")
 
         #print("interp start")
         f = scipy.interpolate.interp1d(
