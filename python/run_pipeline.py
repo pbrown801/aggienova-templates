@@ -64,6 +64,74 @@ desired_filter_list = ['UVW2', 'UVM2','UVW1',  'U', 'B', 'V']
 
 
 
+def collecting_data(sn_name, csv_path="NewSortedFinalforSwiftSNyears2026.csv"):
+    #New Sorted is the most recent csv file of collected data from Data_Grabber
+    #wrapper function for this (run_Swift_SN) to be placed right above main()
+    """ This will extract the redshift, distance_best, MW_EBV, host_EBV, host_Rv from the csv.
+        However, csv didn't collect info for things like host_EBV & host_Rv, so using set paramters provided above """
+    #first, to check if file exists, then if it does read it
+        #low_memory=False: processes the entire file in a single pass
+    if not os.path.exists(csv_path):
+        raise FileNotFoundError(f"CSV file '{csv_path}' not found.")
+
+    df = pd.read_csv(csv_path, low_memory=False)
+
+    #looks for SN name column 'SNname', strips spaces and converts all letters to lowercase, so different variations can match
+    sn_col = 'SNname' if 'SNname' in df.columns else 'sn_name'
+    df['sn_clean'] = df[sn_col].astype(str).str.strip().str.lower()
+
+    match = df[df['sn_clean'] == sn_name.strip().lower()]
+    if match.empty:
+        raise ValueError(f"Supernova '{sn_name}' not found in {csv_path}")
+    row = match.iloc[0]
+
+    #extracts the redshift (z)
+        #if z isnt provided (it should), enters provided value z = 0.005
+    z_val = row.get('redshift')
+    redshift = float(z_val) if pd.notna(z_val) and str(z_val).strip() != '' else z
+
+    #extracts/calculates distance (best_dm)
+        #checks if best_dm exists and if it has a valid value, and converts value there from string to float
+        #converts dm distance to Mpc
+        #if dist isnt there, use set paramter distance_mpc = 20.0
+    if pd.notna(row.get('best_dm')) and str(row.get('best_dm')).strip() != '':
+        best_dm = float(row['best_dm'])
+        distance_best = 10 ** ((best_dm - 25.0)/5.0)
+    else:
+        distance_best = distance_mpc
+
+    #extracts/calculates milky way dust reddening (MW_EBV), converts AV to E(B-V)
+        #if AV is missing/blank, use set parameter EBV_mw=0.1
+    if pd.notna(row.get('MW_EBV')) and str(row.get('MW_EBV')).strip() != '':
+        mw_ebv = float(row['MW_EBV'])
+    elif pd.notna(row.get('AV')) and str(row.get('AV')).strip() != '':
+        mw_ebv = float(row['AV'])/3.1
+    else:
+        mw_ebv = EBV_mw
+
+    #extracting/calculating host E(B-V), host galaxy's dust reddening
+        #if host_EBV is missing, falls back to provided paramter const 0.1
+    #CHECK DATA GRABBER VARIABLE FOR THIS ()
+        #dont think it has this one
+    host_ebv = row.get('host_EBV')
+    if pd.isna(host_ebv) or str(host_ebv).strip() == '':
+        host_ebv = EBV_host
+    else:
+        host_ebv = float(host_ebv)
+
+    #extracting host R_v, h
+        #if host R_v missing, falls back to provided paramter const 2.6
+    #CHECK DATA GRABBER VARIABLE FOR THIS (vels, host_velocity, hvels, hv)
+    host_rv = row.get('host_Rv')
+    if pd.isna(host_rv) or str(host_rv).strip() == '':
+        host_rv = Rv_host
+    else:
+        host_rv = float(host_rv)
+
+    return {'z': redshift,'distance_mpc': distance_best,'EBV_mw': mw_ebv,'EBV_host': host_ebv,'Rv_host': host_rv}
+
+
+
 def arrange_data(openedcountsfile, template_spectrum, filterlist, reference_epoch_mjd):
     '''
     Use the template spectrum or series to create a mangled spectrum of the flux using the effective areas of each filter bands, 
@@ -112,10 +180,11 @@ def arrange_data(openedcountsfile, template_spectrum, filterlist, reference_epoc
     mangled_counts_list = np.empty((row_count-1, filter_count))
 
     data = []
+    luminosity_data = []
     ind = 0
 
     # Mangled Spectrum
-    spec = []
+    spec = [] #might be redundant after i added luminosity_data
 
     spectraWavelengths = np.array([])
     flux = np.array([])
@@ -154,6 +223,11 @@ def arrange_data(openedcountsfile, template_spectrum, filterlist, reference_epoc
 
         # Autumn  redden the template spectrum for host E(B-V) and host Rv using rest wavelength
         host=CCM89(Rv=Rv_host)  #create host galaxy extinction model with Rv_host=2.6
+        
+        valid = spectraWavelengths <= 30000 #this bit is to cap the wavelengths at 30,000 so they'll fit in CCM89
+        spectraWavelengths = spectraWavelengths[valid]
+        flux = flux[valid]
+
         host_red_flux = flux * host.extinguish(spectraWavelengths*u.AA, Ebv=EBV_host) 
         #takes the template wavelength in spectraWavelengths, in Angstrom
         # #then applies host reddening with host.extinguish
@@ -179,8 +253,9 @@ def arrange_data(openedcountsfile, template_spectrum, filterlist, reference_epoc
         rest_wave=mangled_spec_wave/(1+z) #wavelength back in rest frame
         host_ext = CCM89(Rv=Rv_host)
         host_dered_flux=mw_dered_flux*host_ext.extinguish(rest_wave*u.AA,Ebv=-EBV_host)
-        host_dered_luminosity= host_dered_flux*(4*np.pi*(distance_mpc*(3.08567758128*10**(18)))**2) #evil units
-        spec += [host_dered_luminosity]
+        host_dered_luminosity= host_dered_flux*(4*np.pi*(distance_mpc*(3.08567758128*10**(18+6)))**2) #unit conversion of Mpc->cm
+        luminosity_data.extend(zip([mjd_list[ind]] * len(rest_wave), rest_wave, host_dered_luminosity)) 
+            # Store luminosity with the corresponding MJD and rest-frame wavelength
                     
     
             ### use distance_mpc from the input rather than looking it up
@@ -215,7 +290,35 @@ def arrange_data(openedcountsfile, template_spectrum, filterlist, reference_epoc
         mangled_counts_list[ind, :] = temp_counts
         ind += 1
         
-    return  mjd_list, input_counts_list, epoch_list, mangled_counts_list, wavelength_list, flux_matrix, data
+    return  mjd_list, input_counts_list, epoch_list, mangled_counts_list, wavelength_list, flux_matrix, luminosity_data #replaced data with luminosity_data
+
+
+def run_Swift_SN(sn_name, template_spectrum="SNIa_series.txt", store_as_csv=True, process_uvot=False):
+    """
+    wrapper command takes a SN name, pulls its physical parameters
+    from collecting_data (which calls upon csv), and executes pipeline mangling 
+    """
+
+    #pulling parameters collected from collecting_data 
+    #updates global variables (z, distance_mpc,ect..) so every function executed later uses those specifical values instead of the defaults
+    #then prints out the summary of those parameters in terminal
+    meta = collecting_data(sn_name)
+
+    global z, distance_mpc, EBV_mw, EBV_host, Rv_host
+    z = meta['z']
+    distance_mpc = meta['distance_mpc']
+    EBV_mw = meta['EBV_mw']
+    EBV_host = meta['EBV_host']
+    Rv_host = meta['Rv_host']
+
+    print(f"\n★★★★★★★★★★★★ Running Wrapper for {sn_name} ★★★★★★★★★★★★")
+    print(f"Redshift (z): {z}")
+    print(f"Distance (Mpc): {distance_mpc:.2f}")
+    print(f"Milky Way E(B-V): {EBV_mw:.3f}")
+    print(f"Host E(B-V): {EBV_host}")
+    print(f"Host R_v: {Rv_host}")
+    print("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★")
+    
 
 
 ##################################################################
@@ -328,10 +431,11 @@ def main():
         writer.writerow([8, "Zeropoint List", zeropointlist])
         writer.writerow([9, "Pivot List", pivotlist])
    
-    mjd_list, input_counts_list, epoch_list, mangled_counts_list, wavelength_list, flux_matrix, data  = arrange_data(openedcountsfile, template_spectrum, filters_from_csv, reference_epoch_mjd)
+    mjd_list, input_counts_list, epoch_list, mangled_counts_list, wavelength_list, flux_matrix, luminosity_data  = arrange_data(openedcountsfile, template_spectrum, filters_from_csv, reference_epoch_mjd)
     #mangled_counts, mjd_list, data, counts_list, mangled_spec_wave, wavelength_list, epoch_list, flux_matrix = mangle_data(openedcountsfile, pivotlist, template_spectrum, filter_file_list, reference_epoch_mjd, zeropointlist)
-    
-    df = pd.DataFrame(columns=['MJD', 'Wavelength', 'Flux'], data=data)
+    #replaced data with luminosity_data here as well
+
+    df = pd.DataFrame(columns=['MJD', 'Wavelength', 'Flux'], data=luminosity_data) #here as well
     
     # format is different than input template (see vega.dat.csv)
     output_file = '../output/TEMPLATE/'+output_file_name+'_template.csv'
@@ -339,11 +443,11 @@ def main():
         df.to_csv(output_file, index=False, float_format='%g')
     
     
-
-    lum_df= Luminosity_Converter.Lum_conv(sn_name, output_file)
-    lum_output_file= '../output/TEMPLATE/'+output_file_name+'_lum_template.csv'
-    if store_as_csv:
-        lum_df.to_csv(lum_output_file, index=False, float_format='%g')
+#autumn wants to delete this: 
+   # lum_df= Luminosity_Converter.Lum_conv(sn_name, output_file)
+   # lum_output_file= '../output/TEMPLATE/'+output_file_name+'_lum_template.csv'
+   # if store_as_csv:
+   #     lum_df.to_csv(lum_output_file, index=False, float_format='%g')
 
     # Function Call 5
     # Creates an output file of the mangled counts for each filter band for each epoch
